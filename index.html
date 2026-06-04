@@ -59,6 +59,7 @@
     body > ul,
     body > blockquote,
     body > table,
+    body > section,
     body > div:not(.columns) {
       grid-column: 2;
       width: 100%;
@@ -396,6 +397,41 @@
         display: block;
       }
 
+
+
+      body > h1 {
+        padding-right: 74px;
+        overflow-wrap: anywhere;
+      }
+
+      .view-switcher {
+        grid-template-columns: 1fr 1fr;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .view-switcher__button {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.78rem;
+      }
+
+      h2, h3, p, li { overflow-wrap: anywhere; }
+
+      code {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        line-height: 1.25;
+      }
+
+
       h2 { margin-top: 42px; }
       h3 { margin-top: 28px; }
     }
@@ -415,6 +451,16 @@
         letter-spacing: -0.04em;
         padding-right: 104px;
       }
+
+
+
+      body > h1 {
+        padding-right: 72px;
+        font-size: clamp(1.75rem, 9.2vw, 2.35rem);
+      }
+
+      .nav-toggle__label { display: none; }
+      .nav-toggle { min-width: 42px; padding: 0 12px; }
 
       body > h1 + p,
       body > h1 + p + p {
@@ -451,6 +497,128 @@
       }
     }
 
+
+
+    /* Guided study mode */
+    .view-switcher {
+      grid-column: 2;
+      width: fit-content;
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin: 8px 0 24px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 82%, var(--accent-bg));
+      border-radius: 999px;
+      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+
+    .view-switcher__button {
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 760;
+      cursor: pointer;
+      transition: transform 180ms cubic-bezier(.2,.8,.2,1), background 180ms ease, color 180ms ease;
+    }
+
+    .view-switcher__button:hover { color: var(--ink); }
+    .view-switcher__button:active { transform: translateY(1px); }
+    .view-switcher__button.is-active { background: var(--ink); color: var(--paper); }
+
+    .guided-panel {
+      display: none;
+      margin: 18px 0 18px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      background: color-mix(in srgb, var(--paper) 86%, var(--accent-bg));
+      border-radius: 8px;
+      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+
+    .guided-panel__eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .guided-panel__title {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 850;
+      color: var(--ink);
+    }
+
+    .guided-panel__controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+
+    .guided-step-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: var(--paper);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 760;
+      cursor: pointer;
+      transition: transform 180ms cubic-bezier(.2,.8,.2,1), border-color 180ms ease, background 180ms ease;
+    }
+
+    .guided-step-button:hover { border-color: var(--accent); background: var(--accent-bg); }
+    .guided-step-button:active { transform: translateY(1px); }
+    .guided-step-button.is-done { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+    .guided-reveal {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 260ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    .guided-reveal.is-open { grid-template-rows: 1fr; }
+    .guided-reveal > div { overflow: hidden; }
+
+    .guided-reveal__body {
+      margin: 10px 0 0;
+      padding-top: 10px;
+      border-top: 1px solid var(--faint);
+      color: var(--ink);
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .guided-reveal__body ul { margin: 8px 0 0 18px; padding: 0; }
+    .guided-reveal__body li { margin: 5px 0; }
+
+    html[data-study-mode="guided"] .guided-panel { display: block; }
+    html[data-study-mode="guided"] .exam-answer-node.is-guided-hidden { display: none; }
+    html[data-study-mode="guided"] .exam-answer-node.is-answer-visible { display: revert; }
+    html[data-study-mode="guided"] h4 { display: none; }
+
+    @media (max-width: 980px) {
+      .view-switcher {
+        grid-column: 2;
+        width: 100%;
+        margin: 4px 0 20px;
+      }
+      .view-switcher__button { padding: 10px 8px; }
+      .guided-panel { margin: 14px 0 16px; padding: 14px; }
+    }
+
     @media print {
       :root { --bg: white; --paper: white; --ink: #111; --muted: #333; --line: #888; --faint: #d0d0d0; --accent: #111; --accent-bg: white; --code: #f2f2f2; }
       html { background: white; }
@@ -474,9 +642,17 @@
   <span class="nav-toggle__label">Menu</span>
 </button>
 <div class="nav-backdrop" hidden></div>
-<header id="title-block-header">
-<h1 class="title">RFA Theory Cheat Sheet</h1>
-</header>
+<h1 id="guided-study-notes-core-backup">Guided Study Notes (Core +
+Backup)</h1>
+<p>This file is a reading-first version of the same material in
+<code>theory_core_backup_exact.md</code>.</p>
+<p>The notes are now ordered by examiner-weighted probability for the
+June 2026 exam, based only on <code>exams/</code> and
+<code>Theory Questions.pdf</code>.</p>
+<div class="view-switcher" role="group" aria-label="Study mode">
+  <button class="view-switcher__button is-active" type="button" data-mode="exam">Exam</button>
+  <button class="view-switcher__button" type="button" data-mode="guided">Guided</button>
+</div>
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#guided-study-notes-core-backup"
@@ -776,13 +952,6 @@ Convergence</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="guided-study-notes-core-backup">Guided Study Notes (Core +
-Backup)</h1>
-<p>This file is a reading-first version of the same material in
-<code>theory_core_backup_exact.md</code>.</p>
-<p>The notes are now ordered by examiner-weighted probability for the
-June 2026 exam, based only on <code>exams/</code> and
-<code>Theory Questions.pdf</code>.</p>
 <h2 id="how-to-use-this-file">How To Use This File</h2>
 <ol type="1">
 <li>Start with Tier 0. This is the 20/80 set: recurring, exam-shaped,
@@ -3507,6 +3676,150 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') setOpen(false);
   });
+
+
+
+  var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.view-switcher__button'));
+  var sections = [];
+
+  function cleanTitle(text) {
+    return text.replace(/^\s*\d+(?:\.\d+)?\s*[—-]\s*/, '').trim();
+  }
+
+  function classify(title) {
+    var t = title.toLowerCase();
+    if (/convergence|fatou|dominated|monotone|lebesgue point|fundamental theorem/.test(t)) return 'real-convergence';
+    if (/measur|borel|simple|integral|characteristic/.test(t)) return 'measure-basics';
+    if (/riesz|holder|minkowski|lp|l\^p|young|interpolation/.test(t)) return 'lp-functional';
+    if (/weak|banach-alaoglu|reflexive|bidual|hahn/.test(t)) return 'duality';
+    if (/closed graph|open mapping|uniform boundedness|baire|bounded linear/.test(t)) return 'banach-tools';
+    if (/hilbert|orthonormal|fourier|parseval|projection|symmetric|fredholm|spectral/.test(t)) return 'hilbert';
+    return 'default';
+  }
+
+  function makeGuidedContent(title) {
+    var kind = classify(title);
+    var base = {
+      plan: ['Start by writing the exact statement with all hypotheses.', 'List the objects and the topology/norm/measure used.', 'Only then give the proof or counterexample.'],
+      hint: ['Ask which theorem unlocks the question.', 'Track where each hypothesis is used.', 'Keep the final implication in one clean line.'],
+      final: ['Now reveal the exam answer and rewrite it once without looking.']
+    };
+    var map = {
+      'measure-basics': {
+        plan: ['Define the sigma-algebra or measurability criterion first.', 'Reduce the question to preimages, generators, or characteristic functions.', 'Use closure under complements/countable unions/countable intersections.'],
+        hint: ['For measurability, test rays or a generating class instead of all Borel sets.', 'For characteristic/simple functions, translate function statements into measurable level sets.'],
+        final: ['Your final answer should be mostly definitions plus one short set-theoretic argument.']
+      },
+      'real-convergence': {
+        plan: ['State the convergence mode precisely.', 'Identify the needed extra hypothesis: monotone, domination, finite measure, or subsequence.', 'Use the named theorem, then finish with the limit relation.'],
+        hint: ['If the statement is false, use escape-to-infinity or typewriter examples.', 'If an integral limit is involved, look for MCT, Fatou, DCT, or Chebyshev.'],
+        final: ['Reveal the answer and check that every limit has the correct mode: a.e., measure, L1, or integral.']
+      },
+      'lp-functional': {
+        plan: ['Write the relevant norm and exponent relation.', 'Use Young/Holder/Minkowski only where it directly closes the estimate.', 'For completeness, use the absolutely convergent series criterion.'],
+        hint: ['Normalize by the norms for Holder.', 'For Lp inclusions, finite measure is the essential hypothesis.', 'For Riesz compactness, construct separated unit vectors.'],
+        final: ['The final proof should be an inequality chain, not a long explanation.']
+      },
+      'duality': {
+        plan: ['Write the dual or bidual action explicitly.', 'Translate weak/weak* convergence into scalar convergence against test functionals.', 'Use Hahn-Banach or Uniform Boundedness only when separation/boundedness is needed.'],
+        hint: ['Weak convergence tests against X*. Weak* convergence in X* tests only against X.', 'For reflexivity, replace bidual functionals by evaluation at a point.'],
+        final: ['Reveal the answer and check the quantifier: for every L in X*, for every x in X, or for every Phi in X**.']
+      },
+      'banach-tools': {
+        plan: ['State the Banach-space theorem exactly.', 'Name the completeness hypothesis.', 'Use Baire/Open Mapping/graph norm as the engine of the proof.'],
+        hint: ['UBP: closed sets plus Baire plus scaling.', 'CGT: graph norm plus inverse mapping theorem.', 'OMT/IBM: surjectivity or bijectivity is the key hypothesis.'],
+        final: ['The final answer should make clear which theorem implies boundedness/continuity.']
+      },
+      'hilbert': {
+        plan: ['Translate the question into inner-product geometry.', 'Use orthogonality, projection, Riesz representation, or spectral decomposition.', 'Finish with the exact norm/series/solvability identity.'],
+        hint: ['For o.n.b. questions, Parseval usually gives the limit.', 'For Fredholm, split into kernel and orthogonal complement.', 'For symmetric compact operators, eigenvectors form the main structure.'],
+        final: ['Reveal the answer and verify all Hilbert-space statements use inner products, not only norms.']
+      }
+    };
+    return map[kind] || base;
+  }
+
+  function makeList(items) {
+    return '<ul>' + items.map(function (item) { return '<li>' + item + '</li>'; }).join('') + '</ul>';
+  }
+
+  function createGuidedPanel(sectionTitle) {
+    var guide = makeGuidedContent(sectionTitle);
+    var panel = document.createElement('section');
+    panel.className = 'guided-panel';
+    panel.innerHTML =
+      '<p class="guided-panel__eyebrow">Guided study</p>' +
+      '<p class="guided-panel__title">' + cleanTitle(sectionTitle) + '</p>' +
+      '<div class="guided-panel__controls">' +
+        '<button class="guided-step-button" type="button" data-target="plan">Plan</button>' +
+        '<button class="guided-step-button" type="button" data-target="hint">Hints</button>' +
+        '<button class="guided-step-button" type="button" data-target="final">Final check</button>' +
+        '<button class="guided-step-button" type="button" data-target="answer">Reveal answer</button>' +
+      '</div>' +
+      '<div class="guided-reveal" data-panel="plan"><div><div class="guided-reveal__body">' + makeList(guide.plan) + '</div></div></div>' +
+      '<div class="guided-reveal" data-panel="hint"><div><div class="guided-reveal__body">' + makeList(guide.hint) + '</div></div></div>' +
+      '<div class="guided-reveal" data-panel="final"><div><div class="guided-reveal__body">' + makeList(guide.final) + '</div></div></div>';
+    return panel;
+  }
+
+  function buildGuidedSections() {
+    var headings = Array.prototype.slice.call(document.querySelectorAll('h3'));
+    headings.forEach(function (heading) {
+      var nodes = [];
+      var cursor = heading.nextElementSibling;
+      while (cursor && cursor.tagName !== 'H3' && cursor.tagName !== 'H2') {
+        nodes.push(cursor);
+        cursor = cursor.nextElementSibling;
+      }
+      if (!nodes.length) return;
+      var answerHeading = nodes.find(function (node) { return node.tagName === 'H4'; });
+      var panel = createGuidedPanel(heading.textContent || 'Question');
+      if (answerHeading) answerHeading.insertAdjacentElement('afterend', panel);
+      else heading.insertAdjacentElement('afterend', panel);
+      var answerNodes = nodes.filter(function (node) { return node !== panel; });
+      answerNodes.forEach(function (node) { node.classList.add('exam-answer-node', 'is-guided-hidden'); });
+      sections.push({ panel: panel, answerNodes: answerNodes });
+    });
+  }
+
+  function setStudyMode(mode) {
+    document.documentElement.setAttribute('data-study-mode', mode);
+    modeButtons.forEach(function (button) {
+      button.classList.toggle('is-active', button.getAttribute('data-mode') === mode);
+    });
+    try { window.localStorage.setItem('rfa-study-mode', mode); } catch (e) {}
+  }
+
+  buildGuidedSections();
+
+  modeButtons.forEach(function (button) {
+    button.addEventListener('click', function () { setStudyMode(button.getAttribute('data-mode')); });
+  });
+
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('.guided-step-button');
+    if (!button) return;
+    var panel = button.closest('.guided-panel');
+    var target = button.getAttribute('data-target');
+    if (target === 'answer') {
+      var section = sections.find(function (item) { return item.panel === panel; });
+      if (!section) return;
+      var visible = !button.classList.contains('is-done');
+      button.classList.toggle('is-done', visible);
+      button.textContent = visible ? 'Hide answer' : 'Reveal answer';
+      section.answerNodes.forEach(function (node) { node.classList.toggle('is-answer-visible', visible); });
+      return;
+    }
+    var reveal = panel.querySelector('[data-panel="' + target + '"]');
+    if (!reveal) return;
+    var open = !reveal.classList.contains('is-open');
+    reveal.classList.toggle('is-open', open);
+    button.classList.toggle('is-done', open);
+  });
+
+  var savedMode = 'exam';
+  try { savedMode = window.localStorage.getItem('rfa-study-mode') || 'exam'; } catch (e) {}
+  setStudyMode(savedMode === 'guided' ? 'guided' : 'exam');
 
   window.addEventListener('resize', function () {
     if (window.matchMedia('(min-width: 981px)').matches) setOpen(false);
