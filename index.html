@@ -16,8 +16,8 @@
   --line: #d2d2d2;
   --accent: #9b2f20;
   --code: #f4f4f4;
-  --content: 860px;
-  --toc: 304px;
+  --content: 880px;
+  --toc: 340px;
 }
 
 html[data-theme="dark"] {
@@ -49,8 +49,8 @@ body {
   min-height: 100vh;
   padding: 34px 24px 72px;
   display: grid;
-  grid-template-columns: minmax(18px, 1fr) minmax(0, var(--content)) minmax(232px, var(--toc)) minmax(18px, 1fr);
-  column-gap: 36px;
+  grid-template-columns: minmax(20px, 1fr) minmax(0, var(--content)) minmax(20px, 1fr);
+  column-gap: 0;
   align-items: start;
   background: var(--bg);
   color: var(--ink);
@@ -90,20 +90,26 @@ body > h1 {
 }
 
 #TOC {
-  grid-column: 3;
-  grid-row: 1 / span 120;
-  position: sticky;
-  top: 24px;
-  max-height: calc(100vh - 48px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: min(86vw, var(--toc));
+  max-height: none;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 4px 0 18px 18px;
+  padding: 76px 22px 28px;
   border-left: 1px solid var(--line);
   background: var(--bg);
   font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
   font-size: 0.84rem;
   line-height: 1.32;
+  transform: translateX(105%);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
+.nav-open #TOC { transform: translateX(0); }
 
 #TOC::before {
   content: "Contents";
@@ -118,7 +124,23 @@ body > h1 {
 
 #TOC ul { margin: 0; padding: 0; }
 #TOC li { margin: 0; list-style: none; }
-#TOC li li { margin-left: 12px; }
+#TOC li li { margin-left: 13px; }
+#TOC li.toc-collapsed > ul { display: none; }
+#TOC .toc-row { display: grid; grid-template-columns: 18px 1fr; align-items: start; column-gap: 4px; }
+#TOC .toc-disclosure {
+  width: 18px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+#TOC .toc-disclosure::before { content: "▸"; font-size: 0.72rem; }
+#TOC li:not(.toc-collapsed) > .toc-row > .toc-disclosure::before { content: "▾"; }
+#TOC li:not(.toc-branch) > .toc-row > .toc-disclosure { visibility: hidden; }
 #TOC a {
   display: block;
   padding: 3px 0;
@@ -132,8 +154,42 @@ body > h1 {
   outline: none;
 }
 
-.nav-toggle,
-.nav-backdrop { display: none; }
+.nav-toggle {
+  position: fixed;
+  right: 76px;
+  top: 14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 780;
+  cursor: pointer;
+}
+.nav-toggle:active { transform: translateY(1px); }
+.nav-toggle__bars { width: 16px; display: grid; gap: 3px; }
+.nav-toggle__bars span { display: block; height: 2px; background: var(--ink); transform-origin: center; transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms cubic-bezier(0.16, 1, 0.3, 1); }
+.nav-open .nav-toggle__bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav-open .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.nav-open .nav-toggle__bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 .nav-backdrop[hidden] { display: none; }
 
 .theme-toggle {
@@ -379,76 +435,11 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
     font-size: 16.5px;
   }
 
-  .theme-toggle {
-    left: 14px;
-    right: auto;
-    top: 14px;
-  }
+  .theme-toggle { left: 14px; right: auto; top: 14px; }
+  .nav-toggle { left: 82px; right: auto; top: 14px; min-height: 38px; }
+  #TOC { width: min(84vw, 360px); font-size: 0.84rem; }
 
-  .nav-toggle {
-    position: fixed;
-    left: 82px;
-    right: auto;
-    top: 14px;
-    z-index: 4;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 38px;
-    padding: 0 12px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
-    font-size: 0.8rem;
-    font-weight: 780;
-    cursor: pointer;
-  }
-  .nav-toggle:active { transform: translateY(1px); }
-  .nav-toggle__bars { width: 17px; display: grid; gap: 3px; }
-  .nav-toggle__bars span { display: block; height: 2px; background: var(--ink); transform-origin: center; transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms cubic-bezier(0.16, 1, 0.3, 1); }
-  .nav-open .nav-toggle__bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-  .nav-open .nav-toggle__bars span:nth-child(2) { opacity: 0; }
-  .nav-open .nav-toggle__bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
-
-  .nav-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    display: block;
-    background: rgba(0, 0, 0, 0.46);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
-
-  body > h1 {
-    margin-top: 48px;
-    padding-right: 0;
-  }
-
-  #TOC {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 3;
-    width: min(84vw, 360px);
-    max-height: none;
-    margin: 0;
-    padding: 70px 22px 28px;
-    border-left: 1px solid var(--line);
-    background: var(--bg);
-    font-size: 0.84rem;
-    transform: translateX(105%);
-    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
-  }
-  .nav-open #TOC { transform: translateX(0); }
-  #TOC li li li { display: block; }
-
+  body > h1 { margin-top: 48px; padding-right: 0; }
   h2, h3, p, li { overflow-wrap: anywhere; }
   .qa-content { overflow-x: auto; }
   code { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
@@ -503,7 +494,7 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
 <button class="theme-toggle" type="button" aria-label="Switch color theme">Dark</button>
 <button class="nav-toggle" type="button" aria-controls="TOC" aria-expanded="false">
   <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  <span class="nav-toggle__label">Menu</span>
+  <span class="nav-toggle__label">Contents</span>
 </button>
 <div class="nav-backdrop" hidden></div>
 <h1 id="rfa-theory-cheat-sheet">RFA Theory Cheat Sheet</h1>
@@ -3527,7 +3518,36 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
 
   backdrop.addEventListener('click', function () { setOpen(false); });
 
+  function setupTocBranches() {
+    Array.prototype.slice.call(toc.querySelectorAll('li')).forEach(function (item) {
+      var anchor = Array.prototype.slice.call(item.children).find(function (child) { return child.tagName === 'A'; });
+      if (!anchor || anchor.parentElement.classList.contains('toc-row')) return;
+      var childList = Array.prototype.slice.call(item.children).find(function (child) { return child.tagName === 'UL'; });
+      var row = document.createElement('span');
+      row.className = 'toc-row';
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'toc-disclosure';
+      toggle.setAttribute('aria-label', 'Toggle contents branch');
+      row.appendChild(toggle);
+      item.insertBefore(row, anchor);
+      row.appendChild(anchor);
+      if (childList) {
+        item.classList.add('toc-branch');
+        if (item.parentElement !== toc.querySelector(':scope > ul')) item.classList.add('toc-collapsed');
+      }
+    });
+  }
+
+  setupTocBranches();
+
   toc.addEventListener('click', function (event) {
+    var disclosure = event.target.closest('.toc-disclosure');
+    if (disclosure) {
+      var item = disclosure.closest('li');
+      if (item && item.classList.contains('toc-branch')) item.classList.toggle('toc-collapsed');
+      return;
+    }
     if (event.target.closest('a')) setOpen(false);
   });
 
@@ -3593,7 +3613,6 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
 
       var exam = document.createElement('details');
       exam.className = 'qa-disclosure qa-disclosure--exam';
-      exam.open = true;
       exam.innerHTML = '<summary>Exam answer</summary><div class="qa-content"></div>';
       var examContent = exam.querySelector('.qa-content');
       nodes.forEach(function (node) { examContent.appendChild(node); });
