@@ -404,19 +404,6 @@
         overflow-wrap: anywhere;
       }
 
-      .view-switcher {
-        grid-template-columns: 1fr 1fr;
-        min-width: 0;
-        overflow: hidden;
-      }
-
-      .view-switcher__button {
-        min-width: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 0.78rem;
-      }
 
       h2, h3, p, li { overflow-wrap: anywhere; }
 
@@ -500,23 +487,122 @@
 
 
     /* Per-question exam/guided disclosures */
-    .view-switcher { display: none !important; }
-    .qa-shell { margin: 16px 0 24px; display: grid; gap: 12px; }
-    .qa-disclosure { border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--paper) 92%, var(--bg)); overflow: clip; }
+    .qa-shell {
+      margin: 14px 0 26px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .qa-disclosure {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--paper) 94%, var(--bg));
+      overflow: clip;
+    }
+
     .qa-disclosure[open] { background: var(--paper); }
-    .qa-disclosure > summary { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 11px 14px; cursor: pointer; color: var(--ink); font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif; font-size: 0.82rem; font-weight: 850; letter-spacing: 0.07em; text-transform: uppercase; list-style: none; user-select: none; }
+
+    .qa-disclosure > summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 10px 14px;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      list-style: none;
+      user-select: none;
+    }
+
     .qa-disclosure > summary::-webkit-details-marker { display: none; }
-    .qa-disclosure > summary::before { content: ""; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--accent); transform: translateY(1px); transition: transform 180ms cubic-bezier(.2,.8,.2,1); flex: 0 0 auto; }
-    .qa-disclosure[open] > summary::before { transform: rotate(90deg) translateX(1px); }
+    .qa-disclosure > summary::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid var(--accent);
+      transition: transform 180ms cubic-bezier(.2,.8,.2,1);
+      flex: 0 0 auto;
+    }
+    .qa-disclosure[open] > summary::before { transform: rotate(90deg); }
     .qa-disclosure--guided { border-left: 4px solid var(--accent); }
-    .qa-content { padding: 2px 18px 18px; }
-    .guided-line { position: relative; margin: 10px 0; padding: 12px 14px; border: 1px solid var(--faint); border-radius: 8px; background: color-mix(in srgb, var(--paper) 82%, var(--accent-bg)); font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif; font-size: 0.94rem; line-height: 1.55; }
-    .guided-line__label { display: block; margin-bottom: 5px; color: var(--accent); font-size: 0.68rem; font-weight: 850; letter-spacing: 0.11em; text-transform: uppercase; }
-    .guided-line__text { display: block; filter: blur(5px); opacity: 0.42; transition: filter 160ms ease, opacity 160ms ease; }
-    .guided-line.is-revealed .guided-line__text { filter: blur(0); opacity: 1; }
-    .guided-line__button { margin-top: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 0.76rem; font-weight: 780; cursor: pointer; }
-    .guided-line__button:active { transform: translateY(1px); }
-    @media (max-width: 560px) { .qa-disclosure > summary { padding: 10px 12px; font-size: 0.76rem; } .qa-content { padding: 0 12px 14px; } .guided-line { padding: 11px 12px; } }
+
+    .qa-content { padding: 0 18px 18px; }
+    .qa-content > h4:first-child { display: none; }
+
+    .guided-flow {
+      display: grid;
+      gap: 9px;
+      padding-top: 2px;
+    }
+
+    .guided-step {
+      border: 1px solid var(--faint);
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--paper) 88%, var(--accent-bg));
+      overflow: clip;
+    }
+
+    .guided-step__button {
+      width: 100%;
+      border: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 13px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .guided-step__index {
+      min-width: 2.2rem;
+      color: var(--accent);
+      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .guided-step__body {
+      min-width: 0;
+      filter: blur(6px);
+      opacity: 0.38;
+      transform: translateY(1px);
+      transition: filter 160ms ease, opacity 160ms ease, transform 160ms ease;
+    }
+
+    .guided-step__body > *:first-child { margin-top: 0; }
+    .guided-step__body > *:last-child { margin-bottom: 0; }
+    .guided-step.is-revealed .guided-step__body { filter: blur(0); opacity: 1; transform: none; }
+    .guided-step.is-revealed { background: var(--paper); border-color: var(--line); }
+
+    .guided-step__cover {
+      grid-column: 2;
+      margin-top: 5px;
+      color: var(--muted);
+      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 760;
+    }
+    .guided-step.is-revealed .guided-step__cover { display: none; }
+
+    @media (max-width: 560px) {
+      .qa-disclosure > summary { padding: 10px 12px; font-size: 0.74rem; }
+      .qa-content { padding: 0 12px 14px; }
+      .guided-step__button { padding: 11px 10px; grid-template-columns: 2rem 1fr; }
+      .guided-step__index { min-width: 2rem; }
+    }
 
 
     @media print {
@@ -3575,38 +3661,41 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
 
 
 
-  function cleanTitle(text) {
-    return text.replace(/^\s*\d+(?:\.\d+)?\s*[—-]\s*/, '').trim();
+  function guidedLabel(node, index) {
+    var text = (node.textContent || '').trim().toLowerCase();
+    if (node.tagName === 'P' && /definition|theorem|lemma|let |if |assume|state/.test(text)) return 'Set up';
+    if (node.tagName === 'P' && /proof|choose|define|take|since|because|by /.test(text)) return 'Proof';
+    if (node.tagName === 'UL' || node.tagName === 'OL') return 'Cases';
+    if (/mjx-container|math display/.test(node.className || '') || node.querySelector && node.querySelector('.math.display, mjx-container[jax="CHTML"][display="true"]')) return 'Formula';
+    if (/therefore|hence|thus|conclude|so /.test(text)) return 'Conclusion';
+    return 'Step ' + (index + 1);
   }
 
-  function classify(title) {
-    var t = title.toLowerCase();
-    if (/convergence|fatou|dominated|monotone|lebesgue point|fundamental theorem/.test(t)) return 'real-convergence';
-    if (/measur|borel|simple|integral|characteristic/.test(t)) return 'measure-basics';
-    if (/riesz|holder|minkowski|lp|l\^p|young|interpolation/.test(t)) return 'lp-functional';
-    if (/weak|banach-alaoglu|reflexive|bidual|hahn/.test(t)) return 'duality';
-    if (/closed graph|open mapping|uniform boundedness|baire|bounded linear/.test(t)) return 'banach-tools';
-    if (/hilbert|orthonormal|fourier|parseval|projection|symmetric|fredholm|spectral/.test(t)) return 'hilbert';
-    return 'default';
-  }
+  function makeGuidedStep(node, index) {
+    var step = document.createElement('div');
+    step.className = 'guided-step';
+    var button = document.createElement('button');
+    button.className = 'guided-step__button';
+    button.type = 'button';
+    button.setAttribute('aria-expanded', 'false');
 
-  function guidedLines(title) {
-    var common = [['Read','Identify whether the question asks for a definition, theorem, proof, counterexample, or relation.'],['Setup','Write all hypotheses and notation before starting the proof.'],['Finish','Reveal the exam answer last and reproduce it once without looking.']];
-    var map = {
-      'measure-basics': [['Start','Translate the question into sigma-algebra language: sets, preimages, generators, or level sets.'],['Hint','For measurability, it is enough to test a generating family such as open sets or rays.'],['Move','Use closure of sigma-algebras under complements, countable unions, and countable intersections.'],['Check','The final answer needs precise quantifiers: every Borel set, every alpha, or every measurable set.']],
-      'real-convergence': [['Start','Name the convergence mode: pointwise, a.e., in measure, in L1, or integral convergence.'],['Hint','Look for the missing hypothesis: monotonicity, domination, finite measure, integrability, or subsequence extraction.'],['Move','Use MCT, Fatou, DCT, Chebyshev, finite-measure reasoning, or a typewriter counterexample.'],['Check','Do not confuse full-sequence a.e. convergence with existence of an a.e. convergent subsequence.']],
-      'lp-functional': [['Start','Write the norm, exponent range, and conjugate relation before estimating.'],['Hint','Most proofs reduce to one inequality chain: Young gives Holder, Holder gives Minkowski/interpolation/inclusion.'],['Move','For completeness, use the absolutely convergent series criterion and build an Lp dominating function.'],['Check','For compactness/Riesz questions, build separated unit vectors or use finite-dimensional closed-ball compactness.']],
-      'duality': [['Start','Write explicitly what acts on what: X*, X**, tau(x)(L)=L(x), weak tests, or weak* tests.'],['Hint','Weak convergence tests against every functional in X*. Weak* convergence in X* tests only points of X.'],['Move','Use Hahn-Banach for separation/norm-attainment; use Uniform Boundedness for boundedness.'],['Check','The final line should be scalar convergence: L(x_n) to L(x), or L_n(x) to L(x).']],
-      'banach-tools': [['Start','State the Banach-space theorem with all hypotheses: completeness, boundedness, linearity, surjectivity, or closed graph.'],['Hint','UBP uses Baire plus scaling. CGT uses graph norm plus inverse mapping theorem. OMT turns surjectivity into openness.'],['Move','Keep the proof architecture visible; do not bury the main theorem under prose.'],['Check','The conclusion is usually continuity, boundedness, open image, or inverse boundedness.']],
-      'hilbert': [['Start','Convert the problem into inner-product geometry: orthogonality, projection, Fourier coefficients, or eigenspaces.'],['Hint','Parseval controls o.n.b. convergence. Projection gives nearest point and orthogonal decomposition. Fredholm splits kernel and orthogonal complement.'],['Move','Use Riesz representation when a functional must become an inner product with a vector.'],['Check','The final formula should be an inner-product identity, Parseval identity, or solvability condition.']]
-    };
-    return map[classify(title)] || common;
-  }
+    var label = document.createElement('span');
+    label.className = 'guided-step__index';
+    label.textContent = guidedLabel(node, index);
 
-  function makeGuidedBlock(lines) {
-    return lines.map(function (line, index) {
-      return '<div class="guided-line"><span class="guided-line__label">' + line[0] + '</span><span class="guided-line__text">' + line[1] + '</span><button class="guided-line__button" type="button">Reveal block ' + (index + 1) + '</button></div>';
-    }).join('');
+    var body = document.createElement('div');
+    body.className = 'guided-step__body';
+    body.appendChild(node.cloneNode(true));
+
+    var cover = document.createElement('span');
+    cover.className = 'guided-step__cover';
+    cover.textContent = 'Tap to reveal this line of the solution';
+
+    button.appendChild(label);
+    button.appendChild(body);
+    button.appendChild(cover);
+    step.appendChild(button);
+    return step;
   }
 
   function wrapQuestions() {
@@ -3615,22 +3704,28 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
       var cursor = heading.nextElementSibling;
       while (cursor && cursor.tagName !== 'H3' && cursor.tagName !== 'H2') {
         var next = cursor.nextElementSibling;
-        nodes.push(cursor);
+        if (cursor.tagName !== 'H4') nodes.push(cursor);
         cursor = next;
       }
       if (!nodes.length) return;
       nodes.forEach(function (node) { node.remove(); });
+
       var shell = document.createElement('section');
       shell.className = 'qa-shell';
+
       var exam = document.createElement('details');
       exam.className = 'qa-disclosure qa-disclosure--exam';
       exam.open = true;
       exam.innerHTML = '<summary>Exam answer</summary><div class="qa-content"></div>';
       var examContent = exam.querySelector('.qa-content');
-      nodes.forEach(function (node) { if (node.tagName !== 'H4') examContent.appendChild(node); });
+      nodes.forEach(function (node) { examContent.appendChild(node); });
+
       var guided = document.createElement('details');
       guided.className = 'qa-disclosure qa-disclosure--guided';
-      guided.innerHTML = '<summary>Guided solution</summary><div class="qa-content">' + makeGuidedBlock(guidedLines(heading.textContent || '')) + '</div>';
+      guided.innerHTML = '<summary>Guided solution</summary><div class="qa-content"><div class="guided-flow"></div></div>';
+      var flow = guided.querySelector('.guided-flow');
+      nodes.forEach(function (node, index) { flow.appendChild(makeGuidedStep(node, index)); });
+
       shell.appendChild(exam);
       shell.appendChild(guided);
       heading.insertAdjacentElement('afterend', shell);
@@ -3640,11 +3735,11 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
   wrapQuestions();
 
   document.addEventListener('click', function (event) {
-    var button = event.target.closest('.guided-line__button');
+    var button = event.target.closest('.guided-step__button');
     if (!button) return;
-    var line = button.closest('.guided-line');
-    var revealed = line.classList.toggle('is-revealed');
-    button.textContent = revealed ? 'Hide block' : 'Reveal block';
+    var step = button.closest('.guided-step');
+    var revealed = step.classList.toggle('is-revealed');
+    button.setAttribute('aria-expanded', revealed ? 'true' : 'false');
   });
 
   window.addEventListener('resize', function () {
