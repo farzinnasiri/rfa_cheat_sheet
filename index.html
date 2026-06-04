@@ -499,125 +499,25 @@
 
 
 
-    /* Guided study mode */
-    .view-switcher {
-      grid-column: 2;
-      width: fit-content;
-      display: inline-grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-      margin: 8px 0 24px;
-      padding: 4px;
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--paper) 82%, var(--accent-bg));
-      border-radius: 999px;
-      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
-    }
+    /* Per-question exam/guided disclosures */
+    .view-switcher { display: none !important; }
+    .qa-shell { margin: 16px 0 24px; display: grid; gap: 12px; }
+    .qa-disclosure { border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--paper) 92%, var(--bg)); overflow: clip; }
+    .qa-disclosure[open] { background: var(--paper); }
+    .qa-disclosure > summary { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 11px 14px; cursor: pointer; color: var(--ink); font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif; font-size: 0.82rem; font-weight: 850; letter-spacing: 0.07em; text-transform: uppercase; list-style: none; user-select: none; }
+    .qa-disclosure > summary::-webkit-details-marker { display: none; }
+    .qa-disclosure > summary::before { content: ""; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--accent); transform: translateY(1px); transition: transform 180ms cubic-bezier(.2,.8,.2,1); flex: 0 0 auto; }
+    .qa-disclosure[open] > summary::before { transform: rotate(90deg) translateX(1px); }
+    .qa-disclosure--guided { border-left: 4px solid var(--accent); }
+    .qa-content { padding: 2px 18px 18px; }
+    .guided-line { position: relative; margin: 10px 0; padding: 12px 14px; border: 1px solid var(--faint); border-radius: 8px; background: color-mix(in srgb, var(--paper) 82%, var(--accent-bg)); font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif; font-size: 0.94rem; line-height: 1.55; }
+    .guided-line__label { display: block; margin-bottom: 5px; color: var(--accent); font-size: 0.68rem; font-weight: 850; letter-spacing: 0.11em; text-transform: uppercase; }
+    .guided-line__text { display: block; filter: blur(5px); opacity: 0.42; transition: filter 160ms ease, opacity 160ms ease; }
+    .guided-line.is-revealed .guided-line__text { filter: blur(0); opacity: 1; }
+    .guided-line__button { margin-top: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--paper); color: var(--ink); font: inherit; font-size: 0.76rem; font-weight: 780; cursor: pointer; }
+    .guided-line__button:active { transform: translateY(1px); }
+    @media (max-width: 560px) { .qa-disclosure > summary { padding: 10px 12px; font-size: 0.76rem; } .qa-content { padding: 0 12px 14px; } .guided-line { padding: 11px 12px; } }
 
-    .view-switcher__button {
-      border: 0;
-      border-radius: 999px;
-      padding: 9px 14px;
-      background: transparent;
-      color: var(--muted);
-      font: inherit;
-      font-size: 0.86rem;
-      font-weight: 760;
-      cursor: pointer;
-      transition: transform 180ms cubic-bezier(.2,.8,.2,1), background 180ms ease, color 180ms ease;
-    }
-
-    .view-switcher__button:hover { color: var(--ink); }
-    .view-switcher__button:active { transform: translateY(1px); }
-    .view-switcher__button.is-active { background: var(--ink); color: var(--paper); }
-
-    .guided-panel {
-      display: none;
-      margin: 18px 0 18px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--accent);
-      background: color-mix(in srgb, var(--paper) 86%, var(--accent-bg));
-      border-radius: 8px;
-      font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
-    }
-
-    .guided-panel__eyebrow {
-      margin: 0 0 8px;
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 850;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .guided-panel__title {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      line-height: 1.35;
-      font-weight: 850;
-      color: var(--ink);
-    }
-
-    .guided-panel__controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 12px 0 0;
-    }
-
-    .guided-step-button {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 7px 11px;
-      background: var(--paper);
-      color: var(--ink);
-      font: inherit;
-      font-size: 0.78rem;
-      font-weight: 760;
-      cursor: pointer;
-      transition: transform 180ms cubic-bezier(.2,.8,.2,1), border-color 180ms ease, background 180ms ease;
-    }
-
-    .guided-step-button:hover { border-color: var(--accent); background: var(--accent-bg); }
-    .guided-step-button:active { transform: translateY(1px); }
-    .guided-step-button.is-done { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-
-    .guided-reveal {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 260ms cubic-bezier(.2,.8,.2,1);
-    }
-
-    .guided-reveal.is-open { grid-template-rows: 1fr; }
-    .guided-reveal > div { overflow: hidden; }
-
-    .guided-reveal__body {
-      margin: 10px 0 0;
-      padding-top: 10px;
-      border-top: 1px solid var(--faint);
-      color: var(--ink);
-      font-size: 0.93rem;
-      line-height: 1.55;
-    }
-
-    .guided-reveal__body ul { margin: 8px 0 0 18px; padding: 0; }
-    .guided-reveal__body li { margin: 5px 0; }
-
-    html[data-study-mode="guided"] .guided-panel { display: block; }
-    html[data-study-mode="guided"] .exam-answer-node.is-guided-hidden { display: none; }
-    html[data-study-mode="guided"] .exam-answer-node.is-answer-visible { display: revert; }
-    html[data-study-mode="guided"] h4 { display: none; }
-
-    @media (max-width: 980px) {
-      .view-switcher {
-        grid-column: 2;
-        width: 100%;
-        margin: 4px 0 20px;
-      }
-      .view-switcher__button { padding: 10px 8px; }
-      .guided-panel { margin: 14px 0 16px; padding: 14px; }
-    }
 
     @media print {
       :root { --bg: white; --paper: white; --ink: #111; --muted: #333; --line: #888; --faint: #d0d0d0; --accent: #111; --accent-bg: white; --code: #f2f2f2; }
@@ -649,10 +549,6 @@ Backup)</h1>
 <p>The notes are now ordered by examiner-weighted probability for the
 June 2026 exam, based only on <code>exams/</code> and
 <code>Theory Questions.pdf</code>.</p>
-<div class="view-switcher" role="group" aria-label="Study mode">
-  <button class="view-switcher__button is-active" type="button" data-mode="exam">Exam</button>
-  <button class="view-switcher__button" type="button" data-mode="guided">Guided</button>
-</div>
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#guided-study-notes-core-backup"
@@ -3679,9 +3575,6 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
 
 
 
-  var modeButtons = Array.prototype.slice.call(document.querySelectorAll('.view-switcher__button'));
-  var sections = [];
-
   function cleanTitle(text) {
     return text.replace(/^\s*\d+(?:\.\d+)?\s*[—-]\s*/, '').trim();
   }
@@ -3697,129 +3590,62 @@ class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
     return 'default';
   }
 
-  function makeGuidedContent(title) {
-    var kind = classify(title);
-    var base = {
-      plan: ['Start by writing the exact statement with all hypotheses.', 'List the objects and the topology/norm/measure used.', 'Only then give the proof or counterexample.'],
-      hint: ['Ask which theorem unlocks the question.', 'Track where each hypothesis is used.', 'Keep the final implication in one clean line.'],
-      final: ['Now reveal the exam answer and rewrite it once without looking.']
-    };
+  function guidedLines(title) {
+    var common = [['Read','Identify whether the question asks for a definition, theorem, proof, counterexample, or relation.'],['Setup','Write all hypotheses and notation before starting the proof.'],['Finish','Reveal the exam answer last and reproduce it once without looking.']];
     var map = {
-      'measure-basics': {
-        plan: ['Define the sigma-algebra or measurability criterion first.', 'Reduce the question to preimages, generators, or characteristic functions.', 'Use closure under complements/countable unions/countable intersections.'],
-        hint: ['For measurability, test rays or a generating class instead of all Borel sets.', 'For characteristic/simple functions, translate function statements into measurable level sets.'],
-        final: ['Your final answer should be mostly definitions plus one short set-theoretic argument.']
-      },
-      'real-convergence': {
-        plan: ['State the convergence mode precisely.', 'Identify the needed extra hypothesis: monotone, domination, finite measure, or subsequence.', 'Use the named theorem, then finish with the limit relation.'],
-        hint: ['If the statement is false, use escape-to-infinity or typewriter examples.', 'If an integral limit is involved, look for MCT, Fatou, DCT, or Chebyshev.'],
-        final: ['Reveal the answer and check that every limit has the correct mode: a.e., measure, L1, or integral.']
-      },
-      'lp-functional': {
-        plan: ['Write the relevant norm and exponent relation.', 'Use Young/Holder/Minkowski only where it directly closes the estimate.', 'For completeness, use the absolutely convergent series criterion.'],
-        hint: ['Normalize by the norms for Holder.', 'For Lp inclusions, finite measure is the essential hypothesis.', 'For Riesz compactness, construct separated unit vectors.'],
-        final: ['The final proof should be an inequality chain, not a long explanation.']
-      },
-      'duality': {
-        plan: ['Write the dual or bidual action explicitly.', 'Translate weak/weak* convergence into scalar convergence against test functionals.', 'Use Hahn-Banach or Uniform Boundedness only when separation/boundedness is needed.'],
-        hint: ['Weak convergence tests against X*. Weak* convergence in X* tests only against X.', 'For reflexivity, replace bidual functionals by evaluation at a point.'],
-        final: ['Reveal the answer and check the quantifier: for every L in X*, for every x in X, or for every Phi in X**.']
-      },
-      'banach-tools': {
-        plan: ['State the Banach-space theorem exactly.', 'Name the completeness hypothesis.', 'Use Baire/Open Mapping/graph norm as the engine of the proof.'],
-        hint: ['UBP: closed sets plus Baire plus scaling.', 'CGT: graph norm plus inverse mapping theorem.', 'OMT/IBM: surjectivity or bijectivity is the key hypothesis.'],
-        final: ['The final answer should make clear which theorem implies boundedness/continuity.']
-      },
-      'hilbert': {
-        plan: ['Translate the question into inner-product geometry.', 'Use orthogonality, projection, Riesz representation, or spectral decomposition.', 'Finish with the exact norm/series/solvability identity.'],
-        hint: ['For o.n.b. questions, Parseval usually gives the limit.', 'For Fredholm, split into kernel and orthogonal complement.', 'For symmetric compact operators, eigenvectors form the main structure.'],
-        final: ['Reveal the answer and verify all Hilbert-space statements use inner products, not only norms.']
-      }
+      'measure-basics': [['Start','Translate the question into sigma-algebra language: sets, preimages, generators, or level sets.'],['Hint','For measurability, it is enough to test a generating family such as open sets or rays.'],['Move','Use closure of sigma-algebras under complements, countable unions, and countable intersections.'],['Check','The final answer needs precise quantifiers: every Borel set, every alpha, or every measurable set.']],
+      'real-convergence': [['Start','Name the convergence mode: pointwise, a.e., in measure, in L1, or integral convergence.'],['Hint','Look for the missing hypothesis: monotonicity, domination, finite measure, integrability, or subsequence extraction.'],['Move','Use MCT, Fatou, DCT, Chebyshev, finite-measure reasoning, or a typewriter counterexample.'],['Check','Do not confuse full-sequence a.e. convergence with existence of an a.e. convergent subsequence.']],
+      'lp-functional': [['Start','Write the norm, exponent range, and conjugate relation before estimating.'],['Hint','Most proofs reduce to one inequality chain: Young gives Holder, Holder gives Minkowski/interpolation/inclusion.'],['Move','For completeness, use the absolutely convergent series criterion and build an Lp dominating function.'],['Check','For compactness/Riesz questions, build separated unit vectors or use finite-dimensional closed-ball compactness.']],
+      'duality': [['Start','Write explicitly what acts on what: X*, X**, tau(x)(L)=L(x), weak tests, or weak* tests.'],['Hint','Weak convergence tests against every functional in X*. Weak* convergence in X* tests only points of X.'],['Move','Use Hahn-Banach for separation/norm-attainment; use Uniform Boundedness for boundedness.'],['Check','The final line should be scalar convergence: L(x_n) to L(x), or L_n(x) to L(x).']],
+      'banach-tools': [['Start','State the Banach-space theorem with all hypotheses: completeness, boundedness, linearity, surjectivity, or closed graph.'],['Hint','UBP uses Baire plus scaling. CGT uses graph norm plus inverse mapping theorem. OMT turns surjectivity into openness.'],['Move','Keep the proof architecture visible; do not bury the main theorem under prose.'],['Check','The conclusion is usually continuity, boundedness, open image, or inverse boundedness.']],
+      'hilbert': [['Start','Convert the problem into inner-product geometry: orthogonality, projection, Fourier coefficients, or eigenspaces.'],['Hint','Parseval controls o.n.b. convergence. Projection gives nearest point and orthogonal decomposition. Fredholm splits kernel and orthogonal complement.'],['Move','Use Riesz representation when a functional must become an inner product with a vector.'],['Check','The final formula should be an inner-product identity, Parseval identity, or solvability condition.']]
     };
-    return map[kind] || base;
+    return map[classify(title)] || common;
   }
 
-  function makeList(items) {
-    return '<ul>' + items.map(function (item) { return '<li>' + item + '</li>'; }).join('') + '</ul>';
+  function makeGuidedBlock(lines) {
+    return lines.map(function (line, index) {
+      return '<div class="guided-line"><span class="guided-line__label">' + line[0] + '</span><span class="guided-line__text">' + line[1] + '</span><button class="guided-line__button" type="button">Reveal block ' + (index + 1) + '</button></div>';
+    }).join('');
   }
 
-  function createGuidedPanel(sectionTitle) {
-    var guide = makeGuidedContent(sectionTitle);
-    var panel = document.createElement('section');
-    panel.className = 'guided-panel';
-    panel.innerHTML =
-      '<p class="guided-panel__eyebrow">Guided study</p>' +
-      '<p class="guided-panel__title">' + cleanTitle(sectionTitle) + '</p>' +
-      '<div class="guided-panel__controls">' +
-        '<button class="guided-step-button" type="button" data-target="plan">Plan</button>' +
-        '<button class="guided-step-button" type="button" data-target="hint">Hints</button>' +
-        '<button class="guided-step-button" type="button" data-target="final">Final check</button>' +
-        '<button class="guided-step-button" type="button" data-target="answer">Reveal answer</button>' +
-      '</div>' +
-      '<div class="guided-reveal" data-panel="plan"><div><div class="guided-reveal__body">' + makeList(guide.plan) + '</div></div></div>' +
-      '<div class="guided-reveal" data-panel="hint"><div><div class="guided-reveal__body">' + makeList(guide.hint) + '</div></div></div>' +
-      '<div class="guided-reveal" data-panel="final"><div><div class="guided-reveal__body">' + makeList(guide.final) + '</div></div></div>';
-    return panel;
-  }
-
-  function buildGuidedSections() {
-    var headings = Array.prototype.slice.call(document.querySelectorAll('h3'));
-    headings.forEach(function (heading) {
+  function wrapQuestions() {
+    Array.prototype.slice.call(document.querySelectorAll('h3')).forEach(function (heading) {
       var nodes = [];
       var cursor = heading.nextElementSibling;
       while (cursor && cursor.tagName !== 'H3' && cursor.tagName !== 'H2') {
+        var next = cursor.nextElementSibling;
         nodes.push(cursor);
-        cursor = cursor.nextElementSibling;
+        cursor = next;
       }
       if (!nodes.length) return;
-      var answerHeading = nodes.find(function (node) { return node.tagName === 'H4'; });
-      var panel = createGuidedPanel(heading.textContent || 'Question');
-      if (answerHeading) answerHeading.insertAdjacentElement('afterend', panel);
-      else heading.insertAdjacentElement('afterend', panel);
-      var answerNodes = nodes.filter(function (node) { return node !== panel; });
-      answerNodes.forEach(function (node) { node.classList.add('exam-answer-node', 'is-guided-hidden'); });
-      sections.push({ panel: panel, answerNodes: answerNodes });
+      nodes.forEach(function (node) { node.remove(); });
+      var shell = document.createElement('section');
+      shell.className = 'qa-shell';
+      var exam = document.createElement('details');
+      exam.className = 'qa-disclosure qa-disclosure--exam';
+      exam.open = true;
+      exam.innerHTML = '<summary>Exam answer</summary><div class="qa-content"></div>';
+      var examContent = exam.querySelector('.qa-content');
+      nodes.forEach(function (node) { if (node.tagName !== 'H4') examContent.appendChild(node); });
+      var guided = document.createElement('details');
+      guided.className = 'qa-disclosure qa-disclosure--guided';
+      guided.innerHTML = '<summary>Guided solution</summary><div class="qa-content">' + makeGuidedBlock(guidedLines(heading.textContent || '')) + '</div>';
+      shell.appendChild(exam);
+      shell.appendChild(guided);
+      heading.insertAdjacentElement('afterend', shell);
     });
   }
 
-  function setStudyMode(mode) {
-    document.documentElement.setAttribute('data-study-mode', mode);
-    modeButtons.forEach(function (button) {
-      button.classList.toggle('is-active', button.getAttribute('data-mode') === mode);
-    });
-    try { window.localStorage.setItem('rfa-study-mode', mode); } catch (e) {}
-  }
-
-  buildGuidedSections();
-
-  modeButtons.forEach(function (button) {
-    button.addEventListener('click', function () { setStudyMode(button.getAttribute('data-mode')); });
-  });
+  wrapQuestions();
 
   document.addEventListener('click', function (event) {
-    var button = event.target.closest('.guided-step-button');
+    var button = event.target.closest('.guided-line__button');
     if (!button) return;
-    var panel = button.closest('.guided-panel');
-    var target = button.getAttribute('data-target');
-    if (target === 'answer') {
-      var section = sections.find(function (item) { return item.panel === panel; });
-      if (!section) return;
-      var visible = !button.classList.contains('is-done');
-      button.classList.toggle('is-done', visible);
-      button.textContent = visible ? 'Hide answer' : 'Reveal answer';
-      section.answerNodes.forEach(function (node) { node.classList.toggle('is-answer-visible', visible); });
-      return;
-    }
-    var reveal = panel.querySelector('[data-panel="' + target + '"]');
-    if (!reveal) return;
-    var open = !reveal.classList.contains('is-open');
-    reveal.classList.toggle('is-open', open);
-    button.classList.toggle('is-done', open);
+    var line = button.closest('.guided-line');
+    var revealed = line.classList.toggle('is-revealed');
+    button.textContent = revealed ? 'Hide block' : 'Reveal block';
   });
-
-  var savedMode = 'exam';
-  try { savedMode = window.localStorage.getItem('rfa-study-mode') || 'exam'; } catch (e) {}
-  setStudyMode(savedMode === 'guided' ? 'guided' : 'exam');
 
   window.addEventListener('resize', function () {
     if (window.matchMedia('(min-width: 981px)').matches) setOpen(false);
