@@ -474,13 +474,9 @@
   <span class="nav-toggle__label">Menu</span>
 </button>
 <div class="nav-backdrop" hidden></div>
-<h1 id="guided-study-notes-core-backup">Guided Study Notes (Core +
-Backup)</h1>
-<p>This file is a reading-first version of the same material in
-<code>theory_core_backup_exact.md</code>.</p>
-<p>The notes are now ordered by examiner-weighted probability for the
-June 2026 exam, based only on <code>exams/</code> and
-<code>Theory Questions.pdf</code>.</p>
+<header id="title-block-header">
+<h1 class="title">RFA Theory Cheat Sheet</h1>
+</header>
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#guided-study-notes-core-backup"
@@ -780,6 +776,13 @@ Convergence</a></li>
 </ul></li>
 </ul>
 </nav>
+<h1 id="guided-study-notes-core-backup">Guided Study Notes (Core +
+Backup)</h1>
+<p>This file is a reading-first version of the same material in
+<code>theory_core_backup_exact.md</code>.</p>
+<p>The notes are now ordered by examiner-weighted probability for the
+June 2026 exam, based only on <code>exams/</code> and
+<code>Theory Questions.pdf</code>.</p>
 <h2 id="how-to-use-this-file">How To Use This File</h2>
 <ol type="1">
 <li>Start with Tier 0. This is the 20/80 set: recurring, exam-shaped,
@@ -789,7 +792,7 @@ questions, but a little less central or recently used.</li>
 <li>Use Tier 2 as support/insurance. These are useful for proofs or
 possible definitions, but less likely to be the main standalone
 question.</li>
-<li>Use lower tiers only after Tier 0 and Tier 1 are stable.</li>
+<li>Ignore the Rest until the tiers above are stable.</li>
 </ol>
 <h2 id="part-i-real-analysis---tier-0-2080-core">Part I: Real Analysis -
 Tier 0 20/80 Core</h2>
@@ -798,24 +801,15 @@ convergence modes, major convergence theorems, and Lebesgue point/FTC
 material.</p>
 <h3 id="measurable-functions-and-composition">1.20 — Measurable
 Functions and Composition</h3>
-<p>Now move from measurable sets to measurable maps between measurable
-spaces.</p>
-<p>The composition theorem is the standard closure property used
-constantly in exercises.</p>
-<h4 id="preserved-statement-proof-block">Preserved Statement + Proof
-Block</h4>
-<ol start="2" type="1">
-<li><p><code>1.20</code> “Write the deﬁnition of measurable function.
-State the theorem about the measur- ability of the composite
-function.”</p>
-<p><strong>Definition (measurable function)</strong><br />
+<h4 id="exam-answer">Exam Answer</h4>
+<p>Definition (measurable function).<br />
 Let <span class="math inline">\((X,\mathcal{A})\)</span>, <span
 class="math inline">\((X&#39;,\mathcal{A}&#39;)\)</span> be measurable
 spaces. A map <span class="math inline">\(f:X\to X&#39;\)</span> is
 measurable iff <span class="math display">\[
 \forall E\in\mathcal{A}&#39;,\quad f^{-1}(E)\in\mathcal{A}.
 \]</span></p>
-<p><strong>Theorem (measurability of composition)</strong><br />
+<p>Theorem (measurability of composition).<br />
 Let <span class="math inline">\((X,\mathcal{A})\)</span>, <span
 class="math inline">\((X&#39;,\mathcal{A}&#39;)\)</span>, <span
 class="math inline">\((X&#39;&#39;,\mathcal{A}&#39;&#39;)\)</span> be
@@ -828,7 +822,7 @@ class="math inline">\((\mathcal{A}&#39;,\mathcal{A}&#39;&#39;)\)</span>-measurab
 then <span class="math inline">\(g\circ f:X\to X&#39;&#39;\)</span> is
 <span
 class="math inline">\((\mathcal{A},\mathcal{A}&#39;&#39;)\)</span>-measurable.</p>
-<p><strong>Proof</strong><br />
+<p>Proof.<br />
 Take <span class="math inline">\(E\in\mathcal{A}&#39;&#39;\)</span>.
 Since <span class="math inline">\(g\)</span> is measurable, <span
 class="math inline">\(g^{-1}(E)\in\mathcal{A}&#39;\)</span>. Since <span
@@ -840,59 +834,46 @@ f^{-1}(g^{-1}(E))\in\mathcal{A}.
 \]</span> hence <span class="math inline">\((g\circ
 f)^{-1}(E)\in\mathcal{A}\)</span>, so <span class="math inline">\(g\circ
 f\)</span> is measurable.</p>
-<p><strong>Real-analysis corollary used in class</strong><br />
+<p>Real-analysis corollary.<br />
 If <span class="math inline">\(f:X\to\mathbb{R}\)</span> is Lebesgue
 measurable and <span
 class="math inline">\(g:\mathbb{R}\to\mathbb{R}\)</span> is continuous,
 then <span class="math inline">\(g\circ f\)</span> is Lebesgue
 measurable.</p>
-<p><strong>Typical caveat from lectures</strong><br />
+<p>Caveat.<br />
 In general, composition of two <span
 class="math inline">\(L\)</span>-measurable functions need not be <span
 class="math inline">\(L\)</span>-measurable (the middle <span
-class="math inline">\(\sigma\)</span>-algebra issue).</p></li>
-</ol>
+class="math inline">\(\sigma\)</span>-algebra issue).</p>
 <h3 id="characterization-of-measurability">1.21 — Characterization of
 Measurability</h3>
-<p>This is the practical test for measurability.</p>
-<p>In exams, this is usually what you actually use to prove
-measurability quickly.</p>
-<h4 id="preserved-statement-proof-block-1">Preserved Statement + Proof
-Block</h4>
-<ol start="3" type="1">
-<li><p><code>1.21</code> “Write the characterization of measurability of
-functions.”</p>
-<p><strong>Characterization theorem</strong><br />
+<h4 id="exam-answer-1">Exam Answer</h4>
+<p>Characterization theorem.<br />
 Let <span class="math inline">\((X,\mathcal{A})\)</span> be a measurable
 space and <span
 class="math inline">\(f:X\to\overline{\mathbb{R}}=[-\infty,+\infty]\)</span>.
-The following are equivalent:</p>
-<ol type="1">
-<li><span class="math inline">\(f\)</span> is measurable.</li>
-<li>For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
-<span class="math inline">\(\{x\in X:
-f(x)&gt;\alpha\}\in\mathcal{A}\)</span>.</li>
-<li>For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
+The following are equivalent: 1. <span class="math inline">\(f\)</span>
+is measurable. 2. For every <span
+class="math inline">\(\alpha\in\mathbb{R}\)</span>, <span
+class="math inline">\(\{x\in X: f(x)&gt;\alpha\}\in\mathcal{A}\)</span>.
+3. For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
 <span class="math inline">\(\{x\in X: f(x)\ge
-\alpha\}\in\mathcal{A}\)</span>.</li>
-<li>For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
-<span class="math inline">\(\{x\in X:
-f(x)&lt;\alpha\}\in\mathcal{A}\)</span>.</li>
-<li>For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
+\alpha\}\in\mathcal{A}\)</span>. 4. For every <span
+class="math inline">\(\alpha\in\mathbb{R}\)</span>, <span
+class="math inline">\(\{x\in X: f(x)&lt;\alpha\}\in\mathcal{A}\)</span>.
+5. For every <span class="math inline">\(\alpha\in\mathbb{R}\)</span>,
 <span class="math inline">\(\{x\in X: f(x)\le
-\alpha\}\in\mathcal{A}\)</span>.</li>
-</ol>
-<p><strong>Mechanism (why equivalent)</strong><br />
+\alpha\}\in\mathcal{A}\)</span>.</p>
+<p>Mechanism.<br />
 The rays <span class="math inline">\((-\infty,\alpha)\)</span>, <span
 class="math inline">\((-\infty,\alpha]\)</span>, <span
 class="math inline">\((\alpha,\infty)\)</span>, <span
 class="math inline">\([\alpha,\infty)\)</span> generate the Borel <span
 class="math inline">\(\sigma\)</span>-algebra, and preimages preserve
-complements, countable unions, and countable intersections.</p></li>
-</ol>
+complements, countable unions, and countable intersections.</p>
 <h3 id="equivalent-criteria-for-measurability">1.26 — Equivalent
 Criteria for Measurability</h3>
-<h4 id="exam-answer">Exam Answer</h4>
+<h4 id="exam-answer-2">Exam Answer</h4>
 <p>Let <span class="math inline">\((X,\mathcal A)\)</span> be a
 measurable space and <span class="math inline">\(f:X\to\overline{\mathbb
 R}\)</span>. The following are equivalent:</p>
@@ -917,7 +898,7 @@ B(\overline{\mathbb R})\)</span>, so any one of these conditions
 characterizes measurability.</p>
 <h3 id="supremum-infimum-limsup-and-liminf">1.28 — Supremum, Infimum,
 Limsup, and Liminf</h3>
-<h4 id="exam-answer-1">Exam Answer</h4>
+<h4 id="exam-answer-3">Exam Answer</h4>
 <p>Let <span class="math inline">\(\{f_n\}\subset\mathcal M(X,\mathcal
 A)\)</span>. For every <span class="math inline">\(\alpha\in\mathbb
 R\)</span>, <span class="math display">\[
@@ -940,7 +921,7 @@ A)\)</span>, then <span class="math display">\[
 measurable.</p>
 <h3 id="vanishing-lemma-for-nonnegative-measurable-functions">1.43 —
 Vanishing Lemma for Nonnegative Measurable Functions</h3>
-<h4 id="exam-answer-2">Exam Answer</h4>
+<h4 id="exam-answer-4">Exam Answer</h4>
 <p>Let <span class="math inline">\(f\in\mathcal M^+(X,\mathcal
 A)\)</span>. If <span class="math display">\[
 \int_X f\,d\mu=0,
@@ -960,15 +941,8 @@ subadditivity, <span class="math display">\[
 \]</span> Hence <span class="math inline">\(f=0\)</span> a.e.</p>
 <h3 id="monotone-convergence-theorem">1.44 — Monotone Convergence
 Theorem</h3>
-<p>Monotone Convergence is the first main limit theorem: safe
-limit-integral swap under monotone growth.</p>
-<p>It is the engine behind several later results.</p>
-<h4 id="preserved-statement-proof-block-2">Preserved Statement + Proof
-Block</h4>
-<ol type="1">
-<li><p><code>1.44</code> “State and prove the Monotone Convergence
-Theorem (or Beppo Levi Theorem).”</p>
-<p><strong>Monotone Convergence Theorem (Beppo Levi)</strong><br />
+<h4 id="exam-answer-5">Exam Answer</h4>
+<p>Monotone Convergence Theorem (Beppo Levi).<br />
 Let <span class="math inline">\((X,\mathcal{A},\mu)\)</span> be a
 measure space and let <span class="math inline">\(\{f_n\}\subset
 \mathcal{M}_+(X,\mathcal{A})\)</span> satisfy <span
@@ -980,7 +954,7 @@ class="math inline">\(f\in\mathcal{M}_+(X,\mathcal{A})\)</span> and
 <span class="math display">\[
 \lim_{n\to\infty}\int_X f_n\,d\mu=\int_X f\,d\mu.
 \]</span></p>
-<p><strong>Proof sketch</strong><br />
+<p>Proof.<br />
 Let <span class="math display">\[
 \alpha:=\lim_{n\to\infty}\int_X f_n\,d\mu\in[0,+\infty].
 \]</span> Since <span class="math inline">\(f_n\le f\)</span>,
@@ -1007,24 +981,16 @@ continuity from below: <span class="math display">\[
 f\)</span> yields <span class="math display">\[
 \alpha\ge \int_X f\,d\mu.
 \]</span> Hence equality.</p>
-<p><strong>Failure mode without monotonicity</strong><br />
-On <span class="math inline">\(\mathbb{R}\)</span>, <span
+<p>Failure without monotonicity. On <span
+class="math inline">\(\mathbb{R}\)</span>, <span
 class="math inline">\(f_n=\chi_{[n,n+1]}\)</span> satisfies <span
 class="math inline">\(f_n\to 0\)</span> pointwise but <span
 class="math display">\[
 \int_{\mathbb{R}} f_n\,d\lambda=1 \not\to 0.
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="fatous-lemma">1.45 — Fatou’s Lemma</h3>
-<p>Fatou’s Lemma is the lower-semicontinuity inequality for nonnegative
-sequences.</p>
-<p>Think of it as the baseline inequality from which stronger theorems
-are derived.</p>
-<h4 id="preserved-statement-proof-block-3">Preserved Statement + Proof
-Block</h4>
-<ol start="2" type="1">
-<li><p><code>1.45</code> “State and prove Fatou’s Lemma.”</p>
-<p><strong>Fatou’s Lemma</strong><br />
+<h4 id="exam-answer-6">Exam Answer</h4>
+<p>Fatou’s Lemma.<br />
 If <span
 class="math inline">\(\{f_n\}\subset\mathcal{M}_+(X,\mathcal{A})\)</span>,
 then <span class="math display">\[
@@ -1032,8 +998,7 @@ then <span class="math display">\[
 \le
 \liminf_{n\to\infty}\int_X f_n\,d\mu.
 \]</span></p>
-<p><strong>Proof</strong><br />
-Define <span class="math display">\[
+<p>Proof. Define <span class="math display">\[
 g_k(x):=\inf_{m\ge k} f_m(x).
 \]</span> Then <span class="math inline">\(g_k\in\mathcal{M}_+\)</span>,
 <span class="math inline">\(g_k\le g_{k+1}\)</span>, and <span
@@ -1054,36 +1019,24 @@ class="math display">\[
 \lim_{k\to\infty}\inf_{m\ge k}\int_X f_m\,d\mu
 =
 \liminf_{n\to\infty}\int_X f_n\,d\mu.
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="dominated-convergence-theorem">1.54 — Dominated Convergence
 Theorem</h3>
-<p>Dominated Convergence is the most used theorem in applications.</p>
-<p>The dominating function prevents spikes/escape of mass and yields
-strong <span class="math inline">\(L^1\)</span> convergence.</p>
-<h4 id="preserved-statement-proof-block-4">Preserved Statement + Proof
-Block</h4>
-<ol start="3" type="1">
-<li><p><code>1.54</code> “State and prove the Lebesgue theorem. In which
-case it is simple to ﬁnd a domi- nating function?”</p>
-<p><strong>Lebesgue Dominated Convergence Theorem (DCT)</strong><br />
+<h4 id="exam-answer-7">Exam Answer</h4>
+<p>Lebesgue Dominated Convergence Theorem (DCT).<br />
 Let <span class="math inline">\(f_n:X\to\mathbb{R}\)</span> be
 measurable, <span class="math inline">\(f_n\to f\)</span> a.e., and
 assume there exists <span class="math inline">\(g\in L^1(X)\)</span>
 such that <span class="math display">\[
 |f_n(x)|\le g(x)\quad\text{a.e. for all }n.
-\]</span> Then:</p>
-<ol type="1">
-<li><span class="math inline">\(f\in L^1(X)\)</span>;</li>
-<li><span class="math inline">\(f_n\to f\)</span> in <span
+\]</span> Then: 1. <span class="math inline">\(f\in L^1(X)\)</span>; 2.
+<span class="math inline">\(f_n\to f\)</span> in <span
 class="math inline">\(L^1\)</span>, i.e. <span class="math display">\[
-\int_X |f_n-f|\,d\mu\to 0;
-\]</span></li>
-<li>therefore <span class="math display">\[
-\int_X f_n\,d\mu \to \int_X f\,d\mu.
-\]</span></li>
-</ol>
-<p><strong>Proof sketch via Fatou</strong><br />
+   \int_X |f_n-f|\,d\mu\to 0;
+   \]</span> 3. therefore <span class="math display">\[
+   \int_X f_n\,d\mu \to \int_X f\,d\mu.
+   \]</span></p>
+<p>Proof via Fatou.<br />
 From <span class="math inline">\(|f_n|\le g\)</span> and a.e.
 convergence, <span class="math inline">\(|f|\le g\)</span> a.e., so
 <span class="math inline">\(f\in L^1\)</span>. Also: <span
@@ -1105,49 +1058,36 @@ class="math display">\[
 \limsup_{n\to\infty}\int_X |f_n-f|\,d\mu\le 0.
 \]</span> Since integrals of absolute values are nonnegative, <span
 class="math inline">\(\int_X |f_n-f|\,d\mu\to 0\)</span>.</p>
-<p><strong>Simple case for finding a dominator</strong><br />
-If <span class="math inline">\(\mu(X)&lt;\infty\)</span> and <span
+<p>Simple dominator case. If <span
+class="math inline">\(\mu(X)&lt;\infty\)</span> and <span
 class="math inline">\(|f_n|\le M\)</span> a.e. for all <span
 class="math inline">\(n\)</span>, then <span
 class="math inline">\(g\equiv M\)</span> is in <span
 class="math inline">\(L^1(X)\)</span>: <span class="math display">\[
 \int_X g\,d\mu=M\,\mu(X)&lt;\infty.
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="convergence-notions">1.58 — Convergence Notions</h3>
-<p>Before proving convergence theorems, keep all convergence notions
-side-by-side.</p>
-<p>This section is the dictionary you will reuse repeatedly in proofs
-and counterexamples.</p>
-<h4 id="preserved-statement-proof-block-5">Preserved Statement + Proof
-Block</h4>
-<ol start="5" type="1">
-<li><p><code>1.58</code> “For a sequence of functions {f } ∈ M , write
-the deﬁnitions of: pointwise conver- n 1 ∞ gence; uniform convergence;
-almost everywhere convergence; convergence in L ; convergence in L ;
-convergence in measure.”</p>
+<h4 id="exam-answer-8">Exam Answer</h4>
 <p>Let <span class="math inline">\(\{f_n\}\subseteq
 \mathcal{M}(X,\mathcal{A})\)</span>, <span
 class="math inline">\(f\in\mathcal{M}(X,\mathcal{A})\)</span>.</p>
-<p><strong>Pointwise convergence</strong> <span class="math display">\[
+<p>Pointwise convergence. <span class="math display">\[
 f_n\to f \text{ pointwise in }X
 \iff
 \forall x\in X,\ \lim_{n\to\infty}f_n(x)=f(x).
 \]</span></p>
-<p><strong>Uniform convergence</strong> <span class="math display">\[
+<p>Uniform convergence. <span class="math display">\[
 f_n\to f \text{ uniformly in }X
 \iff
 \lim_{n\to\infty}\sup_{x\in X}|f_n(x)-f(x)|=0.
 \]</span></p>
-<p><strong>Almost everywhere convergence</strong> <span
-class="math display">\[
+<p>Almost everywhere convergence. <span class="math display">\[
 f_n\to f \text{ a.e. in }X
 \iff
 \exists N\in\mathcal{A},\ \mu(N)=0,\ \forall x\in X\setminus N:\
 f_n(x)\to f(x).
 \]</span></p>
-<p><strong>Convergence in <span
-class="math inline">\(L^1\)</span></strong> <span
+<p>Convergence in <span class="math inline">\(L^1\)</span>. <span
 class="math display">\[
 f_n\to f \text{ in }L^1
 \iff
@@ -1156,8 +1096,7 @@ f_n\to f \text{ in }L^1
 \lim_{n\to\infty}\int_X |f_n-f|\,d\mu
 =0.
 \]</span></p>
-<p><strong>Convergence in <span
-class="math inline">\(L^\infty\)</span></strong> <span
+<p>Convergence in <span class="math inline">\(L^\infty\)</span>. <span
 class="math display">\[
 f_n\to f \text{ in }L^\infty
 \iff
@@ -1166,50 +1105,33 @@ f_n\to f \text{ in }L^\infty
 \lim_{n\to\infty}\operatorname*{ess\,sup}_{x\in X}|f_n(x)-f(x)|
 =0.
 \]</span></p>
-<p><strong>Convergence in measure</strong> <span class="math display">\[
+<p>Convergence in measure. <span class="math display">\[
 f_n\to f \text{ in measure on }X
 \iff
 \forall \varepsilon&gt;0,\
 \mu\bigl(\{|f_n-f|\ge \varepsilon\}\bigr)\xrightarrow[n\to\infty]{}0.
 \]</span></p>
-<p><strong>Model map (useful implications / failures)</strong></p>
-<ul>
-<li>Uniform <span class="math inline">\(\Rightarrow\)</span>
-pointwise.<br />
-</li>
-<li>Uniform <span class="math inline">\(\Rightarrow L^\infty\)</span>
-(modulo null sets).<br />
-</li>
-<li><span class="math inline">\(L^1 \Rightarrow\)</span> convergence in
-measure.<br />
-</li>
-<li>Convergence in measure <span
-class="math inline">\(\Rightarrow\)</span> a.e. convergence only up to
-subsequences.<br />
-</li>
-<li>On finite measure spaces, a.e. convergence does not in general imply
-<span class="math inline">\(L^1\)</span> convergence.</li>
-</ul></li>
-</ol>
+<p>Useful implications and failures. <span class="math display">\[
+\text{uniform}\Rightarrow\text{pointwise},\qquad
+\text{uniform}\Rightarrow L^\infty,\qquad
+L^1\Rightarrow\text{convergence in measure}.
+\]</span> Convergence in measure implies a.e. convergence only up to
+subsequences. On finite measure spaces, a.e. convergence alone does not
+imply <span class="math inline">\(L^1\)</span> convergence.</p>
 <h3 id="does-convergence-in-measure-imply-a.e.-convergence">1.59 — Does
 Convergence in Measure Imply a.e. Convergence?</h3>
-<p>This is a classic trap question. The correct answer is negative for
-full sequences.</p>
-<p>You should know both the counterexample and the subsequence-recovery
-theorem.</p>
-<h4 id="preserved-statement-proof-block-6">Preserved Statement + Proof
-Block</h4>
+<h4 id="exam-answer-9">Exam Answer</h4>
 <p>Question 1.59. Is it true that if <span class="math inline">\(f_n \to
 f\)</span> in measure, then <span class="math inline">\(f_n \to
 f\)</span> a.e.? Justify the answer.</p>
-<p><strong>Short answer:</strong> No.</p>
-<p><strong>Why not (mechanism):</strong><br />
+<p>Short answer. No.</p>
+<p>Reason.<br />
 Convergence in measure controls the size of bad sets, not their
 location.<br />
 If bad sets move around, each point can still be hit infinitely many
 times.</p>
-<p><strong>Counterexample (typewriter sequence on <span
-class="math inline">\([0,1]\)</span>):</strong><br />
+<p>Counterexample (typewriter sequence on <span
+class="math inline">\([0,1]\)</span>).<br />
 Define a sequence of characteristic functions of dyadic intervals that
 sweep <span class="math inline">\([0,1]\)</span>: - level <span
 class="math inline">\(k=0\)</span>: <span
@@ -1233,7 +1155,7 @@ sequence <span class="math inline">\(f_n(x)\)</span> takes value <span
 class="math inline">\(1\)</span> infinitely many times and <span
 class="math inline">\(0\)</span> infinitely many times, hence it does
 not converge pointwise anywhere. Therefore, not a.e.</p>
-<p><strong>Patch theorem to remember:</strong><br />
+<p>Patch theorem to remember:.<br />
 If <span class="math inline">\(f_n\to f\)</span> in measure, there
 exists a subsequence <span class="math inline">\(f_{n_k}\to f\)</span>
 a.e.</p>
@@ -1241,48 +1163,37 @@ a.e.</p>
 id="relation-between-convergence-in-measure-and-a.e.-up-to-subsequences">1.60
 — Relation Between Convergence in Measure and a.e. Up to
 Subsequences</h3>
-<p>This question asks for the exact bridge between measure convergence
-and pointwise stability.</p>
-<p>State the theorem cleanly, then explain why subsequences are
-necessary.</p>
-<h4 id="preserved-statement-proof-block-7">Preserved Statement + Proof
-Block</h4>
+<h4 id="exam-answer-10">Exam Answer</h4>
 <p>Question 1.60. What is the relation between convergence in measure
 and convergence a.e. up to subsequences?</p>
-<p><strong>Theorem (Riesz subsequence theorem):</strong> <span
-class="math display">\[
+<p>Theorem (Riesz subsequence theorem):. <span class="math display">\[
 f_n \to f \text{ in measure}
 \ \Longrightarrow\
 \exists\ \{n_k\}\ \text{such that}\ f_{n_k}\to f \text{ a.e.}
 \]</span></p>
-<p><strong>Interpretation:</strong><br />
+<p>Interpretation.<br />
 Convergence in measure is noisy global control.<br />
 A subsequence can be selected so that bad sets are summable, which
 forces pointwise stabilization outside a null set.</p>
-<p><strong>Why full-sequence implication fails:</strong><br />
+<p>Why full-sequence implication fails.<br />
 Typewriter sequence: converges in measure to <span
 class="math inline">\(0\)</span>, but not a.e. for the full
 sequence.</p>
 <h3 id="when-does-a.e.-convergence-imply-convergence-in-measure">1.61 —
 When Does a.e. Convergence Imply Convergence in Measure?</h3>
-<p>This is the finite-vs-infinite measure space question.</p>
-<p>You should always state the finite-measure hypothesis explicitly.</p>
-<h4 id="preserved-statement-proof-block-8">Preserved Statement + Proof
-Block</h4>
+<h4 id="exam-answer-11">Exam Answer</h4>
 <p>Question 1.61. Under which hypothesis on <span
 class="math inline">\(X\)</span> does convergence a.e. imply convergence
 in measure? What happens if one omits the key assumption on <span
 class="math inline">\(X\)</span>?</p>
-<p><strong>Key hypothesis:</strong> <span
-class="math inline">\(\mu(X)&lt;\infty\)</span> (finite measure
-space).</p>
-<p><strong>Theorem:</strong><br />
+<p>Key hypothesis: <span class="math inline">\(\mu(X)&lt;\infty\)</span>
+(finite measure space).</p>
+<p>Theorem.<br />
 If <span class="math inline">\(\mu(X)&lt;\infty\)</span> and <span
 class="math inline">\(f_n\to f\)</span> a.e., then <span
 class="math inline">\(f_n\to f\)</span> in measure.</p>
-<p><strong>Failure when <span
-class="math inline">\(\mu(X)=\infty\)</span>
-(counterexample):</strong><br />
+<p>Failure when <span
+class="math inline">\(\mu(X)=\infty\)</span>.<br />
 On <span
 class="math inline">\((\mathbb{R},\mathcal{L},\lambda)\)</span>, let
 <span class="math display">\[
@@ -1298,20 +1209,13 @@ Hence no convergence in measure.</p>
 <h3 id="l1-convergence-implies-convergence-in-measure">1.62 — <span
 class="math inline">\(L^1\)</span> Convergence Implies Convergence in
 Measure</h3>
-<p>Now connect norm convergence to measure convergence.</p>
-<p>This is a one-way implication that appears often in theory
-questions.</p>
-<h4 id="preserved-statement-proof-block-9">Preserved Statement + Proof
-Block</h4>
-<ol start="6" type="1">
-<li><p><code>1.62</code> “Show that convergence in L implies convergence
-in measure.”</p>
-<p><strong>Claim</strong><br />
+<h4 id="exam-answer-12">Exam Answer</h4>
+<p>Claim.<br />
 If <span class="math inline">\(f_n \to f\)</span> in <span
 class="math inline">\(L^1(X,\mathcal{A},\mu)\)</span>, then <span
 class="math inline">\(f_n \to f\)</span> in measure on <span
 class="math inline">\(X\)</span>.</p>
-<p><strong>Proof (Chebyshev bridge)</strong><br />
+<p>Proof (Chebyshev bridge).<br />
 Assume <span class="math display">\[
 \|f_n-f\|_{L^1}=\int_X |f_n-f|\,d\mu \xrightarrow[n\to\infty]{}0.
 \]</span> Fix <span class="math inline">\(\varepsilon&gt;0\)</span> and
@@ -1336,7 +1240,7 @@ class="math display">\[
 0\)</span> for every <span
 class="math inline">\(\varepsilon&gt;0\)</span>, i.e. <span
 class="math inline">\(f_n\to f\)</span> in measure.</p>
-<p><strong>Failure mode for the converse</strong><br />
+<p>Failure of the converse.<br />
 In general, convergence in measure does not imply <span
 class="math inline">\(L^1\)</span> convergence. A standard
 counterexample is <span class="math display">\[
@@ -1345,18 +1249,11 @@ f_n=n\,\chi_{[0,1/n]} \quad\text{on }(0,1).
 but <span class="math display">\[
 \|f_n\|_{L^1}=\int_0^1 n\,\chi_{[0,1/n]}(x)\,dx=1,
 \]</span> so <span class="math inline">\(f_n \not\to 0\)</span> in <span
-class="math inline">\(L^1\)</span>.</p></li>
-</ol>
+class="math inline">\(L^1\)</span>.</p>
 <h3 id="l1-convergence-implies-a.e.-convergence-up-to-subsequences">1.63
 — <span class="math inline">\(L^1\)</span> Convergence Implies a.e.
 Convergence Up to Subsequences</h3>
-<p>This is a standard two-step exam argument: <span
-class="math inline">\(L^1 \Rightarrow\)</span> measure, then extract
-a.e. subsequence.</p>
-<p>The fast-decay subsequence construction is the key technical
-move.</p>
-<h4 id="preserved-statement-proof-block-10">Preserved Statement + Proof
-Block</h4>
+<h4 id="exam-answer-13">Exam Answer</h4>
 <p>Question 1.63. Show that convergence in <span
 class="math inline">\(L^1\)</span> implies convergence a.e. up to
 subsequences.</p>
@@ -1388,17 +1285,11 @@ f_{n_k}(x)\to f(x)\quad\text{for a.e. }x.
 <h3 id="why-convergence-in-measure-a.e.-does-not-imply-l1">1.64 — Why
 Convergence in Measure / a.e. Does Not Imply <span
 class="math inline">\(L^1\)</span></h3>
-<p>This section is about failure of converse implications.</p>
-<p>Memorize the spike and traveling-bump counterexamples: they are
-high-yield exam tools.</p>
-<h4 id="preserved-statement-proof-block-11">Preserved Statement + Proof
-Block</h4>
-<ol start="7" type="1">
-<li><p><code>1.64</code> “DoesconvergenceinmeasureimplyconvergenceinL1?
-Doesconvergencea.e. imply convergence in L1? Justify the answer.”</p>
-<p><strong>Answer: no to both (in general).</strong></p>
-<p><strong>(a) Convergence in measure <span
-class="math inline">\(\not\Rightarrow L^1\)</span></strong><br />
+<h4 id="exam-answer-14">Exam Answer</h4>
+<p>Answer: no to both in general.</p>
+<ol type="a">
+<li><p>Convergence in measure <span
+class="math inline">\(\not\Rightarrow L^1\)</span>.<br />
 Use <span class="math display">\[
 f_n(x)=n\,\chi_{[0,1/n]}(x)\quad\text{on }(0,1).
 \]</span> For each <span
@@ -1411,9 +1302,9 @@ class="math display">\[
 But <span class="math display">\[
 \|f_n\|_{L^1}=1 \quad \forall n,
 \]</span> hence no <span class="math inline">\(L^1\)</span>
-convergence.</p>
-<p><strong>(b) a.e. convergence <span
-class="math inline">\(\not\Rightarrow L^1\)</span></strong><br />
+convergence.</p></li>
+<li><p>a.e. convergence <span class="math inline">\(\not\Rightarrow
+L^1\)</span>.<br />
 The same spike sequence gives a.e. convergence to <span
 class="math inline">\(0\)</span>: for every <span
 class="math inline">\(x&gt;0\)</span>, eventually <span
@@ -1421,9 +1312,9 @@ class="math inline">\(x&gt;1/n\)</span>, so <span
 class="math inline">\(f_n(x)=0\)</span>.<br />
 Yet <span class="math inline">\(\|f_n\|_{L^1}=1\)</span> for all <span
 class="math inline">\(n\)</span>, so no <span
-class="math inline">\(L^1\)</span> convergence.</p>
-<p><strong>Alternative a.e. counterexample (escape to
-infinity)</strong><br />
+class="math inline">\(L^1\)</span> convergence.</p></li>
+</ol>
+<p>Alternative a.e. counterexample.<br />
 On <span class="math inline">\(\mathbb{R}\)</span>: <span
 class="math display">\[
 f_n=\chi_{[n,n+1]}.
@@ -1432,28 +1323,23 @@ every fixed <span class="math inline">\(x\)</span>, but <span
 class="math display">\[
 \|f_n\|_{L^1(\mathbb{R})}=1 \quad \forall n.
 \]</span></p>
-<p><strong>How to recover <span class="math inline">\(L^1\)</span>
-convergence</strong><br />
+<p>Recovery of <span class="math inline">\(L^1\)</span>
+convergence.<br />
 Add domination: if <span class="math inline">\(f_n\to f\)</span> a.e.
 and <span class="math inline">\(|f_n|\le g\)</span> a.e. with <span
 class="math inline">\(g\in L^1\)</span>, then by DCT: <span
 class="math display">\[
 \|f_n-f\|_{L^1}\to 0.
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="does-l1-or-measure-convergence-imply-a.e.-convergence">1.65 —
 Does <span class="math inline">\(L^1\)</span> (or Measure) Convergence
 Imply a.e. Convergence?</h3>
-<p>This question is about full-sequence convergence, not
-subsequences.</p>
-<p>The key counterexample is again the typewriter sequence.</p>
-<h4 id="preserved-statement-proof-block-12">Preserved Statement + Proof
-Block</h4>
+<h4 id="exam-answer-15">Exam Answer</h4>
 <p>Question 1.65. Does convergence in <span
 class="math inline">\(L^1\)</span> (or in measure) imply a.e.
 convergence? Justify the answer.</p>
-<p><strong>Short answer:</strong> No, in general.</p>
-<p><strong>Why:</strong><br />
+<p>Short answer: No, in general.</p>
+<p>Reason:<br />
 <span class="math inline">\(L^1\)</span> and measure convergence control
 size of error sets, but a.e. convergence requires pointwise
 stabilization at fixed points. A moving error pattern can defeat
@@ -1471,16 +1357,15 @@ class="math inline">\(x\in[0,1]\)</span>.</p>
 <p>Hence neither convergence in measure nor convergence in <span
 class="math inline">\(L^1\)</span> implies a.e. convergence for the
 whole sequence.</p>
-<p><strong>Subsequence correction:</strong><br />
+<p>Subsequence correction:<br />
 Both from measure convergence and from <span
 class="math inline">\(L^1\)</span> convergence, one can always extract a
 subsequence converging a.e.</p>
 <h3 id="lebesgue-points">1.66 — Lebesgue Points</h3>
-<h4 id="exam-answer-3">Exam Answer</h4>
+<h4 id="exam-answer-16">Exam Answer</h4>
 <p>Let <span class="math inline">\(f\in L^1(a,b)\)</span>. A point <span
-class="math inline">\(x_0\in(a,b)\)</span> is a <strong>Lebesgue
-point</strong> of <span class="math inline">\(f\)</span> if <span
-class="math display">\[
+class="math inline">\(x_0\in(a,b)\)</span> is a Lebesgue point of <span
+class="math inline">\(f\)</span> if <span class="math display">\[
 \lim_{h\to0}\frac1{|h|}\int_{x_0}^{x_0+h}|f(t)-f(x_0)|\,dt=0.
 \]</span> Equivalently, the average oscillation of <span
 class="math inline">\(f\)</span> around <span
@@ -1495,7 +1380,7 @@ class="math display">\[
 <h3 id="first-fundamental-theorem-of-calculus-for-l1">1.67 — First
 Fundamental Theorem of Calculus for <span
 class="math inline">\(L^1\)</span></h3>
-<h4 id="exam-answer-4">Exam Answer</h4>
+<h4 id="exam-answer-17">Exam Answer</h4>
 <p>Let <span class="math inline">\(f\in L^1(a,b)\)</span> and define
 <span class="math display">\[
 F(x):=\int_a^x f(t)\,dt.
@@ -1524,11 +1409,11 @@ Analysis - Tier 1 Exam Candidates</h2>
 lower June-2026 weight than Tier 0.</p>
 <h3 id="borel-sigma-algebra-and-borel-sets">1.3 — Borel Sigma-Algebra
 and Borel Sets</h3>
-<h4 id="exam-answer-5">Exam Answer</h4>
+<h4 id="exam-answer-18">Exam Answer</h4>
 <p>Let <span class="math inline">\((X,d)\)</span> be a metric space and
 let <span class="math inline">\(\tau_d\)</span> be the family of open
-subsets of <span class="math inline">\(X\)</span>. The <strong>Borel
-sigma-algebra</strong> is <span class="math display">\[
+subsets of <span class="math inline">\(X\)</span>. The Borel
+sigma-algebra is <span class="math display">\[
 \mathcal B(X):=\sigma(\tau_d),
 \]</span> the smallest sigma-algebra containing all open sets of <span
 class="math inline">\(X\)</span>. Its elements are called <strong>Borel
@@ -1557,7 +1442,7 @@ class="math display">\[
 \]</span></p>
 <h3 id="borel-and-lebesgue-measurable-functions">1.22 — Borel and
 Lebesgue Measurable Functions</h3>
-<h4 id="exam-answer-6">Exam Answer</h4>
+<h4 id="exam-answer-19">Exam Answer</h4>
 <p>Let <span class="math inline">\((X,d)\)</span> and <span
 class="math inline">\((Y,\rho)\)</span> be metric spaces, with Borel
 sigma-algebras <span class="math inline">\(\mathcal B(X)\)</span> and
@@ -1577,7 +1462,7 @@ f^{-1}(E)\in\mathcal L(X)\qquad\forall E\in\mathcal B(Y).
 L(X))\to(Y,\mathcal B(Y))\)</span> is measurable.</p>
 <h3 id="borel-measurable-and-continuous-functions">1.23 — Borel
 Measurable and Continuous Functions</h3>
-<h4 id="exam-answer-7">Exam Answer</h4>
+<h4 id="exam-answer-20">Exam Answer</h4>
 <ol type="i">
 <li><p>Let <span class="math inline">\(f:X\to Y\)</span> be Borel
 measurable. Then for every <span class="math inline">\(E\in\mathcal
@@ -1600,7 +1485,7 @@ Lebesgue measurable.</p></li>
 </ol>
 <h3 id="measurability-of-comparison-sets">1.27 — Measurability of
 Comparison Sets</h3>
-<h4 id="exam-answer-8">Exam Answer</h4>
+<h4 id="exam-answer-21">Exam Answer</h4>
 <p>Let <span class="math inline">\(f,g\in\mathcal M(X,\mathcal
 A)\)</span>. Then <span class="math display">\[
 \{f&lt;g\},\qquad \{f\le g\},\qquad \{f=g\}
@@ -1615,7 +1500,7 @@ measurable sets. Then <span class="math display">\[
 \]</span></p>
 <h3 id="algebraic-operations-on-measurable-functions">1.29 — Algebraic
 Operations on Measurable Functions</h3>
-<h4 id="exam-answer-9">Exam Answer</h4>
+<h4 id="exam-answer-22">Exam Answer</h4>
 <p>If <span class="math inline">\(f,g:X\to\mathbb R\)</span> are
 measurable, then <span class="math display">\[
 f+g\in\mathcal M(X,\mathcal A),
@@ -1637,7 +1522,7 @@ class="math inline">\(fg=P\circ(f,g)\)</span> are measurable.</p>
 such as <span class="math inline">\(+\infty-\infty\)</span>.</p>
 <h3 id="measurability-of-characteristic-functions">1.32 — Measurability
 of Characteristic Functions</h3>
-<h4 id="exam-answer-10">Exam Answer</h4>
+<h4 id="exam-answer-23">Exam Answer</h4>
 <p>Let <span class="math inline">\(A\subseteq X\)</span>. Then <span
 class="math display">\[
 A\in\mathcal A \iff \chi_A\in\mathcal M(X,\mathcal A).
@@ -1658,7 +1543,7 @@ A=\{\chi_A&gt;1/2\}\in\mathcal A.
 \]</span></p>
 <h3 id="positivenegative-parts-and-absolute-value">1.33 —
 Positive/Negative Parts and Absolute Value</h3>
-<h4 id="exam-answer-11">Exam Answer</h4>
+<h4 id="exam-answer-24">Exam Answer</h4>
 <ol type="a">
 <li><p>The statement is true: <span class="math display">\[
 f\in\mathcal M(X,\mathcal A)
@@ -1690,10 +1575,10 @@ measurable.</p></li>
 </ol>
 <h3 id="simple-functions-and-step-functions">1.34 — Simple Functions and
 Step Functions</h3>
-<h4 id="exam-answer-12">Exam Answer</h4>
+<h4 id="exam-answer-25">Exam Answer</h4>
 <p>A function <span class="math inline">\(s:X\to\mathbb R\)</span> is
-<strong>simple</strong> if <span class="math inline">\(s(X)\)</span> is
-finite. If <span class="math display">\[
+simple if <span class="math inline">\(s(X)\)</span> is finite. If <span
+class="math display">\[
 s(X)=\{c_1,\dots,c_m\},\qquad c_i\ne c_j\ (i\ne j),
 \]</span> and <span class="math display">\[
 E_k:=\{x\in X:s(x)=c_k\},
@@ -1707,13 +1592,12 @@ then <span class="math inline">\(s\)</span> is measurable iff <span
 class="math display">\[
 E_k\in\mathcal A\qquad k=1,\dots,m.
 \]</span></p>
-<p>A <strong>step function</strong> on <span
-class="math inline">\(\mathbb R\)</span> is a simple function whose
-level sets are intervals, or finite unions of intervals, depending on
-the convention used in the course.</p>
+<p>A step function on <span class="math inline">\(\mathbb R\)</span> is
+a simple function whose level sets are intervals, or finite unions of
+intervals, depending on the convention used in the course.</p>
 <h3 id="simple-approximation-theorem">1.35 — Simple Approximation
 Theorem</h3>
-<h4 id="exam-answer-13">Exam Answer</h4>
+<h4 id="exam-answer-26">Exam Answer</h4>
 <p>Let <span class="math inline">\((X,\mathcal A)\)</span> be a
 measurable space and let <span
 class="math inline">\(f:X\to\overline{\mathbb R}\)</span> be measurable.
@@ -1746,7 +1630,7 @@ class="math inline">\(f^+\)</span> and <span
 class="math inline">\(f^-\)</span>.</p>
 <h3 id="integration-of-series-without-sign-restriction">1.56 —
 Integration of Series Without Sign Restriction</h3>
-<h4 id="exam-answer-14">Exam Answer</h4>
+<h4 id="exam-answer-27">Exam Answer</h4>
 <p>Let <span class="math inline">\(f_n\in L^1(X,\mathcal A,\mu)\)</span>
 and assume <span class="math display">\[
 \sum_{n=1}^\infty \int_X |f_n|\,d\mu&lt;\infty.
@@ -1770,7 +1654,7 @@ class="math inline">\(\sum |f_n|\in L^1\)</span>, and dominated
 convergence gives the exchange of sum and integral.</p>
 <h3 id="second-fundamental-theorem-of-calculus">1.68 — Second
 Fundamental Theorem of Calculus</h3>
-<h4 id="exam-answer-15">Exam Answer</h4>
+<h4 id="exam-answer-28">Exam Answer</h4>
 <p>For <span class="math inline">\(\varphi:[a,b]\to\mathbb R\)</span>,
 the following are equivalent:</p>
 <ol type="1">
@@ -1786,33 +1670,22 @@ class="math display">\[
 classical integral recovery formula holds in the Lebesgue sense.</p>
 <h3 id="ac-characterization-via-integration-by-parts">1.69 — AC
 Characterization via Integration by Parts</h3>
-<p>This closes the real-analysis chapter by linking absolute continuity
-and Sobolev weak derivative language.</p>
-<p>It is the bridge from classical calculus to weak formulations.</p>
-<h4 id="preserved-statement-proof-block-13">Preserved Statement + Proof
-Block</h4>
-<ol start="8" type="1">
-<li><p><code>1.69</code> “State and prove the characterization of
-absolutely continuous functions in terms of the integration by parts
-formula.”</p>
-<p><strong>Characterization theorem (Sobolev form)</strong><br />
+<h4 id="exam-answer-29">Exam Answer</h4>
+<p>Characterization theorem (Sobolev form).<br />
 For <span class="math inline">\(I=[a,b]\)</span> and <span
 class="math inline">\(u\in L^1(I)\)</span>, the following are
-equivalent:</p>
-<ol type="1">
-<li><span class="math inline">\(u\in AC(I)\)</span>.</li>
-<li>There exists <span class="math inline">\(v\in L^1(I)\)</span> such
-that for every <span class="math inline">\(\varphi\in
-C_c^\infty((a,b))\)</span>, <span class="math display">\[
-\int_a^b u(x)\,\varphi&#39;(x)\,dx
-=
--\int_a^b v(x)\,\varphi(x)\,dx.
-\]</span> Equivalently, <span class="math inline">\(u\in
+equivalent: 1. <span class="math inline">\(u\in AC(I)\)</span>. 2. There
+exists <span class="math inline">\(v\in L^1(I)\)</span> such that for
+every <span class="math inline">\(\varphi\in C_c^\infty((a,b))\)</span>,
+<span class="math display">\[
+   \int_a^b u(x)\,\varphi&#39;(x)\,dx
+   =
+   -\int_a^b v(x)\,\varphi(x)\,dx.
+   \]</span> Equivalently, <span class="math inline">\(u\in
 W^{1,1}(I)\)</span> and its weak derivative is <span
-class="math inline">\(u&#39;=v\)</span>.</li>
-</ol>
-<p><strong>Proof of <span
-class="math inline">\((1)\Rightarrow(2)\)</span></strong><br />
+class="math inline">\(u&#39;=v\)</span>.</p>
+<p>Proof of <span
+class="math inline">\((1)\Rightarrow(2)\)</span>.<br />
 If <span class="math inline">\(u\in AC([a,b])\)</span>, then <span
 class="math inline">\(u\)</span> is a.e. differentiable, <span
 class="math inline">\(u&#39;\in L^1(a,b)\)</span>, and <span
@@ -1828,8 +1701,8 @@ integration by parts gives <span class="math display">\[
 -\int_a^b v\varphi
 \]</span> because <span
 class="math inline">\(\varphi(a)=\varphi(b)=0\)</span>.</p>
-<p><strong>Proof of <span
-class="math inline">\((2)\Rightarrow(1)\)</span></strong><br />
+<p>Proof of <span
+class="math inline">\((2)\Rightarrow(1)\)</span>.<br />
 Assume there exists <span class="math inline">\(v\in L^1(I)\)</span>
 with <span class="math display">\[
 \int_a^b u\varphi&#39;=-\int_a^b v\varphi
@@ -1852,16 +1725,14 @@ class="math display">\[
 u(x)=z(x)+C=\int_a^x v(t)\,dt+C \quad\text{a.e.}
 \]</span> The right-hand side is absolutely continuous; replacing <span
 class="math inline">\(u\)</span> by its a.e.-equal representative gives
-<span class="math inline">\(u\in AC([a,b])\)</span>.</p></li>
-</ol>
+<span class="math inline">\(u\in AC([a,b])\)</span>.</p>
 <h3 id="weak-derivatives-and-w1p">1.70 — Weak Derivatives and <span
 class="math inline">\(W^{1,p}\)</span></h3>
-<h4 id="exam-answer-16">Exam Answer</h4>
+<h4 id="exam-answer-30">Exam Answer</h4>
 <p>Let <span class="math inline">\(I=(a,b)\)</span>. Given <span
 class="math inline">\(u,v\in L^1_{loc}(I)\)</span>, we say that <span
-class="math inline">\(v\)</span> is the <strong>weak derivative</strong>
-of <span class="math inline">\(u\)</span> if <span
-class="math display">\[
+class="math inline">\(v\)</span> is the weak derivative of <span
+class="math inline">\(u\)</span> if <span class="math display">\[
 \int_I u\varphi&#39;\,dx=-\int_I v\varphi\,dx
 \qquad\forall\varphi\in C_c^\infty(I).
 \]</span> In that case we write <span
@@ -1881,7 +1752,7 @@ class="math display">\[
 <h3 id="relation-between-w11-and-ac">1.71 — Relation Between <span
 class="math inline">\(W^{1,1}\)</span> and <span
 class="math inline">\(AC\)</span></h3>
-<h4 id="exam-answer-17">Exam Answer</h4>
+<h4 id="exam-answer-31">Exam Answer</h4>
 <p>On a bounded interval <span class="math inline">\(I=[a,b]\)</span>,
 <span class="math display">\[
 W^{1,1}(I)=AC(I)
@@ -1910,18 +1781,8 @@ Real Analysis - Tier 2 Support and Insurance</h2>
 <p>Important support material and recently used topics. Know statements
 and definitions, but do not let these crowd out Tier 0.</p>
 <h3 id="excision-and-regularity">1.18 — Excision and Regularity</h3>
-<p>Excision and regularity are your set-level foundations: how measure
-behaves under set subtraction, and how measurable sets are approximated
-by open/closed sets.</p>
-<p>Read this first to anchor the geometry of measurable sets before
-moving to measurable functions.</p>
-<h4 id="preserved-statement-proof-block-14">Preserved Statement + Proof
-Block</h4>
-<ol type="1">
-<li><p><code>1.18</code> “Write the excision property and prove it.
-Write and prove (partially) the theorem concerning the regularity of the
-Lebesgue measure on R.”</p>
-<p><strong>Excision Property (clean statement)</strong><br />
+<h4 id="exam-answer-32">Exam Answer</h4>
+<p>.Excision Property (clean statement)**<br />
 Let <span class="math inline">\(A \in \mathscr{L}(\mathbb{R})\)</span>
 with <span class="math inline">\(\lambda^*(A) &lt; \infty\)</span>. If
 <span class="math inline">\(A \subseteq B\)</span> (with <span
@@ -1929,7 +1790,7 @@ class="math inline">\(B \subseteq \mathbb{R}\)</span>, not necessarily
 measurable), then <span class="math display">\[
 \lambda^*(B \setminus A) = \lambda^*(B) - \lambda^*(A).
 \]</span></p>
-<p><strong>Proof (from Caratheodory condition)</strong><br />
+<p>Proof (from Caratheodory condition).<br />
 Since <span class="math inline">\(A\)</span> is measurable, for every
 <span class="math inline">\(Z \subseteq \mathbb{R}\)</span>, <span
 class="math display">\[
@@ -1948,71 +1809,61 @@ legitimate: <span class="math display">\[
 <p><strong>Regularity of Lebesgue measure (equivalent
 forms)</strong><br />
 For <span class="math inline">\(E \subseteq \mathbb{R}\)</span>, the
-following are equivalent:</p>
-<ol type="1">
-<li><span class="math inline">\(E \in
-\mathscr{L}(\mathbb{R})\)</span>.</li>
-<li>For every <span class="math inline">\(\varepsilon&gt;0\)</span>,
-there exists open <span class="math inline">\(O \supseteq E\)</span>
-such that <span class="math inline">\(\lambda^*(O\setminus
-E)&lt;\varepsilon\)</span>.</li>
-<li>There exists <span class="math inline">\(G \in G_\delta\)</span>
-with <span class="math inline">\(E\subseteq G\)</span> and <span
-class="math inline">\(\lambda^*(G\setminus E)=0\)</span>.</li>
-<li>For every <span class="math inline">\(\varepsilon&gt;0\)</span>,
-there exists closed <span class="math inline">\(C \subseteq E\)</span>
-such that <span class="math inline">\(\lambda^*(E\setminus
-C)&lt;\varepsilon\)</span>.</li>
-<li>There exists <span class="math inline">\(F \in F_\sigma\)</span>
-with <span class="math inline">\(F\subseteq E\)</span> and <span
-class="math inline">\(\lambda^*(E\setminus F)=0\)</span>.</li>
-</ol>
+following are equivalent: 1. <span class="math inline">\(E \in
+\mathscr{L}(\mathbb{R})\)</span>. 2. For every <span
+class="math inline">\(\varepsilon&gt;0\)</span>, there exists open <span
+class="math inline">\(O \supseteq E\)</span> such that <span
+class="math inline">\(\lambda^*(O\setminus E)&lt;\varepsilon\)</span>.
+3. There exists <span class="math inline">\(G \in G_\delta\)</span> with
+<span class="math inline">\(E\subseteq G\)</span> and <span
+class="math inline">\(\lambda^*(G\setminus E)=0\)</span>. 4. For every
+<span class="math inline">\(\varepsilon&gt;0\)</span>, there exists
+closed <span class="math inline">\(C \subseteq E\)</span> such that
+<span class="math inline">\(\lambda^*(E\setminus
+C)&lt;\varepsilon\)</span>. 5. There exists <span
+class="math inline">\(F \in F_\sigma\)</span> with <span
+class="math inline">\(F\subseteq E\)</span> and <span
+class="math inline">\(\lambda^*(E\setminus F)=0\)</span>.</p>
 <p><strong>Partial proof sketch <span
 class="math inline">\((i)\Rightarrow(ii)\Rightarrow(iii)\)</span></strong><br />
 Assume <span class="math inline">\(E \in
 \mathscr{L}(\mathbb{R})\)</span>, <span
 class="math inline">\(\lambda(E)&lt;\infty\)</span>, and fix <span
-class="math inline">\(\varepsilon&gt;0\)</span>.</p>
-<ul>
-<li>By definition of outer measure, choose open intervals <span
+class="math inline">\(\varepsilon&gt;0\)</span>. - By definition of
+outer measure, choose open intervals <span
 class="math inline">\(\{I_k\}\)</span> covering <span
 class="math inline">\(E\)</span> such that <span class="math display">\[
-\sum_{k=1}^{\infty}\lambda(I_k)&lt;\lambda^*(E)+\varepsilon.
-\]</span></li>
-<li>Let <span
+  \sum_{k=1}^{\infty}\lambda(I_k)&lt;\lambda^*(E)+\varepsilon.
+  \]</span> - Let <span
 class="math inline">\(O=\bigcup_{k=1}^{\infty}I_k\)</span>. Then <span
 class="math inline">\(O\)</span> is open, <span
 class="math inline">\(E\subseteq O\)</span>, and <span
 class="math display">\[
-\lambda^*(O)\le
+  \lambda^*(O)\le
 \sum_{k=1}^{\infty}\lambda(I_k)&lt;\lambda^*(E)+\varepsilon.
-\]</span></li>
-<li>By excision (measurable finite <span
+  \]</span> - By excision (measurable finite <span
 class="math inline">\(E\)</span>): <span class="math display">\[
-\lambda^*(O\setminus E)=\lambda^*(O)-\lambda^*(E)&lt;\varepsilon.
-\]</span> This proves (ii).</li>
-<li>For each <span class="math inline">\(k\in\mathbb{N}\)</span>, apply
-(ii) with <span class="math inline">\(\varepsilon=1/k\)</span>: there
-exists open <span class="math inline">\(O_k\supseteq E\)</span> with
-<span class="math display">\[
-\lambda^*(O_k\setminus E)&lt;\frac1k.
-\]</span></li>
-<li>Define <span class="math display">\[
-G:=\bigcap_{k=1}^{\infty}O_k.
-\]</span> Then <span class="math inline">\(G\in G_\delta\)</span>, <span
-class="math inline">\(E\subseteq G\)</span>, and <span
+  \lambda^*(O\setminus E)=\lambda^*(O)-\lambda^*(E)&lt;\varepsilon.
+  \]</span> This proves (ii). - For each <span
+class="math inline">\(k\in\mathbb{N}\)</span>, apply (ii) with <span
+class="math inline">\(\varepsilon=1/k\)</span>: there exists open <span
+class="math inline">\(O_k\supseteq E\)</span> with <span
+class="math display">\[
+  \lambda^*(O_k\setminus E)&lt;\frac1k.
+  \]</span> - Define <span class="math display">\[
+  G:=\bigcap_{k=1}^{\infty}O_k.
+  \]</span> Then <span class="math inline">\(G\in G_\delta\)</span>,
+<span class="math inline">\(E\subseteq G\)</span>, and <span
 class="math inline">\(G\setminus E\subseteq O_k\setminus E\)</span> for
 every <span class="math inline">\(k\)</span>. Hence <span
 class="math display">\[
-\lambda^*(G\setminus E)\le \lambda^*(O_k\setminus E)&lt;\frac1k \quad
+  \lambda^*(G\setminus E)\le \lambda^*(O_k\setminus E)&lt;\frac1k \quad
 \forall k,
-\]</span> so <span class="math inline">\(\lambda^*(G\setminus
-E)=0\)</span>. Thus (iii).</li>
-</ul></li>
-</ol>
+  \]</span> so <span class="math inline">\(\lambda^*(G\setminus
+E)=0\)</span>. Thus (iii).</p>
 <h3 id="integral-of-nonnegative-simple-functions">1.38 — Integral of
 Nonnegative Simple Functions</h3>
-<h4 id="exam-answer-18">Exam Answer</h4>
+<h4 id="exam-answer-33">Exam Answer</h4>
 <p>Let <span class="math inline">\(s\in S^+(X,\mathcal A)\)</span> have
 canonical form <span class="math display">\[
 s=\sum_{k=1}^m c_k\chi_{E_k},
@@ -2044,7 +1895,7 @@ class="math inline">\(t\)</span> to a common partition, where the
 identity reduces to finite sums.</p>
 <h3 id="integral-of-a-simple-function-defines-a-measure">1.39 — Integral
 of a Simple Function Defines a Measure</h3>
-<h4 id="exam-answer-19">Exam Answer</h4>
+<h4 id="exam-answer-34">Exam Answer</h4>
 <p>Let <span class="math inline">\(s\in S^+(X,\mathcal A)\)</span> and
 define <span class="math display">\[
 \varphi(E):=\int_Es\,d\mu,
@@ -2073,7 +1924,7 @@ countable sums, <span class="math display">\[
 measure.</p>
 <h3 id="integral-of-a-nonnegative-measurable-function">1.40 — Integral
 of a Nonnegative Measurable Function</h3>
-<h4 id="exam-answer-20">Exam Answer</h4>
+<h4 id="exam-answer-35">Exam Answer</h4>
 <p>Let <span class="math inline">\(f\in\mathcal M^+(X,\mathcal
 A)\)</span>. The Lebesgue integral can be defined equivalently in two
 ways.</p>
@@ -2095,23 +1946,15 @@ and monotonicity of the integral.</p>
 <h3 id="integrable-functions-lebesgue-integral-and-l1">1.49 — Integrable
 Functions, Lebesgue Integral, and <span
 class="math inline">\(L^1\)</span></h3>
-<p>With measurability in place, define integrability and the Lebesgue
-integral for signed functions.</p>
-<p>This section gives the formal object that all convergence theorems
-act on.</p>
-<h4 id="preserved-statement-proof-block-15">Preserved Statement + Proof
-Block</h4>
-<ol start="4" type="1">
-<li><p><code>1.49</code> “Write the deﬁnition of: integrable functions,
-Lebesgue integral, L1(X,A,µ).”</p>
-<p><strong>Positive/negative parts</strong><br />
+<h4 id="exam-answer-36">Exam Answer</h4>
+<p>Positive/negative parts.<br />
 For measurable <span
 class="math inline">\(f:X\to\overline{\mathbb{R}}\)</span>, define <span
 class="math display">\[
 f^+:=\max\{f,0\}, \qquad f^-:=\max\{-f,0\},
 \]</span> so <span class="math inline">\(f=f^+-f^-\)</span>, <span
 class="math inline">\(|f|=f^++f^-\)</span>.</p>
-<p><strong>Integrable function</strong><br />
+<p>Integrable function.<br />
 <span class="math inline">\(f\)</span> is integrable iff <span
 class="math display">\[
 \int_X f^+\,d\mu&lt;\infty
@@ -2122,13 +1965,12 @@ f\in L^1(X,\mathcal{A},\mu)
 \iff
 \int_X |f|\,d\mu&lt;\infty.
 \]</span></p>
-<p><strong>Lebesgue integral (for integrable <span
-class="math inline">\(f\)</span>)</strong> <span class="math display">\[
+<p>Lebesgue integral for integrable <span
+class="math inline">\(f\)</span>. <span class="math display">\[
 \int_X f\,d\mu:=\int_X f^+\,d\mu-\int_X f^-\,d\mu.
 \]</span></p>
-<p><strong>Space <span class="math inline">\(\mathcal{L}^1\)</span> and
-<span class="math inline">\(L^1\)</span></strong><br />
-<span class="math display">\[
+<p>Space <span class="math inline">\(\mathcal{L}^1\)</span> and <span
+class="math inline">\(L^1\)</span>. <span class="math display">\[
 \mathcal{L}^1(X,\mathcal{A},\mu)
 :=
 \left\{
@@ -2141,12 +1983,11 @@ by equality a.e.: <span class="math display">\[
 L^1(X,\mathcal{A},\mu)=\mathcal{L}^1(X,\mathcal{A},\mu)/{\sim},
 \qquad
 f\sim g \iff f=g \ \text{a.e.}
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="integrability-absolute-value-and-the-l1-norm">1.50 —
 Integrability, Absolute Value, and the <span
 class="math inline">\(L^1\)</span> Norm</h3>
-<h4 id="exam-answer-21">Exam Answer</h4>
+<h4 id="exam-answer-37">Exam Answer</h4>
 <p>For a measurable <span class="math inline">\(f:X\to\overline{\mathbb
 R}\)</span>, <span class="math display">\[
 f^+=\max\{f,0\},\qquad f^-=\max\{-f,0\},
@@ -2183,7 +2024,7 @@ Functional Analysis - Tier 0 20/80 Core</h2>
 Holder/Lp completeness, weak convergence, Banach-Alaoglu, and compact
 operators.</p>
 <h3 id="riesz-theorem">2.12 — Riesz Theorem</h3>
-<h4 id="exam-answer-22">Exam Answer</h4>
+<h4 id="exam-answer-38">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space. If
 <span class="math inline">\(\dim X=\infty\)</span>, then the closed unit
 ball <span class="math display">\[
@@ -2223,7 +2064,7 @@ subsequence. Since metric compactness implies sequential compactness,
 <span class="math inline">\(\overline B_1(0)\)</span> is not
 compact.</p>
 <h3 id="holder-inequality">2.17 — Holder Inequality</h3>
-<h4 id="exam-answer-23">Exam Answer</h4>
+<h4 id="exam-answer-39">Exam Answer</h4>
 <p>Let <span class="math inline">\(p,q\in[1,\infty]\)</span> be
 conjugate. If <span class="math inline">\(f\in L^p\)</span> and <span
 class="math inline">\(g\in L^q\)</span>, then <span
@@ -2255,7 +2096,7 @@ class="math display">\[
 class="math inline">\(q=1\)</span> is symmetric.</p>
 <h3 id="completeness-of-lp">2.22 — Completeness of <span
 class="math inline">\(L^p\)</span></h3>
-<h4 id="exam-answer-24">Exam Answer</h4>
+<h4 id="exam-answer-40">Exam Answer</h4>
 <p>For <span class="math inline">\(1\le p\le\infty\)</span>, <span
 class="math inline">\(L^p(X,\mathcal A,\mu)\)</span> is complete; hence
 it is a Banach space.</p>
@@ -2290,74 +2131,54 @@ norm.</p>
 <span class="math inline">\(X\)</span>, <span
 class="math inline">\(L^p\)</span>, and <span
 class="math inline">\(\ell^p\)</span></h3>
-<p>Define weak convergence abstractly and in concrete spaces <span
-class="math inline">\(L^p\)</span> and <span
-class="math inline">\(\ell^p\)</span>.</p>
-<p>This is essential for interpreting exam questions on sequences in
-Banach spaces.</p>
-<h4 id="preserved-statement-proof-block-16">Preserved Statement + Proof
-Block</h4>
-<ol start="12" type="1">
-<li><code>2.53</code> “Write the deﬁnition of weak convergence. How can
-it be formulated in Lp and in p ` ?”</li>
-</ol>
-<p><strong>Definition (weak convergence in normed spaces)</strong><br />
+<h4 id="exam-answer-41">Exam Answer</h4>
+<p>Definition (weak convergence in normed spaces).<br />
 Let <span class="math inline">\(X\)</span> be a normed space. A sequence
 <span class="math inline">\(\{x_n\}\subset X\)</span> converges weakly
 to <span class="math inline">\(x\in X\)</span> (notation <span
 class="math inline">\(x_n\rightharpoonup x\)</span>) if <span
 class="math display">\[
-   L(x_n)\to L(x)\qquad \forall L\in X^*.
-   \]</span></p>
-<p><strong>Formulation in <span class="math inline">\(L^p\)</span>
-(<span class="math inline">\(1\le p&lt;\infty\)</span>)</strong><br />
+L(x_n)\to L(x)\qquad \forall L\in X^*.
+\]</span></p>
+<p>Formulation in <span class="math inline">\(L^p\)</span> (<span
+class="math inline">\(1\le p&lt;\infty\)</span>).<br />
 Let <span class="math inline">\(p&#39;\)</span> be the conjugate
 exponent, <span
 class="math inline">\(\frac1p+\frac1{p&#39;}=1\)</span>.<br />
 For <span class="math inline">\(f_n,f\in L^p\)</span>: <span
 class="math display">\[
-   f_n\rightharpoonup f\ \text{in }L^p
-   \iff
-   \int_X f_n g\,d\mu \to \int_X f g\,d\mu
-   \quad \forall g\in L^{p&#39;}.
-   \]</span> (For <span class="math inline">\(p=\infty\)</span>, the
-dual is larger than <span class="math inline">\(L^1\)</span>; the
-integral criterion with <span class="math inline">\(L^1\)</span> is
-weak-* type.)</p>
-<p><strong>Formulation in <span class="math inline">\(\ell^p\)</span>
-(<span class="math inline">\(1\le p&lt;\infty\)</span>)</strong><br />
+f_n\rightharpoonup f\ \text{in }L^p
+\iff
+\int_X f_n g\,d\mu \to \int_X f g\,d\mu
+\quad \forall g\in L^{p&#39;}.
+\]</span> (For <span class="math inline">\(p=\infty\)</span>, the dual
+is larger than <span class="math inline">\(L^1\)</span>; the integral
+criterion with <span class="math inline">\(L^1\)</span> is weak-*
+type.)</p>
+<p>Formulation in <span class="math inline">\(\ell^p\)</span> (<span
+class="math inline">\(1\le p&lt;\infty\)</span>).<br />
 Let <span class="math inline">\(x_n=(x_n^{(k)})_{k\ge1}\)</span>, <span
 class="math inline">\(x=(x^{(k)})_{k\ge1}\)</span> in <span
 class="math inline">\(\ell^p\)</span>. Then <span
 class="math display">\[
-   x_n\rightharpoonup x\ \text{in }\ell^p
-   \iff
-   \sum_{k=1}^\infty x_n^{(k)}y^{(k)} \to \sum_{k=1}^\infty
-x^{(k)}y^{(k)}
-   \quad \forall y=(y^{(k)})\in \ell^{p&#39;}.
-   \]</span></p>
-<p><strong>Model map</strong><br />
-Strong convergence implies weak convergence.<br />
+x_n\rightharpoonup x\ \text{in }\ell^p
+\iff
+\sum_{k=1}^\infty x_n^{(k)}y^{(k)} \to \sum_{k=1}^\infty x^{(k)}y^{(k)}
+\quad \forall y=(y^{(k)})\in \ell^{p&#39;}.
+\]</span></p>
+<p>Useful implication: Strong convergence implies weak
+convergence.<br />
 In general, weak convergence does not imply strong convergence
 (e.g. standard basis in <span
 class="math inline">\(\ell^2\)</span>).</p>
 <h3 id="strong-rightarrow-weak-and-counterexample-to-the-converse">2.54
 — Strong <span class="math inline">\(\Rightarrow\)</span> Weak, and
 Counterexample to the Converse</h3>
-<p>This is the foundational implication and its standard failure
-mode.</p>
-<p>In oral/written exams, present the proof in one line and then give
-the <span class="math inline">\(\ell^2\)</span> basis
-counterexample.</p>
-<h4 id="preserved-statement-proof-block-17">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.54. Show that strong convergence implies weak convergence.
-Provide a counterexample for the converse implication.</p>
-<p><strong>Theorem:</strong> If <span class="math inline">\(x_n \to
-x\)</span> strongly in a normed space <span
-class="math inline">\(X\)</span>, then <span class="math inline">\(x_n
-\rightharpoonup x\)</span> weakly.</p>
-<p><strong>Proof:</strong><br />
+<h4 id="exam-answer-42">Exam Answer</h4>
+<p>Theorem. If <span class="math inline">\(x_n \to x\)</span> strongly
+in a normed space <span class="math inline">\(X\)</span>, then <span
+class="math inline">\(x_n \rightharpoonup x\)</span> weakly.</p>
+<p>Proof.<br />
 Let <span class="math inline">\(L\in X^*\)</span>. Since <span
 class="math inline">\(L\)</span> is continuous (bounded), <span
 class="math display">\[
@@ -2365,8 +2186,8 @@ class="math display">\[
 \]</span> Hence <span class="math inline">\(L(x_n)\to L(x)\)</span> for
 every <span class="math inline">\(L\in X^*\)</span>, i.e. <span
 class="math inline">\(x_n\rightharpoonup x\)</span>.</p>
-<p><strong>Counterexample to weak <span
-class="math inline">\(\not\Rightarrow\)</span> strong:</strong><br />
+<p>Counterexample to weak <span
+class="math inline">\(\not\Rightarrow\)</span> strong.<br />
 In <span class="math inline">\(\ell^2\)</span>, let <span
 class="math inline">\(e_n=(0,\dots,0,1,0,\dots)\)</span> be the
 canonical basis. - For any <span
@@ -2379,17 +2200,12 @@ class="math display">\[
   \]</span> so <span class="math inline">\(e_n\not\to 0\)</span>
 strongly.</p>
 <h3 id="uniqueness-of-weak-limit">2.55 — Uniqueness of Weak Limit</h3>
-<p>Weak limits are unique exactly like strong limits.</p>
-<p>The proof is a direct dual-space separation argument.</p>
-<h4 id="preserved-statement-proof-block-18">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.55. Show that the weak limit is unique.</p>
-<p><strong>Theorem:</strong> If <span
-class="math inline">\(x_n\rightharpoonup x\)</span> and <span
-class="math inline">\(x_n\rightharpoonup y\)</span> in a normed space
-<span class="math inline">\(X\)</span>, then <span
+<h4 id="exam-answer-43">Exam Answer</h4>
+<p>Theorem. If <span class="math inline">\(x_n\rightharpoonup x\)</span>
+and <span class="math inline">\(x_n\rightharpoonup y\)</span> in a
+normed space <span class="math inline">\(X\)</span>, then <span
 class="math inline">\(x=y\)</span>.</p>
-<p><strong>Proof:</strong><br />
+<p>Proof.<br />
 For every <span class="math inline">\(L\in X^*\)</span>, <span
 class="math display">\[
 L(x_n)\to L(x),\qquad L(x_n)\to L(y),
@@ -2408,23 +2224,12 @@ class="math inline">\(x=y\)</span>.</p>
 id="boundedness-of-weakly-convergent-sequences-and-lower-semicontinuity-of-norm">2.56
 — Boundedness of Weakly Convergent Sequences and Lower Semicontinuity of
 Norm</h3>
-<p>This question combines two standard facts that are often asked
-together.</p>
-<p>Know the statements and the Hahn-Banach proof of lower
-semicontinuity.</p>
-<h4 id="preserved-statement-proof-block-19">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.56. If <span class="math inline">\(\{x_n\}\)</span> weakly
-converges to <span class="math inline">\(x\)</span>, can <span
-class="math inline">\(\{x_n\}\)</span> be unbounded? State and prove
-lower semicontinuity w.r.t. weak convergence of <span
-class="math inline">\(x\mapsto \|x\|\)</span>.</p>
-<p><strong>(a) Can a weakly convergent sequence be
-unbounded?</strong><br />
+<h4 id="exam-answer-44">Exam Answer</h4>
+<p>Weakly convergent sequences are bounded.<br />
 No. If <span class="math inline">\(x_n\rightharpoonup x\)</span> in
 <span class="math inline">\(X\)</span>, then <span
 class="math inline">\(\{x_n\}\)</span> is bounded in norm.</p>
-<p><strong>Reason:</strong><br />
+<p>Proof.<br />
 For each fixed <span class="math inline">\(L\in X^*\)</span>, <span
 class="math inline">\(\{L(x_n)\}\)</span> converges in <span
 class="math inline">\(\mathbb{R}\)</span>, hence is bounded.<br />
@@ -2436,13 +2241,12 @@ class="math display">\[
 \sup_n \|J(x_n)\|_{X^{**}}&lt;\infty.
 \]</span> Since <span class="math inline">\(\|J(x_n)\|=\|x_n\|\)</span>,
 we get <span class="math inline">\(\sup_n\|x_n\|&lt;\infty\)</span>.</p>
-<p><strong>(b) Lower semicontinuity of norm under weak
-convergence:</strong><br />
+<p>Lower semicontinuity of the norm.<br />
 If <span class="math inline">\(x_n\rightharpoonup x\)</span>, then <span
 class="math display">\[
 \|x\|\le \liminf_{n\to\infty}\|x_n\|.
 \]</span></p>
-<p><strong>Proof:</strong><br />
+<p>Proof.<br />
 If <span class="math inline">\(x=0\)</span>, trivial. Suppose <span
 class="math inline">\(x\neq 0\)</span>. By Hahn-Banach, there exists
 <span class="math inline">\(L\in X^*\)</span> such that <span
@@ -2461,7 +2265,7 @@ class="math display">\[
 \]</span></p>
 <h3 id="weak-convergence-with-strong-dual-convergence">2.57 — Weak
 Convergence with Strong Dual Convergence</h3>
-<h4 id="exam-answer-25">Exam Answer</h4>
+<h4 id="exam-answer-45">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space. If
 <span class="math display">\[
 x_n\rightharpoonup x \quad\text{in }X,
@@ -2485,7 +2289,7 @@ to <span class="math inline">\(0\)</span>. Hence <span
 class="math inline">\(L_n(x_n)\to L(x)\)</span>.</p>
 <h3 id="bounded-linear-operators-are-weak-weak-continuous">2.58 —
 Bounded Linear Operators Are Weak-Weak Continuous</h3>
-<h4 id="exam-answer-26">Exam Answer</h4>
+<h4 id="exam-answer-46">Exam Answer</h4>
 <p>Let <span class="math inline">\(T\in\mathcal L(X,Y)\)</span>. If
 <span class="math inline">\(x_n\rightharpoonup x\)</span> in <span
 class="math inline">\(X\)</span>, then <span class="math display">\[
@@ -2506,24 +2310,14 @@ Y^*\)</span>, so <span class="math inline">\(Tx_n\rightharpoonup
 Tx\)</span>.</p>
 <h3 id="banach-alaoglu-and-weak-compactness">2.62 — Banach-Alaoglu and
 Weak* Compactness</h3>
-<p>Banach-Alaoglu provides compactness in weak* topology and extraction
-of subsequences.</p>
-<p>This is especially important for bounded sequences in <span
-class="math inline">\(L^\infty\)</span>.</p>
-<h4 id="preserved-statement-proof-block-20">Preserved Statement + Proof
-Block</h4>
-<ol start="5" type="1">
-<li><p><code>2.62</code> “State the Banach-Alaoglu theorem. Why can we
-say that from a bounded sequence ∞ ∗ ∞ in L we can extract a subsequence
-which weakly converges in L ?”</p>
-<p><strong>Banach-Alaoglu theorem (standard form)</strong><br />
+<h4 id="exam-answer-47">Exam Answer</h4>
+<p>Banach-Alaoglu theorem (standard form).<br />
 For any normed space <span class="math inline">\(X\)</span>, the closed
 unit ball <span class="math display">\[
 B_{X^*}:=\{L\in X^*:\ \|L\|_{X^*}\le 1\}
 \]</span> is compact in the weak* topology <span
 class="math inline">\(\sigma(X^*,X)\)</span>.</p>
-<p><strong>Sequential consequence used in class (separable
-predual)</strong><br />
+<p>Sequential consequence (separable predual).<br />
 If <span class="math inline">\(X\)</span> is separable and <span
 class="math inline">\(\{L_n\}\subset X^*\)</span> is bounded, then there
 exist a subsequence <span class="math inline">\(L_{n_k}\)</span> and
@@ -2531,8 +2325,8 @@ exist a subsequence <span class="math inline">\(L_{n_k}\)</span> and
 class="math display">\[
 L_{n_k}\stackrel{*}{\rightharpoonup} L.
 \]</span></p>
-<p><strong>Why this yields weak* subsequences in <span
-class="math inline">\(L^\infty\)</span></strong><br />
+<p>Application to weak* subsequences in <span
+class="math inline">\(L^\infty\)</span>.<br />
 Using <span class="math display">\[
 L^\infty(\Omega)\cong (L^1(\Omega))^*,
 \]</span> and separability of <span
@@ -2543,11 +2337,10 @@ f_{n_k}\stackrel{*}{\rightharpoonup} f \quad\text{in }L^\infty.
 \]</span> Equivalently, <span class="math display">\[
 \int_\Omega f_{n_k}g\,d\mu \to \int_\Omega fg\,d\mu
 \qquad \forall g\in L^1(\Omega).
-\]</span></p></li>
-</ol>
+\]</span></p>
 <h3 id="banach-alaoglu-corollary-in-separable-reflexive-spaces">2.63 —
 Banach-Alaoglu Corollary in Separable Reflexive Spaces</h3>
-<h4 id="exam-answer-27">Exam Answer</h4>
+<h4 id="exam-answer-48">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a separable and
 reflexive Banach space. Every bounded sequence <span
 class="math inline">\(\{x_n\}\subset X\)</span> admits a weakly
@@ -2581,61 +2374,46 @@ L(x_{n_k})
 x\)</span> in <span class="math inline">\(X\)</span>.</p>
 <h3 id="compact-and-finite-rank-operators">2.64 — Compact and
 Finite-Rank Operators</h3>
-<p>This is the entry point of compact operator theory.</p>
-<p>Know both the set-based and sequence-based definitions; exam
-questions often switch between them.</p>
-<h4 id="preserved-statement-proof-block-21">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.64. Write the definition of compact operator. Write the
-definition of operator of finite rank.</p>
-<p><strong>Compact operator (definition):</strong><br />
+<h4 id="exam-answer-49">Exam Answer</h4>
+<p>Compact operator.<br />
 Let <span class="math inline">\(X,Y\)</span> be Banach spaces. A linear
 operator <span class="math inline">\(K:X\to Y\)</span> is compact if for
 every bounded set <span class="math inline">\(E\subset X\)</span>, the
 image <span class="math inline">\(K(E)\)</span> is relatively compact in
 <span class="math inline">\(Y\)</span> (equivalently, <span
 class="math inline">\(\overline{K(E)}\)</span> is compact).</p>
-<p><strong>Sequential characterization (equivalent):</strong><br />
+<p>Sequential characterization.<br />
 <span class="math inline">\(K\)</span> is compact iff for every bounded
 sequence <span class="math inline">\(\{x_n\}\subset X\)</span>, the
 sequence <span class="math inline">\(\{Kx_n\}\)</span> admits a strongly
 convergent subsequence in <span class="math inline">\(Y\)</span>.</p>
-<p><strong>Finite-rank operator (definition):</strong><br />
+<p>Finite-rank operator.<br />
 An operator <span class="math inline">\(T\in\mathcal{L}(X,Y)\)</span>
 has finite rank if <span class="math display">\[
 \dim(\operatorname{Im}T)&lt;\infty.
 \]</span></p>
 <h3 id="relation-between-compact-and-finite-rank-surjectivity">2.65 —
 Relation Between Compact and Finite Rank; Surjectivity</h3>
-<p>This question tests the geometric limitation of compactness in
-infinite dimensions.</p>
-<p>State the inclusion relation first, then handle surjectivity by
-contradiction.</p>
-<h4 id="preserved-statement-proof-block-22">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.65. How is a compact operator related to operators of
-finite rank? Can a compact operator be surjective? Justify your
-answer.</p>
-<p><strong>Finite rank implies compact:</strong><br />
+<h4 id="exam-answer-50">Exam Answer</h4>
+<p>Finite rank implies compact.<br />
 If <span
 class="math inline">\(\dim(\operatorname{Im}T)&lt;\infty\)</span>, then
 <span class="math inline">\(T(B)\)</span> (image of a bounded set) is
 bounded in a finite-dimensional space. In finite dimension, closed and
 bounded sets are compact, so <span class="math inline">\(T\)</span> is
 compact.</p>
-<p><strong>Norm-limit of finite-rank operators is
-compact:</strong><br />
+<p>Norm limits of finite-rank operators are compact.<br />
 If <span class="math inline">\(K_n\)</span> are finite-rank and <span
 class="math inline">\(K_n\to K\)</span> in operator norm, then <span
 class="math inline">\(K\)</span> is compact.</p>
-<p><strong>Can a compact operator be surjective?</strong> - If <span
-class="math inline">\(\dim Y&lt;\infty\)</span>, yes (trivially
-possible). - If <span class="math inline">\(\dim Y=\infty\)</span>,
-no.</p>
-<p><strong>Proof of impossibility in infinite dimension:</strong><br />
-Assume <span class="math inline">\(K:X\to Y\)</span> compact and
-surjective, with <span class="math inline">\(X,Y\)</span> Banach and
-<span class="math inline">\(\dim Y=\infty\)</span>. By the Open Mapping
+<p>Surjectivity: If <span class="math inline">\(\dim
+Y&lt;\infty\)</span>, compact surjective operators may exist. If <span
+class="math inline">\(\dim Y=\infty\)</span>, no compact operator <span
+class="math inline">\(K:X\to Y\)</span> can be surjective.</p>
+<p>Proof for <span class="math inline">\(\dim Y=\infty\)</span>. Assume
+<span class="math inline">\(K:X\to Y\)</span> compact and surjective,
+with <span class="math inline">\(X,Y\)</span> Banach and <span
+class="math inline">\(\dim Y=\infty\)</span>. By the Open Mapping
 Theorem, <span class="math inline">\(K(B_X(0,1))\)</span> contains a
 ball <span class="math inline">\(B_Y(0,\delta)\)</span> for some <span
 class="math inline">\(\delta&gt;0\)</span>. Since <span
@@ -2647,24 +2425,16 @@ not compact (Riesz theorem). Contradiction. Therefore a compact operator
 onto an infinite-dimensional Banach space cannot be surjective.</p>
 <h3 id="compactness-and-weak-strong-continuity">2.66 — Compactness and
 Weak-Strong Continuity</h3>
-<p>This is a core characterization theorem: compact operators upgrade
-weak convergence to strong convergence.</p>
-<p>Remember the converse needs an additional structural hypothesis on
-<span class="math inline">\(X\)</span>.</p>
-<h4 id="preserved-statement-proof-block-23">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.66. State and prove the theorem about the characterization
-of compact operators in terms of weak-strong continuity.</p>
-<p><strong>Theorem (compact <span
-class="math inline">\(\Rightarrow\)</span> weak-strong
-continuity):</strong><br />
-Let <span class="math inline">\(X,Y\)</span> be Banach spaces and <span
+<h4 id="exam-answer-51">Exam Answer</h4>
+<p>Theorem (compact <span class="math inline">\(\Rightarrow\)</span>
+weak-strong continuity). Let <span class="math inline">\(X,Y\)</span> be
+Banach spaces and <span
 class="math inline">\(T\in\mathcal{K}(X,Y)\)</span>. If <span
 class="math inline">\(x_n\rightharpoonup x\)</span> in <span
 class="math inline">\(X\)</span>, then <span class="math display">\[
 Tx_n\to Tx \quad\text{strongly in }Y.
 \]</span></p>
-<p><strong>Proof:</strong><br />
+<p>Proof.<br />
 Since <span class="math inline">\(x_n\rightharpoonup x\)</span>, the
 sequence <span class="math inline">\(\{x_n\}\)</span> is bounded.
 Compactness of <span class="math inline">\(T\)</span> implies <span
@@ -2681,17 +2451,16 @@ class="math inline">\(y=Tx\)</span>. Therefore every subsequence has a
 further subsequence converging strongly to <span
 class="math inline">\(Tx\)</span>, which forces the whole sequence <span
 class="math inline">\(Tx_n\to Tx\)</span> strongly.</p>
-<p><strong>Converse (with hypothesis on <span
-class="math inline">\(X\)</span>):</strong><br />
-If <span class="math inline">\(X\)</span> is reflexive (in lecture notes
-often with separability assumptions for sequence extraction), and <span
+<p>Converse. If <span class="math inline">\(X\)</span> is reflexive (in
+lecture notes often with separability assumptions for sequence
+extraction), and <span
 class="math inline">\(T\in\mathcal{L}(X,Y)\)</span> satisfies <span
 class="math display">\[
 x_n\rightharpoonup x \ \Longrightarrow\ Tx_n\to Tx \text{ strongly},
 \]</span> then <span class="math inline">\(T\)</span> is compact.</p>
-<p><strong>Proof sketch (converse):</strong><br />
-Given bounded <span class="math inline">\(\{x_n\}\subset X\)</span>,
-reflexivity gives a weakly convergent subsequence <span
+<p>Proof of the converse. Given bounded <span
+class="math inline">\(\{x_n\}\subset X\)</span>, reflexivity gives a
+weakly convergent subsequence <span
 class="math inline">\(x_{n_k}\rightharpoonup x\)</span>. By the
 weak-strong property, <span class="math inline">\(Tx_{n_k}\to
 Tx\)</span> strongly. Hence every bounded sequence has an image
@@ -2703,7 +2472,7 @@ Functional Analysis - Tier 1 Exam Candidates</h2>
 important, but some are downgraded because they appeared recently or are
 usually asked as definitions/no-proof prompts.</p>
 <h3 id="riesz-lemma">2.11 — Riesz Lemma</h3>
-<h4 id="exam-answer-28">Exam Answer</h4>
+<h4 id="exam-answer-52">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space and let
 <span class="math inline">\(E\subsetneq X\)</span> be a closed vector
 subspace. For every <span
@@ -2742,7 +2511,7 @@ E\)</span> gives <span class="math display">\[
 <h3 id="definitions-of-mathcal-lp-and-lp">2.15 — Definitions of <span
 class="math inline">\(\mathcal L^p\)</span> and <span
 class="math inline">\(L^p\)</span></h3>
-<h4 id="exam-answer-29">Exam Answer</h4>
+<h4 id="exam-answer-53">Exam Answer</h4>
 <p>Let <span class="math inline">\((X,\mathcal A,\mu)\)</span> be a
 measure space and <span class="math inline">\(1\le p&lt;\infty\)</span>.
 Define <span class="math display">\[
@@ -2777,7 +2546,7 @@ quotient <span class="math inline">\(L^p\)</span> inherits the vector
 space structure.</p>
 <h3 id="lp-is-a-normed-space">2.19 — <span
 class="math inline">\(L^p\)</span> Is a Normed Space</h3>
-<h4 id="exam-answer-30">Exam Answer</h4>
+<h4 id="exam-answer-54">Exam Answer</h4>
 <p>For <span class="math inline">\(1\le p&lt;\infty\)</span>, define
 <span class="math display">\[
 \|f\|_p:=\left(\int_X |f|^p\,d\mu\right)^{1/p},
@@ -2798,7 +2567,7 @@ class="math display">\[
 vector space.</p>
 <h3 id="inclusion-of-lp-spaces">2.20 — Inclusion of <span
 class="math inline">\(L^p\)</span> Spaces</h3>
-<h4 id="exam-answer-31">Exam Answer</h4>
+<h4 id="exam-answer-55">Exam Answer</h4>
 <p>If <span class="math inline">\(\mu(X)&lt;\infty\)</span> and <span
 class="math inline">\(1\le p\le q\le\infty\)</span>, then <span
 class="math display">\[
@@ -2829,7 +2598,7 @@ f(x)=\frac1x
 <h3 id="dense-subspaces-and-separability-of-lpmathbb-r">2.23 — Dense
 Subspaces and Separability of <span class="math inline">\(L^p(\mathbb
 R)\)</span></h3>
-<h4 id="exam-answer-32">Exam Answer</h4>
+<h4 id="exam-answer-56">Exam Answer</h4>
 <p>For <span class="math inline">\(1\le p&lt;\infty\)</span>, standard
 dense subspaces of <span class="math inline">\(L^p(\Omega)\)</span>
 include <span class="math display">\[
@@ -2850,24 +2619,15 @@ separable for <span class="math display">\[
 R)\)</span> is not separable.</p>
 <h3 id="baire-category-theorem-two-versions">2.30 — Baire Category
 Theorem (Two Versions)</h3>
-<p>Start functional analysis with Baire category, the structural theorem
-behind global principles.</p>
-<p>It is the core mechanism for Banach-Steinhaus/Open Mapping type
-results.</p>
-<h4 id="preserved-statement-proof-block-24">Preserved Statement + Proof
-Block</h4>
-<ol start="9" type="1">
-<li><p><code>2.30</code> “State Baire’s Theorem in its two
-versions.”</p>
-<p><strong>Baire category theorem (version 1: intersection
-form)</strong><br />
+<h4 id="exam-answer-57">Exam Answer</h4>
+<p>Baire category theorem (version 1: intersection form).<br />
 Let <span class="math inline">\((X,d)\)</span> be a complete metric
 space. If <span class="math inline">\(\{A_n\}_{n\in\mathbb{N}}\)</span>
 are open and dense in <span class="math inline">\(X\)</span>, then <span
 class="math display">\[
 \bigcap_{n=1}^\infty A_n
 \]</span> is dense in <span class="math inline">\(X\)</span>.</p>
-<p><strong>Baire category theorem (version 2: union form)</strong><br />
+<p>Baire category theorem (version 2: union form).<br />
 Let <span class="math inline">\((X,d)\)</span> be a complete metric
 space. If <span class="math display">\[
 X=\bigcup_{n=1}^\infty C_n
@@ -2876,22 +2636,11 @@ then at least one <span class="math inline">\(C_{n_0}\)</span> has
 nonempty interior: <span class="math display">\[
 \operatorname{Int}(C_{n_0})\neq\varnothing.
 \]</span> Equivalently, a complete metric space is not a countable union
-of nowhere dense sets.</p></li>
-</ol>
+of nowhere dense sets.</p>
 <h3 id="uniform-boundedness-principle">2.31 — Uniform Boundedness
 Principle</h3>
-<p>Uniform Boundedness Principle turns pointwise control into uniform
-operator-norm control.</p>
-<p>Follow the proof logic carefully: closed sets, Baire, interior ball,
-scaling argument.</p>
-<h4 id="preserved-statement-proof-block-25">Preserved Statement + Proof
-Block</h4>
-<ol start="10" type="1">
-<li><code>2.31</code> “Let F ⊂ L(X,Y). For F write the deﬁnition of
-pointwise and uniform boundedness. State and prove the UBP (or BS
-theorem).”</li>
-</ol>
-<p><strong>Definitions</strong><br />
+<h4 id="exam-answer-58">Exam Answer</h4>
+<p>Definitions.<br />
 Let <span class="math inline">\(X,Y\)</span> be Banach spaces and <span
 class="math inline">\(\mathcal{F}\subset \mathcal{L}(X,Y)\)</span>.</p>
 <ul>
@@ -2902,57 +2651,56 @@ class="math inline">\(\mathcal{F}\subset \mathcal{L}(X,Y)\)</span>.</p>
 \sup_{T\in\mathcal{F}}\|T\|_{\mathcal{L}(X,Y)}&lt;\infty.
 \]</span></li>
 </ul>
-<p><strong>Uniform Boundedness Principle
-(Banach-Steinhaus)</strong><br />
+<p>Uniform Boundedness Principle (Banach-Steinhaus).<br />
 If <span class="math inline">\(X\)</span> is Banach and <span
 class="math inline">\(\mathcal{F}\subset \mathcal{L}(X,Y)\)</span> is
 pointwise bounded, then <span class="math inline">\(\mathcal{F}\)</span>
 is uniformly bounded.</p>
-<p><strong>Proof (via Baire theorem)</strong><br />
+<p>Proof (via Baire theorem).<br />
 For each <span class="math inline">\(n\in\mathbb{N}\)</span> define
 <span class="math display">\[
-   C_n:=\{x\in X:\ \|Tx\|_Y\le n\ \forall T\in\mathcal{F}\}.
-   \]</span> Each <span class="math inline">\(C_n\)</span> is closed
+C_n:=\{x\in X:\ \|Tx\|_Y\le n\ \forall T\in\mathcal{F}\}.
+\]</span> Each <span class="math inline">\(C_n\)</span> is closed
 (intersection of closed sets <span class="math inline">\(\{x:\|Tx\|\le
 n\}\)</span>).<br />
 Pointwise boundedness implies <span class="math display">\[
-   X=\bigcup_{n=1}^\infty C_n.
-   \]</span> Since <span class="math inline">\(X\)</span> is complete,
+X=\bigcup_{n=1}^\infty C_n.
+\]</span> Since <span class="math inline">\(X\)</span> is complete,
 Baire implies: there exists <span class="math inline">\(n_0\)</span>
 such that <span
 class="math inline">\(\operatorname{Int}(C_{n_0})\neq\varnothing\)</span>.<br />
 So there exist <span class="math inline">\(x_0\in X\)</span>, <span
 class="math inline">\(\varepsilon&gt;0\)</span> with <span
 class="math display">\[
-   \overline{B_\varepsilon(x_0)}\subset C_{n_0}.
-   \]</span> Hence, for every <span
+\overline{B_\varepsilon(x_0)}\subset C_{n_0}.
+\]</span> Hence, for every <span
 class="math inline">\(T\in\mathcal{F}\)</span> and every <span
 class="math inline">\(z\)</span> with <span
 class="math inline">\(\|z\|\le\varepsilon\)</span>: <span
 class="math display">\[
-   \|T(x_0+z)\|\le n_0,\qquad \|T(x_0)\|\le n_0,
-   \]</span> thus <span class="math display">\[
-   \|Tz\|=\|T(x_0+z)-T(x_0)\|
-   \le \|T(x_0+z)\|+\|T(x_0)\|
-   \le 2n_0.
-   \]</span> For arbitrary <span class="math inline">\(x\neq 0\)</span>,
+\|T(x_0+z)\|\le n_0,\qquad \|T(x_0)\|\le n_0,
+\]</span> thus <span class="math display">\[
+\|Tz\|=\|T(x_0+z)-T(x_0)\|
+\le \|T(x_0+z)\|+\|T(x_0)\|
+\le 2n_0.
+\]</span> For arbitrary <span class="math inline">\(x\neq 0\)</span>,
 set <span class="math inline">\(z=\varepsilon x/\|x\|\)</span> (so <span
 class="math inline">\(\|z\|=\varepsilon\)</span>). Then <span
 class="math display">\[
-   \left\|T\!\left(\frac{\varepsilon x}{\|x\|}\right)\right\|\le 2n_0
-   \quad\Longrightarrow\quad
-   \|Tx\|\le \frac{2n_0}{\varepsilon}\|x\|.
-   \]</span> Therefore <span class="math display">\[
-   \|T\|_{\mathcal{L}(X,Y)}\le \frac{2n_0}{\varepsilon}
-   \quad\forall T\in\mathcal{F},
-   \]</span> so <span class="math inline">\(\mathcal{F}\)</span> is
+\left\|T\!\left(\frac{\varepsilon x}{\|x\|}\right)\right\|\le 2n_0
+\quad\Longrightarrow\quad
+\|Tx\|\le \frac{2n_0}{\varepsilon}\|x\|.
+\]</span> Therefore <span class="math display">\[
+\|T\|_{\mathcal{L}(X,Y)}\le \frac{2n_0}{\varepsilon}
+\quad\forall T\in\mathcal{F},
+\]</span> so <span class="math inline">\(\mathcal{F}\)</span> is
 uniformly bounded.</p>
 <h3 id="open-mapping">2.33 — Open Mapping</h3>
-<h4 id="exam-answer-33">Exam Answer</h4>
+<h4 id="exam-answer-59">Exam Answer</h4>
 <p>Let <span class="math inline">\(X,Y\)</span> be metric spaces. A map
-<span class="math inline">\(T:X\to Y\)</span> is <strong>open</strong>
-if for every open set <span class="math inline">\(A\subseteq X\)</span>
-the image <span class="math inline">\(T(A)\)</span> is open in <span
+<span class="math inline">\(T:X\to Y\)</span> is open if for every open
+set <span class="math inline">\(A\subseteq X\)</span> the image <span
+class="math inline">\(T(A)\)</span> is open in <span
 class="math inline">\(Y\)</span>.</p>
 <p>For linear maps, the Open Mapping Theorem says: if <span
 class="math inline">\(X,Y\)</span> are Banach spaces and <span
@@ -2960,7 +2708,7 @@ class="math inline">\(T\in\mathcal L(X,Y)\)</span> is surjective, then
 <span class="math inline">\(T\)</span> is open.</p>
 <h3 id="inverse-bounded-mapping-theorem">2.34 — Inverse Bounded Mapping
 Theorem</h3>
-<h4 id="exam-answer-34">Exam Answer</h4>
+<h4 id="exam-answer-60">Exam Answer</h4>
 <p>Let <span class="math inline">\(X,Y\)</span> be Banach spaces and let
 <span class="math inline">\(T\in\mathcal L(X,Y)\)</span> be bijective.
 Then <span class="math display">\[
@@ -2982,7 +2730,7 @@ bijective linear map has a continuous inverse without requiring
 Banach-space arguments.</p>
 <h3 id="equivalent-norms-on-banach-spaces">2.35 — Equivalent Norms on
 Banach Spaces</h3>
-<h4 id="exam-answer-35">Exam Answer</h4>
+<h4 id="exam-answer-61">Exam Answer</h4>
 <p>Let <span class="math inline">\(\|\cdot\|_1\)</span> and <span
 class="math inline">\(\|\cdot\|_2\)</span> be two norms on <span
 class="math inline">\(X\)</span> such that both <span
@@ -3009,11 +2757,10 @@ class="math inline">\(C&gt;0\)</span>, <span class="math display">\[
 reverse inequality.</p>
 <h3 id="closed-operators-and-graphs">2.36 — Closed Operators and
 Graphs</h3>
-<h4 id="exam-answer-36">Exam Answer</h4>
+<h4 id="exam-answer-62">Exam Answer</h4>
 <p>Let <span class="math inline">\(X,Y\)</span> be normed spaces and let
-<span class="math inline">\(T:X\to Y\)</span> be linear. The
-<strong>graph</strong> of <span class="math inline">\(T\)</span> is
-<span class="math display">\[
+<span class="math inline">\(T:X\to Y\)</span> be linear. The graph of
+<span class="math inline">\(T\)</span> is <span class="math display">\[
 \operatorname{graph}(T):=\{(x,Tx):x\in X\}\subset X\times Y.
 \]</span> The product space may be endowed with, for example, <span
 class="math display">\[
@@ -3050,7 +2797,7 @@ class="math inline">\((x,y)\in\operatorname{graph}(T)\)</span>, so <span
 class="math inline">\(y=Tx\)</span>. Hence <span
 class="math inline">\(T\)</span> is closed.</p>
 <h3 id="closed-graph-theorem">2.37 — Closed Graph Theorem</h3>
-<h4 id="exam-answer-37">Exam Answer</h4>
+<h4 id="exam-answer-63">Exam Answer</h4>
 <p>Let <span class="math inline">\(X,Y\)</span> be Banach spaces. If
 <span class="math inline">\(T:X\to Y\)</span> is linear and closed, then
 <span class="math inline">\(T\)</span> is bounded, hence continuous:
@@ -3084,7 +2831,7 @@ such that <span class="math display">\[
 \]</span> so <span class="math inline">\(T\)</span> is bounded.</p>
 <h3 id="hahn-banach-theorem-continuous-extension-form">2.42 —
 Hahn-Banach Theorem: Continuous Extension Form</h3>
-<h4 id="exam-answer-38">Exam Answer</h4>
+<h4 id="exam-answer-64">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space and let
 <span class="math inline">\(Y\subset X\)</span> be a vector subspace. If
 <span class="math inline">\(f\in Y^*\)</span>, then there exists <span
@@ -3097,7 +2844,7 @@ F|_Y=f
 to the whole space without increasing its norm.</p>
 <h3 id="hahn-banach-theorem-separation-form">2.44 — Hahn-Banach Theorem:
 Separation Form</h3>
-<h4 id="exam-answer-39">Exam Answer</h4>
+<h4 id="exam-answer-65">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space. A
 closed hyperplane <span class="math display">\[
 H=\{x\in X:L(x)=\alpha\},
@@ -3124,7 +2871,7 @@ hyperplane strictly separating <span class="math inline">\(A\)</span>
 and <span class="math inline">\(B\)</span>.</p>
 <h3 id="three-corollaries-of-hahn-banach">2.45 — Three Corollaries of
 Hahn-Banach</h3>
-<h4 id="exam-answer-40">Exam Answer</h4>
+<h4 id="exam-answer-66">Exam Answer</h4>
 <ol type="1">
 <li><p>If <span class="math inline">\(x_0\in X\)</span>, <span
 class="math inline">\(x_0\ne0\)</span>, then there exists <span
@@ -3166,73 +2913,63 @@ class="math inline">\(\operatorname{dist}(x_0,Y)&gt;0\)</span>. Extend
 <span class="math inline">\(L_0\)</span> by Hahn-Banach.</li>
 </ol>
 <h3 id="bidual-and-canonical-map">2.49 — Bidual and Canonical Map</h3>
-<p>Next, set up duality architecture: bidual and canonical
-embedding.</p>
-<p>The isometry proof is a standard Hahn-Banach application.</p>
-<h4 id="preserved-statement-proof-block-26">Preserved Statement + Proof
-Block</h4>
-<ol start="11" type="1">
-<li><code>2.49</code> “Write the deﬁnition of bidual space. Introduce
-the canonical (or evaluation) map. Show that it is linear and that it
-preserves the norm.”</li>
-</ol>
-<p><strong>Bidual space and canonical map</strong><br />
+<h4 id="exam-answer-67">Exam Answer</h4>
+<p>Bidual space and canonical map.<br />
 Let <span class="math inline">\(X\)</span> be a normed space and <span
 class="math inline">\(X^*=\mathcal{L}(X,\mathbb{R})\)</span>. The bidual
 is <span class="math display">\[
-   X^{**}:=(X^*)^*=\mathcal{L}(X^*,\mathbb{R}).
-   \]</span> For each <span class="math inline">\(x\in X\)</span>,
-define <span class="math inline">\(\Lambda_x\in X^{**}\)</span> by <span
+X^{**}:=(X^*)^*=\mathcal{L}(X^*,\mathbb{R}).
+\]</span> For each <span class="math inline">\(x\in X\)</span>, define
+<span class="math inline">\(\Lambda_x\in X^{**}\)</span> by <span
 class="math display">\[
-   \Lambda_x(L):=L(x)\qquad \forall L\in X^*.
-   \]</span> The canonical (evaluation) map is <span
+\Lambda_x(L):=L(x)\qquad \forall L\in X^*.
+\]</span> The canonical (evaluation) map is <span
 class="math display">\[
-   \tau:X\to X^{**},\qquad \tau(x):=\Lambda_x.
-   \]</span></p>
-<p><strong>Linearity of <span
-class="math inline">\(\tau\)</span></strong><br />
+\tau:X\to X^{**},\qquad \tau(x):=\Lambda_x.
+\]</span></p>
+<p>Linearity of <span class="math inline">\(\tau\)</span>.<br />
 For <span class="math inline">\(x,y\in X\)</span>, <span
 class="math inline">\(\alpha,\beta\in\mathbb{R}\)</span>, and any <span
 class="math inline">\(L\in X^*\)</span>: <span class="math display">\[
-   \tau(\alpha x+\beta y)(L)
-   =L(\alpha x+\beta y)
-   =\alpha L(x)+\beta L(y)
-   =(\alpha\tau(x)+\beta\tau(y))(L).
-   \]</span> Hence <span class="math inline">\(\tau(\alpha x+\beta
+\tau(\alpha x+\beta y)(L)
+=L(\alpha x+\beta y)
+=\alpha L(x)+\beta L(y)
+=(\alpha\tau(x)+\beta\tau(y))(L).
+\]</span> Hence <span class="math inline">\(\tau(\alpha x+\beta
 y)=\alpha\tau(x)+\beta\tau(y)\)</span>.</p>
-<p><strong>Norm preservation (isometry)</strong><br />
+<p>Norm preservation (isometry).<br />
 For <span class="math inline">\(x\in X\)</span>: <span
 class="math display">\[
-   \|\tau(x)\|_{X^{**}}
-   =\sup_{\|L\|_{X^*}\le 1}|\tau(x)(L)|
-   =\sup_{\|L\|\le 1}|L(x)|
-   \le \|x\|_X.
-   \]</span> For <span class="math inline">\(x\neq 0\)</span>, by
+\|\tau(x)\|_{X^{**}}
+=\sup_{\|L\|_{X^*}\le 1}|\tau(x)(L)|
+=\sup_{\|L\|\le 1}|L(x)|
+\le \|x\|_X.
+\]</span> For <span class="math inline">\(x\neq 0\)</span>, by
 Hahn-Banach (norm-attaining corollary), there exists <span
 class="math inline">\(L_x\in X^*\)</span> with <span
 class="math display">\[
-   \|L_x\|_{X^*}=1,\qquad L_x(x)=\|x\|_X.
-   \]</span> Therefore <span class="math display">\[
-   \|\tau(x)\|_{X^{**}}
-   =\sup_{\|L\|\le 1}|L(x)|
-   \ge |L_x(x)|=\|x\|_X.
-   \]</span> Combining both inequalities: <span class="math display">\[
-   \|\tau(x)\|_{X^{**}}=\|x\|_X\qquad \forall x\in X.
-   \]</span> So <span class="math inline">\(\tau\)</span> is an
-isometric embedding.</p>
-<p><strong>Reflexivity note</strong><br />
+\|L_x\|_{X^*}=1,\qquad L_x(x)=\|x\|_X.
+\]</span> Therefore <span class="math display">\[
+\|\tau(x)\|_{X^{**}}
+=\sup_{\|L\|\le 1}|L(x)|
+\ge |L_x(x)|=\|x\|_X.
+\]</span> Combining both inequalities: <span class="math display">\[
+\|\tau(x)\|_{X^{**}}=\|x\|_X\qquad \forall x\in X.
+\]</span> So <span class="math inline">\(\tau\)</span> is an isometric
+embedding.</p>
+<p>Reflexivity note.<br />
 <span class="math inline">\(X\)</span> is reflexive iff <span
 class="math inline">\(\tau\)</span> is surjective.</p>
 <h3 id="reflexive-spaces">2.50 — Reflexive Spaces</h3>
-<h4 id="exam-answer-41">Exam Answer</h4>
+<h4 id="exam-answer-68">Exam Answer</h4>
 <p>Let <span class="math inline">\(X\)</span> be a normed space. The
 canonical map is <span class="math display">\[
 \tau:X\to X^{**},
 \qquad
 \tau(x)(L)=L(x)\quad \forall L\in X^*.
-\]</span> The space <span class="math inline">\(X\)</span> is
-<strong>reflexive</strong> if <span class="math inline">\(\tau\)</span>
-is surjective, i.e. <span class="math display">\[
+\]</span> The space <span class="math inline">\(X\)</span> is reflexive
+if <span class="math inline">\(\tau\)</span> is surjective, i.e. <span
+class="math display">\[
 \tau(X)=X^{**}.
 \]</span></p>
 <p>If <span class="math inline">\(X\)</span> is reflexive and <span
@@ -3248,7 +2985,7 @@ class="math inline">\(X^{**}\)</span> is evaluation at some point of
 <span class="math inline">\(X\)</span>.</p>
 <h3 id="milman-pettis-and-reflexivity-of-lp">2.51 — Milman-Pettis and
 Reflexivity of <span class="math inline">\(L^p\)</span></h3>
-<h4 id="exam-answer-42">Exam Answer</h4>
+<h4 id="exam-answer-69">Exam Answer</h4>
 <p>Milman-Pettis theorem: every uniformly convex Banach space is
 reflexive.</p>
 <p>For <span class="math inline">\(1&lt;p&lt;\infty\)</span>, Clarkson
@@ -3268,46 +3005,36 @@ class="math inline">\(L^1\)</span> into its bidual cannot be onto. Also
 standard infinite-dimensional settings.</p>
 <h3 id="projection-theorem-in-hilbert-spaces">2.68 — Projection Theorem
 in Hilbert Spaces</h3>
-<p>Move to Hilbert geometry: nearest point projection onto closed convex
-sets/subspaces.</p>
-<p>Projection theorem is a core geometric tool reused in Riesz and PDE
-contexts.</p>
-<h4 id="preserved-statement-proof-block-27">Preserved Statement + Proof
-Block</h4>
-<ol start="13" type="1">
-<li><code>2.68</code> “State and prove the projection theorem and its
-corollary in Hilbert spaces. State and give an idea of the proof of the
-projection theorem in Lp.”</li>
-</ol>
-<p><strong>Projection theorem in Hilbert spaces</strong><br />
+<h4 id="exam-answer-70">Exam Answer</h4>
+<p>Projection theorem in Hilbert spaces.<br />
 Let <span class="math inline">\(H\)</span> be a Hilbert space and <span
 class="math inline">\(K\subset H\)</span> nonempty, closed,
 convex.<br />
 For every <span class="math inline">\(f\in H\)</span>, there exists a
 unique <span class="math inline">\(u\in K\)</span> such that <span
 class="math display">\[
-   \|f-u\|=\inf_{v\in K}\|f-v\|.
-   \]</span> Moreover, <span class="math inline">\(u\)</span> is
+\|f-u\|=\inf_{v\in K}\|f-v\|.
+\]</span> Moreover, <span class="math inline">\(u\)</span> is
 characterized by <span class="math display">\[
-   \langle f-u,\ v-u\rangle \le 0 \qquad \forall v\in K.
-   \]</span></p>
-<p><strong>Proof (existence and uniqueness sketch)</strong><br />
+\langle f-u,\ v-u\rangle \le 0 \qquad \forall v\in K.
+\]</span></p>
+<p>Proof (existence and uniqueness sketch).<br />
 Let <span class="math display">\[
-   d:=\inf_{v\in K}\|f-v\|,
-   \]</span> and choose a minimizing sequence <span
+d:=\inf_{v\in K}\|f-v\|,
+\]</span> and choose a minimizing sequence <span
 class="math inline">\(v_n\in K\)</span> with <span
 class="math inline">\(\|f-v_n\|\to d\)</span>.<br />
 By the parallelogram law: <span class="math display">\[
-   \|v_n-v_m\|^2
-   =
-   2\big(\|f-v_n\|^2+\|f-v_m\|^2\big)
-   -
-   4\left\|f-\frac{v_n+v_m}{2}\right\|^2.
-   \]</span> Since <span class="math inline">\(K\)</span> is convex,
-<span class="math inline">\(\frac{v_n+v_m}{2}\in K\)</span>, hence <span
+\|v_n-v_m\|^2
+=
+2\big(\|f-v_n\|^2+\|f-v_m\|^2\big)
+-
+4\left\|f-\frac{v_n+v_m}{2}\right\|^2.
+\]</span> Since <span class="math inline">\(K\)</span> is convex, <span
+class="math inline">\(\frac{v_n+v_m}{2}\in K\)</span>, hence <span
 class="math display">\[
-   \left\|f-\frac{v_n+v_m}{2}\right\|\ge d.
-   \]</span> Therefore the right-hand side tends to <span
+\left\|f-\frac{v_n+v_m}{2}\right\|\ge d.
+\]</span> Therefore the right-hand side tends to <span
 class="math inline">\(0\)</span> as <span
 class="math inline">\(n,m\to\infty\)</span>, so <span
 class="math inline">\(v_n\)</span> is Cauchy.<br />
@@ -3319,7 +3046,7 @@ class="math inline">\(\|f-u\|=d\)</span>.</p>
 <span class="math inline">\(u,\tilde u\)</span> are both minimizers,
 then midpoint convexity implies <span class="math inline">\(\|u-\tilde
 u\|=0\)</span>.</p>
-<p><strong>Variational characterization</strong><br />
+<p>Variational characterization.<br />
 - If <span class="math inline">\(u\)</span> is minimizer, for <span
 class="math inline">\(v\in K\)</span> and <span
 class="math inline">\(t\in(0,1)\)</span> set <span
@@ -3327,31 +3054,28 @@ class="math inline">\(w_t=u+t(v-u)\in K\)</span>.<br />
 From <span class="math inline">\(\|f-u\|^2\le \|f-w_t\|^2\)</span>,
 differentiate at <span class="math inline">\(t=0^+\)</span> to get <span
 class="math display">\[
-     \langle f-u,\ v-u\rangle\le 0.
-     \]</span> - Conversely, if the inequality holds for all <span
+  \langle f-u,\ v-u\rangle\le 0.
+  \]</span> - Conversely, if the inequality holds for all <span
 class="math inline">\(v\in K\)</span>, expand <span
 class="math display">\[
-     \|f-v\|^2=\|f-u\|^2+\|v-u\|^2-2\langle f-u,\ v-u\rangle \ge
-\|f-u\|^2,
-     \]</span> hence <span class="math inline">\(u\)</span> is a
+  \|f-v\|^2=\|f-u\|^2+\|v-u\|^2-2\langle f-u,\ v-u\rangle \ge \|f-u\|^2,
+  \]</span> hence <span class="math inline">\(u\)</span> is a
 minimizer.</p>
-<p><strong>Corollary (orthogonal projection onto a closed
-subspace)</strong><br />
+<p>Corollary (closed subspace).<br />
 If <span class="math inline">\(M\subset H\)</span> is a closed subspace,
 then for each <span class="math inline">\(f\in H\)</span> there exists
 unique <span class="math inline">\(u=P_Mf\in M\)</span> such that <span
 class="math display">\[
-   \langle f-u,\ v\rangle=0\qquad \forall v\in M.
-   \]</span> Equivalently, <span class="math inline">\(f-u\in
+\langle f-u,\ v\rangle=0\qquad \forall v\in M.
+\]</span> Equivalently, <span class="math inline">\(f-u\in
 M^\perp\)</span> and <span class="math inline">\(f=u+(f-u)\)</span> with
 <span class="math inline">\(u\in M\)</span>, <span
 class="math inline">\(f-u\in M^\perp\)</span>.</p>
-<p><strong><span class="math inline">\(L^p\)</span> version (idea, <span
-class="math inline">\(1&lt;p&lt;\infty\)</span>)</strong><br />
-If <span class="math inline">\(K\subset L^p\)</span> is nonempty,
-closed, convex, then each <span class="math inline">\(f\in L^p\)</span>
-has a unique best approximation in <span
-class="math inline">\(K\)</span>.<br />
+<p><span class="math inline">\(L^p\)</span> version (<span
+class="math inline">\(1&lt;p&lt;\infty\)</span>). If <span
+class="math inline">\(K\subset L^p\)</span> is nonempty, closed, convex,
+then each <span class="math inline">\(f\in L^p\)</span> has a unique
+best approximation in <span class="math inline">\(K\)</span>.<br />
 The proof replaces the Hilbert parallelogram argument with uniform
 convexity (e.g. Clarkson inequalities), which yields Cauchy property of
 minimizing sequences and uniqueness.<br />
@@ -3360,29 +3084,17 @@ This fails in general for <span class="math inline">\(p=1\)</span> or
 convexity).</p>
 <h3 id="riesz-representation-theorem">2.69 — Riesz Representation
 Theorem</h3>
-<p>Riesz representation identifies <span
-class="math inline">\(H^*\)</span> with <span
-class="math inline">\(H\)</span> and provides the canonical Hilbert
-duality model.</p>
-<p>Know both existence mechanism (kernel + orthogonality) and norm
-identity.</p>
-<h4 id="preserved-statement-proof-block-28">Preserved Statement + Proof
-Block</h4>
-<ol start="14" type="1">
-<li><code>2.69</code> “State and prove the Riesz theorem in Hilbert
-spaces. State and give and indea of the proof of the Riesz theorem in
-Lp.”</li>
-</ol>
-<p><strong>Riesz representation theorem (Hilbert spaces)</strong><br />
-Let <span class="math inline">\(H\)</span> be a Hilbert space. For every
-<span class="math inline">\(\varphi\in H^*\)</span> there exists a
-unique <span class="math inline">\(f\in H\)</span> such that <span
+<h4 id="exam-answer-71">Exam Answer</h4>
+<p>Riesz representation theorem (Hilbert spaces). Let <span
+class="math inline">\(H\)</span> be a Hilbert space. For every <span
+class="math inline">\(\varphi\in H^*\)</span> there exists a unique
+<span class="math inline">\(f\in H\)</span> such that <span
 class="math display">\[
-   \varphi(u)=\langle f,u\rangle \qquad \forall u\in H.
-   \]</span> Moreover, <span class="math display">\[
-   \|\varphi\|_{H^*}=\|f\|_H.
-   \]</span></p>
-<p><strong>Proof (Hilbert case)</strong><br />
+\varphi(u)=\langle f,u\rangle \qquad \forall u\in H.
+\]</span> Moreover, <span class="math display">\[
+\|\varphi\|_{H^*}=\|f\|_H.
+\]</span></p>
+<p>Proof (Hilbert case).<br />
 - If <span class="math inline">\(\varphi=0\)</span>, take <span
 class="math inline">\(f=0\)</span>.<br />
 - Assume <span class="math inline">\(\varphi\neq 0\)</span>. Let <span
@@ -3392,51 +3104,50 @@ class="math inline">\(M\neq H\)</span>, choose <span
 class="math inline">\(g\in M^\perp\setminus\{0\}\)</span> and normalize
 <span class="math inline">\(\|g\|=1\)</span>. - For any <span
 class="math inline">\(u\in H\)</span>, set <span class="math display">\[
-     v:=u-\lambda g,\qquad \lambda:=\frac{\varphi(u)}{\varphi(g)}.
-     \]</span> Then <span class="math inline">\(\varphi(v)=0\)</span>,
-so <span class="math inline">\(v\in M\)</span>. As <span
+  v:=u-\lambda g,\qquad \lambda:=\frac{\varphi(u)}{\varphi(g)}.
+  \]</span> Then <span class="math inline">\(\varphi(v)=0\)</span>, so
+<span class="math inline">\(v\in M\)</span>. As <span
 class="math inline">\(g\in M^\perp\)</span>, <span
 class="math inline">\(\langle g,v\rangle=0\)</span>, hence <span
 class="math display">\[
-     \langle g,u\rangle=\lambda.
-     \]</span> Therefore <span class="math display">\[
-     \varphi(u)=\varphi(g)\langle g,u\rangle
-     =\langle \varphi(g)g,\ u\rangle.
-     \]</span> So take <span
-class="math inline">\(f:=\varphi(g)g\)</span>. - Uniqueness: if <span
-class="math inline">\(\langle f_1,u\rangle=\langle f_2,u\rangle\)</span>
-for all <span class="math inline">\(u\)</span>, then <span
+  \langle g,u\rangle=\lambda.
+  \]</span> Therefore <span class="math display">\[
+  \varphi(u)=\varphi(g)\langle g,u\rangle
+  =\langle \varphi(g)g,\ u\rangle.
+  \]</span> So take <span class="math inline">\(f:=\varphi(g)g\)</span>.
+- Uniqueness: if <span class="math inline">\(\langle
+f_1,u\rangle=\langle f_2,u\rangle\)</span> for all <span
+class="math inline">\(u\)</span>, then <span class="math display">\[
+  \langle f_1-f_2,u\rangle=0\ \forall u.
+  \]</span> Choose <span class="math inline">\(u=f_1-f_2\)</span> to get
+<span class="math inline">\(f_1=f_2\)</span>. - Isometry: <span
 class="math display">\[
-     \langle f_1-f_2,u\rangle=0\ \forall u.
-     \]</span> Choose <span class="math inline">\(u=f_1-f_2\)</span> to
-get <span class="math inline">\(f_1=f_2\)</span>. - Isometry: <span
+  |\varphi(u)|=|\langle f,u\rangle|\le \|f\|\,\|u\|
+  \Rightarrow \|\varphi\|\le \|f\|.
+  \]</span> If <span class="math inline">\(f\neq 0\)</span>, test with
+<span class="math inline">\(u=f/\|f\|\)</span>: <span
 class="math display">\[
-     |\varphi(u)|=|\langle f,u\rangle|\le \|f\|\,\|u\|
-     \Rightarrow \|\varphi\|\le \|f\|.
-     \]</span> If <span class="math inline">\(f\neq 0\)</span>, test
-with <span class="math inline">\(u=f/\|f\|\)</span>: <span
-class="math display">\[
-     \|\varphi\|\ge |\varphi(f/\|f\|)|=\|f\|.
-     \]</span> Hence <span
+  \|\varphi\|\ge |\varphi(f/\|f\|)|=\|f\|.
+  \]</span> Hence <span
 class="math inline">\(\|\varphi\|=\|f\|\)</span>.</p>
-<p><strong><span class="math inline">\(L^p\)</span> Riesz representation
-(statement and idea, <span
-class="math inline">\(1&lt;p&lt;\infty\)</span>)</strong><br />
-Let <span class="math inline">\(q=p&#39;\)</span>, <span
+<p><span class="math inline">\(L^p\)</span> Riesz representation (<span
+class="math inline">\(1&lt;p&lt;\infty\)</span>). Let <span
+class="math inline">\(q=p&#39;\)</span>, <span
 class="math inline">\(\frac1p+\frac1q=1\)</span>. For every <span
 class="math inline">\(\Lambda\in (L^p)^*\)</span> there exists unique
 <span class="math inline">\(g\in L^q\)</span> such that <span
 class="math display">\[
-   \Lambda(f)=\int_X f g\,d\mu\qquad \forall f\in L^p,
-   \]</span> and <span class="math display">\[
-   \|\Lambda\|_{(L^p)^*}=\|g\|_{L^q}.
-   \]</span> Proof idea: use geometry of <span
-class="math inline">\(L^p\)</span> (uniform convexity / variational
-projection argument) and duality estimates (Holder) to construct and
-identify <span class="math inline">\(g\)</span>.</p>
+\Lambda(f)=\int_X f g\,d\mu\qquad \forall f\in L^p,
+\]</span> and <span class="math display">\[
+\|\Lambda\|_{(L^p)^*}=\|g\|_{L^q}.
+\]</span> Proof idea. Use Holder for boundedness of <span
+class="math inline">\(f\mapsto\int fg\)</span> and the geometry of <span
+class="math inline">\(L^p\)</span> to identify every <span
+class="math inline">\(\Lambda\in(L^p)^*\)</span> with a unique <span
+class="math inline">\(g\in L^q\)</span>.</p>
 <h3 id="abstract-fourier-series-and-parseval-identity">2.70 — Abstract
 Fourier Series and Parseval Identity</h3>
-<h4 id="exam-answer-43">Exam Answer</h4>
+<h4 id="exam-answer-72">Exam Answer</h4>
 <p>Let <span class="math inline">\(H\)</span> be a Hilbert space and let
 <span class="math inline">\(\{e_k\}_{k\ge1}\)</span> be an orthonormal
 basis of <span class="math inline">\(H\)</span>. Then, for every <span
@@ -3451,10 +3162,10 @@ coefficients.</p>
 \|u\|^2=\sum_{k=1}^\infty |\langle u,e_k\rangle|^2.
 \]</span></p>
 <h3 id="orthonormal-basis">2.71 — Orthonormal Basis</h3>
-<h4 id="exam-answer-44">Exam Answer</h4>
+<h4 id="exam-answer-73">Exam Answer</h4>
 <p>Let <span class="math inline">\(H\)</span> be a Hilbert space. A
 sequence <span class="math inline">\(\{e_n\}\subset H\)</span> is an
-<strong>orthonormal basis</strong> if: <span class="math display">\[
+orthonormal basis if: <span class="math display">\[
 \langle e_n,e_m\rangle=0\quad(n\ne m),
 \qquad
 \|e_n\|=1\quad\forall n,
@@ -3469,7 +3180,7 @@ class="math inline">\(L^2(0,2\pi)\)</span>, the trigonometric system
 gives a standard orthonormal basis after normalization.</p>
 <h3 id="convergence-of-an-orthonormal-basis">2.72 — Convergence of an
 Orthonormal Basis</h3>
-<h4 id="exam-answer-45">Exam Answer</h4>
+<h4 id="exam-answer-74">Exam Answer</h4>
 <p>If <span class="math inline">\(\{e_n\}\)</span> is an orthonormal
 basis of an infinite-dimensional Hilbert space <span
 class="math inline">\(H\)</span>, then <span class="math display">\[
@@ -3494,10 +3205,10 @@ because <span class="math display">\[
 \]</span></p>
 <h3 id="symmetric-operators-and-norm-formula">2.73 — Symmetric Operators
 and Norm Formula</h3>
-<h4 id="exam-answer-46">Exam Answer</h4>
+<h4 id="exam-answer-75">Exam Answer</h4>
 <p>Let <span class="math inline">\(H\)</span> be a Hilbert space. An
 operator <span class="math inline">\(T\in\mathcal L(H)\)</span> is
-<strong>symmetric</strong> if <span class="math display">\[
+symmetric if <span class="math display">\[
 \langle Tx,y\rangle=\langle x,Ty\rangle
 \qquad\forall x,y\in H.
 \]</span></p>
@@ -3509,7 +3220,7 @@ operator <span class="math inline">\(T\in\mathcal L(H)\)</span> is
 associated with <span class="math inline">\(T\)</span>.</p>
 <h3 id="fredholm-alternative-and-solvability">2.74 — Fredholm
 Alternative and Solvability</h3>
-<h4 id="exam-answer-47">Exam Answer</h4>
+<h4 id="exam-answer-76">Exam Answer</h4>
 <p>Let <span class="math inline">\(H\)</span> be a Hilbert space and let
 <span class="math inline">\(T\in\mathcal K(H)\)</span> be compact and
 symmetric. Consider <span class="math display">\[
@@ -3538,52 +3249,35 @@ class="math inline">\(u+v\)</span> is also a solution for every <span
 class="math inline">\(v\in\ker(I-T)\)</span>.</p>
 <h3 id="resolvent-spectrum-and-compact-operator-structure">2.75 —
 Resolvent, Spectrum, and Compact Operator Structure</h3>
-<p>Finish with operator spectrum language and the compact-operator
-spectral structure.</p>
-<p>This is the summary lens for solvability/eigenvalue questions in the
-final part of the course.</p>
-<h4 id="preserved-statement-proof-block-29">Preserved Statement + Proof
-Block</h4>
-<ol start="6" type="1">
-<li><p><code>2.75</code> “Write the deﬁnitions of ρ(T),σ(T),EV(T),σ (T).
-What is the structure of the p spectrum of a compact operator?”</p>
+<h4 id="exam-answer-77">Exam Answer</h4>
 <p>Let <span class="math inline">\(T\in\mathcal{L}(E)\)</span> on a
 Banach space <span class="math inline">\(E\)</span>.</p>
-<p><strong>Definitions</strong></p>
-<ul>
-<li>Resolvent set: <span class="math display">\[
-\rho(T):=\{\lambda\in\mathbb{K}:\ T-\lambda I \text{ is bijective and
+<p>Definitions. - Resolvent set: <span class="math display">\[
+  \rho(T):=\{\lambda\in\mathbb{K}:\ T-\lambda I \text{ is bijective and
 }(T-\lambda I)^{-1}\in\mathcal{L}(E)\}.
-\]</span></li>
-<li>Spectrum: <span class="math display">\[
-\sigma(T):=\mathbb{K}\setminus \rho(T).
-\]</span></li>
-<li>Point spectrum / eigenvalues: <span class="math display">\[
-\sigma_p(T)=EV(T):=\{\lambda\in\mathbb{K}:\ker(T-\lambda I)\neq\{0\}\}.
-\]</span></li>
-</ul>
-<p><strong>Structure of the spectrum of a compact
-operator</strong><br />
-If <span class="math inline">\(E\)</span> is infinite-dimensional and
-<span class="math inline">\(T\in\mathcal{K}(E)\)</span>, then:</p>
-<ol type="1">
-<li><span class="math inline">\(0\in\sigma(T)\)</span>;</li>
-<li>every nonzero spectral value is an eigenvalue: <span
+  \]</span> - Spectrum: <span class="math display">\[
+  \sigma(T):=\mathbb{K}\setminus \rho(T).
+  \]</span> - Point spectrum / eigenvalues: <span
 class="math display">\[
-\sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\};
-\]</span></li>
-<li><span class="math inline">\(\sigma(T)\setminus\{0\}\)</span> is at
-most countable, and <span class="math inline">\(0\)</span> is its only
-possible accumulation point.</li>
-</ol>
+  \sigma_p(T)=EV(T):=\{\lambda\in\mathbb{K}:\ker(T-\lambda
+I)\neq\{0\}\}.
+  \]</span></p>
+<p>Spectrum of a compact operator.<br />
+If <span class="math inline">\(E\)</span> is infinite-dimensional and
+<span class="math inline">\(T\in\mathcal{K}(E)\)</span>, then: 1. <span
+class="math inline">\(0\in\sigma(T)\)</span>; 2. every nonzero spectral
+value is an eigenvalue: <span class="math display">\[
+   \sigma(T)\setminus\{0\}=\sigma_p(T)\setminus\{0\};
+   \]</span> 3. <span
+class="math inline">\(\sigma(T)\setminus\{0\}\)</span> is at most
+countable, and <span class="math inline">\(0\)</span> is its only
+possible accumulation point.</p>
 <p>Equivalently, either <span
 class="math inline">\(\sigma(T)=\{0\}\)</span>, or <span
 class="math inline">\(\sigma(T)\setminus\{0\}\)</span> is finite, or it
-is a sequence converging to <span
-class="math inline">\(0\)</span>.</p></li>
-</ol>
+is a sequence converging to <span class="math inline">\(0\)</span>.</p>
 <h3 id="spectral-theorem">2.76 — Spectral Theorem</h3>
-<h4 id="exam-answer-48">Exam Answer</h4>
+<h4 id="exam-answer-78">Exam Answer</h4>
 <p>Let <span class="math inline">\(H\)</span> be a separable Hilbert
 space and let <span class="math display">\[
 T\in\mathcal K(H)
@@ -3598,15 +3292,14 @@ Te_n=\lambda_n e_n
 class="math inline">\(\lambda_n\)</span>. The nonzero eigenvalues have
 finite multiplicity and can accumulate only at <span
 class="math inline">\(0\)</span>.</p>
-<h2
-id="part-vi-functional-analysis---tier-2-support-and-insurance">Part
+<h2 id="part-vi-functional-analysis---tier-2-support-and-insurance">Part
 VI: Functional Analysis - Tier 2 Support and Insurance</h2>
 <p>Support lemmas and lower-probability standalone questions.
 Young/Minkowski/interpolation are useful inside Lp proofs, but
 historically less likely as main theory questions.</p>
 <h3 id="conjugate-exponents-and-young-inequality">2.16 — Conjugate
 Exponents and Young Inequality</h3>
-<h4 id="exam-answer-49">Exam Answer</h4>
+<h4 id="exam-answer-79">Exam Answer</h4>
 <p>Numbers <span class="math inline">\(p,q\in[1,\infty]\)</span> are
 conjugate if <span class="math display">\[
 \frac1p+\frac1q=1,
@@ -3632,7 +3325,7 @@ ab=\exp\left(\frac1p\log a^p+\frac1q\log b^q\right).
 =\frac{a^p}{p}+\frac{b^q}{q}.
 \]</span></p>
 <h3 id="minkowski-inequality">2.18 — Minkowski Inequality</h3>
-<h4 id="exam-answer-50">Exam Answer</h4>
+<h4 id="exam-answer-80">Exam Answer</h4>
 <p>For <span class="math inline">\(1\le p\le\infty\)</span> and <span
 class="math inline">\(f,g\in L^p\)</span>, <span class="math display">\[
 \|f+g\|_p\le \|f\|_p+\|g\|_p.
@@ -3663,7 +3356,7 @@ class="math display">\[
 \]</span> and division by <span
 class="math inline">\(\|f+g\|_p^{p-1}\)</span> gives the result.</p>
 <h3 id="interpolation-inequality">2.21 — Interpolation Inequality</h3>
-<h4 id="exam-answer-51">Exam Answer</h4>
+<h4 id="exam-answer-81">Exam Answer</h4>
 <p>Let <span class="math inline">\(1\le p\le r\le q\le\infty\)</span>
 and let <span class="math inline">\(f\in L^p\cap L^q\)</span>. If <span
 class="math inline">\(\alpha\in[0,1]\)</span> satisfies <span
@@ -3697,16 +3390,9 @@ class="math inline">\(q=\infty\)</span>, use <span
 class="math inline">\(|f|^{(1-\alpha)r}\le\|f\|_\infty^{(1-\alpha)r}\)</span>
 a.e.</p>
 <h3 id="weak-convergence">2.59 — Weak* Convergence</h3>
-<p>Then specialize to weak* convergence in dual spaces.</p>
-<p>Distinguish clearly: weak tests with <span
-class="math inline">\(X^{**}\)</span>, weak* tests with <span
-class="math inline">\(X\)</span>.</p>
-<h4 id="preserved-statement-proof-block-30">Preserved Statement + Proof
-Block</h4>
-<ol start="4" type="1">
-<li><p><code>2.59</code> “Write the deﬁnition of weak* convergence.”</p>
-<p><strong>Definition (weak* convergence in <span
-class="math inline">\(X^*\)</span>)</strong><br />
+<h4 id="exam-answer-82">Exam Answer</h4>
+<p>Definition (weak* convergence in <span
+class="math inline">\(X^*\)</span>).<br />
 Let <span class="math inline">\(X\)</span> be a normed space and <span
 class="math inline">\(\{L_n\}\subset X^*\)</span>. We say <span
 class="math display">\[
@@ -3714,28 +3400,19 @@ L_n \stackrel{*}{\rightharpoonup} L
 \]</span> if and only if <span class="math display">\[
 L_n(x)\to L(x)\qquad \forall x\in X.
 \]</span></p>
-<p><strong>Model map</strong><br />
-In <span class="math inline">\(X^*\)</span>: norm convergence <span
-class="math inline">\(\Rightarrow\)</span> weak convergence <span
-class="math inline">\(\Rightarrow\)</span> weak* convergence.</p></li>
-</ol>
+<p>Useful implication: In <span class="math inline">\(X^*\)</span>: norm
+convergence <span class="math inline">\(\Rightarrow\)</span> weak
+convergence <span class="math inline">\(\Rightarrow\)</span> weak*
+convergence.</p>
 <h3 id="relation-between-weak-and-weak-convergence">2.60 — Relation
 Between Weak and Weak* Convergence</h3>
-<p>This question is about the hierarchy of test spaces.</p>
-<p>Weak convergence in <span class="math inline">\(X^*\)</span> is
-stronger because it tests against all of <span
-class="math inline">\(X^{**}\)</span>, while weak* tests only against
-<span class="math inline">\(X\)</span>.</p>
-<h4 id="preserved-statement-proof-block-31">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.60. Which is the relation between weak and weak*
-convergence? Justify your answer.</p>
-<p><strong>Theorem (always true):</strong> <span class="math display">\[
+<h4 id="exam-answer-83">Exam Answer</h4>
+<p>Theorem. <span class="math display">\[
 L_n \rightharpoonup L \text{ in }X^*
 \ \Longrightarrow\
 L_n \stackrel{*}{\rightharpoonup} L \text{ in }X^*.
 \]</span></p>
-<p><strong>Justification:</strong><br />
+<p>Proof.<br />
 If <span class="math inline">\(L_n\rightharpoonup L\)</span>, then <span
 class="math display">\[
 \Lambda(L_n)\to \Lambda(L)\qquad \forall \Lambda\in X^{**}.
@@ -3750,7 +3427,7 @@ we get <span class="math display">\[
 L_n(x)\to L(x)\qquad \forall x\in X.
 \]</span> Hence <span
 class="math inline">\(L_n\stackrel{*}{\rightharpoonup}L\)</span>.</p>
-<p><strong>Converse:</strong><br />
+<p>Converse.<br />
 In general, weak* convergence does not imply weak convergence (unless
 <span class="math inline">\(X\)</span> is reflexive).<br />
 If <span class="math inline">\(X\)</span> is reflexive, <span
@@ -3758,72 +3435,51 @@ class="math inline">\(X^{**}\cong X\)</span>, so weak and weak*
 convergence in <span class="math inline">\(X^*\)</span> coincide.</p>
 <h3 id="properties-of-weak-convergence">2.61 — Properties of Weak*
 Convergence</h3>
-<p>Treat weak* convergence as pointwise convergence on <span
-class="math inline">\(X\)</span> with uniform boundedness
-consequences.</p>
-<p>These properties are frequently used as lemmas in proofs with dual
-sequences.</p>
-<h4 id="preserved-statement-proof-block-32">Preserved Statement + Proof
-Block</h4>
-<p>Question 2.61. Write the properties of weak* convergence.</p>
+<h4 id="exam-answer-84">Exam Answer</h4>
 <p>Let <span class="math inline">\(L_n \stackrel{*}{\rightharpoonup}
 L\)</span> in <span class="math inline">\(X^*\)</span>. Main
 properties:</p>
 <ol type="1">
-<li><strong>Uniqueness of limit</strong><br />
+<li><p>Uniqueness of limit.<br />
 If <span
 class="math inline">\(L_n\stackrel{*}{\rightharpoonup}L\)</span> and
 <span class="math inline">\(L_n\stackrel{*}{\rightharpoonup}M\)</span>,
-then <span class="math inline">\(L=M\)</span>.
-<ul>
-<li>Proof: for every <span class="math inline">\(x\in X\)</span>, <span
+then <span class="math inline">\(L=M\)</span>. Proof: for every <span
+class="math inline">\(x\in X\)</span>, <span
 class="math inline">\(L_n(x)\to L(x)\)</span> and <span
 class="math inline">\(L_n(x)\to M(x)\)</span>, so <span
 class="math inline">\(L(x)=M(x)\)</span> for all <span
-class="math inline">\(x\)</span>.</li>
-</ul></li>
-<li><strong>Boundedness of weak* convergent sequences</strong> <span
-class="math display">\[
+class="math inline">\(x\)</span>.</p></li>
+<li><p>Boundedness. <span class="math display">\[
 \sup_n \|L_n\|_{X^*}&lt;\infty.
-\]</span>
-<ul>
-<li>Reason: for each fixed <span class="math inline">\(x\)</span>, <span
-class="math inline">\(\{L_n(x)\}\)</span> converges, hence is
+\]</span> Proof: for each fixed <span class="math inline">\(x\)</span>,
+<span class="math inline">\(\{L_n(x)\}\)</span> converges, hence is
 bounded.<br />
 Apply Uniform Boundedness Principle to <span
 class="math inline">\(\{L_n\}\subset
-\mathcal{L}(X,\mathbb{R})\)</span>.</li>
-</ul></li>
-<li><strong>Lower semicontinuity of the norm</strong> <span
-class="math display">\[
+\mathcal{L}(X,\mathbb{R})\)</span>.</p></li>
+<li><p>Lower semicontinuity. <span class="math display">\[
 \|L\|_{X^*}\le \liminf_{n\to\infty}\|L_n\|_{X^*}.
-\]</span>
-<ul>
-<li>Proof idea: for any <span class="math inline">\(\|x\|\le 1\)</span>,
-<span class="math inline">\(L_n(x)\to L(x)\)</span>, so <span
-class="math display">\[
-|L(x)|=\lim_n |L_n(x)|\le \liminf_n \|L_n\|.
-\]</span> Take supremum over <span class="math inline">\(\|x\|\le
-1\)</span>.</li>
-</ul></li>
-<li><strong>Composition with strong convergence in <span
-class="math inline">\(X\)</span></strong> If <span
+\]</span> Proof: for any <span class="math inline">\(\|x\|\le
+1\)</span>, <span class="math inline">\(L_n(x)\to L(x)\)</span>, so
+<span class="math display">\[
+  |L(x)|=\lim_n |L_n(x)|\le \liminf_n \|L_n\|.
+  \]</span> Take supremum over <span class="math inline">\(\|x\|\le
+1\)</span>.</p></li>
+<li><p>Composition with strong convergence. If <span
 class="math inline">\(x_n\to x\)</span> strongly in <span
 class="math inline">\(X\)</span> and <span
 class="math inline">\(L_n\stackrel{*}{\rightharpoonup}L\)</span> in
 <span class="math inline">\(X^*\)</span>, then <span
 class="math display">\[
 L_n(x_n)\to L(x).
-\]</span>
-<ul>
-<li>Proof: <span class="math display">\[
-L_n(x_n)-L(x)=L_n(x_n-x)+(L_n(x)-L(x)).
-\]</span> Second term <span class="math inline">\(\to 0\)</span> by
+\]</span> Proof: <span class="math display">\[
+  L_n(x_n)-L(x)=L_n(x_n-x)+(L_n(x)-L(x)).
+  \]</span> Second term <span class="math inline">\(\to 0\)</span> by
 weak* convergence at fixed <span class="math inline">\(x\)</span>.<br />
 First term <span class="math inline">\(\to 0\)</span> because <span
 class="math inline">\(\sup_n\|L_n\|&lt;\infty\)</span> and <span
-class="math inline">\(\|x_n-x\|\to 0\)</span>.</li>
-</ul></li>
+class="math inline">\(\|x_n-x\|\to 0\)</span>.</p></li>
 </ol>
 <script>
 (function () {
