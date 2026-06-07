@@ -210,6 +210,27 @@ body > h1 {
 }
 .theme-toggle:active { transform: translateY(1px); }
 
+.page-switch {
+  position: fixed;
+  top: 14px;
+  right: 148px;
+  z-index: 5;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 780;
+  text-decoration: none;
+}
+.page-switch:hover,
+.page-switch:focus-visible { color: var(--accent); outline: none; }
+
 h2 {
   margin: 50px 0 14px;
   padding-top: 14px;
@@ -435,6 +456,7 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
 
   .theme-toggle { left: 14px; right: auto; top: 14px; }
   .nav-toggle { left: 82px; right: auto; top: 14px; min-height: 38px; }
+  .page-switch { left: 146px; right: auto; top: 14px; min-height: 38px; }
   #TOC { width: min(84vw, 360px); font-size: 0.84rem; }
 
   body > h1 { margin-top: 48px; padding-right: 0; }
@@ -456,6 +478,7 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
   body > h1 { margin-top: 46px; font-size: 1.15rem; }
   .nav-toggle__label { display: none; }
   .nav-toggle { min-width: 38px; padding: 0 11px; }
+  .page-switch { left: auto; right: 14px; top: 58px; }
   #TOC { width: min(88vw, 342px); font-size: 0.82rem; }
   #TOC a { padding: 4px 0; white-space: normal; overflow-wrap: anywhere; }
   #TOC li li { margin-left: 10px; }
@@ -474,7 +497,7 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
   :root { --bg: white; --paper: white; --ink: #111; --muted: #333; --line: #888; --faint: #d0d0d0; --accent: #111; --code: #f2f2f2; }
   html { background: white; }
   body { display: block; max-width: none; padding: 0; font-size: 11pt; line-height: 1.45; color: #111; background: white; }
-  .theme-toggle, .nav-toggle, .nav-backdrop { display: none !important; }
+  .theme-toggle, .nav-toggle, .nav-backdrop, .page-switch { display: none !important; }
   #TOC { position: static; max-height: none; margin: 0 0 1.5rem; padding: 12px; border: 1px solid #aaa; page-break-after: always; }
   h2 { page-break-before: always; }
   h2:first-of-type { page-break-before: auto; }
@@ -494,6 +517,7 @@ ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.
   <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
   <span class="nav-toggle__label">Contents</span>
 </button>
+<a class="page-switch" href="theory_questions.html">Exam answers</a>
 <div class="nav-backdrop" hidden></div>
 <h1 id="rfa-theory-cheat-sheet">RFA Theory Cheat Sheet</h1>
 <nav id="TOC" role="doc-toc">

@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RFA Exam Theory Questions</title>
+  <style>
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --paper: #ffffff;
+  --ink: #080808;
+  --muted: #575757;
+  --faint: #eeeeee;
+  --line: #d2d2d2;
+  --accent: #24636a;
+  --code: #f4f4f4;
+  --content: 880px;
+  --toc: 340px;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #050505;
+  --paper: #050505;
+  --ink: #f6f6f6;
+  --muted: #a8a8a8;
+  --faint: #191919;
+  --line: #303030;
+  --accent: #72c7d0;
+  --code: #111111;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 34px 24px 72px;
+  display: grid;
+  grid-template-columns: minmax(20px, 1fr) minmax(0, var(--content)) minmax(20px, 1fr);
+  column-gap: 0;
+  align-items: start;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-serif, Charter, "Iowan Old Style", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.62;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+body > * { min-width: 0; }
+body > h1,
+body > h2,
+body > h3,
+body > h4,
+body > p,
+body > ol,
+body > ul,
+body > blockquote,
+body > table,
+body > section,
+body > div:not(.columns) {
+  grid-column: 2;
+  width: 100%;
+}
+
+body > h1 {
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: clamp(1.15rem, 1.9vw, 1.55rem);
+  line-height: 1.15;
+  font-weight: 820;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+#TOC {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: min(86vw, var(--toc));
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 76px 22px 28px;
+  border-left: 1px solid var(--line);
+  background: var(--bg);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.32;
+  transform: translateX(105%);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.nav-open #TOC { transform: translateX(0); }
+
+#TOC::before {
+  content: "Contents";
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+#TOC ul { margin: 0; padding: 0; }
+#TOC li { margin: 0; list-style: none; }
+#TOC li li { margin-left: 13px; }
+#TOC li.toc-collapsed > ul { display: none; }
+#TOC .toc-row { display: grid; grid-template-columns: 18px 1fr; align-items: start; column-gap: 4px; }
+#TOC .toc-disclosure {
+  width: 18px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+#TOC .toc-disclosure::before { content: "▸"; font-size: 0.72rem; }
+#TOC li:not(.toc-collapsed) > .toc-row > .toc-disclosure::before { content: "▾"; }
+#TOC li:not(.toc-branch) > .toc-row > .toc-disclosure { visibility: hidden; }
+#TOC a {
+  display: block;
+  padding: 3px 0;
+  color: var(--muted);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+#TOC a:hover,
+#TOC a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.nav-toggle {
+  position: fixed;
+  right: 76px;
+  top: 14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 780;
+  cursor: pointer;
+}
+.nav-toggle:active { transform: translateY(1px); }
+.nav-toggle__bars { width: 16px; display: grid; gap: 3px; }
+.nav-toggle__bars span { display: block; height: 2px; background: var(--ink); transform-origin: center; transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms cubic-bezier(0.16, 1, 0.3, 1); }
+.nav-open .nav-toggle__bars span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav-open .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.nav-open .nav-toggle__bars span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+.nav-backdrop[hidden] { display: none; }
+
+.theme-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 780;
+  cursor: pointer;
+}
+.theme-toggle:active { transform: translateY(1px); }
+
+h2 {
+  margin: 50px 0 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.12;
+  font-weight: 840;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  scroll-margin-top: 24px;
+}
+
+h2 + p {
+  margin-top: -2px;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+h3 {
+  margin: 32px 0 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--faint);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  line-height: 1.24;
+  font-weight: 790;
+  letter-spacing: 0;
+  color: var(--accent);
+  scroll-margin-top: 18px;
+}
+
+h4 {
+  margin: 18px 0 8px;
+  color: var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 820;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+h5, h6 { margin: 18px 0 6px; font-size: 1rem; font-style: italic; font-weight: 700; }
+p { margin: 10px 0; }
+a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offset: 0.18em; }
+a:visited { color: var(--accent); }
+ol, ul { margin: 10px 0 14px; padding-left: 1.35rem; }
+li { margin: 4px 0; }
+li > ol, li > ul { margin-top: 4px; }
+
+blockquote {
+  margin: 18px 0;
+  padding: 4px 0 4px 14px;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+}
+
+code {
+  padding: 0.08em 0.26em;
+  background: var(--code);
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+  font-size: 0.86em;
+  hyphens: manual;
+  white-space: pre-wrap;
+}
+
+pre {
+  margin: 14px 0;
+  padding: 12px 0 12px 14px;
+  overflow: auto;
+  background: transparent;
+  border-left: 1px solid var(--line);
+}
+pre code { padding: 0; background: transparent; white-space: pre; }
+.sourceCode { background-color: transparent; overflow: visible; }
+
+hr { border: none; border-top: 1px solid var(--line); height: 1px; margin: 28px 0; }
+table { display: block; width: 100%; margin: 16px 0; overflow-x: auto; border-collapse: collapse; font-variant-numeric: lining-nums tabular-nums; }
+th, td { padding: 0.32em 0.55em; border-bottom: 1px solid var(--faint); text-align: left; }
+tbody { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+img, svg { max-width: 100%; height: auto; }
+
+mjx-container[jax="CHTML"][display="true"] {
+  max-width: 100%;
+  margin: 12px 0 !important;
+  padding: 4px 0 4px 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: transparent;
+  border-left: 2px solid var(--line);
+}
+mjx-container { max-width: 100%; }
+
+span.smallcaps { font-variant: small-caps; }
+div.columns { display: flex; gap: min(4vw, 1.5em); }
+div.column { flex: auto; overflow-x: auto; }
+div.hanging-indent { margin-left: 1.5em; text-indent: -1.5em; }
+ul.task-list[class] { list-style: none; }
+ul.task-list li input[type="checkbox"] { width: 0.8em; margin: 0 0.8em 0.2em -1.6em; vertical-align: middle; font-size: inherit; }
+
+.qa-shell {
+  margin: 6px 0 28px;
+  display: grid;
+  gap: 0;
+}
+
+.qa-disclosure {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+.qa-disclosure:last-child { border-bottom: 1px solid var(--line); }
+
+.qa-disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 9px 0;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 830;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  list-style: none;
+  user-select: none;
+}
+.qa-disclosure > summary::-webkit-details-marker { display: none; }
+.qa-disclosure > summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--accent);
+  transition: transform 160ms cubic-bezier(.2,.8,.2,1);
+  flex: 0 0 auto;
+}
+.qa-disclosure[open] > summary::before { transform: rotate(90deg); }
+.qa-content { padding: 0 0 16px 18px; }
+.qa-content > h4:first-child { display: none; }
+
+.guided-flow {
+  display: grid;
+  gap: 0;
+  margin-left: 1px;
+  border-left: 1px solid var(--line);
+}
+.guided-step {
+  border: 0;
+  border-bottom: 1px solid var(--faint);
+  border-radius: 0;
+  background: transparent;
+}
+.guided-step:last-child { border-bottom: 0; }
+.guided-step__button {
+  width: 100%;
+  border: 0;
+  display: grid;
+  grid-template-columns: minmax(58px, auto) 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 0 10px 14px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.guided-step__button:hover .guided-step__cover,
+.guided-step__button:focus-visible .guided-step__cover { color: var(--accent); }
+.guided-step__button:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.guided-step__index {
+  color: var(--accent);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.guided-step__body {
+  min-width: 0;
+  filter: blur(6px);
+  opacity: 0.3;
+  transform: translateY(1px);
+  transition: filter 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+.guided-step__body > *:first-child { margin-top: 0; }
+.guided-step__body > *:last-child { margin-bottom: 0; }
+.guided-step.is-revealed .guided-step__body { filter: blur(0); opacity: 1; transform: none; }
+.guided-step__cover {
+  grid-column: 2;
+  margin-top: 2px;
+  color: var(--muted);
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.guided-step.is-revealed .guided-step__cover { display: none; }
+
+@media (min-width: 1180px) {
+  body { padding-top: 42px; }
+}
+
+@media (max-width: 980px) {
+
+  body {
+    display: block;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 18px 18px 54px;
+    font-size: 16.5px;
+  }
+
+  .theme-toggle { left: 14px; right: auto; top: 14px; }
+  .nav-toggle { left: 82px; right: auto; top: 14px; min-height: 38px; }
+  #TOC { width: min(84vw, 360px); font-size: 0.84rem; }
+
+  body > h1 { margin-top: 48px; padding-right: 0; }
+  h2, h3, p, li { overflow-wrap: anywhere; }
+  .qa-content { overflow-x: auto; }
+  code { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+  h2 { margin-top: 40px; }
+  h3 { margin-top: 26px; }
+}
+
+@media (max-width: 560px) {
+  body {
+    width: 100%;
+    max-width: none;
+    padding: 16px 14px 44px;
+    font-size: 16px;
+    line-height: 1.58;
+  }
+  body > h1 { margin-top: 46px; font-size: 1.15rem; }
+  .nav-toggle__label { display: none; }
+  .nav-toggle { min-width: 38px; padding: 0 11px; }
+  #TOC { width: min(88vw, 342px); font-size: 0.82rem; }
+  #TOC a { padding: 4px 0; white-space: normal; overflow-wrap: anywhere; }
+  #TOC li li { margin-left: 10px; }
+  h2 { margin-top: 32px; padding-top: 12px; font-size: 1.16rem; overflow-wrap: break-word; }
+  h3 { margin-top: 22px; font-size: 0.98rem; overflow-wrap: break-word; }
+  h4 { font-size: 0.72rem; }
+  ol, ul { padding-left: 1.15rem; }
+  .qa-content { padding: 0 0 14px 14px; font-size: 0.94rem; line-height: 1.55; }
+  .guided-step__button { padding: 10px 0 10px 10px; grid-template-columns: 48px 1fr; gap: 9px; }
+  .guided-step__index { font-size: 0.62rem; }
+  mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; font-size: 92%; }
+  mjx-container[jax="CHTML"][display="true"] { margin-left: -2px !important; margin-right: -2px !important; padding-left: 10px; }
+}
+
+@media print {
+  :root { --bg: white; --paper: white; --ink: #111; --muted: #333; --line: #888; --faint: #d0d0d0; --accent: #111; --code: #f2f2f2; }
+  html { background: white; }
+  body { display: block; max-width: none; padding: 0; font-size: 11pt; line-height: 1.45; color: #111; background: white; }
+  .theme-toggle, .nav-toggle, .nav-backdrop { display: none !important; }
+  #TOC { position: static; max-height: none; margin: 0 0 1.5rem; padding: 12px; border: 1px solid #aaa; page-break-after: always; }
+  h2 { page-break-before: always; }
+  h2:first-of-type { page-break-before: auto; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3, h4 { page-break-after: avoid; }
+  a { color: #111; text-decoration: none; }
+  mjx-container[jax="CHTML"][display="true"] { background: white; border-left: 1px solid #999; }
+}
+  
+.page-switch {
+  position: fixed;
+  top: 14px;
+  right: 148px;
+  z-index: 5;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-sans-serif, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 780;
+  text-decoration: none;
+}
+.page-switch:hover,
+.page-switch:focus-visible { color: var(--accent); outline: none; }
+@media (max-width: 980px) {
+  .page-switch { left: 146px; right: auto; top: 14px; min-height: 38px; }
+}
+@media (max-width: 520px) {
+  .page-switch { left: auto; right: 14px; top: 58px; }
+}
+@media print {
+  .page-switch { display: none !important; }
+}
+</style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<button class="theme-toggle" type="button" aria-label="Switch color theme">Dark</button>
+<button class="nav-toggle" type="button" aria-controls="TOC" aria-expanded="false">
+  <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span class="nav-toggle__label">Contents</span>
+</button>
+<a class="page-switch" href="index.html">Cheat sheet</a>
+<div class="nav-backdrop" hidden></div>
+<header id="title-block-header">
+<h1 class="title">RFA Exam Theory Questions</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#rfa-theory-question-themes-with-exam-answers"
+id="toc-rfa-theory-question-themes-with-exam-answers">RFA Theory
+Question Themes With Exam Answers</a>
+<ul>
+<li><a href="#real-analysis" id="toc-real-analysis">Real Analysis</a>
+<ul>
+<li><a href="#measures-outer-measures-and-lebesgue-measure"
+id="toc-measures-outer-measures-and-lebesgue-measure">Measures, Outer
+Measures, And Lebesgue Measure</a></li>
+<li><a href="#measurable-functions"
+id="toc-measurable-functions">Measurable Functions</a></li>
+<li><a href="#lebesgue-integral-and-convergence-theorems"
+id="toc-lebesgue-integral-and-convergence-theorems">Lebesgue Integral
+And Convergence Theorems</a></li>
+<li><a href="#convergence-of-functions-and-l1"
+id="toc-convergence-of-functions-and-l1">Convergence Of Functions And
+L1</a></li>
+<li><a href="#absolutely-continuous-and-bounded-variation-functions"
+id="toc-absolutely-continuous-and-bounded-variation-functions">Absolutely
+Continuous And Bounded Variation Functions</a></li>
+<li><a href="#lebesgue-points-and-fundamental-theorem-of-calculus"
+id="toc-lebesgue-points-and-fundamental-theorem-of-calculus">Lebesgue
+Points And Fundamental Theorem Of Calculus</a></li>
+<li><a href="#product-measures" id="toc-product-measures">Product
+Measures</a></li>
+</ul></li>
+<li><a href="#functional-analysis"
+id="toc-functional-analysis">Functional Analysis</a>
+<ul>
+<li><a href="#banach-spaces-metric-spaces-compactness-and-separability"
+id="toc-banach-spaces-metric-spaces-compactness-and-separability">Banach
+Spaces, Metric Spaces, Compactness, And Separability</a></li>
+<li><a href="#hahn-banach-duality-bidual-and-reflexivity"
+id="toc-hahn-banach-duality-bidual-and-reflexivity">Hahn-Banach,
+Duality, Bidual, And Reflexivity</a></li>
+<li><a href="#weak-and-weak-star-convergence"
+id="toc-weak-and-weak-star-convergence">Weak And Weak-Star
+Convergence</a></li>
+<li><a href="#banach-steinhaus-and-baire"
+id="toc-banach-steinhaus-and-baire">Banach-Steinhaus And Baire</a></li>
+<li><a href="#banach-alaoglu"
+id="toc-banach-alaoglu">Banach-Alaoglu</a></li>
+<li><a href="#closed-operators-and-closed-graph-theorem"
+id="toc-closed-operators-and-closed-graph-theorem">Closed Operators And
+Closed Graph Theorem</a></li>
+<li><a href="#compact-operators-and-finite-rank-operators"
+id="toc-compact-operators-and-finite-rank-operators">Compact Operators
+And Finite Rank Operators</a></li>
+<li><a href="#hilbert-spaces-riesz-representation-and-projection"
+id="toc-hilbert-spaces-riesz-representation-and-projection">Hilbert
+Spaces, Riesz Representation, And Projection</a></li>
+<li><a href="#hilbert-operators-spectral-theory-and-solvability"
+id="toc-hilbert-operators-spectral-theory-and-solvability">Hilbert
+Operators, Spectral Theory, And Solvability</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="rfa-theory-question-themes-with-exam-answers">RFA Theory
+Question Themes With Exam Answers</h1>
+<h2 id="real-analysis">Real Analysis</h2>
+<h3 id="measures-outer-measures-and-lebesgue-measure">Measures, Outer
+Measures, And Lebesgue Measure</h3>
+<ul>
+<li><p>State and prove the theorem about regularity of the Lebesgue
+measure.</p>
+<p><strong>Answer.</strong> For <span
+class="math inline">\(E\subset\mathbb R\)</span>, the following are
+equivalent: <span class="math inline">\(E\in\mathcal L(\mathbb
+R)\)</span>; for every <span
+class="math inline">\(\varepsilon&gt;0\)</span> there is an open set
+<span class="math inline">\(O\supset E\)</span> with <span
+class="math inline">\(\lambda^*(O\setminus E)&lt;\varepsilon\)</span>;
+there is <span class="math inline">\(G\in G_\delta\)</span> with <span
+class="math inline">\(E\subset G\)</span> and <span
+class="math inline">\(\lambda^*(G\setminus E)=0\)</span>; for every
+<span class="math inline">\(\varepsilon&gt;0\)</span> there is a closed
+set <span class="math inline">\(C\subset E\)</span> with <span
+class="math inline">\(\lambda^*(E\setminus C)&lt;\varepsilon\)</span>;
+there is <span class="math inline">\(F\in F_\sigma\)</span> with <span
+class="math inline">\(F\subset E\)</span> and <span
+class="math inline">\(\lambda^*(E\setminus F)=0\)</span>. Proof of outer
+approximation: assume first <span
+class="math inline">\(\lambda(E)&lt;\infty\)</span>. By the definition
+of outer measure, choose intervals <span
+class="math inline">\(I_k\)</span> covering <span
+class="math inline">\(E\)</span> with <span
+class="math inline">\(\sum_k\lambda(I_k)&lt;\lambda(E)+\varepsilon\)</span>.
+Put <span class="math inline">\(O=\bigcup_k I_k\)</span>. Then <span
+class="math inline">\(O\)</span> is open, <span
+class="math inline">\(E\subset O\)</span>, and <span
+class="math inline">\(\lambda^*(O)&lt;\lambda(E)+\varepsilon\)</span>.
+Since <span class="math inline">\(E\)</span> is measurable, by excision
+<span class="math inline">\(\lambda^*(O\setminus
+E)=\lambda^*(O)-\lambda(E)&lt;\varepsilon\)</span>. For general <span
+class="math inline">\(E\)</span>, apply this to <span
+class="math inline">\(E\cap[-n,n]\)</span> and take a countable union of
+the open approximations. Taking <span
+class="math inline">\(\varepsilon=1/n\)</span> and <span
+class="math inline">\(G=\bigcap_n O_n\)</span> gives the <span
+class="math inline">\(G_\delta\)</span> form. Inner regularity follows
+by applying outer regularity to <span class="math inline">\(E^c\)</span>
+and taking complements, or first to finite-measure pieces.</p></li>
+<li><p>State and prove the properties of regularity of the Lebesgue
+measure (it is sufficient to present the proof regarding the outer
+approximation of measurable sets).</p>
+<p><strong>Answer.</strong> Same theorem. In particular, if <span
+class="math inline">\(E\in\mathcal L(\mathbb R)\)</span>, then for every
+<span class="math inline">\(\varepsilon&gt;0\)</span> there exists open
+<span class="math inline">\(O\supset E\)</span> such that <span
+class="math inline">\(\lambda^*(O\setminus E)&lt;\varepsilon\)</span>.
+If <span class="math inline">\(\lambda(E)&lt;\infty\)</span>, choose
+open intervals <span class="math inline">\(I_k\)</span> with <span
+class="math inline">\(E\subset\bigcup_k I_k=:O\)</span> and <span
+class="math inline">\(\sum_k\lambda(I_k)&lt;\lambda(E)+\varepsilon\)</span>.
+Then <span
+class="math inline">\(\lambda^*(O)\le\sum_k\lambda(I_k)&lt;\lambda(E)+\varepsilon\)</span>.
+Since <span class="math inline">\(E\)</span> is measurable and <span
+class="math inline">\(E\subset O\)</span>, Caratheodory gives <span
+class="math inline">\(\lambda^*(O)=\lambda(E)+\lambda^*(O\setminus
+E)\)</span>, hence <span class="math inline">\(\lambda^*(O\setminus
+E)&lt;\varepsilon\)</span>. If <span
+class="math inline">\(\lambda(E)=\infty\)</span>, apply the finite case
+to <span class="math inline">\(E_n=E\cap[-n,n]\)</span> with errors
+<span class="math inline">\(\varepsilon/2^n\)</span>, and take <span
+class="math inline">\(O=\bigcup_n O_n\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\lambda^*\)</span> be the outer
+measure on R. Starting from it, describe brieﬂy the construction of the
+Lebesgue <span class="math inline">\(\sigma\)</span>-algebra <span
+class="math inline">\(\mathcal L(R)\)</span> and of the Lebesgue measure
+<span class="math inline">\(\lambda\)</span> on R. No proofs are
+required.</p>
+<p><strong>Answer.</strong> Define the Lebesgue outer measure by <span
+class="math display">\[
+\lambda^*(E)=\inf\left\{\sum_{k=1}^{\infty}\ell(I_k): E\subset\bigcup_k
+I_k,\ I_k\text{ open intervals}\right\}.
+\]</span> A set <span class="math inline">\(E\subset\mathbb R\)</span>
+is Lebesgue measurable if it satisfies Caratheodory’s condition: <span
+class="math display">\[
+\lambda^*(A)=\lambda^*(A\cap E)+\lambda^*(A\setminus E)\qquad\forall
+A\subset\mathbb R.
+\]</span> The class of all such sets is <span
+class="math inline">\(\mathcal L(\mathbb R)\)</span>, and Caratheodory’s
+theorem says that it is a <span
+class="math inline">\(\sigma\)</span>-algebra. The Lebesgue measure is
+the restriction <span class="math display">\[
+\lambda:=\lambda^*|_{\mathcal L(\mathbb R)}.
+\]</span> Then <span class="math inline">\(\lambda\)</span> is a
+complete measure and extends the length of intervals.</p></li>
+<li><p>What is the Caratheodory condition? Is it essential to formulate
+it with an equality sign? Justify your answer. Can it exist a set of
+zero outer measure, which does not fulfill the Caratheodory condition?
+Justify your answer.</p>
+<p><strong>Answer.</strong> Given an outer measure <span
+class="math inline">\(\mu^*\)</span> on <span
+class="math inline">\(X\)</span>, a set <span
+class="math inline">\(E\subset X\)</span> is <span
+class="math inline">\(\mu^*\)</span>-measurable if <span
+class="math display">\[
+\mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E)\qquad\forall A\subset X.
+\]</span> The equality can be replaced by the inequality <span
+class="math display">\[
+\mu^*(A)\ge \mu^*(A\cap E)+\mu^*(A\setminus E),
+\]</span> because the opposite inequality always follows from
+subadditivity: <span class="math display">\[
+\mu^*(A)\le \mu^*(A\cap E)+\mu^*(A\setminus E).
+\]</span> No: every set <span class="math inline">\(E\)</span> with
+<span class="math inline">\(\mu^*(E)=0\)</span> is measurable. Indeed,
+for any <span class="math inline">\(A\)</span>, <span
+class="math display">\[
+\mu^*(A\cap E)\le\mu^*(E)=0,
+\]</span> and by monotonicity <span class="math inline">\(A\setminus
+E\subset A\)</span>, so <span class="math inline">\(\mu^*(A\setminus
+E)\le\mu^*(A)\)</span>. Together with subadditivity this gives
+equality.</p></li>
+<li><p>Write Caratheodory’s condition and its equivalent version. State
+Caratheodory’s theorem concerning the generation of a measure as a
+restriction of an outer measure.</p>
+<p><strong>Answer.</strong> Let <span
+class="math inline">\(\mu^*\)</span> be an outer measure on <span
+class="math inline">\(X\)</span>. A set <span
+class="math inline">\(E\subset X\)</span> is <span
+class="math inline">\(\mu^*\)</span>-measurable iff <span
+class="math display">\[
+\mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E)\quad\forall A\subset X.
+\]</span> Equivalently, since subadditivity gives <span
+class="math inline">\(\le\)</span>, it is enough to require <span
+class="math display">\[
+\mu^*(A)\ge\mu^*(A\cap E)+\mu^*(A\setminus E)\quad\forall A\subset X.
+\]</span> Caratheodory’s theorem: the family <span
+class="math inline">\(\mathcal M_{\mu^*}\)</span> of <span
+class="math inline">\(\mu^*\)</span>-measurable sets is a <span
+class="math inline">\(\sigma\)</span>-algebra, and the restriction <span
+class="math inline">\(\mu=\mu^*|_{\mathcal M_{\mu^*}}\)</span> is a
+complete measure. In particular, if <span
+class="math inline">\(\mu^*\)</span> is the Lebesgue outer measure, this
+gives <span class="math inline">\((\mathbb R,\mathcal L(\mathbb
+R),\lambda)\)</span>.</p></li>
+<li><p>Given a metric space <span class="math inline">\((X,d)\)</span>,
+write the deﬁnition of its Borel <span
+class="math inline">\(\sigma\)</span>-algebra <span
+class="math inline">\(\mathcal B(X)\)</span>. Provide classes of Borel
+sets. Characterize <span class="math inline">\(\mathcal B(R),\mathcal
+B(R),\mathcal B(RN)\)</span>. No proofs are required.</p>
+<p><strong>Answer.</strong> The Borel <span
+class="math inline">\(\sigma\)</span>-algebra of a metric space <span
+class="math inline">\((X,d)\)</span> is <span class="math display">\[
+\mathcal B(X):=\sigma(\{O\subset X:O\text{ open}\}),
+\]</span> the smallest <span
+class="math inline">\(\sigma\)</span>-algebra containing all open
+subsets of <span class="math inline">\(X\)</span>. Hence open sets,
+closed sets, countable unions of closed sets (<span
+class="math inline">\(F_\sigma\)</span>), countable intersections of
+open sets (<span class="math inline">\(G_\delta\)</span>), and all sets
+obtained from these by countable set operations are Borel. In <span
+class="math inline">\(\mathbb R\)</span>, <span class="math display">\[
+\mathcal B(\mathbb R)=\sigma(\text{open intervals})=\sigma(\text{closed
+intervals})=\sigma((-\infty,a):a\in\mathbb R).
+\]</span> In <span class="math inline">\(\mathbb R^N\)</span>, <span
+class="math inline">\(\mathcal B(\mathbb R^N)\)</span> is generated by
+open balls, equivalently by open rectangles or products of Borel
+intervals.</p></li>
+<li><p>Let <span class="math inline">\((X, M,\mu)\)</span> denote a
+measure space. Prove the continuity of the measure along monotone
+sequences, either increasing or decreasing, under suitable further
+assumptions.</p>
+<p><strong>Answer.</strong> If <span class="math inline">\(E_n\uparrow
+E\)</span>, meaning <span class="math inline">\(E_n\subset
+E_{n+1}\)</span> and <span
+class="math inline">\(E=\bigcup_nE_n\)</span>, then <span
+class="math display">\[
+\mu(E_n)\uparrow\mu(E).
+\]</span> Proof: set <span class="math inline">\(F_1=E_1\)</span>, <span
+class="math inline">\(F_n=E_n\setminus E_{n-1}\)</span>. Then the <span
+class="math inline">\(F_n\)</span> are disjoint, <span
+class="math inline">\(E=\bigcup_nF_n\)</span>, and <span
+class="math inline">\(E_N=\bigcup_{n=1}^N F_n\)</span>. Thus <span
+class="math display">\[
+\mu(E)=\sum_n\mu(F_n)=\lim_N\sum_{n=1}^N\mu(F_n)=\lim_N\mu(E_N).
+\]</span> If <span class="math inline">\(E_n\downarrow E\)</span>,
+meaning <span class="math inline">\(E_{n+1}\subset E_n\)</span> and
+<span class="math inline">\(E=\bigcap_nE_n\)</span>, and if <span
+class="math inline">\(\mu(E_1)&lt;\infty\)</span>, then <span
+class="math display">\[
+\mu(E_n)\downarrow\mu(E).
+\]</span> Proof: <span class="math inline">\(E_1\setminus E_n\uparrow
+E_1\setminus E\)</span>. By the increasing case, <span
+class="math display">\[
+\mu(E_1\setminus E_n)\to\mu(E_1\setminus E).
+\]</span> Since <span class="math inline">\(\mu(E_1)&lt;\infty\)</span>,
+subtract from <span class="math inline">\(\mu(E_1)\)</span> to get <span
+class="math inline">\(\mu(E_n)\to\mu(E)\)</span>.</p></li>
+<li><p>State and prove the property of continuity of measure along
+monotone decreasing sequences <span
+class="math inline">\(\{E_n\}\)</span> of measurable subsets. Does the
+property hold, if <span class="math inline">\(E_1\)</span> (or some of
+the sets <span class="math inline">\(E_n\)</span>) has inﬁnite measure?
+If not, provide a counterexample.</p>
+<p><strong>Answer.</strong> If <span class="math inline">\(E_n\downarrow
+E\)</span> and <span class="math inline">\(\mu(E_1)&lt;\infty\)</span>,
+then <span class="math inline">\(\mu(E_n)\to\mu(E)\)</span>. Proof as
+above: <span class="math inline">\(E_1\setminus E_n\uparrow E_1\setminus
+E\)</span>, so <span class="math display">\[
+\mu(E_1\setminus E_n)\to\mu(E_1\setminus E).
+\]</span> Since <span class="math inline">\(\mu(E_1)&lt;\infty\)</span>,
+<span class="math display">\[
+\mu(E_n)=\mu(E_1)-\mu(E_1\setminus E_n)\to\mu(E_1)-\mu(E_1\setminus
+E)=\mu(E).
+\]</span> The finite-measure assumption is necessary. In <span
+class="math inline">\((\mathbb R,\mathcal L,\lambda)\)</span>, let <span
+class="math inline">\(E_n=[n,+\infty)\)</span>. Then <span
+class="math inline">\(E_n\downarrow\varnothing\)</span>, but <span
+class="math inline">\(\lambda(E_n)=+\infty\)</span> for all <span
+class="math inline">\(n\)</span>, while <span
+class="math inline">\(\lambda(\varnothing)=0\)</span>.</p></li>
+</ul>
+<h3 id="measurable-functions">Measurable Functions</h3>
+<ul>
+<li><p>Write the definition of measurable function, for a function
+defined from a measurable space <span class="math inline">\((X,
+A)\)</span> to another measurable space <span
+class="math inline">\((X&#39;, A&#39;)\)</span>. State (specifying all
+the hypotheses) and prove the theorem concerning measurability of the
+composite function.</p>
+<p><strong>Answer.</strong> A map <span class="math inline">\(f:X\to
+X&#39;\)</span> is <span class="math inline">\((\mathcal A,\mathcal
+A&#39;)\)</span>-measurable if <span class="math display">\[
+f^{-1}(E)\in\mathcal A\qquad\forall E\in\mathcal A&#39;.
+\]</span> Theorem: if <span class="math inline">\(f:(X,\mathcal
+A)\to(X&#39;,\mathcal A&#39;)\)</span> is measurable and <span
+class="math inline">\(g:(X&#39;,\mathcal A&#39;)\to(X&#39;&#39;,\mathcal
+A&#39;&#39;)\)</span> is measurable, then <span
+class="math inline">\(g\circ f:(X,\mathcal A)\to(X&#39;&#39;,\mathcal
+A&#39;&#39;)\)</span> is measurable. Proof: for <span
+class="math inline">\(E\in\mathcal A&#39;&#39;\)</span>, <span
+class="math inline">\(g^{-1}(E)\in\mathcal A&#39;\)</span>; hence <span
+class="math display">\[
+(g\circ f)^{-1}(E)=f^{-1}(g^{-1}(E))\in\mathcal A.
+\]</span></p></li>
+<li><p>Let <span class="math inline">\((X, M)\)</span> be a measurable
+space and assume that, for every <span class="math inline">\(n \in
+N\)</span>, the function <span class="math inline">\(u_n :X \to
+R\)</span> is measurable. Prove that the function <span
+class="math inline">\(\sup_n u_n\)</span> is Lebesgue measurable
+too.</p>
+<p><strong>Answer.</strong> Let <span class="math inline">\(u:=\sup_n
+u_n\)</span>. For every <span class="math inline">\(\alpha\in\mathbb
+R\)</span>, <span class="math display">\[
+\{u&gt;\alpha\}=\bigcup_{n=1}^\infty \{u_n&gt;\alpha\}.
+\]</span> Since each <span class="math inline">\(u_n\)</span> is
+measurable, each set <span
+class="math inline">\(\{u_n&gt;\alpha\}\in\mathcal M\)</span>. The
+countable union belongs to <span class="math inline">\(\mathcal
+M\)</span>. Hence <span class="math inline">\(\{u&gt;\alpha\}\in\mathcal
+M\)</span> for every <span class="math inline">\(\alpha\)</span>, which
+is an equivalent criterion for measurability. Therefore <span
+class="math inline">\(\sup_n u_n\)</span> is measurable.</p></li>
+<li><p>Write the definitions of: a) Borel measurable function <span
+class="math inline">\(f : R \to R\)</span>; b) Lebesgue measurable
+function <span class="math inline">\(f : R \to R\)</span>. Prove that
+continuous functions are both Borel and Lebesgue measurable.</p>
+<p><strong>Answer.</strong> A function <span
+class="math inline">\(f:\mathbb R\to\mathbb R\)</span> is Borel
+measurable if <span class="math display">\[
+f^{-1}(B)\in\mathcal B(\mathbb R)\qquad\forall B\in\mathcal B(\mathbb
+R).
+\]</span> It is Lebesgue measurable if <span class="math display">\[
+f^{-1}(B)\in\mathcal L(\mathbb R)\qquad\forall B\in\mathcal B(\mathbb
+R).
+\]</span> If <span class="math inline">\(f\)</span> is continuous, then
+for every open set <span class="math inline">\(O\subset\mathbb
+R\)</span>, <span class="math inline">\(f^{-1}(O)\)</span> is open,
+hence Borel. Since open sets generate <span
+class="math inline">\(\mathcal B(\mathbb R)\)</span>, <span
+class="math inline">\(f\)</span> is Borel measurable. Since <span
+class="math inline">\(\mathcal B(\mathbb R)\subset\mathcal L(\mathbb
+R)\)</span>, it is also Lebesgue measurable.</p></li>
+<li><p>Let <span class="math inline">\((X, A)\)</span> be a measurable
+space. Prove or disprove the following statements:</p></li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(A \in A \iff \chi_A \in M(X,
+A)\)</span>;</li>
+<li><span class="math inline">\(f \in M(X, A) \iff f^\pm \in M(X,
+A)\)</span>;</li>
+<li><span class="math inline">\(f \in M(X, A) \iff |f| \in M(X,
+A)\)</span>.</li>
+</ol>
+<p><strong>Answer.</strong> (1) True. If <span
+class="math inline">\(A\in\mathcal A\)</span>, then <span
+class="math inline">\(\chi_A^{-1}(\{1\})=A\)</span>, <span
+class="math inline">\(\chi_A^{-1}(\{0\})=A^c\)</span>, so <span
+class="math inline">\(\chi_A\)</span> is measurable. Conversely, if
+<span class="math inline">\(\chi_A\)</span> is measurable, then <span
+class="math inline">\(A=\{\chi_A&gt;1/2\}\in\mathcal A\)</span>.</p>
+<ol start="2" type="1">
+<li><p>True. If <span class="math inline">\(f\)</span> is measurable,
+then <span class="math inline">\(f^+=\max(f,0)\)</span> and <span
+class="math inline">\(f^-=\max(-f,0)\)</span> are measurable by
+composition with continuous functions. Conversely, <span
+class="math display">\[
+  f=f^+-f^-,
+  \]</span> and algebraic combinations of finite measurable functions
+are measurable.</p></li>
+<li><p>Only one implication is true in general: <span
+class="math inline">\(f\)</span> measurable implies <span
+class="math inline">\(|f|\)</span> measurable, since <span
+class="math inline">\(|f|=|\cdot|\circ f\)</span>. The converse is
+false: take a nonmeasurable set <span class="math inline">\(A\subset
+X\)</span> and define <span
+class="math inline">\(f=\chi_A-\chi_{A^c}\)</span>. Then <span
+class="math inline">\(|f|=1\)</span> is measurable, but <span
+class="math inline">\(f\)</span> is not measurable because <span
+class="math inline">\(A=\{f=1\}\)</span> would have to be
+measurable.</p></li>
+</ol>
+<ul>
+<li><p>Let <span class="math inline">\((X, A)\)</span> be a measurable
+space, and let <span class="math inline">\(f : X \to R\)</span> be a
+function. State and prove the theorem that relates the measurability of
+<span class="math inline">\(f\)</span> to the measurability of the sets
+<span class="math inline">\(\{x \in X : f(x) &gt; \alpha\}\)</span>,
+<span class="math inline">\(\{x \in X : f(x) &lt; \alpha\}\)</span>,
+<span class="math inline">\(\{x \in X : f(x) \ge \alpha\}\)</span>,
+<span class="math inline">\(\{x \in X : f(x) \le \alpha\}\)</span> for
+every <span class="math inline">\(\alpha \in R\)</span>.</p>
+<p><strong>Answer.</strong> For <span
+class="math inline">\(f:X\to\overline{\mathbb R}\)</span>, the following
+are equivalent: <span class="math inline">\(f\)</span> is measurable;
+<span class="math inline">\(\{f&gt;\alpha\}\in\mathcal A\)</span> for
+every <span class="math inline">\(\alpha\)</span>; <span
+class="math inline">\(\{f\ge\alpha\}\in\mathcal A\)</span> for every
+<span class="math inline">\(\alpha\)</span>; <span
+class="math inline">\(\{f&lt;\alpha\}\in\mathcal A\)</span> for every
+<span class="math inline">\(\alpha\)</span>; <span
+class="math inline">\(\{f\le\alpha\}\in\mathcal A\)</span> for every
+<span class="math inline">\(\alpha\)</span>. Proof: if <span
+class="math inline">\(f\)</span> is measurable, these sets are preimages
+of Borel rays. Conversely, the families of rays <span
+class="math inline">\((\alpha,+\infty)\)</span>, <span
+class="math inline">\([\alpha,+\infty)\)</span>, <span
+class="math inline">\((-\infty,\alpha)\)</span>, <span
+class="math inline">\((-\infty,\alpha]\)</span> generate the Borel <span
+class="math inline">\(\sigma\)</span>-algebra, so measurability of all
+their preimages implies measurability of <span
+class="math inline">\(f\)</span>. The conditions are mutually equivalent
+using complements and countable limits, e.g. <span
+class="math display">\[
+\{f\ge\alpha\}=\bigcap_{n=1}^{\infty}\{f&gt;\alpha-1/n\},\qquad
+\{f&lt;\alpha\}=\{f\ge\alpha\}^c.
+\]</span></p></li>
+</ul>
+<h3 id="lebesgue-integral-and-convergence-theorems">Lebesgue Integral
+And Convergence Theorems</h3>
+<ul>
+<li>Write the definition of the the Lebesgue integral for functions
+defined on a measure space <span class="math inline">\((X, M,
+\mu)\)</span>, in the case of:</li>
+</ul>
+<ol type="1">
+<li>nonnegative, simple measurable functions;</li>
+<li>nonnegative measurable functions;</li>
+<li>integrable functions (to be defined). No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> If <span class="math inline">\(s\in
+S^+(X,\mathcal M)\)</span> has canonical form <span
+class="math display">\[
+  s=\sum_{k=1}^m c_k\chi_{E_k},\qquad c_k\ge0,\ E_k\in\mathcal M,
+  \]</span> with the <span class="math inline">\(E_k\)</span> disjoint,
+define <span class="math display">\[
+  \int_X s\,d\mu:=\sum_{k=1}^m c_k\mu(E_k).
+  \]</span> If <span class="math inline">\(f\in\mathcal M^+(X,\mathcal
+M)\)</span>, define <span class="math display">\[
+  \int_X f\,d\mu:=\sup\left\{\int_Xs\,d\mu:\ s\in S^+,\ 0\le s\le
+f\right\}.
+  \]</span> Equivalently, if <span class="math inline">\(s_n\uparrow
+f\)</span>, then <span class="math inline">\(\int f=\lim_n\int
+s_n\)</span>. For a measurable <span class="math inline">\(f\)</span>,
+define <span class="math inline">\(f^+=\max(f,0)\)</span>, <span
+class="math inline">\(f^-=\max(-f,0)\)</span>. The function <span
+class="math inline">\(f\)</span> is integrable iff <span
+class="math display">\[
+  \int_X f^+\,d\mu&lt;\infty,\qquad \int_X f^-\,d\mu&lt;\infty,
+  \]</span> equivalently <span
+class="math inline">\(\int_X|f|\,d\mu&lt;\infty\)</span>. Then <span
+class="math display">\[
+  \int_X f\,d\mu:=\int_X f^+\,d\mu-\int_X f^-\,d\mu.
+  \]</span></p>
+<ul>
+<li><p>State and prove the vanishing lemma for nonnegative measurable
+functions.</p>
+<p><strong>Answer.</strong> If <span class="math inline">\(f\in\mathcal
+M^+(X,\mathcal A)\)</span> and <span class="math display">\[
+\int_X f\,d\mu=0,
+\]</span> then <span class="math inline">\(f=0\)</span> a.e. Proof: it
+is enough to prove <span
+class="math inline">\(\mu(\{f&gt;0\})=0\)</span>. Since <span
+class="math display">\[
+\{f&gt;0\}=\bigcup_{n=1}^{\infty}\{f&gt;1/n\},
+\]</span> it suffices to prove each set has measure zero. By Chebyshev’s
+inequality, <span class="math display">\[
+\mu(\{f&gt;1/n\})\le n\int_X f\,d\mu=0.
+\]</span> Hence <span class="math inline">\(\mu(\{f&gt;0\})=0\)</span>,
+so <span class="math inline">\(f=0\)</span> a.e.</p></li>
+<li><p>State and prove the monotone convergence theorem.</p>
+<p><strong>Answer.</strong> Let <span
+class="math inline">\(f_n\in\mathcal M^+(X,\mathcal A)\)</span>, <span
+class="math inline">\(f_n\le f_{n+1}\)</span>, and <span
+class="math inline">\(f_n\to f\)</span> pointwise. Then <span
+class="math inline">\(f\in\mathcal M^+\)</span> and <span
+class="math display">\[
+\int_X f\,d\mu=\lim_{n\to\infty}\int_X f_n\,d\mu.
+\]</span> Proof: since <span class="math inline">\(f_n\le f\)</span>,
+<span class="math inline">\(\lim_n\int f_n\le\int f\)</span>. For the
+reverse inequality, take a simple <span class="math inline">\(s\)</span>
+with <span class="math inline">\(0\le s\le f\)</span> and fix <span
+class="math inline">\(\varepsilon\in(0,1)\)</span>. Define <span
+class="math display">\[
+E_n=\{f_n\ge(1-\varepsilon)s\}.
+\]</span> Then <span class="math inline">\(E_n\uparrow X\)</span>, and
+<span class="math display">\[
+\int f_n\ge\int_{E_n}f_n\ge(1-\varepsilon)\int_{E_n}s.
+\]</span> Passing to the limit and using continuity from below gives
+<span class="math display">\[
+\lim_n\int f_n\ge(1-\varepsilon)\int s.
+\]</span> Let <span
+class="math inline">\(\varepsilon\downarrow0\)</span>, then take the
+supremum over simple <span class="math inline">\(s\le f\)</span>,
+obtaining <span class="math inline">\(\lim_n\int f_n\ge\int
+f\)</span>.</p></li>
+<li><p>State and prove Fatou’s Lemma.</p>
+<p><strong>Answer.</strong> If <span
+class="math inline">\(f_n\in\mathcal M^+(X,\mathcal A)\)</span>, then
+<span class="math display">\[
+\int_X\liminf_{n\to\infty}f_n\,d\mu\le\liminf_{n\to\infty}\int_X
+f_n\,d\mu.
+\]</span> Proof: define <span class="math display">\[
+g_k:=\inf_{m\ge k}f_m.
+\]</span> Then <span class="math inline">\(g_k\in\mathcal M^+\)</span>,
+<span class="math inline">\(g_k\uparrow\liminf_n f_n\)</span>, and <span
+class="math inline">\(g_k\le f_m\)</span> for all <span
+class="math inline">\(m\ge k\)</span>. Thus <span
+class="math display">\[
+\int g_k\,d\mu\le\inf_{m\ge k}\int f_m\,d\mu.
+\]</span> Letting <span class="math inline">\(k\to\infty\)</span>, the
+left-hand side converges by the monotone convergence theorem, giving the
+result.</p></li>
+<li><p>State and prove the Lebesgue (dominated convergence) theorem.</p>
+<p><strong>Answer.</strong> Let <span class="math inline">\(f_n\)</span>
+be measurable, <span class="math inline">\(f_n\to f\)</span> a.e., and
+suppose there exists <span class="math inline">\(g\in L^1(X)\)</span>
+with <span class="math display">\[
+|f_n|\le g\quad\text{a.e. for all }n.
+\]</span> Then <span class="math inline">\(f\in L^1\)</span>, <span
+class="math inline">\(f_n\to f\)</span> in <span
+class="math inline">\(L^1\)</span>, and <span class="math display">\[
+\int_X f_n\,d\mu\to\int_X f\,d\mu.
+\]</span> Proof: by a.e. convergence, <span class="math inline">\(|f|\le
+g\)</span>, so <span class="math inline">\(f\in L^1\)</span>. Also <span
+class="math inline">\(|f_n-f|\le2g\)</span>. Set <span
+class="math inline">\(h_n=2g-|f_n-f|\ge0\)</span>. By Fatou, <span
+class="math display">\[
+\int 2g\,d\mu=\int\liminf h_n\,d\mu\le\liminf\int h_n\,d\mu
+=2\int g\,d\mu-\limsup\int|f_n-f|\,d\mu.
+\]</span> Hence <span
+class="math inline">\(\limsup\int|f_n-f|\le0\)</span>, so <span
+class="math inline">\(f_n\to f\)</span> in <span
+class="math inline">\(L^1\)</span>. Finally, <span
+class="math display">\[
+\left|\int f_n-\int f\right|\le\int|f_n-f|\to0.
+\]</span></p></li>
+<li><p>State and prove the (Lebesgue) dominated convergence theorem.
+State a sufficient condition in order to apply the theorem, when the
+sequence of functions is defined on a set with finite measure.</p>
+<p><strong>Answer.</strong> DCT is as above. A useful sufficient
+condition on a finite measure space <span
+class="math inline">\(\mu(X)&lt;\infty\)</span> is: if <span
+class="math inline">\(f_n\to f\)</span> a.e. and <span
+class="math inline">\(|f_n|\le M\)</span> a.e. for a constant <span
+class="math inline">\(M\)</span>, then <span
+class="math inline">\(g\equiv M\in L^1(X)\)</span> is an integrable
+dominating function. Hence <span class="math inline">\(f_n\to f\)</span>
+in <span class="math inline">\(L^1\)</span> and <span
+class="math inline">\(\int f_n\to\int f\)</span>.</p></li>
+<li><p>State and prove the theorem of absolute continuity of the
+Lebesgue integral.</p>
+<p><strong>Answer.</strong> If <span class="math inline">\(f\in
+L^1(X,\mathcal A,\mu)\)</span>, then for every <span
+class="math inline">\(\varepsilon&gt;0\)</span> there exists <span
+class="math inline">\(\delta&gt;0\)</span> such that, for every <span
+class="math inline">\(E\in\mathcal A\)</span>, <span
+class="math display">\[
+\mu(E)&lt;\delta\quad\Longrightarrow\quad \int_E
+|f|\,d\mu&lt;\varepsilon.
+\]</span> Proof: since <span class="math inline">\(f\in L^1\)</span>,
+choose <span class="math inline">\(M&gt;0\)</span> such that <span
+class="math display">\[
+\int_{\{|f|&gt;M\}}|f|\,d\mu&lt;\varepsilon/2.
+\]</span> For any measurable <span class="math inline">\(E\)</span>,
+<span class="math display">\[
+\int_E|f|\,d\mu=\int_{E\cap\{|f|\le M\}}|f|+\int_{E\cap\{|f|&gt;M\}}|f|
+\le M\mu(E)+\varepsilon/2.
+\]</span> Choose <span
+class="math inline">\(\delta=\varepsilon/(2M)\)</span>. If <span
+class="math inline">\(\mu(E)&lt;\delta\)</span>, then <span
+class="math inline">\(\int_E|f|&lt;\varepsilon\)</span>.</p></li>
+<li><p>State and prove the Hölder inequality.</p>
+<p><strong>Answer.</strong> Let <span
+class="math inline">\(1&lt;p,q&lt;\infty\)</span>, <span
+class="math inline">\(1/p+1/q=1\)</span>. If <span
+class="math inline">\(f\in L^p\)</span>, <span
+class="math inline">\(g\in L^q\)</span>, then <span
+class="math inline">\(fg\in L^1\)</span> and <span
+class="math display">\[
+\int_X |fg|\,d\mu\le\|f\|_p\|g\|_q.
+\]</span> If one norm is zero the result is trivial. Otherwise set <span
+class="math inline">\(F=|f|/\|f\|_p\)</span>, <span
+class="math inline">\(G=|g|/\|g\|_q\)</span>. Young’s inequality gives
+<span class="math display">\[
+FG\le \frac{F^p}{p}+\frac{G^q}{q}.
+\]</span> Integrating, <span class="math display">\[
+\int FG\le \frac1p\int F^p+\frac1q\int G^q=\frac1p+\frac1q=1.
+\]</span> Multiplying by <span
+class="math inline">\(\|f\|_p\|g\|_q\)</span> gives Hölder.</p></li>
+</ul>
+<h3 id="convergence-of-functions-and-l1">Convergence Of Functions And
+L1</h3>
+<ul>
+<li>Let <span class="math inline">\((X, A, \mu)\)</span> be a complete
+measure space, and let <span class="math inline">\(\{f_n\}_{n\in N}
+\subset
+L^1(X)\)</span>, <span class="math inline">\(f \in L^1(X)\)</span>. Give
+the following definitions:</li>
+</ul>
+<ol type="a">
+<li><span class="math inline">\(f_n \to f\)</span> in <span
+class="math inline">\(L^1(X)\)</span>;</li>
+<li><span class="math inline">\(f_n \to f\)</span> in measure in <span
+class="math inline">\(X\)</span>. Discuss the validity of the following
+implications: (i) (a) <span class="math inline">\(\Rightarrow\)</span>
+(b); (ii) (b) <span class="math inline">\(\Rightarrow\)</span> (a). If
+yes, give a proof; if not, provide a counterexample.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(f_n\to
+f\)</span> in <span class="math inline">\(L^1\)</span> iff <span
+class="math display">\[
+  \|f_n-f\|_1=\int_X|f_n-f|\,d\mu\to0.
+  \]</span> <span class="math inline">\(f_n\to f\)</span> in measure iff
+for every <span class="math inline">\(\varepsilon&gt;0\)</span>, <span
+class="math display">\[
+  \mu(\{|f_n-f|\ge\varepsilon\})\to0.
+  \]</span> <span class="math inline">\(L^1\Rightarrow\)</span> measure:
+by Chebyshev, <span class="math display">\[
+  \mu(\{|f_n-f|\ge\varepsilon\})\le\frac1\varepsilon\int_X|f_n-f|\,d\mu\to0.
+  \]</span> The converse is false. On <span
+class="math inline">\((0,1)\)</span>, let <span
+class="math inline">\(f_n=n\chi_{(0,1/n)}\)</span>. Then <span
+class="math inline">\(f_n\to0\)</span> in measure because <span
+class="math inline">\(\lambda(\{|f_n|&gt;\varepsilon\})=1/n\)</span> for
+<span class="math inline">\(n&gt;\varepsilon\)</span>, but <span
+class="math display">\[
+  \|f_n\|_1=n\lambda(0,1/n)=1,
+  \]</span> so <span class="math inline">\(f_n\not\to0\)</span> in <span
+class="math inline">\(L^1\)</span>.</p>
+<ul>
+<li>Consider <span class="math inline">\(f_n,n \in N\)</span> and <span
+class="math inline">\(f\)</span>, measurable functions from a measure
+space <span class="math inline">\((X, M,\mu)\)</span> to <span
+class="math inline">\(R\)</span>. Write the following deﬁnitions:</li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(\{f_n\}_n\)</span> converges to <span
+class="math inline">\(f\)</span> a.e. in <span
+class="math inline">\(X\)</span>;</li>
+<li><span class="math inline">\(\{f_n\}_n\)</span> converges to <span
+class="math inline">\(f\)</span> in the <span
+class="math inline">\(L^1\)</span>-sense. What are the relations between
+1. and 2.?</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(f_n\to
+f\)</span> a.e. in <span class="math inline">\(X\)</span> iff there
+exists <span class="math inline">\(N\in\mathcal M\)</span>, <span
+class="math inline">\(\mu(N)=0\)</span>, such that <span
+class="math inline">\(f_n(x)\to f(x)\)</span> for every <span
+class="math inline">\(x\in X\setminus N\)</span>. <span
+class="math inline">\(f_n\to f\)</span> in <span
+class="math inline">\(L^1\)</span> iff <span
+class="math inline">\(\int_X|f_n-f|\,d\mu\to0\)</span>. In general
+neither full implication holds. <span class="math inline">\(L^1\)</span>
+convergence implies convergence in measure and therefore admits a
+subsequence converging a.e.; it does not imply a.e. convergence of the
+full sequence. A counterexample is the typewriter sequence on <span
+class="math inline">\([0,1]\)</span>, which converges to <span
+class="math inline">\(0\)</span> in <span
+class="math inline">\(L^1\)</span> but not pointwise anywhere. A.e.
+convergence does not imply <span class="math inline">\(L^1\)</span>
+convergence: <span class="math inline">\(f_n=n\chi_{(0,1/n)}\)</span> on
+<span class="math inline">\((0,1)\)</span> converges a.e. to <span
+class="math inline">\(0\)</span>, but <span
+class="math inline">\(\|f_n\|_1=1\)</span>. With domination <span
+class="math inline">\(|f_n|\le g\in L^1\)</span>, a.e. convergence
+implies <span class="math inline">\(L^1\)</span> convergence by DCT.</p>
+<ul>
+<li>Consider measurable functions <span class="math inline">\(f_n : I
+\to R\)</span>, where <span class="math inline">\(I \subseteq R\)</span>
+is a Lebesgue measurable set. For each of the following cases, provide
+an explicit example or explain why no such example exists:</li>
+</ul>
+<ol type="1">
+<li>Suppose <span class="math inline">\(\lambda(I) &lt; \infty\)</span>.
+Does there exist a sequence <span class="math inline">\(\{f_n\}\)</span>
+such that <span class="math inline">\(f_n \to f\)</span> almost
+everywhere in <span class="math inline">\(I\)</span>, but <span
+class="math inline">\(f_n\)</span> does not converge to <span
+class="math inline">\(f\)</span> in measure?</li>
+<li>Suppose <span class="math inline">\(\lambda(I) = \infty\)</span>.
+Does there exist a sequence <span class="math inline">\(\{f_n\}\)</span>
+such that <span class="math inline">\(f_n \to f\)</span> almost
+everywhere on <span class="math inline">\(I\)</span>, but <span
+class="math inline">\(f_n\)</span> does not converge to <span
+class="math inline">\(f\)</span> in measure?</li>
+<li>Does there exist a sequence <span
+class="math inline">\(\{f_n\}\)</span> such that <span
+class="math inline">\(f_n \to f\)</span> in measure, but <span
+class="math inline">\(f_n\)</span> does not converge to <span
+class="math inline">\(f\)</span> in <span
+class="math inline">\(L^1\)</span>?</li>
+</ol>
+<p><strong>Answer.</strong> (1) No. If <span
+class="math inline">\(\lambda(I)&lt;\infty\)</span>, a.e. convergence
+implies convergence in measure. This is Egorov-type measure control: for
+fixed <span class="math inline">\(\varepsilon&gt;0\)</span>, the sets
+where <span class="math inline">\(|f_n-f|\ge\varepsilon\)</span>
+decrease to a null set in measure.</p>
+<ol start="2" type="1">
+<li><p>Yes. On <span class="math inline">\(I=\mathbb R\)</span>, take
+<span class="math inline">\(f_n=\chi_{[n,+\infty)}\)</span>. Then <span
+class="math inline">\(f_n(x)\to0\)</span> for every fixed <span
+class="math inline">\(x\)</span>, but for <span
+class="math inline">\(\varepsilon=1/2\)</span>, <span
+class="math display">\[
+  \lambda(\{|f_n|&gt;\varepsilon\})=\lambda([n,+\infty))=+\infty,
+  \]</span> so there is no convergence in measure.</p></li>
+<li><p>Yes. On <span class="math inline">\((0,1)\)</span>, <span
+class="math inline">\(f_n=n\chi_{(0,1/n)}\)</span>. Then <span
+class="math inline">\(f_n\to0\)</span> in measure, but <span
+class="math inline">\(\|f_n\|_1=1\)</span>, so there is no <span
+class="math inline">\(L^1\)</span> convergence.</p></li>
+</ol>
+<ul>
+<li>Let <span class="math inline">\((X,A,\mu)\)</span> be a (complete)
+measure space.</li>
+</ul>
+<ol type="1">
+<li>Deﬁne the convergence in mean and the convergence in measure.</li>
+<li>Prove that the convergence in mean implies the convergence in
+measure. Is the converse true? Justify the answer.</li>
+</ol>
+<p><strong>Answer.</strong> Convergence in mean means <span
+class="math inline">\(L^1\)</span> convergence: <span
+class="math display">\[
+  \int_X|f_n-f|\,d\mu\to0.
+  \]</span> Convergence in measure means <span class="math display">\[
+  \forall\varepsilon&gt;0,\quad \mu(\{|f_n-f|\ge\varepsilon\})\to0.
+  \]</span> If <span class="math inline">\(f_n\to f\)</span> in mean,
+then by Chebyshev <span class="math display">\[
+  \mu(\{|f_n-f|\ge\varepsilon\})\le\frac1\varepsilon\int_X|f_n-f|\,d\mu\to0.
+  \]</span> The converse is false: <span
+class="math inline">\(f_n=n\chi_{(0,1/n)}\)</span> on <span
+class="math inline">\((0,1)\)</span> converges to <span
+class="math inline">\(0\)</span> in measure, but <span
+class="math inline">\(\|f_n\|_1=1\)</span>.</p>
+<ul>
+<li>Consider <span class="math inline">\(f_n, n \in N\)</span> and <span
+class="math inline">\(f\)</span>, measurable functions from a measure
+set <span class="math inline">\((X, M,\mu)\)</span> to <span
+class="math inline">\(R\)</span>. Write the following deﬁnitions:</li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(\{f_n\}_n\)</span> converges to <span
+class="math inline">\(f\)</span> in measure;</li>
+<li><span class="math inline">\(\{f_n\}_n\)</span> converges to <span
+class="math inline">\(f\)</span> in the <span
+class="math inline">\(L^1\)</span>-sense. Which is the relation between
+1. and 2.? No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(f_n\to
+f\)</span> in measure iff for every <span
+class="math inline">\(\varepsilon&gt;0\)</span>, <span
+class="math display">\[
+  \mu(\{|f_n-f|\ge\varepsilon\})\to0.
+  \]</span> <span class="math inline">\(f_n\to f\)</span> in <span
+class="math inline">\(L^1\)</span> iff <span class="math display">\[
+  \|f_n-f\|_1=\int_X|f_n-f|\,d\mu\to0.
+  \]</span> <span class="math inline">\(L^1\)</span> convergence implies
+convergence in measure. The converse is false in general; for example
+<span class="math inline">\(f_n=n\chi_{(0,1/n)}\)</span> on <span
+class="math inline">\((0,1)\)</span> converges in measure to <span
+class="math inline">\(0\)</span>, but not in <span
+class="math inline">\(L^1\)</span>.</p>
+<h3
+id="absolutely-continuous-and-bounded-variation-functions">Absolutely
+Continuous And Bounded Variation Functions</h3>
+<ul>
+<li>Write the following deﬁnitions:</li>
+</ul>
+<ol type="i">
+<li>absolutely continuous function in <span
+class="math inline">\([a,b]\)</span>;</li>
+<li>weak derivative of a function deﬁned in <span
+class="math inline">\([a,b]\)</span>;</li>
+<li><span class="math inline">\(W^{1,1}([a,b])\)</span>. What is the
+relation between <span class="math inline">\(W^{1,1}([a,b])\)</span> and
+the set of absolutely continuous functions in <span
+class="math inline">\([a,b]\)</span>? No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> A function <span
+class="math inline">\(u:[a,b]\to\mathbb R\)</span> is absolutely
+continuous if for every <span
+class="math inline">\(\varepsilon&gt;0\)</span> there is <span
+class="math inline">\(\delta&gt;0\)</span> such that for every finite
+family of disjoint intervals <span
+class="math inline">\((a_i,b_i)\subset[a,b]\)</span>, <span
+class="math display">\[
+  \sum_i(b_i-a_i)&lt;\delta\quad\Rightarrow\quad
+\sum_i|u(b_i)-u(a_i)|&lt;\varepsilon.
+  \]</span> A function <span class="math inline">\(v\in
+L^1(a,b)\)</span> is the weak derivative of <span
+class="math inline">\(u\in L^1(a,b)\)</span> if <span
+class="math display">\[
+  \int_a^b u\varphi&#39;\,dx=-\int_a^b
+v\varphi\,dx\qquad\forall\varphi\in C_c^1(a,b).
+  \]</span> Then <span class="math display">\[
+  W^{1,1}(a,b)=\{u\in L^1(a,b):u&#39;\text{ exists weakly and }u&#39;\in
+L^1(a,b)\}.
+  \]</span> In one dimension, <span
+class="math inline">\(W^{1,1}(a,b)\)</span> coincides with absolutely
+continuous functions, up to equality a.e.; choosing the continuous
+representative, <span class="math display">\[
+  u(x)=u(a)+\int_a^x u&#39;(t)\,dt.
+  \]</span></p>
+<ul>
+<li><p>State the characterization of absolutely continuous functions in
+<span class="math inline">\([a,b]\)</span>. No proofs are required.
+Exhibit a function <span class="math inline">\(f\)</span> which is
+continuous in some interval <span class="math inline">\([a,b]\)</span>,
+but not absolutely continuous in <span
+class="math inline">\([a,b]\)</span>. Let <span
+class="math inline">\(\{f_n\} \subset AC([a,b])\)</span>, <span
+class="math inline">\(f_n \to f\)</span> as <span
+class="math inline">\(n \to +\infty\)</span> uniformly in <span
+class="math inline">\([a,b]\)</span>. Prove or disprove by means of a
+counterexample the following: <span class="math inline">\(f \in
+AC([a,b])\)</span>.</p>
+<p><strong>Answer.</strong> Characterization: <span
+class="math inline">\(f\in AC([a,b])\)</span> iff <span
+class="math inline">\(f\)</span> is differentiable a.e., <span
+class="math inline">\(f&#39;\in L^1(a,b)\)</span>, and <span
+class="math display">\[
+f(x)=f(a)+\int_a^x f&#39;(t)\,dt\qquad\forall x\in[a,b].
+\]</span> A continuous function which is not absolutely continuous is
+the Cantor-Lebesgue-Vitali function on <span
+class="math inline">\([0,1]\)</span>. It is continuous and
+nondecreasing, but not absolutely continuous, because its derivative is
+<span class="math inline">\(0\)</span> a.e. while <span
+class="math inline">\(F(1)-F(0)=1\)</span>. The statement “uniform limit
+of AC functions is AC” is false. Indeed, the Cantor function <span
+class="math inline">\(F\)</span> is continuous, and by uniform
+continuity it can be uniformly approximated by piecewise linear
+absolutely continuous functions <span
+class="math inline">\(F_n\)</span>; nevertheless <span
+class="math inline">\(F\notin AC([0,1])\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f : [a, b] \to R\)</span>. Write
+the definitions of: variation of <span class="math inline">\(f\)</span>
+relative to a partition of <span class="math inline">\([a, b]\)</span>;
+total variation of <span class="math inline">\(f\)</span> over <span
+class="math inline">\([a, b]\)</span>; function of bounded variation in
+<span class="math inline">\([a, b]\)</span>. Let <span
+class="math inline">\(f : [a, b] \to R\)</span> be decreasing. Is <span
+class="math inline">\(f\)</span> of bounded variation in <span
+class="math inline">\([a, b]\)</span>? Justify your answer.</p>
+<p><strong>Answer.</strong> If <span
+class="math inline">\(P=\{a=x_0&lt;x_1&lt;\dots&lt;x_n=b\}\)</span> is a
+partition, the variation of <span class="math inline">\(f\)</span>
+relative to <span class="math inline">\(P\)</span> is <span
+class="math display">\[
+V_P(f)=\sum_{i=1}^n |f(x_i)-f(x_{i-1})|.
+\]</span> The total variation is <span class="math display">\[
+V_a^b(f)=\sup_P V_P(f).
+\]</span> We say <span class="math inline">\(f\in BV([a,b])\)</span> if
+<span class="math inline">\(V_a^b(f)&lt;\infty\)</span>. If <span
+class="math inline">\(f\)</span> is decreasing, then for any partition
+<span class="math display">\[
+V_P(f)=\sum_i(f(x_{i-1})-f(x_i))=f(a)-f(b),
+\]</span> so <span
+class="math inline">\(V_a^b(f)=f(a)-f(b)&lt;\infty\)</span> if <span
+class="math inline">\(f\)</span> is real-valued. Hence every monotone
+real-valued function on <span class="math inline">\([a,b]\)</span> is of
+bounded variation.</p></li>
+<li><p>Give the definition of absolutely continuous (AC) function.
+Describe in which sense AC functions are those for which the formula of
+calculus holds. Can one find a function <span class="math inline">\(u
+\in UC([0, 1]) \cap BV([0, 1])\)</span> such that <span
+class="math inline">\(u \notin AC([0, 1])\)</span>? Justify the answer.
+Can one find a function <span class="math inline">\(u \in AC([0,
+1])\)</span> such that <span class="math inline">\(u \notin Lip([0,
+1])\)</span>? Justify the answer.</p>
+<p><strong>Answer.</strong> <span class="math inline">\(u\in
+AC([a,b])\)</span> iff for every <span
+class="math inline">\(\varepsilon&gt;0\)</span> there is <span
+class="math inline">\(\delta&gt;0\)</span> such that disjoint intervals
+with total length <span class="math inline">\(&lt;\delta\)</span> have
+total oscillation <span class="math inline">\(&lt;\varepsilon\)</span>.
+Equivalently, <span class="math display">\[
+u\in AC([a,b]) \iff u&#39;\text{ exists a.e.},\ u&#39;\in L^1(a,b),\
+u(x)=u(a)+\int_a^x u&#39;(t)\,dt.
+\]</span> Thus AC functions are exactly the functions for which the
+fundamental formula of calculus holds with an <span
+class="math inline">\(L^1\)</span> derivative.</p>
+<p>Yes, take the Cantor function <span class="math inline">\(C\)</span>.
+It is continuous on compact <span class="math inline">\([0,1]\)</span>,
+hence uniformly continuous, and it is nondecreasing, hence in <span
+class="math inline">\(BV\)</span>. But <span
+class="math inline">\(C\notin AC\)</span>, since <span
+class="math inline">\(C&#39;=0\)</span> a.e. while <span
+class="math inline">\(C(1)-C(0)=1\)</span>.</p>
+<p>Yes, take <span class="math inline">\(u(x)=\sqrt{x}\)</span> on <span
+class="math inline">\([0,1]\)</span>. It is absolutely continuous
+because <span class="math inline">\(u&#39;(x)=1/(2\sqrt{x})\in
+L^1(0,1)\)</span> and <span class="math inline">\(u(x)=\int_0^x
+u&#39;\)</span>. But it is not Lipschitz, since <span
+class="math inline">\(|u(x)-u(0)|/|x-0|=1/\sqrt{x}\to+\infty\)</span>.</p></li>
+</ul>
+<h3 id="lebesgue-points-and-fundamental-theorem-of-calculus">Lebesgue
+Points And Fundamental Theorem Of Calculus</h3>
+<ul>
+<li>Let <span class="math inline">\(f : [a, b] \to R\)</span>.</li>
+</ul>
+<ol type="i">
+<li>Write the definition of Lebesgue point.</li>
+<li>What can be said about the Lebesgue measure of the set <span
+class="math inline">\(A = \{x \in [a, b] : x\)</span> is not a Lebesgue
+point of <span class="math inline">\(f\}\)</span>?</li>
+<li>State the first fundamental theorem of calculus for functions in
+<span class="math inline">\(L^1((a, b))\)</span>. No proofs are
+required.</li>
+</ol>
+<p><strong>Answer.</strong> For <span class="math inline">\(f\in
+L^1(a,b)\)</span>, <span class="math inline">\(x_0\in(a,b)\)</span> is a
+Lebesgue point of <span class="math inline">\(f\)</span> if <span
+class="math display">\[
+  \lim_{h\to0}\frac1{|h|}\int_{x_0}^{x_0+h}|f(t)-f(x_0)|\,dt=0.
+  \]</span> By the Lebesgue differentiation theorem, almost every point
+is a Lebesgue point: <span class="math display">\[
+  \lambda(A)=0.
+  \]</span> First fundamental theorem for <span
+class="math inline">\(L^1\)</span>: if <span class="math inline">\(f\in
+L^1(a,b)\)</span> and <span class="math display">\[
+  F(x)=\int_a^x f(t)\,dt,
+  \]</span> then <span class="math inline">\(F\)</span> is
+differentiable a.e. and <span class="math display">\[
+  F&#39;(x)=f(x)\qquad\text{for a.e. }x\in(a,b).
+  \]</span></p>
+<ul>
+<li>Let <span class="math inline">\(f\in L^1([a,b])\)</span>.</li>
+</ul>
+<ol type="1">
+<li>Give the deﬁnition of Lebesgue point for <span
+class="math inline">\(f\)</span> and show an example of non-Lebesgue
+point.</li>
+<li>State and prove the ﬁrst fundamental Theorem of Calculus.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(x_0\)</span> is
+a Lebesgue point if <span class="math display">\[
+  \lim_{h\to0}\frac1{|h|}\int_{x_0}^{x_0+h}|f(t)-f(x_0)|\,dt=0.
+  \]</span> Example: for <span
+class="math inline">\(f=\chi_{(0,1)}\)</span>, the point <span
+class="math inline">\(0\)</span> is not a Lebesgue point if we define
+<span class="math inline">\(f(0)=0\)</span>, since averages near <span
+class="math inline">\(0\)</span> do not approach <span
+class="math inline">\(0\)</span>.</p>
+<p>First FTC: if <span class="math inline">\(f\in L^1(a,b)\)</span> and
+<span class="math inline">\(F(x)=\int_a^x f(t)\,dt\)</span>, then <span
+class="math inline">\(F&#39;(x)=f(x)\)</span> a.e. Proof: let <span
+class="math inline">\(x\)</span> be a Lebesgue point of <span
+class="math inline">\(f\)</span>. Then <span class="math display">\[
+  \frac{F(x+h)-F(x)}{h}-f(x)=\frac1h\int_x^{x+h}(f(t)-f(x))\,dt.
+  \]</span> Taking absolute values, <span class="math display">\[
+  \left|\frac{F(x+h)-F(x)}{h}-f(x)\right|
+  \le \frac1{|h|}\int_x^{x+h}|f(t)-f(x)|\,dt\to0.
+  \]</span> Hence <span class="math inline">\(F&#39;(x)=f(x)\)</span> at
+every Lebesgue point, and almost every point is a Lebesgue point.</p>
+<h3 id="product-measures">Product Measures</h3>
+<ul>
+<li><p>Let <span class="math inline">\((X_1, A_1, \mu_1), (X_2, A_2,
+\mu_2)\)</span> be measure spaces. Define the product <span
+class="math inline">\(\sigma\)</span>-algebra <span
+class="math inline">\(A_1 \times A_2\)</span>, and the product measure
+<span class="math inline">\(\mu_1 \times \mu_2\)</span>. Let <span
+class="math inline">\((R^k, L(R^k), \lambda^k)\)</span> be the standard
+Lebesgue measure space on <span class="math inline">\(R^k\)</span>. What
+is the relation between <span class="math inline">\((R^{m+n}, L(R^m)
+\times L(R^n), \lambda^m \times \lambda^n)\)</span> and <span
+class="math inline">\((R^{m+n}, L(R^{m+n}), \lambda^{m+n})\)</span>?</p>
+<p><strong>Answer.</strong> The product <span
+class="math inline">\(\sigma\)</span>-algebra is <span
+class="math display">\[
+\mathcal A_1\otimes\mathcal A_2:=\sigma(\{A_1\times A_2:A_i\in\mathcal
+A_i\}).
+\]</span> The product measure <span
+class="math inline">\(\mu_1\times\mu_2\)</span> is the unique measure on
+<span class="math inline">\(\mathcal A_1\otimes\mathcal A_2\)</span>
+satisfying <span class="math display">\[
+(\mu_1\times\mu_2)(A_1\times A_2)=\mu_1(A_1)\mu_2(A_2)
+\]</span> on measurable rectangles, assuming the usual <span
+class="math inline">\(\sigma\)</span>-finite hypotheses for uniqueness.
+For Euclidean Lebesgue measure, <span class="math display">\[
+\mathcal L(\mathbb R^m)\otimes\mathcal L(\mathbb R^n)\subset \mathcal
+L(\mathbb R^{m+n})
+\]</span> and <span class="math display">\[
+\lambda^m\times\lambda^n=\lambda^{m+n}
+\quad\text{on }\mathcal L(\mathbb R^m)\otimes\mathcal L(\mathbb R^n).
+\]</span> The inclusion may be strict because the completion of the
+product Borel/Lebesgue product <span
+class="math inline">\(\sigma\)</span>-algebra gives the full Lebesgue
+<span class="math inline">\(\sigma\)</span>-algebra.</p></li>
+</ul>
+<h2 id="functional-analysis">Functional Analysis</h2>
+<h3 id="banach-spaces-metric-spaces-compactness-and-separability">Banach
+Spaces, Metric Spaces, Compactness, And Separability</h3>
+<ul>
+<li><p>Write the definition of separable metric space. Show that <span
+class="math inline">\(C^0([a, b])\)</span> is separable.</p>
+<p><strong>Answer.</strong> A metric space <span
+class="math inline">\((X,d)\)</span> is separable if it has a countable
+dense subset. In <span class="math inline">\(C^0([a,b])\)</span> with
+the sup norm, polynomials with rational coefficients are countable. By
+Weierstrass theorem, polynomials are dense in <span
+class="math inline">\(C^0([a,b])\)</span>. Given a real-coefficient
+polynomial <span class="math inline">\(p\)</span>, approximate its
+coefficients by rationals to get a rational-coefficient polynomial <span
+class="math inline">\(q\)</span> close to <span
+class="math inline">\(p\)</span> uniformly on <span
+class="math inline">\([a,b]\)</span>. Therefore rational polynomials are
+countable and dense, so <span class="math inline">\(C^0([a,b])\)</span>
+is separable.</p></li>
+<li><p>Let <span class="math inline">\((X,d)\)</span> be a metric
+space.</p></li>
+</ul>
+<ol type="1">
+<li>Deﬁne completeness and separability for <span
+class="math inline">\(X\)</span>.</li>
+<li>Give an example of separable inﬁnite-dimensional normed vector
+space. Prove that <span class="math inline">\(L^\infty([a,b])\)</span>
+is not separable.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(X\)</span> is
+complete if every Cauchy sequence converges in <span
+class="math inline">\(X\)</span>. It is separable if it contains a
+countable dense subset. An example of a separable infinite-dimensional
+normed space is <span class="math inline">\(C^0([a,b])\)</span> with
+<span class="math inline">\(\|\cdot\|_\infty\)</span>, or <span
+class="math inline">\(\ell^p\)</span> for <span
+class="math inline">\(1\le p&lt;\infty\)</span>.</p>
+<p><span class="math inline">\(L^\infty([a,b])\)</span> is not
+separable. For <span class="math inline">\(t\in[a,b]\)</span>, define
+<span class="math inline">\(f_t=\chi_{[a,t]}\)</span>. If <span
+class="math inline">\(s&lt;t\)</span>, then <span
+class="math display">\[
+  \|f_t-f_s\|_\infty=1.
+  \]</span> Thus there is an uncountable family whose mutual distances
+are <span class="math inline">\(1\)</span>. If <span
+class="math inline">\(L^\infty\)</span> were separable, a countable
+dense set would have to contain points within radius <span
+class="math inline">\(1/3\)</span> of each <span
+class="math inline">\(f_t\)</span>, but the balls <span
+class="math inline">\(B(f_t,1/3)\)</span> are pairwise disjoint. A
+countable dense set cannot meet uncountably many disjoint balls in this
+way. Contradiction.</p>
+<ul>
+<li><p>Let <span class="math inline">\((X, \|\cdot\|)\)</span> be a
+Banach space. Is it true that <span class="math inline">\(C \subset
+X\)</span> is compact <span class="math inline">\(\Longleftrightarrow
+C\)</span> is closed and bounded? Is it true under some assumption on
+<span class="math inline">\(X\)</span>? State and prove the Riesz
+theorem (about the compactness of the unit ball; if you use a lemma,
+state it, but it is not necessary to write its proof).</p>
+<p><strong>Answer.</strong> In every metric space, compact implies
+closed and bounded. The converse is false in infinite-dimensional Banach
+spaces. It is true in finite-dimensional normed spaces. Riesz theorem: a
+normed space <span class="math inline">\(X\)</span> is
+finite-dimensional iff its closed unit ball <span
+class="math inline">\(\overline B_1(0)\)</span> is compact. Proof of the
+noncompact direction: assume <span class="math inline">\(X\)</span> is
+infinite-dimensional. Choose <span class="math inline">\(x_1\)</span>
+with <span class="math inline">\(\|x_1\|=1\)</span>. Having chosen <span
+class="math inline">\(x_1,\dots,x_n\)</span>, set <span
+class="math inline">\(Y_n=\operatorname{span}\{x_1,\dots,x_n\}\)</span>,
+a closed proper subspace. By Riesz lemma, there exists <span
+class="math inline">\(x_{n+1}\)</span> with <span
+class="math inline">\(\|x_{n+1}\|=1\)</span> and <span
+class="math inline">\(\operatorname{dist}(x_{n+1},Y_n)\ge1/2\)</span>.
+Then <span class="math inline">\(\|x_n-x_m\|\ge1/2\)</span> for <span
+class="math inline">\(m&lt;n\)</span>, so <span
+class="math inline">\(\{x_n\}\subset\overline B_1(0)\)</span> has no
+Cauchy subsequence, hence no convergent subsequence. Therefore the unit
+ball is not compact.</p></li>
+</ul>
+<h3 id="hahn-banach-duality-bidual-and-reflexivity">Hahn-Banach,
+Duality, Bidual, And Reflexivity</h3>
+<ul>
+<li><p>State the Hahn-Banach theorem. Deﬁne the canonical map <span
+class="math inline">\(\tau\)</span> between <span
+class="math inline">\(X\)</span> and its dual <span
+class="math inline">\(X^*\)</span>, prove that <span
+class="math inline">\(\tau\)</span> is an isometry, and give the
+deﬁnition of reﬂexivity.</p>
+<p><strong>Answer.</strong> Hahn-Banach extension theorem: if <span
+class="math inline">\(Y\subset X\)</span> is a subspace of a normed
+space and <span class="math inline">\(f\in Y^*\)</span>, then there
+exists <span class="math inline">\(F\in X^*\)</span> such that <span
+class="math inline">\(F|_Y=f\)</span> and <span
+class="math inline">\(\|F\|_{X^*}=\|f\|_{Y^*}\)</span>. The canonical
+map is actually from <span class="math inline">\(X\)</span> to the
+bidual <span class="math inline">\(X^{**}\)</span>: <span
+class="math display">\[
+\tau:X\to X^{**},\qquad \tau(x)(L)=L(x)\quad\forall L\in X^*.
+\]</span> It is linear. Moreover, <span class="math display">\[
+\|\tau(x)\|=\sup_{\|L\|\le1}|L(x)|\le\|x\|.
+\]</span> If <span class="math inline">\(x\ne0\)</span>, Hahn-Banach
+gives <span class="math inline">\(L_x\in X^*\)</span> with <span
+class="math inline">\(\|L_x\|=1\)</span> and <span
+class="math inline">\(L_x(x)=\|x\|\)</span>. Thus <span
+class="math inline">\(\|\tau(x)\|\ge\|x\|\)</span>, so <span
+class="math inline">\(\|\tau(x)\|=\|x\|\)</span>. <span
+class="math inline">\(X\)</span> is reflexive if <span
+class="math inline">\(\tau\)</span> is onto <span
+class="math inline">\(X^{**}\)</span>.</p></li>
+<li><p>State the Hahn-Banach theorem and its consequences (3
+corollaries). No proofs are required.</p>
+<p><strong>Answer.</strong> Hahn-Banach: every continuous linear
+functional on a subspace of a normed space extends to the whole space
+with the same norm. Three standard corollaries: (1) if <span
+class="math inline">\(x_0\ne0\)</span>, there exists <span
+class="math inline">\(L\in X^*\)</span> with <span
+class="math inline">\(\|L\|=1\)</span> and <span
+class="math inline">\(L(x_0)=\|x_0\|\)</span>; (2) if <span
+class="math inline">\(L(x)=L(y)\)</span> for every <span
+class="math inline">\(L\in X^*\)</span>, then <span
+class="math inline">\(x=y\)</span>, i.e. the dual separates points; (3)
+if <span class="math inline">\(Y\subset X\)</span> is a subspace and
+<span class="math inline">\(x_0\notin\overline Y\)</span>, then there
+exists <span class="math inline">\(L\in X^*\)</span> such that <span
+class="math inline">\(L|_Y=0\)</span> and <span
+class="math inline">\(L(x_0)\ne0\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be a Banach space, and
+let <span class="math inline">\(X^{**}\)</span> denote its
+bidual.</p></li>
+</ul>
+<ol type="1">
+<li>Provide the deﬁnition of the canonical (evaluation) map <span
+class="math inline">\(\tau :X \to X^{**}\)</span>.</li>
+<li>List the principal properties of <span
+class="math inline">\(\tau\)</span>.</li>
+<li>What does it mean that <span class="math inline">\(X\)</span> is
+reﬂexive?</li>
+</ol>
+<p><strong>Answer.</strong> The bidual is <span
+class="math inline">\(X^{**}=(X^*)^*\)</span>. For <span
+class="math inline">\(x\in X\)</span>, define <span
+class="math inline">\(\tau(x)\in X^{**}\)</span> by <span
+class="math display">\[
+  \tau(x)(L)=L(x)\qquad\forall L\in X^*.
+  \]</span> The map <span class="math inline">\(\tau:X\to
+X^{**}\)</span> is linear and isometric: <span class="math display">\[
+  \|\tau(x)\|_{X^{**}}=\|x\|_X.
+  \]</span> Hence it is injective and identifies <span
+class="math inline">\(X\)</span> with a closed subspace of <span
+class="math inline">\(X^{**}\)</span>. The proof of isometry uses
+Hahn-Banach as above. <span class="math inline">\(X\)</span> is
+reflexive if <span class="math inline">\(\tau(X)=X^{**}\)</span>,
+i.e. every element of the bidual is evaluation at some <span
+class="math inline">\(x\in X\)</span>.</p>
+<h3 id="weak-and-weak-star-convergence">Weak And Weak-Star
+Convergence</h3>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> a Banach space, let <span
+class="math inline">\(\{T_n\}_{n\in N}\subset X^*\)</span>, <span
+class="math inline">\(T\in X^*\)</span>. Write the following
+deﬁnitions:</li>
+</ul>
+<ol type="i">
+<li><span class="math inline">\(T_n\to T\)</span> as <span
+class="math inline">\(n\to+\infty\)</span> weakly;</li>
+<li><span class="math inline">\(T_n\to T\)</span> as <span
+class="math inline">\(n\to+\infty\)</span> weakly*. Discuss the
+relations between (i) and (ii), providing all details and adding some
+hypothesis, if needed.</li>
+</ol>
+<p><strong>Answer.</strong> In <span class="math inline">\(X^*\)</span>,
+weak convergence means <span class="math display">\[
+  T_n\rightharpoonup T \iff \Phi(T_n)\to\Phi(T)\qquad\forall\Phi\in
+X^{**}.
+  \]</span> Weak* convergence means <span class="math display">\[
+  T_n\stackrel{*}{\rightharpoonup}T \iff T_n(x)\to T(x)\qquad\forall
+x\in X.
+  \]</span> Weak convergence implies weak* convergence: for each <span
+class="math inline">\(x\in X\)</span>, <span
+class="math inline">\(\tau(x)\in X^{**}\)</span>, and <span
+class="math inline">\(\tau(x)(T_n)=T_n(x)\)</span>. Thus <span
+class="math inline">\(\Phi(T_n)\to\Phi(T)\)</span> for all <span
+class="math inline">\(\Phi\in X^{**}\)</span> implies <span
+class="math inline">\(T_n(x)\to T(x)\)</span>. The converse is false in
+general. If <span class="math inline">\(X\)</span> is reflexive, then
+<span class="math inline">\(\tau(X)=X^{**}\)</span>, so weak and weak*
+convergence in <span class="math inline">\(X^*\)</span> coincide.</p>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> be a Banach space, and
+let <span class="math inline">\(X^*\)</span> denote its dual. Let <span
+class="math inline">\(\{L_n\}\subset X^*,L\in X^*\)</span>. Write the
+following deﬁnitions:</li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(\{L_n\}\)</span> converges to <span
+class="math inline">\(L\)</span> in the weak sense as <span
+class="math inline">\(n\to+\infty\)</span>;</li>
+<li><span class="math inline">\(\{L_n\}\)</span> converges to <span
+class="math inline">\(L\)</span> in the weak* sense as <span
+class="math inline">\(n\to+\infty\)</span>. Which is the relation
+between 1. and 2.? No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> Same definitions as above: <span
+class="math display">\[
+  L_n\rightharpoonup L\text{ in }X^* \iff
+\Phi(L_n)\to\Phi(L)\quad\forall\Phi\in X^{**},
+  \]</span> while <span class="math display">\[
+  L_n\stackrel{*}{\rightharpoonup}L \iff L_n(x)\to L(x)\quad\forall x\in
+X.
+  \]</span> Weak convergence implies weak* convergence. If <span
+class="math inline">\(X\)</span> is reflexive, the two notions coincide.
+Without reflexivity, weak* convergence is generally weaker.</p>
+<ul>
+<li><p>Write the definitions of weak convergence and of weak*
+convergence. Which is the relation between weak and weak* convergence?
+Justify your answer.</p>
+<p><strong>Answer.</strong> In a normed space <span
+class="math inline">\(X\)</span>, <span
+class="math inline">\(x_n\rightharpoonup x\)</span> weakly if <span
+class="math display">\[
+L(x_n)\to L(x)\qquad\forall L\in X^*.
+\]</span> In a dual space <span class="math inline">\(X^*\)</span>,
+<span class="math inline">\(L_n\stackrel{*}{\rightharpoonup}L\)</span>
+weak* if <span class="math display">\[
+L_n(x)\to L(x)\qquad\forall x\in X.
+\]</span> For sequences in <span class="math inline">\(X^*\)</span>,
+<span class="math display">\[
+L_n\rightharpoonup L \Rightarrow L_n\stackrel{*}{\rightharpoonup}L,
+\]</span> because evaluation at each <span
+class="math inline">\(x\)</span> is the bidual element <span
+class="math inline">\(\tau(x)\in X^{**}\)</span>. The converse holds if
+<span class="math inline">\(X\)</span> is reflexive and fails in
+general.</p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be a Banach
+space.</p></li>
+</ul>
+<ol type="i">
+<li>Define strong convergence and weak convergence for a sequence in
+<span class="math inline">\(X\)</span>.</li>
+<li>Does strong convergence imply weak convergence?</li>
+<li>Does weak convergence imply strong convergence? For both questions,
+provide either a proof or a counterexample.</li>
+</ol>
+<p><strong>Answer.</strong> Strong convergence means <span
+class="math inline">\(\|x_n-x\|_X\to0\)</span>. Weak convergence means
+<span class="math display">\[
+  L(x_n)\to L(x)\qquad\forall L\in X^*.
+  \]</span> Strong implies weak: for <span class="math inline">\(L\in
+X^*\)</span>, <span class="math display">\[
+  |L(x_n)-L(x)|\le\|L\|\,\|x_n-x\|\to0.
+  \]</span> Weak does not imply strong in general. In <span
+class="math inline">\(\ell^2\)</span>, let <span
+class="math inline">\(e_n\)</span> be the canonical basis. For every
+<span class="math inline">\(y\in\ell^2\)</span>, <span
+class="math display">\[
+  \langle e_n,y\rangle=y_n\to0,
+  \]</span> so <span class="math inline">\(e_n\rightharpoonup0\)</span>.
+But <span class="math inline">\(\|e_n\|=1\)</span> for all <span
+class="math inline">\(n\)</span>, so <span
+class="math inline">\(e_n\not\to0\)</span> strongly.</p>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> be a Banach space and let
+<span class="math inline">\(\{x_n\}\)</span> be a sequence that
+converges weakly to <span class="math inline">\(x\)</span> in <span
+class="math inline">\(X\)</span>.</li>
+</ul>
+<ol type="i">
+<li>Is it true that the sequence <span
+class="math inline">\(\{x_n\}\)</span> is necessarily bounded in <span
+class="math inline">\(X\)</span>?</li>
+<li>What can be said about <span class="math inline">\(\liminf
+\|x_n\|\)</span>?</li>
+<li>If <span class="math inline">\(T \in L(X)\)</span>, what can be said
+about the sequence <span class="math inline">\(\{T(x_n)\}\)</span>?</li>
+<li>If <span class="math inline">\(\{L_n\} \subset X^*\)</span>
+converges strongly to <span class="math inline">\(L\)</span>, what can
+be said about the sequence <span
+class="math inline">\(\{L_n(x_n)\}\)</span>? No proofs are
+required.</li>
+</ol>
+<p><strong>Answer.</strong> Yes, weakly convergent sequences are
+bounded: <span class="math display">\[
+  \sup_n\|x_n\|&lt;\infty.
+  \]</span> The norm is weakly lower semicontinuous: <span
+class="math display">\[
+  \|x\|\le\liminf_{n\to\infty}\|x_n\|.
+  \]</span> If <span class="math inline">\(T\in\mathcal L(X)\)</span>,
+then <span class="math display">\[
+  Tx_n\rightharpoonup Tx,
+  \]</span> because <span class="math inline">\(L\circ T\in X^*\)</span>
+for every <span class="math inline">\(L\in X^*\)</span>. If <span
+class="math inline">\(L_n\to L\)</span> strongly in <span
+class="math inline">\(X^*\)</span>, then <span class="math display">\[
+  L_n(x_n)\to L(x).
+  \]</span> Indeed, <span class="math display">\[
+  |L_n(x_n)-L(x)|\le\|L_n-L\|\,\|x_n\|+|L(x_n)-L(x)|,
+  \]</span> and the first term goes to <span
+class="math inline">\(0\)</span> by boundedness of <span
+class="math inline">\(x_n\)</span>, while the second goes to <span
+class="math inline">\(0\)</span> by weak convergence.</p>
+<h3 id="banach-steinhaus-and-baire">Banach-Steinhaus And Baire</h3>
+<ul>
+<li><p>State and prove the Banach-Steinhaus theorem (or uniformly
+boundedness principle).</p>
+<p><strong>Answer.</strong> Let <span class="math inline">\(X\)</span>
+be Banach, <span class="math inline">\(Y\)</span> normed, and <span
+class="math inline">\(\mathcal F\subset\mathcal L(X,Y)\)</span>. If
+<span class="math inline">\(\mathcal F\)</span> is pointwise bounded,
+i.e. <span class="math display">\[
+\forall x\in X,\quad \sup_{T\in\mathcal F}\|Tx\|&lt;\infty,
+\]</span> then <span class="math inline">\(\mathcal F\)</span> is
+uniformly bounded: <span class="math display">\[
+\sup_{T\in\mathcal F}\|T\|&lt;\infty.
+\]</span> Proof: define <span class="math display">\[
+C_n=\{x\in X:\|Tx\|\le n\ \forall T\in\mathcal F\}.
+\]</span> Each <span class="math inline">\(C_n\)</span> is closed, and
+pointwise boundedness gives <span class="math inline">\(X=\bigcup_n
+C_n\)</span>. By Baire theorem, some <span
+class="math inline">\(C_{n_0}\)</span> has nonempty interior, so <span
+class="math inline">\(B_\varepsilon(x_0)\subset C_{n_0}\)</span>. If
+<span class="math inline">\(\|z\|\le\varepsilon\)</span>, then <span
+class="math inline">\(x_0,z+x_0\in C_{n_0}\)</span>, hence <span
+class="math display">\[
+\|Tz\|\le\|T(x_0+z)\|+\|Tx_0\|\le2n_0.
+\]</span> For <span class="math inline">\(x\ne0\)</span>, apply this to
+<span class="math inline">\(z=\varepsilon x/\|x\|\)</span>: <span
+class="math display">\[
+\|Tx\|\le\frac{2n_0}{\varepsilon}\|x\|.
+\]</span> Hence <span
+class="math inline">\(\|T\|\le2n_0/\varepsilon\)</span> for all <span
+class="math inline">\(T\in\mathcal F\)</span>.</p></li>
+<li><p>Write the statements of the following results, providing the
+relevant definitions:</p></li>
+</ul>
+<ol type="1">
+<li>the Banach-Steinhaus theorem;</li>
+<li>the Baire lemma. No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> Pointwise bounded means <span
+class="math inline">\(\sup_{T\in\mathcal F}\|Tx\|&lt;\infty\)</span> for
+each fixed <span class="math inline">\(x\in X\)</span>. Uniformly
+bounded means <span class="math inline">\(\sup_{T\in\mathcal
+F}\|T\|&lt;\infty\)</span>. Banach-Steinhaus: if <span
+class="math inline">\(X\)</span> is Banach, <span
+class="math inline">\(Y\)</span> is normed, and <span
+class="math inline">\(\mathcal F\subset\mathcal L(X,Y)\)</span> is
+pointwise bounded, then <span class="math inline">\(\mathcal F\)</span>
+is uniformly bounded.</p>
+<p>Baire lemma/theorem: if <span class="math inline">\(X\)</span> is a
+complete metric space and <span class="math display">\[
+  X=\bigcup_{n=1}^{\infty}C_n
+  \]</span> with each <span class="math inline">\(C_n\)</span> closed,
+then at least one <span class="math inline">\(C_n\)</span> has nonempty
+interior. Equivalently, a complete metric space cannot be a countable
+union of closed sets with empty interior.</p>
+<ul>
+<li>Let <span class="math inline">\(X, Y\)</span> be Banach spaces, let
+<span class="math inline">\(F \subset L (X, Y)\)</span>. Write the
+following two definitions:</li>
+</ul>
+<ol type="i">
+<li><span class="math inline">\(F\)</span> is point-wise bounded; (ii)
+<span class="math inline">\(F\)</span> is uniformly bounded. State the
+Banach-Steinhaus theorem. No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(F\)</span> is
+point-wise bounded if <span class="math display">\[
+  \forall x\in X,\quad \sup_{T\in F}\|Tx\|_Y&lt;\infty.
+  \]</span> It is uniformly bounded if <span class="math display">\[
+  \sup_{T\in F}\|T\|_{\mathcal L(X,Y)}&lt;\infty.
+  \]</span> Banach-Steinhaus theorem: if <span
+class="math inline">\(X\)</span> is Banach and <span
+class="math inline">\(F\subset\mathcal L(X,Y)\)</span> is point-wise
+bounded, then <span class="math inline">\(F\)</span> is uniformly
+bounded.</p>
+<h3 id="banach-alaoglu">Banach-Alaoglu</h3>
+<ul>
+<li><p>State the Banach-Alaoglu theorem. State and prove the variant of
+the Banach-Alaoglu theorem in reflexive spaces.</p>
+<p><strong>Answer.</strong> Banach-Alaoglu: for any normed space <span
+class="math inline">\(X\)</span>, the closed unit ball of <span
+class="math inline">\(X^*\)</span> is compact in the weak* topology
+<span class="math inline">\(\sigma(X^*,X)\)</span>. Sequential variant:
+if <span class="math inline">\(X\)</span> is separable, every bounded
+sequence in <span class="math inline">\(X^*\)</span> has a weak*
+convergent subsequence.</p>
+<p>Reflexive variant: if <span class="math inline">\(X\)</span> is a
+separable reflexive Banach space, then every bounded sequence in <span
+class="math inline">\(X\)</span> admits a weakly convergent subsequence.
+Proof: let <span class="math inline">\(\{x_n\}\)</span> be bounded.
+Through the canonical isometry <span class="math inline">\(\tau:X\to
+X^{**}\)</span>, <span class="math inline">\(\{\tau(x_n)\}\)</span> is
+bounded in <span class="math inline">\(X^{**}=(X^*)^*\)</span>. Since
+<span class="math inline">\(X\)</span> is separable and reflexive, <span
+class="math inline">\(X^*\)</span> is separable. By Banach-Alaoglu in
+the dual of <span class="math inline">\(X^*\)</span>, there is a
+subsequence <span class="math inline">\(\tau(x_{n_k})\)</span> weak*
+converging to some <span class="math inline">\(\Phi\in X^{**}\)</span>.
+Reflexivity gives <span class="math inline">\(\Phi=\tau(x)\)</span> for
+some <span class="math inline">\(x\in X\)</span>. Thus for all <span
+class="math inline">\(L\in X^*\)</span>, <span class="math display">\[
+L(x_{n_k})=\tau(x_{n_k})(L)\to\tau(x)(L)=L(x),
+\]</span> so <span class="math inline">\(x_{n_k}\rightharpoonup
+x\)</span>.</p></li>
+<li><p>Write the statement of the Banach-Alaoglu theorem (both
+versions). Provide an example of its application. No proofs are
+required.</p>
+<p><strong>Answer.</strong> Standard Banach-Alaoglu: the closed unit
+ball of <span class="math inline">\(X^*\)</span> is weak* compact.
+Sequential version: if <span class="math inline">\(X\)</span> is
+separable, every bounded sequence in <span
+class="math inline">\(X^*\)</span> has a weak* convergent subsequence.
+Reflexive version: if <span class="math inline">\(X\)</span> is
+reflexive and separable, every bounded sequence in <span
+class="math inline">\(X\)</span> has a weakly convergent subsequence.
+Application: since <span
+class="math inline">\(L^\infty(\Omega)=(L^1(\Omega))^*\)</span> in the
+usual identification and <span class="math inline">\(L^1\)</span> is
+separable in common finite-measure settings, every bounded sequence in
+<span class="math inline">\(L^\infty\)</span> admits a weak* convergent
+subsequence: <span class="math display">\[
+f_{n_k}\stackrel{*}{\rightharpoonup}f,\qquad
+\int f_{n_k}g\to\int fg\quad\forall g\in L^1.
+\]</span></p></li>
+</ul>
+<h3 id="closed-operators-and-closed-graph-theorem">Closed Operators And
+Closed Graph Theorem</h3>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> be Banach spaces, let <span
+class="math inline">\(T :X\to Y\)</span> be a linear operator.</li>
+</ul>
+<ol type="i">
+<li>Give the deﬁnition of closed operator <span class="math inline">\(T
+:X\to Y\)</span>.</li>
+<li>Given a linear operator <span class="math inline">\(T : X \to
+Y\)</span>, explain the relationship between being closed and having a
+closed graph.</li>
+<li>State the Closed Graph Theorem.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(T\)</span> is
+closed if whenever <span class="math inline">\(x_n\to x\)</span> in
+<span class="math inline">\(X\)</span> and <span
+class="math inline">\(Tx_n\to y\)</span> in <span
+class="math inline">\(Y\)</span>, then <span
+class="math inline">\(y=Tx\)</span>. The graph is <span
+class="math display">\[
+  G(T)=\{(x,Tx):x\in X\}\subset X\times Y.
+  \]</span> For a linear operator, <span
+class="math inline">\(T\)</span> is closed iff <span
+class="math inline">\(G(T)\)</span> is closed in <span
+class="math inline">\(X\times Y\)</span>. Indeed, convergence <span
+class="math inline">\((x_n,Tx_n)\to(x,y)\)</span> is exactly <span
+class="math inline">\(x_n\to x\)</span> and <span
+class="math inline">\(Tx_n\to y\)</span>. Closed graph theorem: if <span
+class="math inline">\(X,Y\)</span> are Banach spaces and <span
+class="math inline">\(T:X\to Y\)</span> is linear and closed, then <span
+class="math inline">\(T\)</span> is bounded, i.e. <span
+class="math inline">\(T\in\mathcal L(X,Y)\)</span>.</p>
+<ul>
+<li>Let <span class="math inline">\(X, Y\)</span> be Banach spaces. Let
+<span class="math inline">\(T : X \to Y\)</span> be a linear operator.
+Consider the following properties: (a) the graph of <span
+class="math inline">\(T\)</span> is closed; (b) the operator <span
+class="math inline">\(T\)</span> is closed.</li>
+</ul>
+<ol type="i">
+<li>Write the definitions of (a) and (b).</li>
+<li>What is the relation between (a) and (b)?</li>
+<li>State the closed graph theorem. No proofs are required for (i),
+(ii), (iii).</li>
+</ol>
+<p><strong>Answer.</strong> <span
+class="math inline">\(G(T)=\{(x,Tx):x\in X\}\)</span>. The graph is
+closed if it is a closed subset of <span class="math inline">\(X\times
+Y\)</span>. The operator is closed if <span class="math inline">\(x_n\to
+x\)</span> and <span class="math inline">\(Tx_n\to y\)</span> imply
+<span class="math inline">\(y=Tx\)</span>. These two properties are
+equivalent. Closed graph theorem: a closed linear operator between
+Banach spaces is continuous/bounded.</p>
+<ul>
+<li><p>Write the definitions of: closed operator; graph of an operator.
+Show that an operator is linear and closed if and only if its graph is
+closed. State and prove the closed graph theorem.</p>
+<p><strong>Answer.</strong> Definitions and equivalence as above. Proof
+of closed graph theorem: define <span class="math display">\[
+\|x\|_G:=\|x\|_X+\|Tx\|_Y.
+\]</span> Since <span class="math inline">\(T\)</span> is closed, <span
+class="math inline">\(G(T)\)</span> is a closed subspace of the Banach
+space <span class="math inline">\(X\times Y\)</span>, hence <span
+class="math inline">\(G(T)\)</span> is Banach. The map <span
+class="math inline">\(x\mapsto(x,Tx)\)</span> is an isometry from <span
+class="math inline">\((X,\|\cdot\|_G)\)</span> onto <span
+class="math inline">\(G(T)\)</span>, so <span
+class="math inline">\((X,\|\cdot\|_G)\)</span> is Banach. The identity
+<span class="math display">\[
+I:(X,\|\cdot\|_G)\to(X,\|\cdot\|_X)
+\]</span> is linear, bijective, and bounded. By the inverse bounded
+mapping theorem, <span class="math inline">\(I^{-1}\)</span> is bounded,
+so <span class="math inline">\(\|x\|_G\le C\|x\|_X\)</span>. Hence <span
+class="math display">\[
+\|Tx\|_Y\le \|x\|_G\le C\|x\|_X,
+\]</span> and <span class="math inline">\(T\)</span> is
+bounded.</p></li>
+</ul>
+<h3 id="compact-operators-and-finite-rank-operators">Compact Operators
+And Finite Rank Operators</h3>
+<ul>
+<li><p>Write the deﬁnition of compact operator. State and prove the
+theorem relating compactness and surjectivity of an operator. After
+deﬁning what is meant by a weak-to-strong continuous operator, describe
+the relationship between such operators and compact operators.</p>
+<p><strong>Answer.</strong> <span class="math inline">\(K:X\to
+Y\)</span> is compact if it maps bounded sets into relatively compact
+sets; equivalently, for every bounded sequence <span
+class="math inline">\(x_n\)</span>, <span
+class="math inline">\(Kx_n\)</span> has a strongly convergent
+subsequence. A compact operator <span class="math inline">\(K:X\to
+Y\)</span> with <span class="math inline">\(Y\)</span>
+infinite-dimensional cannot be surjective. If it were surjective, the
+open mapping theorem would give <span
+class="math inline">\(\delta&gt;0\)</span> such that <span
+class="math inline">\(B_Y(0,\delta)\subset K(B_X(0,1))\)</span>. But
+compactness gives <span
+class="math inline">\(\overline{K(B_X(0,1))}\)</span> compact, hence
+<span class="math inline">\(\overline{B_Y(0,\delta)}\)</span> compact,
+contradicting Riesz theorem in infinite-dimensional <span
+class="math inline">\(Y\)</span>.</p>
+<p><span class="math inline">\(T\)</span> is weak-to-strong continuous
+if <span class="math display">\[
+x_n\rightharpoonup x \text{ in }X \quad\Rightarrow\quad Tx_n\to Tx
+\text{ strongly in }Y.
+\]</span> If <span class="math inline">\(T\)</span> is compact, then
+<span class="math inline">\(T\)</span> is weak-to-strong continuous:
+weakly convergent sequences are bounded, compactness gives convergent
+subsequences of images, and weak-weak continuity identifies every
+possible strong subsequential limit as <span
+class="math inline">\(Tx\)</span>. Conversely, if <span
+class="math inline">\(X\)</span> is reflexive and <span
+class="math inline">\(T\)</span> is weak-to-strong continuous, then
+<span class="math inline">\(T\)</span> is compact: every bounded
+sequence has a weakly convergent subsequence, whose image converges
+strongly.</p></li>
+<li><p>Let <span class="math inline">\(X, Y\)</span> be Banach spaces
+with <span class="math inline">\(Y\)</span> infinite-dimensional. Let
+<span class="math inline">\(K \in L (X, Y)\)</span>. Can <span
+class="math inline">\(K\)</span> be both compact and surjective? Provide
+a detailed justification of your answer.</p>
+<p><strong>Answer.</strong> No. Suppose <span
+class="math inline">\(K:X\to Y\)</span> is compact and surjective, with
+<span class="math inline">\(Y\)</span> infinite-dimensional. By the open
+mapping theorem, <span class="math inline">\(K(B_X(0,1))\)</span>
+contains a ball <span class="math inline">\(B_Y(0,\delta)\)</span>.
+Since <span class="math inline">\(K\)</span> is compact, <span
+class="math inline">\(\overline{K(B_X(0,1))}\)</span> is compact.
+Therefore <span class="math inline">\(\overline{B_Y(0,\delta)}\)</span>,
+being a closed subset of a compact set, is compact. This contradicts
+Riesz theorem, because closed balls in infinite-dimensional Banach
+spaces are not compact. Hence a compact operator cannot be onto an
+infinite-dimensional Banach space.</p></li>
+<li><p>Consider a linear operator <span class="math inline">\(K : X \to
+Y\)</span>, with <span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> Banach spaces. Write the following
+deﬁnitions:</p></li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(K\)</span> is compact;</li>
+<li><span class="math inline">\(K\)</span> is ﬁnite rank. Which is the
+relation between 1. and 2.? No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(K\)</span> is
+compact if it maps bounded sets in <span
+class="math inline">\(X\)</span> to relatively compact sets in <span
+class="math inline">\(Y\)</span>. Equivalently, the image of every
+bounded sequence has a strongly convergent subsequence. <span
+class="math inline">\(K\)</span> is finite rank if <span
+class="math display">\[
+  \dim(\operatorname{Im}K)&lt;\infty.
+  \]</span> Every finite-rank continuous linear operator is compact,
+because bounded sets in a finite-dimensional space have compact closure.
+Also, norm limits of finite-rank operators are compact. The converse is
+false in general: not every compact operator is finite rank.</p>
+<h3 id="hilbert-spaces-riesz-representation-and-projection">Hilbert
+Spaces, Riesz Representation, And Projection</h3>
+<ul>
+<li><p>State and prove the Riesz representation theorem in Hilbert
+spaces.</p>
+<p><strong>Answer.</strong> Let <span class="math inline">\(H\)</span>
+be a Hilbert space. For every <span class="math inline">\(\varphi\in
+H^*\)</span> there exists a unique <span class="math inline">\(f\in
+H\)</span> such that <span class="math display">\[
+\varphi(u)=\langle f,u\rangle\qquad\forall u\in H,
+\]</span> and <span class="math inline">\(\|\varphi\|=\|f\|\)</span>.
+Proof: if <span class="math inline">\(\varphi=0\)</span>, take <span
+class="math inline">\(f=0\)</span>. Otherwise let <span
+class="math inline">\(M=\ker\varphi\)</span>, a closed proper subspace.
+Choose <span class="math inline">\(g\in M^\perp\)</span>, <span
+class="math inline">\(\|g\|=1\)</span>. For <span
+class="math inline">\(u\in H\)</span>, put <span
+class="math inline">\(\lambda=\varphi(u)/\varphi(g)\)</span>. Then <span
+class="math inline">\(u-\lambda g\in M\)</span>, hence <span
+class="math inline">\(\langle g,u-\lambda g\rangle=0\)</span>, so <span
+class="math inline">\(\langle g,u\rangle=\lambda\)</span>. Therefore
+<span class="math display">\[
+\varphi(u)=\varphi(g)\langle g,u\rangle=\langle \varphi(g)g,u\rangle.
+\]</span> This gives the representing vector <span
+class="math inline">\(f=\varphi(g)g\)</span>. Uniqueness follows by
+testing <span class="math inline">\(\langle f_1-f_2,u\rangle=0\)</span>
+with <span class="math inline">\(u=f_1-f_2\)</span>. The norm identity
+follows from Cauchy-Schwarz and testing with <span
+class="math inline">\(u=f/\|f\|\)</span>.</p></li>
+<li><p>State and prove the projection theorem in Hilbert spaces.</p>
+<p><strong>Answer.</strong> Let <span class="math inline">\(H\)</span>
+be a Hilbert space and <span class="math inline">\(K\subset H\)</span>
+nonempty, closed, convex. For every <span class="math inline">\(f\in
+H\)</span>, there exists a unique <span class="math inline">\(u\in
+K\)</span> such that <span class="math display">\[
+\|f-u\|=\inf_{v\in K}\|f-v\|.
+\]</span> Moreover <span class="math inline">\(u\)</span> is
+characterized by <span class="math display">\[
+\langle f-u,v-u\rangle\le0\qquad\forall v\in K.
+\]</span> Proof: take a minimizing sequence <span
+class="math inline">\(v_n\in K\)</span>. By the parallelogram identity
+and convexity, <span class="math display">\[
+\|v_n-v_m\|^2
+=2\|f-v_n\|^2+2\|f-v_m\|^2-4\left\|f-\frac{v_n+v_m}{2}\right\|^2\to0.
+\]</span> Thus <span class="math inline">\(v_n\)</span> is Cauchy, so
+<span class="math inline">\(v_n\to u\in K\)</span> since <span
+class="math inline">\(H\)</span> is complete and <span
+class="math inline">\(K\)</span> is closed. Then <span
+class="math inline">\(u\)</span> minimizes. Uniqueness follows by the
+same parallelogram argument applied to two minimizers. For the
+characterization, if <span class="math inline">\(u\)</span> minimizes,
+use <span class="math inline">\(u+t(v-u)\in K\)</span>, <span
+class="math inline">\(t\in(0,1)\)</span>, and expand <span
+class="math inline">\(\|f-(u+t(v-u))\|^2\ge\|f-u\|^2\)</span>, then let
+<span class="math inline">\(t\downarrow0\)</span>. Conversely, the
+inequality gives <span class="math display">\[
+\|f-v\|^2=\|f-u\|^2+\|v-u\|^2-2\langle f-u,v-u\rangle\ge\|f-u\|^2.
+\]</span></p></li>
+</ul>
+<h3 id="hilbert-operators-spectral-theory-and-solvability">Hilbert
+Operators, Spectral Theory, And Solvability</h3>
+<ul>
+<li>Let <span class="math inline">\(H\)</span> be a Hilbert space, <span
+class="math inline">\(T\in L(H)\)</span>. Write the following
+deﬁnitions:</li>
+</ul>
+<ol type="i">
+<li><span class="math inline">\(T\)</span> is compact;</li>
+<li>resolvent set of <span class="math inline">\(T\)</span>;</li>
+<li>spectrum of <span class="math inline">\(T\)</span>. State the
+spectral theorem. No proofs are required.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(T\)</span> is
+compact if it maps bounded sets of <span
+class="math inline">\(H\)</span> into relatively compact sets,
+equivalently if every bounded sequence <span
+class="math inline">\(u_n\)</span> has a subsequence such that <span
+class="math inline">\(Tu_{n_k}\)</span> converges strongly. The
+resolvent set is <span class="math display">\[
+  \rho(T)=\{\lambda\in\mathbb K:T-\lambda I\text{ is bijective and
+}(T-\lambda I)^{-1}\in\mathcal L(H)\}.
+  \]</span> The spectrum is <span class="math display">\[
+  \sigma(T)=\mathbb K\setminus\rho(T).
+  \]</span> Spectral theorem: if <span class="math inline">\(H\)</span>
+is separable and <span class="math inline">\(T\in\mathcal K(H)\)</span>
+is compact and symmetric/self-adjoint, then <span
+class="math inline">\(H\)</span> has an orthonormal basis made of
+eigenvectors of <span class="math inline">\(T\)</span>. The
+corresponding eigenvalues are real, nonzero eigenvalues have finite
+multiplicity, and the only possible accumulation point is <span
+class="math inline">\(0\)</span>.</p>
+<ul>
+<li>Let <span class="math inline">\(T : H \to H\)</span> be a linear and
+bounded operator on the Hilbert space <span
+class="math inline">\(H\)</span>.</li>
+</ul>
+<ol type="i">
+<li>Write the definitions of:</li>
+</ol>
+<ol type="1">
+<li><span class="math inline">\(T\)</span> is symmetric;</li>
+<li><span class="math inline">\(T\)</span> is compact;</li>
+<li>resolvet set and spectrum of <span
+class="math inline">\(T\)</span>.</li>
+</ol>
+<ol start="2" type="i">
+<li>State the spectral theorem for <span
+class="math inline">\(T\)</span>.</li>
+</ol>
+<p><strong>Answer.</strong> <span class="math inline">\(T\)</span> is
+symmetric if <span class="math display">\[
+  \langle Tx,y\rangle=\langle x,Ty\rangle\qquad\forall x,y\in H.
+  \]</span> <span class="math inline">\(T\)</span> is compact if the
+image of every bounded set is relatively compact, equivalently every
+bounded sequence has an image subsequence converging strongly. The
+resolvent set and spectrum are <span class="math display">\[
+  \rho(T)=\{\lambda:T-\lambda I\text{ is bijective with bounded
+inverse}\},\qquad
+  \sigma(T)=\mathbb K\setminus\rho(T).
+  \]</span> If <span class="math inline">\(T\)</span> is compact and
+symmetric on separable <span class="math inline">\(H\)</span>, then
+there is an orthonormal basis of <span class="math inline">\(H\)</span>
+formed by eigenvectors of <span class="math inline">\(T\)</span>, with
+real eigenvalues; nonzero eigenvalues have finite multiplicity and can
+accumulate only at <span class="math inline">\(0\)</span>.</p>
+<ul>
+<li><p>Let <span class="math inline">\(H\)</span> be a Hilbert space and
+<span class="math inline">\(f \in H\)</span>. Under suitable assumptions
+on <span class="math inline">\(T\)</span>, that have to be specified,
+discuss the solvability of equation <span class="math display">\[
+u - T(u) = f .
+\]</span> No proofs are required.</p>
+<p><strong>Answer.</strong> Assume <span
+class="math inline">\(T\in\mathcal K(H)\)</span> is compact and
+symmetric. By the Fredholm alternative for <span
+class="math inline">\(I-T\)</span>: <span class="math display">\[
+\operatorname{Im}(I-T)=\ker(I-T)^\perp,
+\]</span> <span class="math inline">\(\ker(I-T)\)</span> is
+finite-dimensional, and <span class="math inline">\(I-T\)</span> is
+injective iff it is surjective. Therefore, if <span
+class="math inline">\(\ker(I-T)=\{0\}\)</span>, then for every <span
+class="math inline">\(f\in H\)</span> there exists a unique solution
+<span class="math inline">\(u\in H\)</span>. If <span
+class="math inline">\(\ker(I-T)\ne\{0\}\)</span>, then the equation is
+solvable iff <span class="math display">\[
+f\in\ker(I-T)^\perp.
+\]</span> In that case solutions are not unique: if <span
+class="math inline">\(u\)</span> is one solution, then <span
+class="math inline">\(u+v\)</span> is also a solution for every <span
+class="math inline">\(v\in\ker(I-T)\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(H\)</span> be a Hilbert space,
+<span class="math inline">\(T : H \to H\)</span> a linear operator, and
+<span class="math inline">\(f \in H\)</span>. Consider the equation
+<span class="math display">\[
+u - T (u) = f.
+\]</span> Discuss the solvability in <span
+class="math inline">\(H\)</span> of such equation, specifying
+appropriate assumptions on the operator <span
+class="math inline">\(T\)</span>. In your discussion, you are expected
+to use, cite and explicitly state one or more key theorems that are
+relevant to the analysis.</p>
+<p><strong>Answer.</strong> Under the standard compact symmetric
+assumption <span class="math inline">\(T\in\mathcal K(H)\)</span>, <span
+class="math inline">\(T=T^*\)</span>, use the Fredholm alternative. It
+states that <span class="math inline">\(\ker(I-T)\)</span> is
+finite-dimensional, <span class="math display">\[
+\operatorname{Im}(I-T)=\ker(I-T)^\perp,
+\]</span> and <span class="math inline">\(I-T\)</span> is injective iff
+it is surjective. Hence: if <span class="math inline">\(1\)</span> is
+not an eigenvalue of <span class="math inline">\(T\)</span>, i.e. <span
+class="math inline">\(\ker(I-T)=\{0\}\)</span>, then <span
+class="math inline">\(I-T\)</span> is bijective and the equation has a
+unique solution for every <span class="math inline">\(f\in H\)</span>.
+If <span class="math inline">\(1\)</span> is an eigenvalue, then
+solutions exist exactly for <span class="math display">\[
+f\perp\ker(I-T),
+\]</span> and they are unique only up to addition of elements of <span
+class="math inline">\(\ker(I-T)\)</span>. Equivalently, if <span
+class="math inline">\(u_0\)</span> is one solution, all solutions are
+<span class="math inline">\(u_0+\ker(I-T)\)</span>.</p></li>
+</ul>
+<script>
+(function () {
+  var root = document.documentElement;
+  var button = document.querySelector('.nav-toggle');
+  var backdrop = document.querySelector('.nav-backdrop');
+  var toc = document.getElementById('TOC');
+  var storedTheme = localStorage.getItem('rfa-theme');
+  if (storedTheme === 'dark') root.setAttribute('data-theme', 'dark');
+
+  function setOpen(open) {
+    document.body.classList.toggle('nav-open', open);
+    if (button) button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (backdrop) backdrop.hidden = !open;
+  }
+
+  function updateThemeButton() {
+    var themeButton = document.querySelector('.theme-toggle');
+    if (!themeButton) return;
+    themeButton.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark';
+  }
+
+  if (button) button.addEventListener('click', function () { setOpen(!document.body.classList.contains('nav-open')); });
+  if (backdrop) backdrop.addEventListener('click', function () { setOpen(false); });
+
+  var themeButton = document.querySelector('.theme-toggle');
+  if (themeButton) {
+    updateThemeButton();
+    themeButton.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if (next === 'dark') root.setAttribute('data-theme', 'dark');
+      else root.removeAttribute('data-theme');
+      localStorage.setItem('rfa-theme', next);
+      updateThemeButton();
+    });
+  }
+
+  function setupTocBranches() {
+    if (!toc) return;
+    Array.prototype.slice.call(toc.querySelectorAll('li')).forEach(function (item) {
+      var anchor = item.querySelector(':scope > a');
+      if (!anchor || anchor.parentElement !== item) return;
+      var childList = item.querySelector(':scope > ul');
+      var row = document.createElement('div');
+      row.className = 'toc-row';
+      var toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'toc-disclosure';
+      toggle.setAttribute('aria-label', 'Toggle contents branch');
+      row.appendChild(toggle);
+      item.insertBefore(row, anchor);
+      row.appendChild(anchor);
+      if (childList) {
+        item.classList.add('toc-branch');
+        if (item.parentElement !== toc.querySelector(':scope > ul')) item.classList.add('toc-collapsed');
+      }
+    });
+  }
+
+  setupTocBranches();
+  if (toc) toc.addEventListener('click', function (event) {
+    var disclosure = event.target.closest('.toc-disclosure');
+    if (disclosure) {
+      var item = disclosure.closest('li');
+      if (item && item.classList.contains('toc-branch')) item.classList.toggle('toc-collapsed');
+      return;
+    }
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', function () { if (window.matchMedia('(min-width: 981px)').matches) setOpen(false); });
+})();
+</script>
+</body>
+</html>
