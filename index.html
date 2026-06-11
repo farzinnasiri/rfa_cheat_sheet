@@ -21,6 +21,14 @@
       <button type="button" id="measureButton" aria-pressed="true">Real Analysis</button>
       <button type="button" id="functionalButton" aria-pressed="false">Functional Analysis</button>
     </div>
+    <div class="priority-filter topbar-filter" role="group" aria-label="Question filters">
+      <button type="button" data-priority="all" aria-pressed="true">All</button>
+      <button type="button" data-priority="★★★" aria-pressed="false">3 stars</button>
+      <button type="button" data-priority="★★" aria-pressed="false">2 stars</button>
+      <button type="button" data-priority="★" aria-pressed="false">1 star</button>
+      <button type="button" data-proof="all" aria-pressed="true">Any type</button>
+      <button type="button" data-proof="true" aria-pressed="false">Proofs</button>
+    </div>
     <div class="theme-switcher" role="group" aria-label="Theme">
       <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
       <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
@@ -28,45 +36,53 @@
   </header>
 
   <iframe
-    id="checklistFrame"
+    id="measureFrame"
+    class="checklist-frame"
     title="Real analysis theory checklist"
     src="polished_measure_theory_questions.html?embedded=1">
   </iframe>
+  <iframe
+    id="functionalFrame"
+    class="checklist-frame"
+    title="Functional analysis theory checklist"
+    src="polished_functional_theory_questions.html?embedded=1"
+    hidden>
+  </iframe>
 
   <script>
-    const frame = document.getElementById("checklistFrame");
-    const measureButton = document.getElementById("measureButton");
-    const functionalButton = document.getElementById("functionalButton");
+    (function () {
+      const checklistFrames = {
+        measure: document.getElementById("measureFrame"),
+        functional: document.getElementById("functionalFrame")
+      };
+      const measureButton = document.getElementById("measureButton");
+      const functionalButton = document.getElementById("functionalButton");
 
-    function selectedChecklist() {
-      const params = new URLSearchParams(window.location.search);
-      const topic = params.get("topic") || window.location.hash.slice(1);
-      return topic === "functional" ? "functional" : "measure";
-    }
-
-    function showChecklist(kind, updateUrl = true) {
-      const isMeasure = kind === "measure";
-      const theme = document.documentElement.dataset.theme || "light";
-      frame.src = isMeasure
-        ? `polished_measure_theory_questions.html?embedded=1&theme=${theme}`
-        : `polished_functional_theory_questions.html?embedded=1&theme=${theme}`;
-      frame.title = isMeasure
-        ? "Real analysis theory checklist"
-        : "Functional analysis theory checklist";
-      measureButton.setAttribute("aria-pressed", String(isMeasure));
-      functionalButton.setAttribute("aria-pressed", String(!isMeasure));
-
-      if (updateUrl) {
-        const url = new URL(window.location.href);
-        url.searchParams.set("topic", isMeasure ? "measure" : "functional");
-        url.hash = "";
-        window.history.replaceState(null, "", url);
+      function selectedChecklist() {
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get("topic") || window.location.hash.slice(1);
+        return topic === "functional" ? "functional" : "measure";
       }
-    }
 
-    measureButton.addEventListener("click", () => showChecklist("measure"));
-    functionalButton.addEventListener("click", () => showChecklist("functional"));
-    showChecklist(selectedChecklist(), false);
+      function showChecklist(kind, updateUrl = true) {
+        const isMeasure = kind === "measure";
+        checklistFrames.measure.hidden = !isMeasure;
+        checklistFrames.functional.hidden = isMeasure;
+        measureButton.setAttribute("aria-pressed", String(isMeasure));
+        functionalButton.setAttribute("aria-pressed", String(!isMeasure));
+
+        if (updateUrl) {
+          const url = new URL(window.location.href);
+          url.searchParams.set("topic", isMeasure ? "measure" : "functional");
+          url.hash = "";
+          window.history.replaceState(null, "", url);
+        }
+      }
+
+      measureButton.addEventListener("click", () => showChecklist("measure"));
+      functionalButton.addEventListener("click", () => showChecklist("functional"));
+      showChecklist(selectedChecklist(), false);
+    })();
   </script>
   <script src="assets/site.js"></script>
 </body>
