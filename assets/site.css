@@ -1,0 +1,443 @@
+:root {
+  color-scheme: light;
+  --bg: oklch(98.4% 0.006 70);
+  --paper: oklch(99.5% 0.004 70);
+  --ink: oklch(14.5% 0.006 70);
+  --muted: oklch(43% 0.008 70);
+  --line: oklch(86% 0.006 70);
+  --accent: oklch(39% 0.045 255);
+  --accent-bg: oklch(94.2% 0.012 255);
+  --soft: oklch(96.5% 0.006 70);
+  --shadow: 0 18px 54px oklch(14.5% 0.006 70 / 0.08);
+  --focus: 0 0 0 3px oklch(62% 0.05 255 / 0.28);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: oklch(8.8% 0.006 70);
+  --paper: oklch(11.4% 0.006 70);
+  --ink: oklch(97.2% 0.004 70);
+  --muted: oklch(73% 0.006 70);
+  --line: oklch(25% 0.006 70);
+  --accent: oklch(78% 0.038 255);
+  --accent-bg: oklch(18% 0.015 255);
+  --soft: oklch(15.6% 0.006 70);
+  --shadow: 0 18px 54px oklch(4% 0.004 70 / 0.55);
+  --focus: 0 0 0 3px oklch(78% 0.05 255 / 0.34);
+}
+
+* {
+  scrollbar-color: var(--line) transparent;
+}
+
+body {
+  background:
+    linear-gradient(90deg, var(--bg), var(--bg)),
+    var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
+button,
+a,
+summary {
+  transition:
+    background-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 0;
+  box-shadow: var(--focus);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px clamp(14px, 3vw, 28px);
+  background: color-mix(in oklch, var(--paper) 94%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  min-width: 0;
+}
+
+.brand__eyebrow {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand__title {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.switcher,
+.theme-switcher,
+.checklist-switcher,
+.priority-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+.switcher,
+.theme-switcher {
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--soft);
+}
+
+button,
+.checklist-switcher a {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  min-height: 32px;
+  padding: 0 11px;
+  color: var(--muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 760;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+button:hover,
+.checklist-switcher a:hover {
+  color: var(--ink);
+  background: color-mix(in oklch, var(--paper) 74%, var(--accent-bg));
+}
+
+button:active,
+.checklist-switcher a:active {
+  transform: translateY(1px);
+}
+
+button[aria-pressed="true"],
+.checklist-switcher a[aria-current="page"] {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+:root[data-theme="dark"] button[aria-pressed="true"],
+:root[data-theme="dark"] .checklist-switcher a[aria-current="page"] {
+  color: var(--bg);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.theme-switcher button {
+  min-width: 58px;
+}
+
+.standalone-theme {
+  margin: 0 0 24px;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 61px);
+  border: 0;
+  background: var(--bg);
+}
+
+body.checklist-page {
+  padding: 34px 20px 72px;
+  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+body.checklist-page main {
+  max-width: min(940px, calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 42px clamp(22px, 6vw, 64px) 58px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+body.checklist-page h1 {
+  max-width: 15ch;
+  margin-bottom: 22px;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 2.25rem;
+  line-height: 0.98;
+}
+
+body.checklist-page h2 {
+  margin-top: 52px;
+  padding: 14px 0 10px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+}
+
+body.checklist-page h1 + h2 {
+  margin-top: 0;
+}
+
+body.checklist-page ol {
+  margin: 0 0 0 1.45rem;
+  padding: 0;
+}
+
+body.checklist-page li {
+  margin: 0.54rem 0;
+  padding-left: 0.25rem;
+}
+
+body.checklist-page li::marker {
+  color: var(--muted);
+}
+
+.checklist-switcher {
+  margin: 0 0 18px;
+}
+
+.checklist-switcher a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  color: var(--muted);
+  background: var(--soft);
+  text-decoration: none;
+}
+
+.priority-filter {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  justify-content: center;
+  gap: 3px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 38px;
+  padding: 4px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.priority-filter button {
+  min-height: 30px;
+  padding: 0 10px;
+  border-color: transparent;
+  border-radius: 7px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 740;
+}
+
+.priority-filter button[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+:root[data-theme="dark"] .priority-filter button[aria-pressed="true"] {
+  color: var(--bg);
+}
+
+.bank-ref {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.36rem;
+  padding: 0.04rem 0.34rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--accent-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 850;
+  line-height: 1.35;
+  vertical-align: 0.12em;
+  cursor: help;
+  white-space: nowrap;
+}
+
+.answer-detail {
+  margin-top: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  border-color: var(--line);
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.answer-detail summary {
+  padding: 8px 11px;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.answer-detail summary:hover {
+  background: var(--accent-bg);
+}
+
+.answer-detail[open] summary {
+  border-bottom: 1px solid var(--line);
+  border-bottom-color: var(--line);
+  background: var(--accent-bg);
+}
+
+.answer-body {
+  padding: 12px 14px 14px;
+  font-size: 0.96rem;
+}
+
+.answer-body p {
+  margin: 0 0 0.82em;
+}
+
+.answer-body p:last-child {
+  margin-bottom: 0;
+}
+
+.formula {
+  margin: 0.82em 0;
+  padding: 0.72em 0.85em;
+  overflow-x: auto;
+  border-left: 1px solid var(--accent);
+  border-left-width: 1px;
+  border-left-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.display {
+  margin: 0.7rem 0 0.45rem;
+  overflow-x: auto;
+}
+
+h2[data-empty="true"],
+ol[data-empty="true"] {
+  display: none;
+}
+
+body.embedded {
+  padding: 20px 18px 64px;
+}
+
+body.embedded h1,
+body.embedded .checklist-switcher,
+body.embedded .standalone-theme {
+  display: none;
+}
+
+body.embedded main {
+  max-width: min(940px, calc(100vw - 36px));
+  min-height: auto;
+  padding-top: 34px;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .switcher,
+  .theme-switcher {
+    width: 100%;
+  }
+
+  .switcher button,
+  .theme-switcher button {
+    flex: 1;
+  }
+
+  body.checklist-page,
+  body.embedded {
+    padding: 0;
+  }
+
+  body.checklist-page main,
+  body.embedded main {
+    max-width: none;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  iframe {
+    height: calc(100vh - 147px);
+  }
+
+  .priority-filter {
+    top: 0;
+    justify-content: flex-start;
+    width: auto;
+    margin-right: 0;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --bg: oklch(99% 0.002 70);
+    --paper: oklch(99% 0.002 70);
+    --ink: oklch(14% 0.004 70);
+    --muted: oklch(36% 0.004 70);
+    --line: oklch(82% 0.004 70);
+    --accent: oklch(28% 0.03 31);
+    --accent-bg: oklch(96% 0.006 31);
+  }
+
+  .topbar,
+  .checklist-switcher,
+  .priority-filter {
+    display: none;
+  }
+
+  body.checklist-page main {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

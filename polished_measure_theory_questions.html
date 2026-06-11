@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polished Measure Theory Question Checklist</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const queryTheme = params.get("theme");
+      const savedTheme = localStorage.getItem("rfa-theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = queryTheme === "dark" || queryTheme === "light"
+        ? queryTheme
+        : savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="checklist-page">
+  <script>
+    if (window.self !== window.top) {
+      document.body.classList.add("embedded");
+    }
+    window.parent.postMessage("rfa-frame-ready", window.location.origin);
+  </script>
+  <main>
+    <h1>Polished Measure Theory Question Checklist</h1>
+    <nav class="checklist-switcher" aria-label="Checklist switcher">
+      <a href="polished_measure_theory_questions.html" aria-current="page">Real Analysis</a>
+      <a href="polished_functional_theory_questions.html">Functional Analysis</a>
+      <a href="index.html">Combined Switcher</a>
+    </nav>
+    <div class="theme-switcher standalone-theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+    </div>
+    <div class="priority-filter" role="group" aria-label="Priority filter">
+      <button type="button" data-priority="all" aria-pressed="true">All</button>
+      <button type="button" data-priority="★★★" aria-pressed="false">3 stars</button>
+      <button type="button" data-priority="★★" aria-pressed="false">2 stars</button>
+      <button type="button" data-priority="★" aria-pressed="false">1 star</button>
+      <button type="button" data-proof="all" aria-pressed="true">Any type</button>
+      <button type="button" data-proof="true" aria-pressed="false">Proofs</button>
+    </div>
+
+    <h2>1. Lebesgue Integral And Core Convergence Theorems</h2>
+    <ol start="1">
+      <li data-proof="true">★★ State and prove the Lebesgue theorem. <span class="bank-ref" title="Theory Questions.pdf: Q1.54" aria-label="Theory Questions.pdf: Q1.54">Q1.54</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((X,\mathcal A,\mu)\) be a measure space. Suppose \((f_n)\) is a sequence of measurable functions, \(f_n\to f\) a.e., and there exists \(g\in L^1(X)\) such that \(|f_n|\le g\) a.e. for every \(n\). Then \(f\in L^1\), \(f_n\in L^1\), and</p><div class="formula">\[
+\int_X |f_n-f|\,d\mu\to0,
+\qquad
+\int_X f_n\,d\mu\to\int_X f\,d\mu.
+\]</div><p>First, \(|f|\le g\) a.e. by passing to the a.e. limit, so \(f\in L^1\). Also \(|f_n-f|\le2g\). Apply Fatou's lemma to the nonnegative functions \(2g-|f_n-f|\):</p><div class="formula">\[
+\int 2g\le \liminf_n\int(2g-|f_n-f|)
+=\int2g-\limsup_n\int|f_n-f|.
+\]</div><p>Hence \(\limsup_n\int |f_n-f|\le0\), and therefore \(\int |f_n-f|\to0\). The convergence of integrals follows from \(\left|\int f_n-\int f\right|\le\int |f_n-f|\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ In which case is it simple to find a dominating function? <span class="bank-ref" title="Theory Questions.pdf: Q1.54" aria-label="Theory Questions.pdf: Q1.54">Q1.54</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The easiest case is finite measure plus a uniform bound. If \(\mu(X)&lt;\infty\) and \(|f_n|\le M\) a.e. for every \(n\), then \(g\equiv M\in L^1(X)\) dominates the sequence.</p><p>In an exam, the key is to write an integrable bound independent of \(n\). Typical bounds are a fixed decay such as \(C/(1+x^2)\) on \(\mathbb R\), an integrable singularity such as \(C/\sqrt{x}\) near zero, or an estimate obtained by bounding a denominator from below. Once \(|f_n|\le g\in L^1\) is shown, the Dominated Convergence Theorem applies.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove Fatou's Lemma. <span class="bank-ref" title="Theory Questions.pdf: Q1.45" aria-label="Theory Questions.pdf: Q1.45">Q1.45</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Fatou's lemma says that if \(f_n\in M^+(X,\mathcal A)\), then</p><div class="formula">\[
+\int_X \liminf_{n\to\infty} f_n\,d\mu
+\le
+\liminf_{n\to\infty}\int_X f_n\,d\mu.
+\]</div><p>Set \(g_k=\inf_{m\ge k}f_m\). Then \(g_k\uparrow\liminf_n f_n\). Since \(g_k\le f_m\) for every \(m\ge k\),</p><div class="formula">\[
+\int g_k\,d\mu\le \inf_{m\ge k}\int f_m\,d\mu.
+\]</div><p>Let \(k\to\infty\). By the Monotone Convergence Theorem, the left side tends to \(\int\liminf f_n\,d\mu\), and the right side tends to \(\liminf_n\int f_n\,d\mu\). This proves the inequality.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the Monotone Convergence Theorem, or Beppo Levi Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q1.44" aria-label="Theory Questions.pdf: Q1.44">Q1.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The Monotone Convergence Theorem states: if \(f_n\in M^+(X,\mathcal A)\), \(f_n\le f_{n+1}\), and \(f_n\to f\) pointwise, then \(f\in M^+\) and</p><div class="formula">\[
+\int_X f\,d\mu=\lim_{n\to\infty}\int_X f_n\,d\mu.
+\]</div><p>The inequality \(\lim_n\int f_n\le\int f\) follows from monotonicity. For the reverse, let \(0\le s\le f\) be simple and fix \(0&lt;\varepsilon&lt;1\). Put \(E_n=\{f_n\ge(1-\varepsilon)s\}\). Then \(E_n\uparrow X\), and</p><div class="formula">\[
+\int f_n\,d\mu\ge(1-\varepsilon)\int_{E_n}s\,d\mu.
+\]</div><p>Passing to the limit gives \(\liminf_n\int f_n\ge(1-\varepsilon)\int s\). Let \(\varepsilon\downarrow0\), then take the supremum over simple \(s\le f\). Hence \(\liminf_n\int f_n\ge\int f\), and equality follows.</p></div></details>
+      </li>
+      
+      
+      
+    </ol>
+
+    <h2>2. Modes Of Convergence</h2>
+    <ol start="5">
+      <li data-proof="false">★★★ For a sequence of functions \(\{f_n\}\in M\), write the definition of pointwise convergence. <span class="bank-ref" title="Theory Questions.pdf: Q1.58" aria-label="Theory Questions.pdf: Q1.58">Q1.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>We say \(f_n\to f\) pointwise on \(X\) if for every fixed \(x\in X\),</p><div class="formula">\[
+\lim_{n\to\infty}f_n(x)=f(x).
+\]</div><p>Equivalently, for every \(x\in X\) and every \(\varepsilon&gt;0\), there exists \(N=N(x,\varepsilon)\) such that \(|f_n(x)-f(x)|&lt;\varepsilon\) for all \(n\ge N\). The dependence of \(N\) on \(x\) is allowed.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ For a sequence of functions \(\{f_n\}\in M\), write the definition of almost everywhere convergence. <span class="bank-ref" title="Theory Questions.pdf: Q1.58" aria-label="Theory Questions.pdf: Q1.58">Q1.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>We say \(f_n\to f\) almost everywhere if there exists a measurable null set \(N\subset X\), \(\mu(N)=0\), such that</p><div class="formula">\[
+\lim_{n\to\infty}f_n(x)=f(x)
+\qquad\forall x\in X\setminus N.
+\]</div><p>The exceptional set is fixed, not depending on \(n\). Thus a.e. convergence is pointwise convergence outside a set that is invisible to the measure.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ For a sequence of functions \(\{f_n\}\in M\), write the definition of convergence in measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.58" aria-label="Theory Questions.pdf: Q1.58">Q1.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>We say \(f_n\to f\) in measure if for every \(\varepsilon&gt;0\),</p><div class="formula">\[
+\mu\bigl(\{x\in X: |f_n(x)-f(x)|&gt;\varepsilon\}\bigr)\to0.
+\]</div><p>This means that, for every fixed tolerance, the set on which the error exceeds that tolerance becomes negligible in measure. It does not require pointwise convergence of the whole sequence.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ For a sequence of functions \(\{f_n\}\in M\), write the definition of convergence in \(L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.58" aria-label="Theory Questions.pdf: Q1.58">Q1.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Assume \(f_n,f\in L^1(X)\). We say \(f_n\to f\) in \(L^1\) if</p><div class="formula">\[
+\|f_n-f\|_{L^1}=\int_X |f_n-f|\,d\mu\to0.
+\]</div><p>This is norm convergence in \(L^1\). It is stronger than convergence in measure, but it does not imply pointwise convergence of the full sequence.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence in measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.62" aria-label="Theory Questions.pdf: Q1.62">Q1.62</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Assume \(f_n\to f\) in \(L^1\). Fix \(\varepsilon&gt;0\). By Chebyshev's inequality,</p><div class="formula">\[
+\mu(\{|f_n-f|&gt;\varepsilon\})
+\le {1\over\varepsilon}\int_X |f_n-f|\,d\mu.
+\]</div><p>The right-hand side tends to \(0\) by \(L^1\)-convergence. Since this holds for every \(\varepsilon&gt;0\), \(f_n\to f\) in measure.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ What is the relation between convergence in measure and convergence a.e. up to subsequences? <span class="bank-ref" title="Theory Questions.pdf: Q1.60" aria-label="Theory Questions.pdf: Q1.60">Q1.60</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(f_n\to f\) in measure, then there is a subsequence \(f_{n_k}\to f\) almost everywhere. Choose \(n_k\) so that</p><div class="formula">\[
+\mu(\{|f_{n_k}-f|&gt;2^{-k}\})&lt;2^{-k}.
+\]</div><p>The sum of these measures is finite, so by Borel-Cantelli almost every point belongs to only finitely many of these bad sets. Hence for a.e. \(x\), eventually \(|f_{n_k}(x)-f(x)|\le2^{-k}\), which gives \(f_{n_k}(x)\to f(x)\).</p><p>Conversely, on a finite-measure space, a.e. convergence implies convergence in measure.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Under which hypothesis on \(X\) does convergence a.e. imply convergence in measure? <span class="bank-ref" title="Theory Questions.pdf: Q1.61" aria-label="Theory Questions.pdf: Q1.61">Q1.61</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The needed hypothesis is \(\mu(X)&lt;\infty\). Suppose \(f_n\to f\) a.e. Fix \(\varepsilon&gt;0\) and define</p><div class="formula">\[
+E_n=\bigcup_{k\ge n}\{|f_k-f|&gt;\varepsilon\}.
+\]</div><p>Then \(E_n\downarrow E\), where \(E\) is contained in the null set on which convergence fails. Since \(\mu(E_1)\le\mu(X)&lt;\infty\), continuity from above gives \(\mu(E_n)\to0\). Because \(\{|f_n-f|&gt;\varepsilon\}\subset E_n\), convergence in measure follows.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ What happens if one omits the key assumption on \(X\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.61" aria-label="Theory Questions.pdf: Q1.61">Q1.61</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Without \(\mu(X)&lt;\infty\), a.e. convergence need not imply convergence in measure. On \(\mathbb R\), take</p><div class="formula">\[
+f_n=\chi_{[n,n+1]}.
+\]</div><p>For each fixed \(x\), eventually \(x\notin[n,n+1]\), so \(f_n(x)\to0\). Thus \(f_n\to0\) pointwise. But for every \(0&lt;\varepsilon&lt;1\),</p><div class="formula">\[
+\lambda(\{|f_n|&gt;\varepsilon\})=1
+\]</div><p>for all \(n\). Hence the convergence is not in measure.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Does convergence in measure imply convergence in \(L^1\)? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.64" aria-label="Theory Questions.pdf: Q1.64">Q1.64</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>No. On \((0,1)\), define</p><div class="formula">\[
+f_n=n\chi_{(0,1/n)}.
+\]</div><p>For every \(\varepsilon&gt;0\), for all large \(n\), \(\{|f_n|&gt;\varepsilon\}=(0,1/n)\), whose measure is \(1/n\to0\). Thus \(f_n\to0\) in measure.</p><p>However,</p><div class="formula">\[
+\|f_n\|_1=\int_0^{1/n}n\,dx=1
+\]</div><p>for every \(n\). Therefore \(f_n\) does not converge to \(0\) in \(L^1\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Does convergence a.e. imply convergence in \(L^1\)? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.64" aria-label="Theory Questions.pdf: Q1.64">Q1.64</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>No. On \((0,1)\), take \(f_n=n\chi_{(0,1/n)}\). Then \(f_n(x)\to0\) for every \(x&gt;0\), hence a.e. But</p><div class="formula">\[
+\|f_n\|_1=\int_0^{1/n}n\,dx=1
+\]</div><p>for all \(n\). Thus there is no convergence in \(L^1\). A.e. convergence becomes \(L^1\)-convergence only under additional hypotheses, such as domination by an integrable function.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Does convergence in \(L^1\) imply a.e. convergence? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.65" aria-label="Theory Questions.pdf: Q1.65">Q1.65</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>No. \(L^1\)-convergence implies convergence in measure and therefore an a.e. convergent subsequence, but the full sequence need not converge a.e.</p><p>Use the typewriter sequence on \((0,1)\): enumerate the dyadic intervals generation by generation and let \(f_n\) be the characteristic function of the \(n\)-th interval. The interval lengths tend to \(0\), hence \(\|f_n\|_1\to0\). But each point of \((0,1)\) belongs to infinitely many of these intervals and is outside infinitely many, so the pointwise limit of the full sequence does not exist.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Does convergence in measure imply a.e. convergence? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.65" aria-label="Theory Questions.pdf: Q1.65">Q1.65</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>No. Convergence in measure guarantees an a.e. convergent subsequence, not a.e. convergence of the whole sequence. The typewriter sequence on \((0,1)\) is the standard counterexample.</p><p>Let \(f_n\) be the characteristic functions of dyadic intervals listed generation by generation. Since the lengths of the intervals tend to zero, \(f_n\to0\) in measure. But for each \(x\in(0,1)\), the values \(f_n(x)\) are \(1\) infinitely often and \(0\) infinitely often, so no pointwise limit exists.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence a.e. up to subsequences. <span class="bank-ref" title="Theory Questions.pdf: Q1.63" aria-label="Theory Questions.pdf: Q1.63">Q1.63</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(f_n\to f\) in \(L^1\), then \(f_n\to f\) in measure by Chebyshev's inequality. Choose a subsequence \(f_{n_k}\) such that</p><div class="formula">\[
+\mu(\{|f_{n_k}-f|&gt;2^{-k}\})&lt;2^{-k}.
+\]</div><p>The sum of the measures is finite, so by Borel-Cantelli a.e. point belongs to only finitely many of these exceptional sets. Hence for a.e. \(x\), eventually \(|f_{n_k}(x)-f(x)|\le2^{-k}\), and therefore \(f_{n_k}(x)\to f(x)\).</p></div></details>
+      </li>
+      
+      
+    </ol>
+
+    <h2>3. Lebesgue Points And Fundamental Theorems Of Calculus</h2>
+    <ol start="18">
+      <li data-proof="false">★★★ Write the definition of Lebesgue point. <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(f\in L^1_{\mathrm{loc}}(\mathbb R^n)\). A point \(x\) is a Lebesgue point of \(f\) if</p><div class="formula">\[
+\lim_{r\downarrow0}{1\over |B_r(x)|}
+\int_{B_r(x)} |f(y)-f(x)|\,dy=0.
+\]</div><p>In words, the average oscillation of \(f\) around \(x\) tends to zero as the balls shrink to \(x\).</p></div></details>
+      </li>
+      <li data-proof="false">★★★ What is about the measure of the set of points that are not Lebesgue points for a function \(f\in L^1\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>By the Lebesgue Differentiation Theorem, if \(f\in L^1_{\mathrm{loc}}\), then almost every point is a Lebesgue point of \(f\). Equivalently, the set of non-Lebesgue points has Lebesgue measure zero.</p><p>Thus for \(f\in L^1\), failures of the Lebesgue point property occur only on a null set.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ State and prove the First Fundamental Theorem of Calculus for \(f\in L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.67" aria-label="Theory Questions.pdf: Q1.67">Q1.67</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(f\in L^1(a,b)\) and define \(F(x)=\int_a^x f(t)\,dt\). Then \(F\) is absolutely continuous on \([a,b]\), and</p><div class="formula">\[
+F'(x)=f(x)\quad\text{for a.e. }x\in(a,b).
+\]</div><p>Absolute continuity follows from absolute continuity of the Lebesgue integral: if \(\sum_i(b_i-a_i)\) is small, then</p><div class="formula">\[
+\sum_i |F(b_i)-F(a_i)|
+\le \int_{\cup_i(a_i,b_i)} |f|.
+\]</div><p>This can be made smaller than any prescribed \(\varepsilon\). For differentiability, if \(x\) is a Lebesgue point of \(f\), then</p><div class="formula">\[
+{F(x+h)-F(x)\over h}-f(x)
+={1\over h}\int_x^{x+h}(f(t)-f(x))\,dt,
+\]</div><p>whose absolute value is controlled by the average oscillation of \(f\) near \(x\). This tends to \(0\), and a.e. point is a Lebesgue point.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ State the Second Fundamental Theorem of Calculus. <span class="bank-ref" title="Theory Questions.pdf: Q1.68" aria-label="Theory Questions.pdf: Q1.68">Q1.68</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(F\) is absolutely continuous on \([a,b]\), then \(F'\) exists a.e., \(F'\in L^1(a,b)\), and</p><div class="formula">\[
+F(x)=F(a)+\int_a^x F'(t)\,dt
+\qquad\forall x\in[a,b].
+\]</div><p>Equivalently, for every \(a\le c\le d\le b\),</p><div class="formula">\[
+F(d)-F(c)=\int_c^d F'(t)\,dt.
+\]</div><p>The hypothesis of absolute continuity is essential. A function may be differentiable a.e. with integrable derivative and still fail to be recovered by integrating its derivative unless it is absolutely continuous.</p></div></details>
+      </li>
+    </ol>
+
+    <h2>4. Absolutely Continuous Functions And Sobolev Spaces</h2>
+    <ol start="22">
+      <li data-proof="false">★★★ Write the definition of absolutely continuous function. <span class="bank-ref" title="Theory Questions.pdf: Q1.69" aria-label="Theory Questions.pdf: Q1.69">Q1.69</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A function \(u:[a,b]\to\mathbb R\) is absolutely continuous if for every \(\varepsilon&gt;0\) there exists \(\delta&gt;0\) such that, for every finite family of pairwise disjoint intervals \((a_i,b_i)\subset[a,b]\),</p><div class="formula">\[
+\sum_i(b_i-a_i)&lt;\delta
+\quad\Longrightarrow\quad
+\sum_i |u(b_i)-u(a_i)|&lt;\varepsilon.
+\]</div><p>This condition is stronger than uniform continuity and bounded variation. On an interval it is equivalent to the existence of an \(L^1\) derivative satisfying \(u(x)=u(a)+\int_a^x u'\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ State and prove the characterization of absolutely continuous functions in terms of the integration by parts formula. <span class="bank-ref" title="Theory Questions.pdf: Q1.69" aria-label="Theory Questions.pdf: Q1.69">Q1.69</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(u\in L^1(a,b)\), the Sobolev characterization is: \(u\in W^{1,1}(a,b)\) iff there exists \(v\in L^1(a,b)\) such that</p><div class="formula">\[
+\int_a^b u\varphi'\,dx=-\int_a^b v\varphi\,dx
+\qquad\forall\varphi\in C_c^1(a,b).
+\]</div><p>Then \(v\) is the weak derivative of \(u\). The associated representative</p><div class="formula">\[
+\tilde u(x)=\tilde u(a)+\int_a^x v(t)\,dt
+\]</div><p>is absolutely continuous. Conversely, if \(u\) is absolutely continuous and \(u'=v\in L^1\), integration by parts against compactly supported \(\varphi\) gives the identity above. Hence the integration-by-parts formula characterizes absolutely continuous Sobolev functions in one dimension.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ What is the relation between \(W^{1,1}\) and AC? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.71" aria-label="Theory Questions.pdf: Q1.71">Q1.71</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>In one dimension, \(W^{1,1}(a,b)\) coincides with absolutely continuous functions, up to equality a.e.</p><p>If \(u\in W^{1,1}\), then \(u\) has an absolutely continuous representative \(\tilde u\) such that</p><div class="formula">\[
+\tilde u(x)=\tilde u(a)+\int_a^x u'(t)\,dt.
+\]</div><p>Conversely, if \(u\) is absolutely continuous, then \(u'\in L^1\), its classical derivative is also its weak derivative, and \(u\in W^{1,1}\).</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the definition of weak derivative. <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(u\in L^1_{\mathrm{loc}}(a,b)\). A function \(v\in L^1_{\mathrm{loc}}(a,b)\) is the weak derivative of \(u\) if</p><div class="formula">\[
+\int_a^b u(x)\varphi'(x)\,dx
+=-\int_a^b v(x)\varphi(x)\,dx
+\qquad\forall\varphi\in C_c^1(a,b).
+\]</div><p>We write \(v=u'\) in the weak sense. Such a \(v\), if it exists, is unique up to equality a.e.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the definition of \(W^{1,p}\). <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(1\le p\le\infty\),</p><div class="formula">\[
+W^{1,p}(a,b)=\{u\in L^p(a,b): u'\text{ exists weakly and }u'\in L^p(a,b)\}.
+\]</div><p>The standard norm is</p><div class="formula">\[
+\|u\|_{W^{1,p}}=\|u\|_{L^p}+\|u'\|_{L^p},
+\]</div><p>or an equivalent \(p\)-sum norm for \(p&lt;\infty\). The derivative is understood in the weak, distributional sense.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ State another characterization of absolutely continuous functions in terms of \(W^{1,1}\) and AC. <span class="bank-ref" title="Theory Questions.pdf: Q1.71" aria-label="Theory Questions.pdf: Q1.71">Q1.71</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A function \(u\) is absolutely continuous on \([a,b]\) iff there exists \(g\in L^1(a,b)\) such that</p><div class="formula">\[
+u(x)=u(a)+\int_a^x g(t)\,dt
+\qquad\forall x\in[a,b].
+\]</div><p>In that case \(g=u'\) a.e. Therefore absolute continuity is equivalent to membership in \(W^{1,1}(a,b)\) together with choosing the absolutely continuous representative given by the integral formula.</p></div></details>
+      </li>
+    </ol>
+
+    <h2>5. Measurability And Characteristic-Function Tests</h2>
+    <ol start="28">
+      <li data-proof="true">★★★ Write the definitions of Borel measurable functions and Lebesgue measurable functions. Prove that continuous functions are both Borel and Lebesgue measurable. <span class="bank-ref" title="Theory Questions.pdf: Q1.22, Q1.23" aria-label="Theory Questions.pdf: Q1.22, Q1.23">Q1.22, Q1.23</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A real function \(f:\mathbb R\to\mathbb R\) is Borel measurable if \(f^{-1}(B)\in\mathcal B(\mathbb R)\) for every Borel set \(B\). It is Lebesgue measurable if \(f^{-1}(B)\in\mathcal L(\mathbb R)\) for every Borel set \(B\), equivalently if \(\{f&gt;a\}\in\mathcal L(\mathbb R)\) for all \(a\in\mathbb R\).</p><p>If \(f\) is continuous, the inverse image of every open set is open. Hence \(f\) is Borel measurable. Since every Borel set is Lebesgue measurable, the same function is also Lebesgue measurable when the domain is endowed with the Lebesgue sigma-algebra.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the definition of measurable function. State the theorem about the measurability of the composite function. <span class="bank-ref" title="Theory Questions.pdf: Q1.20, Q1.25" aria-label="Theory Questions.pdf: Q1.20, Q1.25">Q1.20, Q1.25</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((X,\mathcal A)\) and \((Y,\mathcal B)\) be measurable spaces. A map \(f:X\to Y\) is measurable if</p><div class="formula">\[
+f^{-1}(B)\in\mathcal A
+\qquad\forall B\in\mathcal B.
+\]</div><p>If \(f:(X,\mathcal A)\to(Y,\mathcal B)\) and \(g:(Y,\mathcal B)\to(Z,\mathcal C)\) are measurable, then \(g\circ f\) is measurable because for every \(C\in\mathcal C\),</p><div class="formula">\[
+(g\circ f)^{-1}(C)=f^{-1}(g^{-1}(C))\in\mathcal A.
+\]</div></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the characterization of measurability of functions. <span class="bank-ref" title="Theory Questions.pdf: Q1.21" aria-label="Theory Questions.pdf: Q1.21">Q1.21</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(f:X\to\mathbb R\), the following conditions are equivalent:</p><div class="formula">\[
+\{f&gt;a\},\ \{f\ge a\},\ \{f&lt;a\},\ \{f\le a\}\in\mathcal A
+\qquad\forall a\in\mathbb R.
+\]</div><p>It is enough to test rational \(a\), because \(\mathbb Q\) is countable and dense. These conditions are also equivalent to \(f^{-1}(O)\in\mathcal A\) for every open set \(O\subset\mathbb R\), hence to inverse images of all Borel sets being measurable.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Establish all equivalent statements to the fact that \(f:X\to\mathbb R\) is measurable. <span class="bank-ref" title="Theory Questions.pdf: Q1.26" aria-label="Theory Questions.pdf: Q1.26">Q1.26</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The standard equivalent statements are: \(f:X\to\mathbb R\) is measurable iff any one of the threshold families</p><div class="formula">\[
+\{f&gt;a\},\quad \{f\ge a\},\quad \{f&lt;a\},\quad \{f\le a\}
+\]</div><p>is measurable for every \(a\in\mathbb R\). It is enough to test \(a\in\mathbb Q\). Equivalently, \(f^{-1}(O)\) is measurable for every open \(O\subset\mathbb R\), or \(f^{-1}(B)\) is measurable for every Borel \(B\). The proof uses complements and countable unions, for example \(\{f&gt;a\}=\bigcup_{q\in\mathbb Q,q&gt;a}\{f\ge q\}\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(A\in\mathcal A\), then \(\chi_A\) is measurable because for each \(a\), the set \(\{\chi_A&gt;a\}\) is one of \(X\), \(A\), or \(\varnothing\).</p><p>Conversely, if \(\chi_A\) is measurable, then</p><div class="formula">\[
+A=\{x:\chi_A(x)&gt;1/2\}
+\]</div><p>is measurable. Therefore \(A\in\mathcal A\) iff \(\chi_A\) is measurable.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(a)" aria-label="Theory Questions.pdf: Q1.33(a)">Q1.33(a)</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The statement is true. If \(f\) is measurable, then</p><div class="formula">\[
+f^+=\max\{f,0\},
+\qquad
+f^-=\max\{-f,0\}
+\]</div><p>are measurable because they are obtained from \(f\) by continuous operations. Conversely, if \(f^+\) and \(f^-\) are measurable, then \(f=f^+-f^-\), and the difference of finite-valued measurable functions is measurable. Hence \(f\in M(X,\mathcal A)\) iff \(f^\pm\in M^+(X,\mathcal A)\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(b)" aria-label="Theory Questions.pdf: Q1.33(b)">Q1.33(b)</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The implication \(f\) measurable implies \(|f|\) measurable is true, since \(|f|=|\cdot|\circ f\) and the absolute value map is continuous.</p><p>The converse is false. If \(A\) is nonmeasurable and \(f=\chi_A-\chi_{A^c}\), then \(|f|=1\) is measurable. But \(f\) is not measurable, because \(A=\{f=1\}\) would otherwise be measurable.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(f,g\in M(X,\mathcal A)\), then \(f-g\) is measurable. Hence</p><div class="formula">\[
+\{f&lt;g\}=\{f-g&lt;0\},
+\quad
+\{f\le g\}=\{f-g\le0\},
+\quad
+\{f=g\}=\{f-g=0\}
+\]</div><p>are measurable as inverse images of Borel subsets of \(\mathbb R\). The same reasoning gives measurability of \(\{f&gt;g\}\) and \(\{f\ge g\}\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Let \(\{f_n\}\subset M(X,\mathcal A)\). Show that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), \(\liminf_n f_n\in M(X,\mathcal A)\). Can there exist two functions \(f,g\in M(X,\mathcal A)\) such that \(\max\{f,g\}\notin M(X,\mathcal A)\)? Why? <span class="bank-ref" title="Theory Questions.pdf: Q1.28" aria-label="Theory Questions.pdf: Q1.28">Q1.28</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((f_n)\subset M(X,\mathcal A)\). For \(h=\sup_n f_n\),</p><div class="formula">\[
+\{h&gt;a\}=\bigcup_{n=1}^{\infty}\{f_n&gt;a\},
+\]</div><p>so \(h\) is measurable. Then \(\inf_n f_n=-\sup_n(-f_n)\). Also</p><div class="formula">\[
+\limsup_n f_n=\inf_{k\ge1}\sup_{n\ge k}f_n,
+\qquad
+\liminf_n f_n=\sup_{k\ge1}\inf_{n\ge k}f_n,
+\]</div><p>so both are measurable.</p><p>For two measurable functions, \(\max\{f,g\}\) is always measurable, for example \(\max\{f,g\}=(f+g+|f-g|)/2\). Therefore no such counterexample exists.</p></div></details>
+      </li>
+    </ol>
+
+    <h2>6. Low But Not Impossible Surprise Candidates</h2>
+    <ol start="37">
+      <li data-proof="true">★ State and prove the Vanishing Lemma in the following two cases: for nonnegative measurable functions and for functions belonging to \(L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.43, Q1.52" aria-label="Theory Questions.pdf: Q1.43, Q1.52">Q1.43, Q1.52</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Nonnegative case: if \(f\in M^+\) and \(\int f\,d\mu=0\), then \(f=0\) a.e. For \(E_n=\{f\ge1/n\}\),</p><div class="formula">\[
+0=\int f\,d\mu\ge {1\over n}\mu(E_n),
+\]</div><p>so \(\mu(E_n)=0\). Since \(\{f&gt;0\}=\bigcup_nE_n\), \(f=0\) a.e.</p><p>For \(f\in L^1\), if \(\int_E f\,d\mu=0\) for every measurable \(E\), take \(E=\{f&gt;0\}\) and \(E=\{f&lt;0\}\). This gives \(\int f^+=0\) and \(\int f^-=0\), so by the nonnegative case \(f^+=f^-=0\) a.e. Hence \(f=0\) a.e.</p></div></details>
+      </li>
+      <li data-proof="true">★ State and prove the theorem about regularity of the Lebesgue measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.18" aria-label="Theory Questions.pdf: Q1.18">Q1.18</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For Lebesgue measure, regularity says that for every measurable \(E\subset\mathbb R^n\),</p><div class="formula">\[
+\lambda(E)=\inf\{\lambda(O):E\subset O,
+\ O\text{ open}\},
+\]</div><p>and for finite-measure sets, \(\lambda(E)=\sup\{\lambda(K):K\subset E, K\text{ compact}\}\).</p><p>For outer approximation in the finite-measure case, cover \(E\) by open intervals or boxes \((I_k)\) with \(\sum_k |I_k|&lt;\lambda(E)+\varepsilon\). Let \(O=\bigcup_k I_k\). Then \(O\) is open, \(E\subset O\), and \(\lambda(O)&lt;\lambda(E)+\varepsilon\). Since \(E\) is measurable,</p><div class="formula">\[
+\lambda(O)=\lambda(E)+\lambda(O\setminus E),
+\]</div><p>so \(\lambda(O\setminus E)&lt;\varepsilon\). The general case follows by applying this to bounded pieces with summable errors. Inner regularity follows from outer regularity applied to complements inside large boxes.</p></div></details>
+      </li>
+      <li data-proof="true">★ Prove the continuity of the measure along monotone sequences, either increasing or decreasing, under suitable further assumptions. <span class="bank-ref" title="Theory Questions.pdf: Q1.5" aria-label="Theory Questions.pdf: Q1.5">Q1.5</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(E_n\uparrow E=\bigcup_nE_n\), then \(\mu(E_n)\uparrow\mu(E)\). Write \(F_1=E_1\) and \(F_n=E_n\setminus E_{n-1}\) for \(n\ge2\). The \(F_n\) are disjoint and \(E_N=\bigcup_{n=1}^NF_n\), so countable additivity gives \(\mu(E)=\lim_N\mu(E_N)\).</p><p>If \(E_n\downarrow E=\bigcap_nE_n\) and \(\mu(E_1)&lt;\infty\), then \(E_1\setminus E_n\uparrow E_1\setminus E\). By the increasing case, \(\mu(E_1\setminus E_n)\to\mu(E_1\setminus E)\). Subtract from the finite number \(\mu(E_1)\) to get \(\mu(E_n)\to\mu(E)\). The finiteness assumption is necessary.</p></div></details>
+      </li>
+      <li data-proof="false">★ Given a metric space \((X,d)\), write the definition of its Borel \(\sigma\)-algebra \(\mathcal B(X)\). Provide classes of Borel sets and characterize \(\mathcal B(\mathbb R)\), \(\mathcal B(\mathbb R^N)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.3" aria-label="Theory Questions.pdf: Q1.3">Q1.3</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a metric space \((X,d)\),</p><div class="formula">\[
+\mathcal B(X)=\sigma(\{O\subset X:O\text{ open}\})
+\]</div><p>is the Borel sigma-algebra. It contains open sets, closed sets, countable unions of closed sets \((F_\sigma)\), countable intersections of open sets \((G_\delta)\), and all sets obtained from these by countable set operations.</p><p>In \(\mathbb R\),</p><div class="formula">\[
+\mathcal B(\mathbb R)=\sigma((a,b):a&lt;b)=\sigma((-\infty,a):a\in\mathbb R).
+\]</div><p>In \(\mathbb R^N\), \(\mathcal B(\mathbb R^N)\) is generated by open balls, equivalently by open rectangles or rational rectangles.</p></div></details>
+      </li>
+    </ol>
+  </main>
+  <script>
+    const filterButtons = document.querySelectorAll(".priority-filter button");
+    const priorityButtons = document.querySelectorAll(".priority-filter button[data-priority]");
+    const proofButtons = document.querySelectorAll(".priority-filter button[data-proof]");
+    const filterState = { priority: "all", proof: "all" };
+    const sections = Array.from(document.querySelectorAll("h2")).map((heading) => ({
+      heading,
+      list: heading.nextElementSibling
+    })).filter((section) => section.list && section.list.tagName === "OL");
+
+    function itemPriority(item) {
+      const text = item.textContent.trim();
+      if (text.startsWith("★★★")) return "★★★";
+      if (text.startsWith("★★")) return "★★";
+      if (text.startsWith("★")) return "★";
+      return "";
+    }
+
+    function syncFilterButtons() {
+      priorityButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.priority === filterState.priority));
+      });
+      proofButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.proof === filterState.proof));
+      });
+    }
+
+    function applyFilters() {
+      syncFilterButtons();
+      sections.forEach(({ heading, list }) => {
+        let visibleCount = 0;
+        list.querySelectorAll("li").forEach((item) => {
+          const priorityVisible = filterState.priority === "all" || itemPriority(item) === filterState.priority;
+          const proofVisible = filterState.proof === "all" || item.dataset.proof === filterState.proof;
+          const visible = priorityVisible && proofVisible;
+          item.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        const empty = visibleCount === 0;
+        heading.dataset.empty = String(empty);
+        list.dataset.empty = String(empty);
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.priority) filterState.priority = button.dataset.priority;
+        if (button.dataset.proof) filterState.proof = button.dataset.proof;
+        applyFilters();
+      });
+    });
+  </script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

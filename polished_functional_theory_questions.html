@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polished Functional Analysis Question Checklist</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const queryTheme = params.get("theme");
+      const savedTheme = localStorage.getItem("rfa-theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = queryTheme === "dark" || queryTheme === "light"
+        ? queryTheme
+        : savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="checklist-page">
+  <script>
+    if (window.self !== window.top) {
+      document.body.classList.add("embedded");
+    }
+    window.parent.postMessage("rfa-frame-ready", window.location.origin);
+  </script>
+  <main>
+    <h1>Polished Functional Analysis Question Checklist</h1>
+    <nav class="checklist-switcher" aria-label="Checklist switcher">
+      <a href="polished_measure_theory_questions.html">Real Analysis</a>
+      <a href="polished_functional_theory_questions.html" aria-current="page">Functional Analysis</a>
+      <a href="index.html?topic=functional">Combined Switcher</a>
+    </nav>
+    <div class="theme-switcher standalone-theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+    </div>
+    <div class="priority-filter" role="group" aria-label="Priority filter">
+      <button type="button" data-priority="all" aria-pressed="true">All</button>
+      <button type="button" data-priority="★★★" aria-pressed="false">3 stars</button>
+      <button type="button" data-priority="★★" aria-pressed="false">2 stars</button>
+      <button type="button" data-priority="★" aria-pressed="false">1 star</button>
+      <button type="button" data-proof="all" aria-pressed="true">Any type</button>
+      <button type="button" data-proof="true" aria-pressed="false">Proofs</button>
+    </div>
+
+    <h2>1. Hahn-Banach And Separation</h2>
+    <ol start="1">
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the continuous extension form. <span class="bank-ref" title="Theory Questions.pdf: Q2.42" aria-label="Theory Questions.pdf: Q2.42">Q2.42</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(Y\) be a linear subspace of a normed space \(X\), and let \(f\in Y^*\). The continuous Hahn-Banach extension theorem says that there exists \(F\in X^*\) such that</p><div class="formula">\[
+F|_Y=f,
+\qquad
+\|F\|_{X^*}=\|f\|_{Y^*}.
+\]</div><p>Thus every continuous linear functional on a subspace extends to the whole space without increasing its norm.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the three corollaries of the Hanh-Banach Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.45" aria-label="Theory Questions.pdf: Q2.45">Q2.45</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Three standard corollaries are the following.</p><p>First, for every \(x_0\ne0\) in a normed space \(X\), there exists \(L\in X^*\) such that \(\|L\|=1\) and \(L(x_0)=\|x_0\|\). Define \(l(\alpha x_0)=\alpha\|x_0\|\) on \(\operatorname{span}\{x_0\}\); its norm is \(1\), and Hahn-Banach extends it.</p><p>Second, \(X^*\) separates points: if \(x\ne y\), apply the first corollary to \(x-y\) to get \(L(x-y)\ne0\), hence \(L(x)\ne L(y)\).</p><p>Third, if \(Y\subset X\) is a subspace and \(x_0\notin\overline Y\), then there exists \(L\in X^*\) such that \(L|_Y=0\) and \(L(x_0)\ne0\). Define a functional on \(Y+\operatorname{span}\{x_0\}\) by \(L(y+\alpha x_0)=\alpha\); it is continuous because \(\operatorname{dist}(x_0,Y)&gt;0\), then extend it by Hahn-Banach.</p></div></details>
+      </li>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, first version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>One separation form of Hahn-Banach is: if \(A,B\subset X\) are nonempty disjoint convex sets and \(A\) is open, then there exist \(L\in X^*\), \(L\ne0\), and \(\alpha\in\mathbb R\) such that</p><div class="formula">\[
+L(a)&lt;\alpha\le L(b)
+\qquad\forall a\in A,
+\forall b\in B.
+\]</div><p>So a continuous affine hyperplane separates the two convex sets, strictly on the open side.</p></div></details>
+      </li>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, second version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A stronger separation form is: if \(A,B\subset X\) are nonempty disjoint convex sets, \(A\) is compact, and \(B\) is closed, then there exist \(L\in X^*\), \(L\ne0\), and real numbers \(\alpha&lt;\beta\) such that</p><div class="formula">\[
+L(a)\le\alpha&lt;\beta\le L(b)
+\qquad\forall a\in A,
+\forall b\in B.
+\]</div><p>This is strict separation. Compactness of one set and closedness of the other give a positive gap after reducing to separation of convex neighborhoods.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Let \(X\) be a normed space, let \(H\) be a hyperplane of \(X\). When do we say that \(H\) separates or strictly separates \(A\) and \(B\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.43" aria-label="Theory Questions.pdf: Q2.43">Q2.43</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A hyperplane in a normed space has the form</p><div class="formula">\[
+H=\{x\in X:L(x)=\alpha\},
+\qquad L
+ot=0.
+\]</div><p>It separates two sets \(A\) and \(B\) if, for instance,</p><div class="formula">\[
+L(a)\le\alpha\le L(b)
+\qquad\forall a\in A,
+\forall b\in B.
+\]</div><p>It strictly separates them if there is a positive gap: there exist \(\alpha&lt;\beta\) such that \(L(a)\le\alpha&lt;\beta\le L(b)\) for all \(a\in A\), \(b\in B\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ Let \(Y\) be a vector subspace of \(X=\mathbb R^2\). Given \(f\in Y^*\), is it possible to find \(F\in X^*\) such that \(F=f\) in \(Y\) and \(\|F\|_{X^*}=\|f\|_{Y^*}\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.41" aria-label="Theory Questions.pdf: Q2.41">Q2.41</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Yes. Since \(\mathbb R^2\) is a normed linear space and \(Y\subset\mathbb R^2\) is a linear subspace, the continuous Hahn-Banach theorem applies. Therefore every \(f\in Y^*\) has an extension \(F\in(\mathbb R^2)^*\) satisfying</p><div class="formula">\[
+F|_Y=f,
+\qquad
+\|F\|_{(\mathbb R^2)^*}=\|f\|_{Y^*}.
+\]</div><p>In finite dimension all linear functionals are continuous, so no additional continuity issue appears.</p></div></details>
+      </li>
+    </ol>
+
+    <h2>2. Weak Convergence, Weak-Star Convergence, And Banach-Alaoglu</h2>
+    <ol start="7">
+      <li data-proof="false">★★★ Write the definition of weak convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.53" aria-label="Theory Questions.pdf: Q2.53">Q2.53</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A sequence \((x_n)\) in a normed space \(X\) converges weakly to \(x\), written \(x_n\rightharpoonup x\), if</p><div class="formula">\[
+L(x_n)\to L(x)
+\qquad\forall L\in X^*.
+\]</div><p>Thus weak convergence means convergence after testing against every continuous linear functional.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ How can weak convergence be formulated in \(L^p\) and in \(\ell^p\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.53" aria-label="Theory Questions.pdf: Q2.53">Q2.53</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>In \(L^p\), \(1\le p&lt;\infty\), weak convergence \(f_n\rightharpoonup f\) means</p><div class="formula">\[
+\int f_n g\,d\mu\to\int f g\,d\mu
+\qquad\forall g\in L^q,
+\]</div><p>where \(q\) is the conjugate exponent when \(1&lt;p&lt;\infty\). For \(p=1\), the test functions lie in \(L^\infty\).</p><p>In \(\ell^p\), weak convergence means</p><div class="formula">\[
+\sum_{k=1}^\infty x_n(k)y(k)\to \sum_{k=1}^\infty x(k)y(k)
+\qquad\forall y\in\ell^q.
+\]</div><p>In particular, weak convergence implies coordinatewise convergence, but coordinatewise convergence alone is generally not enough.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that strong convergence implies weak convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.54" aria-label="Theory Questions.pdf: Q2.54">Q2.54</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Suppose \(x_n\to x\) strongly in \(X\), meaning \(\|x_n-x\|\to0\). Let \(L\in X^*\). By continuity and linearity,</p><div class="formula">\[
+|L(x_n)-L(x)|=|L(x_n-x)|\le\|L\|\,\|x_n-x\|\to0.
+\]</div><p>Since this holds for every \(L\in X^*\), \(x_n\rightharpoonup x\). Thus norm convergence implies weak convergence.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Provide a counterexample for the converse implication. <span class="bank-ref" title="Theory Questions.pdf: Q2.54" aria-label="Theory Questions.pdf: Q2.54">Q2.54</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The converse is false. In \(\ell^2\), let \(e_n\) be the standard basis vector. For every \(y=(y_k)\in\ell^2\),</p><div class="formula">\[
+\langle e_n,y\rangle=y_n\to0,
+\]</div><p>so \(e_n\rightharpoonup0\). But \(\|e_n\|_2=1\) for every \(n\), so \(e_n\) does not converge strongly to \(0\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ If \(\{x_n\}\) weakly converges to \(x\), can \(\{x_n\}\) be unbounded? <span class="bank-ref" title="Theory Questions.pdf: Q2.56" aria-label="Theory Questions.pdf: Q2.56">Q2.56</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>No. A weakly convergent sequence is bounded. If \(x_n\rightharpoonup x\), then for each \(L\in X^*\), the scalar sequence \((L(x_n))\) is bounded. By the Uniform Boundedness Principle applied to the operators \(T_n:X^*\to\mathbb R\), \(T_n(L)=L(x_n)\), we get</p><div class="formula">\[
+\sup_n\|T_n\|&lt;\infty.
+\]</div><p>Under the canonical embedding \(X\hookrightarrow X^{**}\), \(\|T_n\|=\|x_n\|\). Hence \(\sup_n\|x_n\|&lt;\infty\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ State and prove lower semicontinuity with respect to weak convergence of \(x\mapsto\|x\|\). <span class="bank-ref" title="Theory Questions.pdf: Q2.56" aria-label="Theory Questions.pdf: Q2.56">Q2.56</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(x_n\rightharpoonup x\) in a normed space, then</p><div class="formula">\[
+\|x\|\le\liminf_{n\to\infty}\|x_n\|.
+\]</div><p>If \(x=0\), this is immediate. If \(x\ne0\), by Hahn-Banach choose \(L\in X^*\) with \(\|L\|=1\) and \(L(x)=\|x\|\). Then</p><div class="formula">\[
+\|x\|=L(x)=\lim_n L(x_n)\le \liminf_n |L(x_n)|\le\liminf_n\|x_n\|.
+\]</div><p>This proves lower semicontinuity of the norm with respect to weak convergence.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that if \(x_n\) weakly converges to \(x\) and \(L_n\) converges to \(L\) in \(X^*\), then \(L_n(x_n)\to L(x)\) as \(n\to\infty\). <span class="bank-ref" title="Theory Questions.pdf: Q2.57" aria-label="Theory Questions.pdf: Q2.57">Q2.57</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Assume \(x_n\rightharpoonup x\) in \(X\) and \(L_n\to L\) strongly in \(X^*\). Then \((x_n)\) is bounded, say \(\|x_n\|\le M\). Write</p><div class="formula">\[
+|L_n(x_n)-L(x)|
+\le |(L_n-L)(x_n)|+|L(x_n)-L(x)|.
+\]</div><p>The first term is at most \(\|L_n-L\|\,M\to0\), and the second tends to \(0\) by weak convergence. Hence \(L_n(x_n)\to L(x)\).</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the definition of weak* convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.59" aria-label="Theory Questions.pdf: Q2.59">Q2.59</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X=Y^*\) be a dual space. A sequence \((x_n^*)\subset Y^*\) converges weak-star to \(x^*\), written \(x_n^*\overset{*}{\rightharpoonup}x^*\), if</p><div class="formula">\[
+x_n^*(y)\to x^*(y)
+\qquad\forall y\in Y.
+\]</div><p>Compared with weak convergence in \(Y^*\), weak-star convergence tests only against elements of the predual \(Y\), not against all elements of \((Y^*)^*\).</p></div></details>
+      </li>
+      <li data-proof="false">★★★ State the Banach-Alaoglu theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.62" aria-label="Theory Questions.pdf: Q2.62">Q2.62</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Banach-Alaoglu theorem: the closed unit ball of the dual space \(X^*\) is compact in the weak-star topology \(\sigma(X^*,X)\).</p><p>Equivalently, every net in the closed unit ball of \(X^*\) has a weak-star convergent subnet. If \(X\) is separable, the weak-star compactness of bounded sets is sequential on bounded sets, so bounded sequences in \(X^*\) admit weak-star convergent subsequences.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Why can we say that from a bounded sequence in \(L^\infty\) we can extract a subsequence which weakly* converges in \(L^\infty\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.62" aria-label="Theory Questions.pdf: Q2.62">Q2.62</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Since \(L^\infty\) is the dual of \(L^1\) on a sigma-finite measure space, Banach-Alaoglu gives weak-star compactness of bounded subsets of \(L^\infty\). If \((f_n)\) is bounded in \(L^\infty\), then it lies in a closed ball of \((L^1)^*\).</p><p>Because \(L^1\) is separable in the usual setting, weak-star compactness is metrizable on bounded sets. Hence from any bounded sequence in \(L^\infty\) one can extract a subsequence \(f_{n_k}\) and a function \(f\in L^\infty\) such that</p><div class="formula">\[
+\int f_{n_k}g\,d\mu\to\int fg\,d\mu
+\qquad\forall g\in L^1.
+\]</div></div></details>
+      </li>
+      <li data-proof="true">★★★ Which is the relation between weak and weak* convergence? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.60" aria-label="Theory Questions.pdf: Q2.60">Q2.60</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Weak-star convergence is weaker than weak convergence on a dual space. If \(x_n^*\rightharpoonup x^*\) weakly in \(X^*\), then \(x_n^*(x)\to x^*(x)\) for every \(x\in X\), so \(x_n^*\overset{*}{\rightharpoonup}x^*\).</p><p>The converse is generally false because weak convergence in \(X^*\) tests against every element of \(X^{**}\), while weak-star convergence tests only against the embedded copy of \(X\). If \(X\) is reflexive, then \(X^{**}=X\) under the canonical identification, so weak and weak-star convergence on \(X^*\) coincide.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the properties of weak* convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.61" aria-label="Theory Questions.pdf: Q2.61">Q2.61</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Weak-star convergence has the following basic properties. The weak-star limit is unique because the predual separates points of \(X^*\). A weak-star convergent sequence is norm bounded by the Uniform Boundedness Principle. The norm is lower semicontinuous:</p><div class="formula">\[
+\|x^*\|\le\liminf_n\|x_n^*\|.
+\]</div><p>Weak-star convergence is stable under continuous linear operations that are compatible with the predual. In concrete form, for \(L^\infty=(L^1)^*\), \(f_n\overset{*}{\rightharpoonup}f\) means \(\int f_ng\to\int fg\) for every \(g\in L^1\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ State and prove the corollary of the Banach-Alaoglu theorem in a separable and reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.63" aria-label="Theory Questions.pdf: Q2.63">Q2.63</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(X\) is separable, every bounded sequence in \(X^*\) has a weak-star convergent subsequence. This follows from Banach-Alaoglu plus metrizability of the weak-star topology on bounded subsets when the predual is separable.</p><p>If \(X\) is reflexive, then bounded sequences in \(X\) have weakly convergent subsequences, provided \(X^*\) is separable in the usual sequential formulation. Indeed, the closed ball of \(X\) is weakly compact because \(X\) identifies with \(X^{**}\), and separability gives sequential compactness on bounded sets.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that the weak limit is unique. <span class="bank-ref" title="Theory Questions.pdf: Q2.55" aria-label="Theory Questions.pdf: Q2.55">Q2.55</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(x_n\rightharpoonup x\) and \(x_n\rightharpoonup y\), then for every \(L\in X^*\),</p><div class="formula">\[
+L(x-y)=L(x)-L(y)=0.
+\]</div><p>By Hahn-Banach, the dual separates points: if \(x-y\ne0\), there is \(L\in X^*\) with \(L(x-y)\ne0\), a contradiction. Therefore \(x=y\). The weak limit is unique.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that \(T\in L(X,Y)\) is weak-weak continuous. <span class="bank-ref" title="Theory Questions.pdf: Q2.58" aria-label="Theory Questions.pdf: Q2.58">Q2.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(T\in L(X,Y)\) and suppose \(x_n\rightharpoonup x\) in \(X\). To prove \(Tx_n\rightharpoonup Tx\) in \(Y\), test against an arbitrary \(M\in Y^*\). Since \(M\circ T\in X^*\),</p><div class="formula">\[
+M(Tx_n)=(M\circ T)(x_n)\to(M\circ T)(x)=M(Tx).
+\]</div><p>Thus every continuous functional on \(Y\) sees convergence, so \(Tx_n\rightharpoonup Tx\).</p></div></details>
+      </li>
+    </ol>
+
+    <h2>3. Compact Operators And Finite-Rank Operators</h2>
+    <ol start="22">
+      <li data-proof="false">★★ Write the definition of compact operator. <span class="bank-ref" title="Theory Questions.pdf: Q2.64" aria-label="Theory Questions.pdf: Q2.64">Q2.64</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A bounded linear operator \(T:X\to Y\) is compact if it maps bounded sets into relatively compact sets. Equivalently, whenever \((x_n)\) is bounded in \(X\), the sequence \((Tx_n)\) has a strongly convergent subsequence in \(Y\).</p><p>Compactness is a property stronger than boundedness in infinite-dimensional spaces.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Write the definition of operator of finite rank. <span class="bank-ref" title="Theory Questions.pdf: Q2.64" aria-label="Theory Questions.pdf: Q2.64">Q2.64</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A bounded linear operator \(T:X\to Y\) has finite rank if its range \(T(X)\) is finite-dimensional.</p><p>Equivalently, there exist \(y_1,\dots,y_m\in Y\) and \(L_1,\dots,L_m\in X^*\) such that</p><div class="formula">\[
+Tx=\sum_{j=1}^m L_j(x)y_j.
+\]</div></div></details>
+      </li>
+      <li data-proof="true">★★ How is a compact operator related to operators of finite rank? <span class="bank-ref" title="Theory Questions.pdf: Q2.65" aria-label="Theory Questions.pdf: Q2.65">Q2.65</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Every finite-rank bounded operator is compact. Indeed, the image of a bounded set under \(T\) is bounded in the finite-dimensional space \(T(X)\), and bounded subsets of finite-dimensional normed spaces are relatively compact.</p><p>The converse is false. For example, on \(\ell^2\), the diagonal operator \(T(x_1,x_2,\ldots)=(x_1,x_2/2,x_3/3,\ldots)\) is compact but has infinite-dimensional range.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Can a compact operator be surjective? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.65" aria-label="Theory Questions.pdf: Q2.65">Q2.65</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A compact operator cannot be surjective onto an infinite-dimensional Banach space. Suppose \(T:X\to Y\) is compact and surjective, with \(Y\) Banach. By the Open Mapping Theorem, \(T\) maps some bounded ball in \(X\) onto a set containing a ball around \(0\) in \(Y\).</p><p>Since \(T\) is compact, the closure of the image of that bounded ball is compact. Hence a closed ball in \(Y\) is compact. By Riesz's theorem, this forces \(Y\) to be finite-dimensional. Therefore surjectivity is impossible when \(Y\) is infinite-dimensional.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the theorem about the characterization of compact operators in terms of weak-strong continuity. <span class="bank-ref" title="Theory Questions.pdf: Q2.66" aria-label="Theory Questions.pdf: Q2.66">Q2.66</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Assume \(X\) is reflexive. A bounded linear operator \(T:X\to Y\) is compact iff weak convergence in \(X\) is sent to strong convergence in \(Y\):</p><div class="formula">\[
+x_n\rightharpoonup x
+\quad\Longrightarrow\quad
+\|Tx_n-Tx\|_Y\to0.
+\]</div><p>If \(T\) is compact and \(x_n\rightharpoonup x\), then \((Tx_n)\) is relatively compact. Every strongly convergent subsequence has weak limit \(Tx\), because bounded linear maps are weak-weak continuous; uniqueness of weak limits forces the strong subsequential limit to be \(Tx\). Relative compactness then implies the whole sequence converges strongly to \(Tx\).</p><p>Conversely, if the weak-strong property holds and \((x_n)\) is bounded, reflexivity gives a subsequence \(x_{n_k}\rightharpoonup x\). The property gives \(Tx_{n_k}\to Tx\) strongly, so \(T\) is compact.</p></div></details>
+      </li>
+      <li data-proof="false">★★ State the Ascoli-Arzela theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.4" aria-label="Theory Questions.pdf: Q2.4">Q2.4</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Arzela-Ascoli theorem: let \(K\) be a compact metric space and let \(\mathcal F\subset C(K)\) with the uniform norm. If \(\mathcal F\) is equibounded and equicontinuous, then \(\mathcal F\) is relatively compact in \(C(K)\).</p><p>Equibounded means \(|f(x)|\le M\) for all \(f\in\mathcal F\), \(x\in K\). Equicontinuity means that for every \(\varepsilon&gt;0\) there exists \(\delta&gt;0\) such that \(d(x,y)&lt;\delta\) implies \(|f(x)-f(y)|&lt;\varepsilon\) for every \(f\in\mathcal F\). Equivalently, every sequence in \(\mathcal F\) admits a uniformly convergent subsequence.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Write the statement of the Ascoli-Arzela theorem when the subset of \(C^0(X)\) is a sequence \(\{f_n\}\). Is there any sufficient condition to apply the theorem? <span class="bank-ref" title="Theory Questions.pdf: Q2.5" aria-label="Theory Questions.pdf: Q2.5">Q2.5</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(K\) be compact metric and \((f_n)\subset C(K)\). If the sequence is equibounded and equicontinuous, then there exist a subsequence \((f_{n_j})\) and a continuous function \(f\in C(K)\) such that</p><div class="formula">\[
+\|f_{n_j}-f\|_\infty\to0.
+\]</div><p>A common sufficient condition for equicontinuity is a uniform Lipschitz bound: \(|f_n(x)-f_n(y)|\le Ld(x,y)\) for all \(n\), \(x\), \(y\), together with a uniform sup-norm bound.</p></div></details>
+      </li>
+    </ol>
+
+    <h2>4. Hilbert Spaces, Fredholm, Spectrum, And Spectral Theorem</h2>
+    <ol start="29">
+      <li data-proof="false">★★ State the Fredholm alternative. <span class="bank-ref" title="Theory Questions.pdf: Q2.74" aria-label="Theory Questions.pdf: Q2.74">Q2.74</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a compact operator \(T:H\to H\), the Fredholm alternative for \(I-T\) says exactly one of the following alternatives occurs:</p><p>Either \(I-T\) is invertible, and for every \(f\in H\) the equation \(u-Tu=f\) has a unique solution; or the homogeneous equation \(u-Tu=0\) has nonzero solutions.</p><p>In the second case, solvability of \(u-Tu=f\) is governed by the adjoint homogeneous equation: a solution exists iff</p><div class="formula">\[
+f\perp\ker(I-T^*).
+\]</div><p>When solutions exist, they are unique up to addition of elements of \(\ker(I-T)\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ Discuss the solvability of equations on Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.74" aria-label="Theory Questions.pdf: Q2.74">Q2.74</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For equations of the form \(u-Tu=f\) on a Hilbert space with \(T\) compact, the Fredholm alternative is the main solvability criterion.</p><p>If \(\ker(I-T)=\{0\}\), then \(I-T\) is bijective with bounded inverse, so for every \(f\) there is a unique solution. If \(\ker(I-T)\ne\{0\}\), uniqueness fails. Existence is equivalent to the compatibility condition</p><div class="formula">\[
+f\in \operatorname{Ran}(I-T)=\ker(I-T^*)^\perp.
+\]</div><p>Thus the obstruction to solvability is finite-dimensional and is detected by testing \(f\) against solutions of the adjoint homogeneous problem.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Write the definitions of \(\rho(T)\), \(\sigma(T)\), \(EV(T)\), \(\sigma_p(T)\). <span class="bank-ref" title="Theory Questions.pdf: Q2.75" aria-label="Theory Questions.pdf: Q2.75">Q2.75</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(T\in L(X)\), the resolvent set is</p><div class="formula">\[
+\rho(T)=\{\lambda\in\mathbb C: \lambda I-T\text{ is bijective and }(\lambda I-T)^{-1}\in L(X)\}.
+\]</div><p>The spectrum is \(\sigma(T)=\mathbb C\setminus\rho(T)\). The point spectrum, or set of eigenvalues, is</p><div class="formula">\[
+\sigma_p(T)=EV(T)=\{\lambda:\ker(\lambda I-T)\ne\{0\}\}.
+\]</div><p>Thus eigenvalues are spectral values for which \(\lambda I-T\) fails to be injective.</p></div></details>
+      </li>
+      <li data-proof="false">★★ What is the structure of the spectrum of a compact operator? <span class="bank-ref" title="Theory Questions.pdf: Q2.75" aria-label="Theory Questions.pdf: Q2.75">Q2.75</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(T\) is compact on an infinite-dimensional Banach space, then \(0\in\sigma(T)\). Every nonzero spectral value is an eigenvalue of finite multiplicity.</p><p>Moreover, \(\sigma(T)\setminus\{0\}\) is at most countable, and its only possible accumulation point is \(0\). Therefore the nonzero spectrum is either finite or a sequence of eigenvalues tending to \(0\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ State the spectral theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.76" aria-label="Theory Questions.pdf: Q2.76">Q2.76</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Spectral theorem for compact self-adjoint operators: if \(T\) is compact and self-adjoint on a Hilbert space \(H\), then \(H\) has an orthonormal basis adapted to \(T\). More precisely, \(\overline{\operatorname{Ran}T}\) has an orthonormal basis of eigenvectors, the eigenvalues are real, nonzero eigenvalues have finite multiplicity, and the only possible accumulation point is \(0\).</p><p>Equivalently, for suitable orthonormal eigenvectors \((e_k)\),</p><div class="formula">\[
+Tx=\sum_k \lambda_k\langle x,e_k\rangle e_k,
+\]</div><p>with \(\lambda_k\to0\) if infinitely many eigenvalues occur.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Write the definition of symmetric operator on Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A bounded linear operator \(T:H\to H\) on a Hilbert space is symmetric, or self-adjoint in the bounded real setting, if</p><div class="formula">\[
+\langle Tx,y\rangle=\langle x,Ty\rangle
+\qquad\forall x,y\in H.
+\]</div><p>In complex Hilbert spaces one usually says self-adjoint when \(T=T^*\), which corresponds to the same identity with the convention for the complex inner product.</p></div></details>
+      </li>
+      <li data-proof="false">★★ How is it possible to compute the norm of a symmetric operator? <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(T\in L(H)\) is self-adjoint, then</p><div class="formula">\[
+\|T\|=\sup_{\|x\|=1}|\langle Tx,x\rangle|.
+\]</div><p>One inequality is immediate from Cauchy-Schwarz: \(|\langle Tx,x\rangle|\le\|T\|\). The reverse follows from the polarization identity and self-adjointness. In particular, the norm of a self-adjoint operator is controlled by its quadratic form.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the projection theorem and its corollary in Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.68" aria-label="Theory Questions.pdf: Q2.68">Q2.68</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Projection theorem: if \(K\) is a nonempty closed convex subset of a Hilbert space \(H\), then for every \(x\in H\) there exists a unique \(p\in K\) such that</p><div class="formula">\[
+\|x-p\|=\inf_{y\in K}\|x-y\|.
+\]</div><p>The point \(p\) is characterized by</p><div class="formula">\[
+\langle x-p,y-p\rangle\le0
+\qquad\forall y\in K.
+\]</div><p>Existence follows by taking a minimizing sequence and using the parallelogram identity to show it is Cauchy. Since \(K\) is closed, the limit lies in \(K\). Uniqueness follows from strict convexity of the Hilbert norm, again via the parallelogram identity.</p><p>Corollary: if \(M\) is a closed linear subspace, then every \(x\in H\) decomposes uniquely as \(x=m+z\), with \(m\in M\) and \(z\in M^\perp\). This is the orthogonal decomposition \(H=M\oplus M^\perp\).</p></div></details>
+      </li>
+      
+      
+      
+    </ol>
+
+    <h2>5. \(L^p\), \(\ell^p\), And Core Inequalities</h2>
+    <ol start="37">
+      <li data-proof="true">★★ Write and show the Holder inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.17" aria-label="Theory Questions.pdf: Q2.17">Q2.17</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(1&lt;p,q&lt;\infty\) with \(1/p+1/q=1\). Holder's inequality states that if \(f\in L^p\) and \(g\in L^q\), then \(fg\in L^1\) and</p><div class="formula">\[
+\int |fg|\,d\mu\le \|f\|_p\|g\|_q.
+\]</div><p>If either norm is zero, the result is trivial. Otherwise apply Young's inequality to \(a=|f|/\|f\|_p\), \(b=|g|/\|g\|_q\):</p><div class="formula">\[
+{|fg|\over\|f\|_p\|g\|_q}
+\le {1\over p}{|f|^p\over\|f\|_p^p}+{1\over q}{|g|^q\over\|g\|_q^q}.
+\]</div><p>Integrating gives \(\int |fg|/(\|f\|_p\|g\|_q)\le1\), which is Holder's inequality.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Write and show the Minkowski inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.18" aria-label="Theory Questions.pdf: Q2.18">Q2.18</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Minkowski's inequality says that for \(1\le p\le\infty\),</p><div class="formula">\[
+\|f+g\|_p\le\|f\|_p+\|g\|_p.
+\]</div><p>For \(p=1\) this is the integral of \(|f+g|\le|f|+|g|\). For \(1&lt;p&lt;\infty\), let \(q\) be conjugate to \(p\). If \(f+g\ne0\), then</p><div class="formula">\[
+\|f+g\|_p^p
+\le\int |f|\,|f+g|^{p-1}+\int |g|\,|f+g|^{p-1}.
+\]</div><p>Apply Holder to both terms and use \(\||f+g|^{p-1}\|_q=\|f+g\|_p^{p-1}\). Dividing gives the inequality. The case \(p=\infty\) is the essential-supremum triangle inequality.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Show that \(L^p\) is a normed space. <span class="bank-ref" title="Theory Questions.pdf: Q2.19" aria-label="Theory Questions.pdf: Q2.19">Q2.19</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(1\le p&lt;\infty\), define</p><div class="formula">\[
+\|f\|_p=\left(\int |f|^p\,d\mu\right)^{1/p}
+\]</div><p>on equivalence classes modulo equality a.e. Positivity and homogeneity are immediate, and \(\|f\|_p=0\) implies \(f=0\) a.e. The triangle inequality is exactly Minkowski's inequality. Thus \(L^p\) is a normed space. For \(p=\infty\), the norm is \(\|f\|_\infty=\operatorname*{ess\,sup}|f|\), and the norm axioms follow from the properties of the essential supremum.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Show the completeness of \(L^p\) spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.22" aria-label="Theory Questions.pdf: Q2.22">Q2.22</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((f_n)\) be Cauchy in \(L^p\), \(1\le p&lt;\infty\). Choose a subsequence \((f_{n_k})\) such that</p><div class="formula">\[
+\|f_{n_{k+1}}-f_{n_k}\|_p\le2^{-k}.
+\]</div><p>By Minkowski, \(\sum_k |f_{n_{k+1}}-f_{n_k}|\) has finite \(L^p\)-norm, hence is finite a.e. Therefore \((f_{n_k})\) converges a.e. to some measurable \(f\). The same series estimate shows \(f_{n_k}\to f\) in \(L^p\). Since the original sequence is Cauchy, the whole sequence converges to \(f\) in \(L^p\).</p><p>For \(p=\infty\), a Cauchy sequence in essential supremum norm has representatives that are uniformly Cauchy outside a null set, so it converges to an essentially bounded limit. Hence every \(L^p\) is complete.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Write the definition of conjugate numbers. Show the Young inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.16" aria-label="Theory Questions.pdf: Q2.16">Q2.16</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Conjugate exponents \(p,q\in(1,\infty)\) satisfy</p><div class="formula">\[
+{1\over p}+{1\over q}=1.
+\]</div><p>Young's inequality says that for all \(a,b\ge0\),</p><div class="formula">\[
+ab\le {a^p\over p}+{b^q\over q}.
+\]</div><p>It follows from weighted AM-GM applied to \(a^p\) and \(b^q\) with weights \(1/p\) and \(1/q\):</p><div class="formula">\[
+(a^p)^{1/p}(b^q)^{1/q}
+\le {1\over p}a^p+{1\over q}b^q.
+\]</div></div></details>
+      </li>
+      <li data-proof="true">★★ Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.20" aria-label="Theory Questions.pdf: Q2.20">Q2.20</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(\mu(X)&lt;\infty\) and \(1\le p\le q\le\infty\), then \(L^q(X)\subset L^p(X)\), with</p><div class="formula">\[
+\|f\|_p\le \mu(X)^{1/p-1/q}\|f\|_q
+\]</div><p>for \(q&lt;\infty\), obtained by Holder applied to \(|f|^p\cdot1\). For \(q=\infty\), \(\|f\|_p\le\mu(X)^{1/p}\|f\|_\infty\).</p><p>The finite-measure hypothesis is essential. On infinite-measure spaces there is no general inclusion between different \(L^p\) spaces; power functions on \((1,\infty)\) give counterexamples in both directions.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the interpolation inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.21" aria-label="Theory Questions.pdf: Q2.21">Q2.21</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(1\le p&lt;r&lt;q\le\infty\) and choose \(\theta\in(0,1)\) such that</p><div class="formula">\[
+{1\over r}={\theta\over p}+{1-\theta\over q}.
+\]</div><p>If \(f\in L^p\cap L^q\), then</p><div class="formula">\[
+\|f\|_r\le\|f\|_p^\theta\|f\|_q^{1-\theta}.
+\]</div><p>For \(q&lt;\infty\), write \(|f|^r=|f|^{\theta r}|f|^{(1-\theta)r}\) and apply Holder with exponents \(p/(\theta r)\) and \(q/((1-\theta)r)\). These are conjugate exactly by the identity defining \(\theta\). The case \(q=\infty\) follows from \(|f|^r\le\|f\|_\infty^{r-p}|f|^p\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ How are \(\ell^p\) and \(L^p\) related? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The space \(\ell^p\) is the special case of \(L^p\) over \(\mathbb N\) with counting measure. A sequence \(x=(x_k)\) belongs to \(\ell^p\) iff</p><div class="formula">\[
+\sum_{k=1}^\infty |x_k|^p&lt;\infty,
+\]</div><p>and this is exactly the \(L^p\)-integrability condition for functions on \((\mathbb N,\mathcal P(\mathbb N),\#)\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ What is the inclusion of \(\ell^p\) spaces? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For sequence spaces, if \(1\le p\le q\le\infty\), then</p><div class="formula">\[
+\ell^p\subset\ell^q,
+\qquad
+\|x\|_q\le\|x\|_p.
+\]</div><p>This direction is opposite to the finite-measure inclusion for \(L^p\) spaces. The reason is that counting measure on \(\mathbb N\) has infinite total mass but individual atoms force boundedness of \(\ell^p\) sequences.</p></div></details>
+      </li>
+      <li data-proof="false">★★ For which \(p\) are \(L^p(\mathbb R)\) and \(\ell^p\) separable? <span class="bank-ref" title="Theory Questions.pdf: Q2.23, Q2.24, Q2.25" aria-label="Theory Questions.pdf: Q2.23, Q2.24, Q2.25">Q2.23, Q2.24, Q2.25</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Both \(L^p(\mathbb R)\) and \(\ell^p\) are separable for \(1\le p&lt;\infty\). Dense countable sets are obtained from simple functions with rational coefficients and rational intervals in \(L^p\), and finitely supported rational sequences in \(\ell^p\).</p><p>The spaces \(L^\infty\) and \(\ell^\infty\) are not separable. For example, \(\ell^\infty\) contains uncountably many sequences whose pairwise sup-distance is \(1\).</p></div></details>
+      </li>
+    </ol>
+
+    <h2>6. Low But Not Impossible Surprise Candidates</h2>
+    <ol start="47">
+      <li data-proof="false">★ Define the evaluation map, also called the canonical map, list its main properties, and give the definition of reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.49, Q2.50" aria-label="Theory Questions.pdf: Q2.49, Q2.50">Q2.49, Q2.50</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a normed space \(X\), the canonical evaluation map is</p><div class="formula">\[
+\tau:X\to X^{**},
+\qquad
+\tau(x)(L)=L(x)
+\quad (L\in X^*).
+\]</div><p>It is linear and isometric: \(\|\tau(x)\|_{X^{**}}=\|x\|\), by Hahn-Banach. A Banach space is reflexive if \(\tau\) is onto. In that case \(X\) can be identified isometrically with its bidual \(X^{**}\).</p></div></details>
+      </li>
+      <li data-proof="false">★ Define open mapping, state the Open Mapping Theorem, state the Bounded Inverse Theorem, and state the Closed Graph Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37" aria-label="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37">Q2.33, Q2.34, Q2.36, Q2.37</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A map is open if it sends open sets to open sets. The Open Mapping Theorem states that a surjective bounded linear operator between Banach spaces is open.</p><p>The Bounded Inverse Theorem follows: if \(T:X\to Y\) is bijective, bounded, and linear between Banach spaces, then \(T^{-1}:Y\to X\) is bounded.</p><p>The Closed Graph Theorem states that if \(T:X\to Y\) is linear between Banach spaces and its graph \(\{(x,Tx):x\in X\}\) is closed in \(X\times Y\), then \(T\) is bounded.</p></div></details>
+      </li>
+      <li data-proof="true">★ State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle. <span class="bank-ref" title="Theory Questions.pdf: Q2.31" aria-label="Theory Questions.pdf: Q2.31">Q2.31</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Banach-Steinhaus, or Uniform Boundedness Principle: if \(X\) is Banach, \(Y\) is normed, and \(\mathcal F\subset L(X,Y)\) is pointwise bounded, meaning</p><div class="formula">\[
+\sup_{T\in\mathcal F}\|Tx\|&lt;\infty
+\qquad\forall x\in X,
+\]</div><p>then \(\mathcal F\) is uniformly bounded:</p><div class="formula">\[
+\sup_{T\in\mathcal F}\|T\|&lt;\infty.
+\]</div><p>Proof: define closed sets \(E_n=\{x:\sup_{T\in\mathcal F}\|Tx\|\le n\}\). By pointwise boundedness, \(X=\bigcup_nE_n\). Since \(X\) is complete, Baire's theorem gives some \(E_N\) with nonempty interior. Thus there are \(x_0\) and \(r&gt;0\) such that \(B(x_0,r)\subset E_N\). For \(\|h\|&lt;r\), both \(x_0\) and \(x_0+h\) are controlled, hence \(\|Th\|\le2N\). Scaling gives \(\|T\|\le2N/r\) uniformly in \(T\).</p></div></details>
+      </li>
+      <li data-proof="true">★ State and prove the Riesz representation theorem in Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.69" aria-label="Theory Questions.pdf: Q2.69">Q2.69</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Riesz representation theorem: for every continuous linear functional \(F\in H^*\) on a Hilbert space \(H\), there exists a unique \(y\in H\) such that</p><div class="formula">\[
+F(x)=\langle x,y\rangle
+\qquad\forall x\in H,
+\]</div><p>and \(\|F\|=\|y\|\).</p><p>If \(F=0\), take \(y=0\). Otherwise let \(M=\ker F\), a closed proper subspace. Choose \(z\in M^\perp\), \(z\ne0\). Since \(M^\perp\) is one-dimensional, every \(x\in H\) decomposes as \(x=m+\alpha z\), and \(F(x)=\alpha F(z)\). Choosing \(y=\overline{F(z)}z/\|z\|^2\), with the convention adapted to the inner product, gives \(F(x)=\langle x,y\rangle\). Uniqueness follows by testing \(x=y_1-y_2\). The norm identity follows from Cauchy-Schwarz and equality at \(x=y\).</p></div></details>
+      </li>
+      <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A metric space is separable if it contains a countable dense subset. In \(C^0([a,b])\) with the sup norm, polynomials with rational coefficients form a countable set.</p><p>By Weierstrass, real-coefficient polynomials are dense in \(C^0([a,b])\). Given such a polynomial, approximate its finitely many real coefficients by rational numbers; on the compact interval this changes the sup norm by an arbitrarily small amount. Hence rational polynomials are countable and dense, so \(C^0([a,b])\) is separable.</p></div></details>
+      </li>
+    </ol>
+  </main>
+  <script>
+    const filterButtons = document.querySelectorAll(".priority-filter button");
+    const priorityButtons = document.querySelectorAll(".priority-filter button[data-priority]");
+    const proofButtons = document.querySelectorAll(".priority-filter button[data-proof]");
+    const filterState = { priority: "all", proof: "all" };
+    const sections = Array.from(document.querySelectorAll("h2")).map((heading) => ({
+      heading,
+      list: heading.nextElementSibling
+    })).filter((section) => section.list && section.list.tagName === "OL");
+
+    function itemPriority(item) {
+      const text = item.textContent.trim();
+      if (text.startsWith("★★★")) return "★★★";
+      if (text.startsWith("★★")) return "★★";
+      if (text.startsWith("★")) return "★";
+      return "";
+    }
+
+    function syncFilterButtons() {
+      priorityButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.priority === filterState.priority));
+      });
+      proofButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.proof === filterState.proof));
+      });
+    }
+
+    function applyFilters() {
+      syncFilterButtons();
+      sections.forEach(({ heading, list }) => {
+        let visibleCount = 0;
+        list.querySelectorAll("li").forEach((item) => {
+          const priorityVisible = filterState.priority === "all" || itemPriority(item) === filterState.priority;
+          const proofVisible = filterState.proof === "all" || item.dataset.proof === filterState.proof;
+          const visible = priorityVisible && proofVisible;
+          item.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        const empty = visibleCount === 0;
+        heading.dataset.empty = String(empty);
+        list.dataset.empty = String(empty);
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.priority) filterState.priority = button.dataset.priority;
+        if (button.dataset.proof) filterState.proof = button.dataset.proof;
+        applyFilters();
+      });
+    });
+  </script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
