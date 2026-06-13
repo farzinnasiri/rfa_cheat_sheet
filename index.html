@@ -3,87 +3,248 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Polished Theory Question Checklists</title>
+  <title>RFA Exam Trainer — Real &amp; Functional Analysis</title>
+  <meta name="description" content="Active recall trainer for Politecnico di Milano Real and Functional Analysis. Practice retrieval, layered hints, mock exams.">
+
+  <!-- Prevent theme flash -->
   <script>
-    const savedTheme = localStorage.getItem("rfa-theme");
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    (function () {
+      var t = localStorage.getItem("rfa-theme");
+      var s = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = (t === "dark" || t === "light") ? t : s;
+    })();
   </script>
-  <link rel="stylesheet" href="assets/site.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <!-- Data + App -->
+  <script src="assets/data.js"></script>
+  <link rel="stylesheet" href="assets/app.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <p class="brand__eyebrow">RFA oral exam</p>
-      <h1 class="brand__title">Polished theory checklists</h1>
+
+  <!-- ═══════════════════════════════════════ TOPBAR ══════════════════════════════════════ -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-left">
+      <button class="btn-icon" id="btn-back" aria-label="Back" hidden>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="brand">
+        <span class="brand-eyebrow">Polimi · RFA</span>
+        <span class="brand-title" id="topbar-title">Exam Trainer</span>
+      </div>
     </div>
-    <div class="switcher" role="group" aria-label="Checklist switcher">
-      <button type="button" id="measureButton" aria-pressed="true">Real Analysis</button>
-      <button type="button" id="functionalButton" aria-pressed="false">Functional Analysis</button>
-    </div>
-    <div class="priority-filter topbar-filter" role="group" aria-label="Question filters">
-      <button type="button" data-priority="all" aria-pressed="true">All</button>
-      <button type="button" data-priority="★★★" aria-pressed="false">3 stars</button>
-      <button type="button" data-priority="★★" aria-pressed="false">2 stars</button>
-      <button type="button" data-priority="★" aria-pressed="false">1 star</button>
-      <button type="button" data-proof="all" aria-pressed="true">Any type</button>
-      <button type="button" data-proof="true" aria-pressed="false">Proofs</button>
-    </div>
-    <div class="theme-switcher" role="group" aria-label="Theme">
-      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
-      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+
+    <div class="topbar-center" id="topbar-center"></div>
+
+    <div class="topbar-right">
+      <!-- Filters (visible in browse + practice) -->
+      <div class="filter-strip" id="topbar-filters" hidden>
+        <div class="btn-group" role="group" aria-label="Subject">
+          <button type="button" data-filter-subject="measure"    aria-pressed="true">Real</button>
+          <button type="button" data-filter-subject="functional" aria-pressed="false">Functional</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Priority">
+          <button type="button" data-filter-priority="all" aria-pressed="true">All</button>
+          <button type="button" data-filter-priority="★★★" aria-pressed="false">★★★</button>
+          <button type="button" data-filter-priority="★★"  aria-pressed="false">★★</button>
+          <button type="button" data-filter-priority="★"   aria-pressed="false">★</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Type">
+          <button type="button" data-filter-proof="all"  aria-pressed="true">Any</button>
+          <button type="button" data-filter-proof="true" aria-pressed="false">Proofs</button>
+        </div>
+      </div>
+
+      <!-- Theme -->
+      <div class="btn-group theme-group" role="group" aria-label="Theme">
+        <button type="button" data-theme-choice="light" aria-pressed="false" title="Light mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+        </button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false" title="Dark mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <iframe
-    id="measureFrame"
-    class="checklist-frame"
-    title="Real analysis theory checklist"
-    src="polished_measure_theory_questions.html?embedded=1">
-  </iframe>
-  <iframe
-    id="functionalFrame"
-    class="checklist-frame"
-    title="Functional analysis theory checklist"
-    src="polished_functional_theory_questions.html?embedded=1"
-    hidden>
-  </iframe>
+  <!-- Thin session progress bar -->
+  <div class="session-bar" id="session-bar" hidden>
+    <div class="session-bar-fill" id="session-bar-fill" style="width:0%"></div>
+  </div>
 
-  <script>
-    (function () {
-      const checklistFrames = {
-        measure: document.getElementById("measureFrame"),
-        functional: document.getElementById("functionalFrame")
-      };
-      const measureButton = document.getElementById("measureButton");
-      const functionalButton = document.getElementById("functionalButton");
+  <!-- ═══════════════════════════════════════ HOME ══════════════════════════════════════ -->
+  <main id="view-home" class="view" aria-label="Home">
+    <div class="home-hero">
+      <h1 class="home-title">RFA Exam Trainer</h1>
+      <p class="home-sub">Real &amp; Functional Analysis · Politecnico di Milano</p>
+    </div>
 
-      function selectedChecklist() {
-        const params = new URLSearchParams(window.location.search);
-        const topic = params.get("topic") || window.location.hash.slice(1);
-        return topic === "functional" ? "functional" : "measure";
-      }
+    <div class="home-stats" id="home-stats"><!-- rendered by JS --></div>
 
-      function showChecklist(kind, updateUrl = true) {
-        const isMeasure = kind === "measure";
-        checklistFrames.measure.hidden = !isMeasure;
-        checklistFrames.functional.hidden = isMeasure;
-        measureButton.setAttribute("aria-pressed", String(isMeasure));
-        functionalButton.setAttribute("aria-pressed", String(!isMeasure));
+    <div class="home-modes">
+      <p class="section-label">Start a session</p>
+      <div class="mode-grid">
+        <button class="mode-card" id="mode-weak">
+          <span class="mode-icon" aria-hidden="true">⚡</span>
+          <span class="mode-name">Weak spots</span>
+          <span class="mode-desc" id="mode-weak-desc">Questions you found hard</span>
+        </button>
+        <button class="mode-card" id="mode-chapter">
+          <span class="mode-icon" aria-hidden="true">📖</span>
+          <span class="mode-name">Chapter review</span>
+          <span class="mode-desc">Pick a chapter</span>
+        </button>
+        <button class="mode-card" id="mode-random">
+          <span class="mode-icon" aria-hidden="true">🎲</span>
+          <span class="mode-name">Random drill</span>
+          <span class="mode-desc">Surprise me</span>
+        </button>
+        <button class="mode-card" id="mode-mock">
+          <span class="mode-icon" aria-hidden="true">📝</span>
+          <span class="mode-name">Mock exam</span>
+          <span class="mode-desc">3 questions, exam format</span>
+        </button>
+      </div>
+    </div>
 
-        if (updateUrl) {
-          const url = new URL(window.location.href);
-          url.searchParams.set("topic", isMeasure ? "measure" : "functional");
-          url.hash = "";
-          window.history.replaceState(null, "", url);
-        }
-      }
+    <button class="link-btn" id="btn-browse">Browse all 91 questions →</button>
+  </main>
 
-      measureButton.addEventListener("click", () => showChecklist("measure"));
-      functionalButton.addEventListener("click", () => showChecklist("functional"));
-      showChecklist(selectedChecklist(), false);
-    })();
-  </script>
-  <script src="assets/site.js"></script>
+  <!-- ═══════════════════════════════════════ CHAPTER PICKER ════════════════════════════ -->
+  <main id="view-chapter-picker" class="view" hidden aria-label="Chapter picker">
+    <div class="picker-inner">
+      <h2 class="picker-heading">Choose a chapter</h2>
+      <div class="picker-tabs">
+        <button type="button" id="picker-tab-measure"    aria-pressed="true">Real Analysis</button>
+        <button type="button" id="picker-tab-functional" aria-pressed="false">Functional Analysis</button>
+      </div>
+      <div class="chapter-list" id="chapter-list"><!-- rendered by JS --></div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ PRACTICE ═════════════════════════════════ -->
+  <main id="view-practice" class="view" hidden aria-label="Practice a question">
+
+    <!-- Exam-paper card -->
+    <article class="exam-paper" id="exam-paper">
+      <div class="paper-header">
+        <div class="paper-meta" id="paper-meta"></div>
+        <div class="paper-tags" id="paper-tags"></div>
+      </div>
+      <div class="paper-question" id="paper-question"></div>
+      <!-- Blank answer lines (visible before recall) -->
+      <div class="paper-blank" id="paper-blank">
+        <div class="blank-line"></div><div class="blank-line"></div>
+        <div class="blank-line"></div><div class="blank-line"></div>
+        <div class="blank-line"></div><div class="blank-line"></div>
+      </div>
+    </article>
+
+    <!-- Before recall: single CTA -->
+    <div class="recall-cta" id="recall-cta">
+      <button class="btn-recall" id="btn-start-recall">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Try to recall
+      </button>
+      <p class="recall-hint">Look at the question. Try to reproduce the answer from memory.</p>
+    </div>
+
+    <!-- After recall started: reveal controls + content -->
+    <div class="answer-panel" id="answer-panel" hidden>
+      <div class="timer-row">
+        <span class="timer-label">Thinking…</span>
+        <span class="timer-display" id="timer-display">0:00</span>
+        <button class="btn-text" id="btn-skip-timer">Skip to answer</button>
+      </div>
+
+      <div class="reveal-row" id="reveal-row">
+        <button class="btn-reveal" id="btn-reveal-strategy" hidden>💡 Show strategy</button>
+        <button class="btn-reveal" id="btn-reveal-keysteps" hidden>🔑 Show key steps</button>
+        <button class="btn-reveal" id="btn-reveal-full">📖 Show full answer</button>
+      </div>
+
+      <!-- Layered answer content -->
+      <div class="answer-layers" id="answer-layers">
+        <div class="answer-layer" id="layer-strategy" hidden>
+          <div class="layer-badge">Strategy</div>
+          <div class="layer-body" id="strategy-content"></div>
+        </div>
+        <div class="answer-layer" id="layer-keysteps" hidden>
+          <div class="layer-badge">Key steps</div>
+          <div class="layer-body" id="keysteps-content"></div>
+        </div>
+        <div class="answer-layer" id="layer-full" hidden>
+          <div class="layer-badge">Full answer</div>
+          <div class="layer-body answer-body" id="full-content"></div>
+        </div>
+      </div>
+
+      <!-- Self-assessment -->
+      <div class="assessment" id="assessment" hidden>
+        <p class="assessment-prompt">How did it go?</p>
+        <div class="assessment-btns">
+          <button class="btn-assess" data-score="1" id="assess-blank">
+            <span class="assess-icon">😶</span>
+            <strong>Blank</strong>
+            <span>Needed the full reveal</span>
+          </button>
+          <button class="btn-assess" data-score="2" id="assess-partial">
+            <span class="assess-icon">🤔</span>
+            <strong>Partial</strong>
+            <span>Had the idea, not the details</span>
+          </button>
+          <button class="btn-assess" data-score="3" id="assess-gotit">
+            <span class="assess-icon">✓</span>
+            <strong>Got it</strong>
+            <span>Could write this on the exam</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="practice-nav" id="practice-nav" aria-label="Question navigation">
+      <button class="btn-nav" id="btn-prev-q">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        Prev
+      </button>
+      <span class="nav-counter" id="nav-counter">1 / 15</span>
+      <button class="btn-nav" id="btn-next-q">
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════ BROWSE ════════════════════════════════════ -->
+  <main id="view-browse" class="view" hidden aria-label="Browse all questions">
+    <div class="browse-inner" id="browse-inner"><!-- rendered by JS --></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ MOCK EXAM ════════════════════════════════ -->
+  <main id="view-mock" class="view" hidden aria-label="Mock exam">
+    <div class="mock-wrap" id="mock-wrap"><!-- rendered by JS --></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ SUMMARY ══════════════════════════════════ -->
+  <main id="view-summary" class="view" hidden aria-label="Session summary">
+    <div class="summary-wrap" id="summary-wrap"><!-- rendered by JS --></div>
+  </main>
+
+  <script src="assets/app.js"></script>
 </body>
 </html>
