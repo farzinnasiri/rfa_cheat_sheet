@@ -68,6 +68,14 @@
         \]</div>
         This guarantees that every continuous linear functional defined on a subspace can be extended to the entire space without increasing its operator norm.</p></div></details>
       </li>
+      <li data-proof="false">★★ Let \(Y\) be a vector subspace of \(X=\mathbb R^2\). Given \(f\in Y^*\), is it possible to find \(F\in X^*\) such that \(F=f\) in \(Y\) and \(\|F\|_{X^*}=\|f\|_{Y^*}\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.41" aria-label="Theory Questions.pdf: Q2.41">Q2.41</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Yes. Since \(X = \mathbb{R}^2\) is a finite-dimensional normed space and \(Y \subset \mathbb{R}^2\) is a linear subspace, the continuous extension form of the Hahn-Banach Theorem applies directly. Any continuous linear functional \(f\) on \(Y\) has a continuous linear extension \(F \in X^*\) satisfying:
+        <div class="formula">\[
+        F|_Y = f \quad \text{and} \quad \|F\|_{X^*} = \|f\|_{Y^*}.
+        \]</div>
+        Since every linear functional on a finite-dimensional space is continuous, the continuity conditions are automatically satisfied for any norm on \(\mathbb{R}^2\).</p></div></details>
+      </li>
+    
       <li data-proof="true">★★ State and prove the three corollaries of the Hahn-Banach Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.45" aria-label="Theory Questions.pdf: Q2.45">Q2.45</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Each corollary is Hahn-Banach applied to the right one-dimensional or quotient-like subspace. Define the small functional first, compute its norm exactly, extend it, then read off separation or norm-attainment. <em>Question focus:</em> State and prove the three corollaries of the Hahn-Banach Theorem.</p>
         <p><strong>Corollary 1:</strong> For any \(x_0 \in X\) with \(x_0 \neq 0\), there exists \(L \in X^*\) such that \(\|L\|_{X^*} = 1\) and \(L(x_0) = \|x_0\|_X\).</p>
@@ -86,20 +94,6 @@
         By the Hahn-Banach Theorem, there exists \(L \in X^*\) extending \(l\) such that \(L|_Z = l\) and \(\|L\|_{X^*} = \|l\|_{Z^*} = 1\). Thus \(L|_Y = 0\) and \(L(x_0) = d = \operatorname{dist}(x_0, Y)\).</p>
         </div></details>
       </li>
-      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, first version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), and \(A\) is open, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and a real number \(\alpha \in \mathbb{R}\) such that:
-        <div class="formula">\[
-        L(a) < \alpha \le L(b) \qquad \forall a \in A, \, \forall b \in B.
-        \]</div>
-        This means the disjoint convex sets are separated by the closed hyperplane \(\{x \in X : L(x) = \alpha\}\), with the open set \(A\) lying strictly on one side.</p></div></details>
-      </li>
-      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, second version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), such that \(A\) is compact and \(B\) is closed, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and real numbers \(\alpha < \beta\) such that:
-        <div class="formula">\[
-        L(a) \le \alpha < \beta \le L(b) \qquad \forall a \in A, \, \forall b \in B.
-        \]</div>
-        This is the strict separation theorem, establishing a positive gap between the values of the functional on \(A\) and \(B\).</p></div></details>
-      </li>
       <li data-proof="false">★★ Let \(X\) be a normed space, let \(H\) be a hyperplane of \(X\). When do we say that \(H\) separates or strictly separates \(A\) and \(B\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.43" aria-label="Theory Questions.pdf: Q2.43">Q2.43</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space (or the real part of functionals if \(X\) is complex). A hyperplane \(H\) is a set of the form:
         <div class="formula">\[
@@ -115,12 +109,19 @@
           L(a) \le \alpha - \varepsilon \quad \text{and} \quad L(b) \ge \alpha + \varepsilon \qquad \forall a \in A, \, \forall b \in B.
           \]</div></p></div></details>
       </li>
-      <li data-proof="false">★★ Let \(Y\) be a vector subspace of \(X=\mathbb R^2\). Given \(f\in Y^*\), is it possible to find \(F\in X^*\) such that \(F=f\) in \(Y\) and \(\|F\|_{X^*}=\|f\|_{Y^*}\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.41" aria-label="Theory Questions.pdf: Q2.41">Q2.41</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Yes. Since \(X = \mathbb{R}^2\) is a finite-dimensional normed space and \(Y \subset \mathbb{R}^2\) is a linear subspace, the continuous extension form of the Hahn-Banach Theorem applies directly. Any continuous linear functional \(f\) on \(Y\) has a continuous linear extension \(F \in X^*\) satisfying:
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, first version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), and \(A\) is open, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and a real number \(\alpha \in \mathbb{R}\) such that:
         <div class="formula">\[
-        F|_Y = f \quad \text{and} \quad \|F\|_{X^*} = \|f\|_{Y^*}.
+        L(a) < \alpha \le L(b) \qquad \forall a \in A, \, \forall b \in B.
         \]</div>
-        Since every linear functional on a finite-dimensional space is continuous, the continuity conditions are automatically satisfied for any norm on \(\mathbb{R}^2\).</p></div></details>
+        This means the disjoint convex sets are separated by the closed hyperplane \(\{x \in X : L(x) = \alpha\}\), with the open set \(A\) lying strictly on one side.</p></div></details>
+      </li>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, second version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), such that \(A\) is compact and \(B\) is closed, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and real numbers \(\alpha < \beta\) such that:
+        <div class="formula">\[
+        L(a) \le \alpha < \beta \le L(b) \qquad \forall a \in A, \, \forall b \in B.
+        \]</div>
+        This is the strict separation theorem, establishing a positive gap between the values of the functional on \(A\) and \(B\).</p></div></details>
       </li>
     </ol>
 
@@ -170,6 +171,15 @@
         Since \(y \in \ell^2\), we have \(\sum_{k=1}^\infty |y(k)|^2 < \infty\), which implies \(\lim_{n\to\infty} y(n) = 0\). Thus, \(\lim_{n\to\infty} L(e_n) = 0 = L(0)\) for all \(L \in (\ell^2)^*\), proving \(e_n \rightharpoonup 0\) weakly.
         However, for all \(n \ge 1\), we have \(\|e_n - 0\|_2 = \|e_n\|_2 = 1\). Since the norm of the difference does not converge to \(0\), the sequence \((e_n)\) does not converge strongly to \(0\).</p></div></details>
       </li>
+      <li data-proof="true">★★★ Show that the weak limit is unique. <span class="bank-ref" title="Theory Questions.pdf: Q2.55" aria-label="Theory Questions.pdf: Q2.55">Q2.55</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> To prove uniqueness, assume two weak limits and separate them. Hahn-Banach gives a functional detecting their difference, while weak convergence forces the two tested scalar limits to coincide. <em>Question focus:</em> Show that the weak limit is unique.</p><p>Let \((x_n)\) be a sequence in a normed space \(X\). Suppose \(x_n \rightharpoonup x\) and \(x_n \rightharpoonup y\).
+        Then for any continuous linear functional \(L \in X^*\), we have:
+        <div class="formula">\[
+        L(x) = \lim_{n\to\infty} L(x_n) = L(y) \implies L(x - y) = 0.
+        \]</div>
+        Suppose for contradiction that \(x - y \neq 0\). By a corollary of the Hahn-Banach Theorem, there exists \(L_0 \in X^*\) such that \(L_0(x - y) = \|x - y\|_X \neq 0\).
+        This contradicts the fact that \(L(x-y) = 0\) for all \(L \in X^*\). Hence, we must have \(x - y = 0 \implies x = y\), proving that the weak limit is unique.</p></div></details>
+      </li>
       <li data-proof="true">★★★ If \(\{x_n\}\) weakly converges to \(x\), can \(\{x_n\}\) be unbounded? <span class="bank-ref" title="Theory Questions.pdf: Q2.56" aria-label="Theory Questions.pdf: Q2.56">Q2.56</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The target is boundedness from pointwise bounded scalar tests. Translate the sequence into evaluation maps on the dual, apply Uniform Boundedness, then return through the canonical embedding to bound the original norms. <em>Question focus:</em> If \(\{x_n\}\) weakly converges to \(x\), can \(\{x_n\}\) be unbounded?</p><p>No, a weakly convergent sequence is always bounded.
         Suppose \(x_n \rightharpoonup x\) in a normed space \(X\). Then for every \(L \in X^*\), the sequence of scalars \((L(x_n))\) is convergent, and hence bounded:
@@ -214,12 +224,42 @@
         Since \(x_n \rightharpoonup x\), \(\lim_{n\to\infty} |L(x_n) - L(x)| = 0\).
         Thus, \(\lim_{n\to\infty} |L_n(x_n) - L(x)| = 0\), which proves \(L_n(x_n) \to L(x)\).</p></div></details>
       </li>
+      <li data-proof="true">★★★ Show that \(T\in L(X,Y)\) is weak-weak continuous. <span class="bank-ref" title="Theory Questions.pdf: Q2.58" aria-label="Theory Questions.pdf: Q2.58">Q2.58</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is a composition test. To show weak convergence of \(Tx_n\), fix a functional on the target, compose it with \(T\), and use weak convergence of \(x_n\) in the source. <em>Question focus:</em> Show that \(T\in L(X,Y)\) is weak-weak continuous.</p><p>Let \(T \in L(X, Y)\) be a bounded linear operator, and let \(x_n \rightharpoonup x\) weakly in \(X\). We show \(Tx_n \rightharpoonup Tx\) weakly in \(Y\).
+        Let \(M \in Y^*\) be any continuous linear functional on \(Y\). Define the composition \(L = M \circ T\). Since \(T\) is bounded and linear, and \(M\) is continuous and linear, their composition \(L\) is a continuous linear functional on \(X\), i.e., \(L \in X^*\).
+        Since \(x_n \rightharpoonup x\), we have:
+        <div class="formula">\[
+        \lim_{n\to\infty} L(x_n) = L(x) \implies \lim_{n\to\infty} M(Tx_n) = M(Tx).
+        \]</div>
+        Since this holds for every \(M \in Y^*\), the sequence \((Tx_n)\) converges weakly to \(Tx\) in \(Y\).</p></div></details>
+      </li>
+    
       <li data-proof="false">★★★ Write the definition of weak* convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.59" aria-label="Theory Questions.pdf: Q2.59">Q2.59</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space and \(X^*\) its dual space. A sequence \((L_n)\) in \(X^*\) converges weak-star to \(L \in X^*\) (denoted by \(L_n \overset{*}{\rightharpoonup} L\)) if:
         <div class="formula">\[
         \lim_{n\to\infty} L_n(x) = L(x) \qquad \forall x \in X.
         \]</div>
         Unlike weak convergence on \(X^*\) (which requires convergence when tested against all functionals in \(X^{**}\)), weak-star convergence only requires convergence when tested against the canonical images of elements of \(X\).</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the properties of weak* convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.61" aria-label="Theory Questions.pdf: Q2.61">Q2.61</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space. Weak-star convergence in \(X^*\) satisfies:
+        1. **Uniqueness of Limits:** If \(L_n \overset{*}{\rightharpoonup} L\) and \(L_n \overset{*}{\rightharpoonup} M\), then \(L = M\) (since the predual \(X\) separates points of \(X^*\)).
+        2. **Boundedness:** If \(X\) is a Banach space, then any weak-star convergent sequence \((L_n)\) in \(X^*\) is norm-bounded: \(\sup_{n\ge 1} \|L_n\|_{X^*} < \infty\) (by the Uniform Boundedness Principle).
+        3. **Lower Semicontinuity of the Norm:** If \(L_n \overset{*}{\rightharpoonup} L\), then:
+           <div class="formula">\[
+           \|L\|_{X^*} \le \liminf_{n\to\infty} \|L_n\|_{X^*}.
+           \]</div>
+           *Proof:* For any \(x \in X\), \(|L(x)| = \lim |L_n(x)| = \liminf |L_n(x)| \le \liminf (\|L_n\|_{X^*} \|x\|_X) = \left(\liminf \|L_n\|_{X^*}\right) \|x\|_X\). Taking the supremum over \(\|x\|_X \le 1\) yields the result.
+        4. **Linearity:** If \(L_n \overset{*}{\rightharpoonup} L\) and \(M_n \overset{*}{\rightharpoonup} M\), then \(\alpha L_n + \beta M_n \overset{*}{\rightharpoonup} \alpha L + \beta M\) for all scalars \(\alpha, \beta\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Which is the relation between weak and weak* convergence? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.60" aria-label="Theory Questions.pdf: Q2.60">Q2.60</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is compactness through the correct topology. Identify weak-star convergence as pointwise convergence on the predual, use Banach-Alaoglu or metrizability on bounded sets, and then translate compactness into a subsequence statement. <em>Question focus:</em> Which is the relation between weak and weak* convergence? Justify your answer.</p><p>Let \(X\) be a normed space and \(X^*\) its dual. Weak convergence in \(X^*\) implies weak-star convergence. The converse holds if and only if \(X\) is reflexive.
+        - **Justification (Weak implies Weak-star):** Let \((L_n)\) be a sequence in \(X^*\) converging weakly to \(L \in X^*\). This means that for every \(\Phi \in X^{**}\), \(\lim_{n\to\infty} \Phi(L_n) = \Phi(L)\). Let \(\tau : X \to X^{**}\) be the canonical evaluation map. For any \(x \in X\), we have \(\tau(x) \in X^{**}\). Testing the weak convergence against \(\tau(x)\) gives:
+          <div class="formula">\[
+          \lim_{n\to\infty} \tau(x)(L_n) = \tau(x)(L) \implies \lim_{n\to\infty} L_n(x) = L(x),
+          \]</div>
+          which is the definition of weak-star convergence \(L_n \overset{*}{\rightharpoonup} L\).
+        - **Counterexample for the Converse (Non-reflexive case):** Let \(X = c_0\) (the space of real sequences converging to 0, with supremum norm). Its dual is \(X^* = \ell^1\), and its bidual is \(X^{**} = \ell^\infty\). Let \((e_n)_{n=1}^\infty \subset \ell^1\) be the standard basis. For any \(x \in c_0\), \(e_n(x) = x(n) \to 0\) as \(n\to\infty\). Thus \(e_n \overset{*}{\rightharpoonup} 0\) weak-star in \ell^1. However, to converge weakly to 0, it must satisfy \(\Phi(e_n) \to 0\) for all \(\Phi \in \ell^\infty\). Choosing \(y = (1, 1, 1, \dots) \in \ell^\infty\) defines a functional \(\Phi_y \in X^{**}\) such that \(\Phi_y(e_n) = y(n) = 1 \not\to 0\). Thus \((e_n)\) does not converge weakly to 0.</p></div></details>
       </li>
       <li data-proof="false">★★★ State the Banach-Alaoglu theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.62" aria-label="Theory Questions.pdf: Q2.62">Q2.62</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The closed unit ball of the dual space \(X^*\) of any normed space \(X\), defined as \(\overline{B}_{X^*} = \{ L \in X^* : \|L\|_{X^*} \le 1 \}\), is compact in the weak-star topology \(\sigma(X^*, X)\).
@@ -234,26 +274,6 @@
         \lim_{k\to\infty} \int_X f_{n_k} g \, d\mu = \int_X fg \, d\mu \qquad \forall g \in L^1(X, \mu).
         \]</div></p></div></details>
       </li>
-      <li data-proof="true">★★★ Which is the relation between weak and weak* convergence? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.60" aria-label="Theory Questions.pdf: Q2.60">Q2.60</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is compactness through the correct topology. Identify weak-star convergence as pointwise convergence on the predual, use Banach-Alaoglu or metrizability on bounded sets, and then translate compactness into a subsequence statement. <em>Question focus:</em> Which is the relation between weak and weak* convergence? Justify your answer.</p><p>Let \(X\) be a normed space and \(X^*\) its dual. Weak convergence in \(X^*\) implies weak-star convergence. The converse holds if and only if \(X\) is reflexive.
-        - **Justification (Weak implies Weak-star):** Let \((L_n)\) be a sequence in \(X^*\) converging weakly to \(L \in X^*\). This means that for every \(\Phi \in X^{**}\), \(\lim_{n\to\infty} \Phi(L_n) = \Phi(L)\). Let \(\tau : X \to X^{**}\) be the canonical evaluation map. For any \(x \in X\), we have \(\tau(x) \in X^{**}\). Testing the weak convergence against \(\tau(x)\) gives:
-          <div class="formula">\[
-          \lim_{n\to\infty} \tau(x)(L_n) = \tau(x)(L) \implies \lim_{n\to\infty} L_n(x) = L(x),
-          \]</div>
-          which is the definition of weak-star convergence \(L_n \overset{*}{\rightharpoonup} L\).
-        - **Counterexample for the Converse (Non-reflexive case):** Let \(X = c_0\) (the space of real sequences converging to 0, with supremum norm). Its dual is \(X^* = \ell^1\), and its bidual is \(X^{**} = \ell^\infty\). Let \((e_n)_{n=1}^\infty \subset \ell^1\) be the standard basis. For any \(x \in c_0\), \(e_n(x) = x(n) \to 0\) as \(n\to\infty\). Thus \(e_n \overset{*}{\rightharpoonup} 0\) weak-star in \ell^1. However, to converge weakly to 0, it must satisfy \(\Phi(e_n) \to 0\) for all \(\Phi \in \ell^\infty\). Choosing \(y = (1, 1, 1, \dots) \in \ell^\infty\) defines a functional \(\Phi_y \in X^{**}\) such that \(\Phi_y(e_n) = y(n) = 1 \not\to 0\). Thus \((e_n)\) does not converge weakly to 0.</p></div></details>
-      </li>
-      <li data-proof="false">★★★ Write the properties of weak* convergence. <span class="bank-ref" title="Theory Questions.pdf: Q2.61" aria-label="Theory Questions.pdf: Q2.61">Q2.61</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space. Weak-star convergence in \(X^*\) satisfies:
-        1. **Uniqueness of Limits:** If \(L_n \overset{*}{\rightharpoonup} L\) and \(L_n \overset{*}{\rightharpoonup} M\), then \(L = M\) (since the predual \(X\) separates points of \(X^*\)).
-        2. **Boundedness:** If \(X\) is a Banach space, then any weak-star convergent sequence \((L_n)\) in \(X^*\) is norm-bounded: \(\sup_{n\ge 1} \|L_n\|_{X^*} < \infty\) (by the Uniform Boundedness Principle).
-        3. **Lower Semicontinuity of the Norm:** If \(L_n \overset{*}{\rightharpoonup} L\), then:
-           <div class="formula">\[
-           \|L\|_{X^*} \le \liminf_{n\to\infty} \|L_n\|_{X^*}.
-           \]</div>
-           *Proof:* For any \(x \in X\), \(|L(x)| = \lim |L_n(x)| = \liminf |L_n(x)| \le \liminf (\|L_n\|_{X^*} \|x\|_X) = \left(\liminf \|L_n\|_{X^*}\right) \|x\|_X\). Taking the supremum over \(\|x\|_X \le 1\) yields the result.
-        4. **Linearity:** If \(L_n \overset{*}{\rightharpoonup} L\) and \(M_n \overset{*}{\rightharpoonup} M\), then \(\alpha L_n + \beta M_n \overset{*}{\rightharpoonup} \alpha L + \beta M\) for all scalars \(\alpha, \beta\).</p></div></details>
-      </li>
       <li data-proof="true">★★★ State and prove the corollary of the Banach-Alaoglu theorem in a separable and reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.63" aria-label="Theory Questions.pdf: Q2.63">Q2.63</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is compactness through the correct topology. Identify weak-star convergence as pointwise convergence on the predual, use Banach-Alaoglu or metrizability on bounded sets, and then translate compactness into a subsequence statement. <em>Question focus:</em> State and prove the corollary of the Banach-Alaoglu theorem in a separable and reflexive Banach space.</p><p><strong>Corollary:</strong> Let \(X\) be a reflexive Banach space. Any bounded sequence \((x_n) \subset X\) contains a weakly convergent subsequence \((x_{n_k})\).</p>
         <p><em>Proof (Separable Reduction):</em> Let \((x_n)\) be a bounded sequence in \(X\) with \(\|x_n\|_X \le M\) for all \(n \ge 1\). Define \(Y = \overline{\operatorname{span}}\{x_n : n \ge 1\}\). Since \(Y\) is a closed subspace of the reflexive space \(X\), \(Y\) is reflexive. Being the closure of the span of a countable set, \(Y\) is separable. Since \(Y\) is reflexive, the canonical map \(\tau : Y \to Y^{**}\) is an isometric isomorphism, meaning \(Y^{**}\) is also separable, which implies that the dual space \(Y^*\) is separable.
@@ -263,24 +283,6 @@
         \lim_{k\to\infty} L(x_{n_k}) = \lim_{k\to\infty} \tau(x_{n_k})(L) = \tau(x)(L) = L(x).
         \]</div>
         This proves \(x_{n_k} \rightharpoonup x\) weakly in \(Y\). By the Hahn-Banach Theorem, every continuous functional on \(X\) restricts to a continuous functional on \(Y\), so \(x_{n_k} \rightharpoonup x\) weakly in \(X\) as well.</p></div></details>
-      </li>
-      <li data-proof="true">★★★ Show that the weak limit is unique. <span class="bank-ref" title="Theory Questions.pdf: Q2.55" aria-label="Theory Questions.pdf: Q2.55">Q2.55</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> To prove uniqueness, assume two weak limits and separate them. Hahn-Banach gives a functional detecting their difference, while weak convergence forces the two tested scalar limits to coincide. <em>Question focus:</em> Show that the weak limit is unique.</p><p>Let \((x_n)\) be a sequence in a normed space \(X\). Suppose \(x_n \rightharpoonup x\) and \(x_n \rightharpoonup y\).
-        Then for any continuous linear functional \(L \in X^*\), we have:
-        <div class="formula">\[
-        L(x) = \lim_{n\to\infty} L(x_n) = L(y) \implies L(x - y) = 0.
-        \]</div>
-        Suppose for contradiction that \(x - y \neq 0\). By a corollary of the Hahn-Banach Theorem, there exists \(L_0 \in X^*\) such that \(L_0(x - y) = \|x - y\|_X \neq 0\).
-        This contradicts the fact that \(L(x-y) = 0\) for all \(L \in X^*\). Hence, we must have \(x - y = 0 \implies x = y\), proving that the weak limit is unique.</p></div></details>
-      </li>
-      <li data-proof="true">★★★ Show that \(T\in L(X,Y)\) is weak-weak continuous. <span class="bank-ref" title="Theory Questions.pdf: Q2.58" aria-label="Theory Questions.pdf: Q2.58">Q2.58</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is a composition test. To show weak convergence of \(Tx_n\), fix a functional on the target, compose it with \(T\), and use weak convergence of \(x_n\) in the source. <em>Question focus:</em> Show that \(T\in L(X,Y)\) is weak-weak continuous.</p><p>Let \(T \in L(X, Y)\) be a bounded linear operator, and let \(x_n \rightharpoonup x\) weakly in \(X\). We show \(Tx_n \rightharpoonup Tx\) weakly in \(Y\).
-        Let \(M \in Y^*\) be any continuous linear functional on \(Y\). Define the composition \(L = M \circ T\). Since \(T\) is bounded and linear, and \(M\) is continuous and linear, their composition \(L\) is a continuous linear functional on \(X\), i.e., \(L \in X^*\).
-        Since \(x_n \rightharpoonup x\), we have:
-        <div class="formula">\[
-        \lim_{n\to\infty} L(x_n) = L(x) \implies \lim_{n\to\infty} M(Tx_n) = M(Tx).
-        \]</div>
-        Since this holds for every \(M \in Y^*\), the sequence \((Tx_n)\) converges weakly to \(Tx\) in \(Y\).</p></div></details>
       </li>
     </ol>
 
@@ -308,10 +310,6 @@
           \]</div>
           Since the space of compact operators is closed under the operator norm topology, the limit operator \(T\) is compact.</p></div></details>
       </li>
-      <li data-proof="true">★★ Can a compact operator be surjective? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.65" aria-label="Theory Questions.pdf: Q2.65">Q2.65</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Can a compact operator be surjective? Justify your answer.</p><p>A compact linear operator \(T : X \to Y\) between Banach spaces cannot be surjective if \(Y\) is infinite-dimensional.
-        - *Proof:* Suppose for contradiction that \(T\) is surjective. By the Open Mapping Theorem, \(T\) is an open mapping. Thus, there exists \(r > 0\) such that the closed ball \(\overline{B}_Y(0, r) \subset \overline{T(B_X(0,1))}\). Since \(T\) is compact, the set \(\overline{T(B_X(0,1))}\) is compact, which implies that the closed ball \(\overline{B}_Y(0, r)\) is compact. By Riesz's Theorem, the closed unit ball of a normed space is compact if and only if the space is finite-dimensional. This implies \(\operatorname{dim}(Y) < \infty\), which is a contradiction.</p></div></details>
-      </li>
       <li data-proof="true">★★ State and prove the theorem about the characterization of compact operators in terms of weak-strong continuity. <span class="bank-ref" title="Theory Questions.pdf: Q2.66" aria-label="Theory Questions.pdf: Q2.66">Q2.66</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof should connect compactness with subsequences. Use boundedness to get weakly convergent subsequences when needed, apply compactness to get strong subsequences, and compare limits to identify the strong limit. <em>Question focus:</em> State and prove the theorem about the characterization of compact operators in terms of weak-strong continuity.</p><p>Let \(X\) and \(Y\) be Banach spaces with \(X\) reflexive. A bounded linear operator \(T : X \to Y\) is compact if and only if it maps weakly convergent sequences in \(X\) to strongly convergent sequences in \(Y\), i.e.,
         <div class="formula">\[
@@ -320,6 +318,10 @@
         - *Proof (Forward Direction):* Let \(T\) be compact, and let \(x_n \rightharpoonup x\) weakly in \(X\). Since \(T\) is weak-weak continuous, \(Tx_n \rightharpoonup Tx\) weakly in \(Y\). We show \(Tx_n \to Tx\) strongly.
           Suppose for contradiction that \(Tx_n \not\to Tx\) strongly. Then there exists \(\varepsilon > 0\) and a subsequence \((x_{n_k})\) such that \(\|Tx_{n_k} - Tx\|_Y \ge \varepsilon\) for all \(k \ge 1\). Since \((x_n)\) is weakly convergent, it is norm-bounded, so the subsequence \((x_{n_k})\) is also bounded. Since \(T\) is compact, \((Tx_{n_k})\) contains a subsequence \((Tx_{n_{k_j}})\) that converges strongly to some \(y \in Y\). Strong convergence implies weak convergence, so \(Tx_{n_{k_j}} \rightharpoonup y\) weakly. Uniqueness of weak limits forces \(y = Tx\). Thus \(Tx_{n_{k_j}} \to Tx\) strongly, contradicting \(\|Tx_{n_{k_j}} - Tx\|_Y \ge \varepsilon\). Thus, \(Tx_n \to Tx\) strongly.
         - *Proof (Backward Direction):* Assume \(T\) maps weak convergence to strong convergence. Let \((x_n)\) be any bounded sequence in \(X\). Since \(X\) is reflexive, the Banach-Alaoglu corollary implies there exists a subsequence \((x_{n_k})\) that converges weakly to some \(x \in X\). By hypothesis, this implies \(Tx_{n_k} \to Tx\) strongly in \(Y\). Thus, the bounded sequence has a strongly convergent subsequence, so \(T\) is compact.</p></div></details>
+      </li>
+      <li data-proof="true">★★ Can a compact operator be surjective? Justify your answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.65" aria-label="Theory Questions.pdf: Q2.65">Q2.65</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Can a compact operator be surjective? Justify your answer.</p><p>A compact linear operator \(T : X \to Y\) between Banach spaces cannot be surjective if \(Y\) is infinite-dimensional.
+        - *Proof:* Suppose for contradiction that \(T\) is surjective. By the Open Mapping Theorem, \(T\) is an open mapping. Thus, there exists \(r > 0\) such that the closed ball \(\overline{B}_Y(0, r) \subset \overline{T(B_X(0,1))}\). Since \(T\) is compact, the set \(\overline{T(B_X(0,1))}\) is compact, which implies that the closed ball \(\overline{B}_Y(0, r)\) is compact. By Riesz's Theorem, the closed unit ball of a normed space is compact if and only if the space is finite-dimensional. This implies \(\operatorname{dim}(Y) < \infty\), which is a contradiction.</p></div></details>
       </li>
       <li data-proof="false">★★ State the Ascoli-Arzela theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.4" aria-label="Theory Questions.pdf: Q2.4">Q2.4</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(K\) be a compact metric space. A subset \(\mathcal{F} \subset C^0(K)\) is relatively compact in the supremum norm if and only if it is:
@@ -342,6 +344,57 @@
 
     <h2>4. Hilbert Spaces, Fredholm, Spectrum, And Spectral Theorem</h2>
     <ol start="29">
+      <li data-proof="true">★★ State and prove the projection theorem and its corollary in Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.68" aria-label="Theory Questions.pdf: Q2.68">Q2.68</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The argument is geometric. Minimize the distance to the closed convex set, use Hilbert-space parallelogram/convexity to get existence and uniqueness, then characterize the minimizer by an orthogonality inequality. <em>Question focus:</em> State and prove the projection theorem and its corollary in Hilbert spaces.</p><p><strong>Projection Theorem:</strong> Let \(K\) be a nonempty closed convex subset of a Hilbert space \(H\). For every \(x \in H\), there exists a unique \(p \in K\) such that:
+        <div class="formula">\[
+        \|x-p\|_2 = \inf_{y \in K} \|x-y\|_2.
+        \]</div>
+        The point \(p\) is characterized by the variational inequality:
+        <div class="formula">\[
+        \operatorname{Re}\langle x-p, y-p \rangle \le 0 \qquad \forall y \in K.
+        \]</div>
+        - *Proof:* Let \(d = \inf_{y\in K} \|x-y\|_2\). Choose a sequence \((y_n) \subset K\) such that \(\|x-y_n\|_2 \to d\).
+          By the parallelogram identity applied to \(u = x - y_n\) and \(v = x - y_m\):
+          <div class="formula">\[
+          2\|x-y_n\|_2^2 + 2\|x-y_m\|_2^2 = 4\left\|x - \frac{y_n + y_m}{2}\right\|_2^2 + \|y_n - y_m\|_2^2.
+          \]</div>
+          Since \(K\) is convex, \(\frac{y_n + y_m}{2} \in K\), which implies \(\left\|x - \frac{y_n + y_m}{2}\right\|_2 \ge d\). Thus:
+          <div class="formula">\[
+          \|y_n - y_m\|_2^2 \le 2\|x-y_n\|_2^2 + 2\|x-y_m\|_2^2 - 4d^2 \to 0 \quad \text{as } n, m \to \infty.
+          \]</div>
+          Thus \((y_n)\) is Cauchy. Since \(H\) is complete and \(K\) is closed, \(y_n \to p \in K\). By continuity of the norm, \(\|x-p\|_2 = d\).
+          For uniqueness, if \(p_1, p_2 \in K\) satisfy \(\|x-p_1\|_2 = \|x-p_2\|_2 = d\), the same inequality yields:
+          <div class="formula">\[
+          \|p_1 - p_2\|_2^2 \le 2d^2 + 2d^2 - 4\left\|x - \frac{p_1 + p_2}{2}\right\|_2^2 \le 0 \implies p_1 = p_2.
+          \]</div>
+          To prove the characterization, let \(p \in K\) satisfy the variational inequality. For any \(y \in K\):
+          <div class="formula">\[
+          \|x-y\|_2^2 = \|(x-p) - (y-p)\|_2^2 = \|x-p\|_2^2 + \|y-p\|_2^2 - 2 \operatorname{Re}\langle x-p, y-p \rangle \ge \|x-p\|_2^2.
+          \]</div>
+          Conversely, if \(p\) is the projection and \(y \in K\), then by convexity, \((1-t)p + ty \in K\) for all \(t \in [0, 1]\). Thus:
+          <div class="formula">\[
+          \|x - p\|_2^2 \le \|x - (p + t(y-p))\|_2^2 = \|x-p\|_2^2 + t^2 \|y-p\|_2^2 - 2t \operatorname{Re}\langle x-p, y-p \rangle.
+          \]</div>
+          Dividing by \(t > 0\) and taking \(t \downarrow 0\) yields \(\operatorname{Re}\langle x-p, y-p \rangle \le 0\).</p>
+        <p><strong>Corollary:</strong> If \(M\) is a closed linear subspace of \(H\), then \(H = M \oplus M^\perp\). Every \(x \in H\) can be written uniquely as \(x = m + z\) with \(m \in M\) and \(z \in M^\perp\).</p>
+        <p><em>Proof:</em> Since \(M\) is closed and convex, the projection \(m = P_M(x) \in M\) exists. Let \(z = x - m\). By the variational characterization, for any \(y \in M\) and any scalar \(\alpha \in \mathbb{K}\), since \(m + \alpha y \in M\), we have \(\operatorname{Re}\langle x - m, \alpha y \rangle \le 0\), which is \(\operatorname{Re}(\overline{\alpha}\langle z, y \rangle) \le 0\). Since \(\alpha\) is arbitrary, we choose \(\alpha = \langle z, y \rangle\) to obtain \(|\langle z, y \rangle|^2 \le 0 \implies \langle z, y \rangle = 0\) for all \(y \in M\). Thus \(z \in M^\perp\).
+        For uniqueness, if \(x = m_1 + z_1 = m_2 + z_2\) with \(m_i \in M, z_i \in M^\perp\), then \(m_1 - m_2 = z_2 - z_1 \in M \cap M^\perp = \{0\}\). Thus \(m_1 = m_2\) and \(z_1 = z_2\).</p></div></details>
+      </li>
+    
+      <li data-proof="false">★★ Write the definition of symmetric operator on Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A bounded linear operator \(T : H \to H\) on a Hilbert space \(H\) is **symmetric** (or self-adjoint) if:
+        <div class="formula">\[
+        \langle Tx, y \rangle = \langle x, Ty \rangle \qquad \forall x, y \in H.
+        \]</div>
+        In the complex setting, this is equivalent to \(T = T^*\), where the adjoint is defined with respect to the complex inner product.</p></div></details>
+      </li>
+      <li data-proof="false">★★ How is it possible to compute the norm of a symmetric operator? <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(T \in L(H)\) is a self-adjoint operator on a Hilbert space \(H\), then:
+        <div class="formula">\[
+        \|T\| = \sup_{\|x\| \le 1} |\langle Tx, x \rangle|.
+        \]</div>
+        This means the operator norm is exactly the supremum of its quadratic form on the unit sphere.</p></div></details>
+      </li>
       <li data-proof="false">★★ State the Fredholm alternative. <span class="bank-ref" title="Theory Questions.pdf: Q2.74" aria-label="Theory Questions.pdf: Q2.74">Q2.74</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(H\) be a Hilbert space and let \(T : H \to H\) be a compact operator. The Fredholm Alternative for \(I - T\) states that:
         1. The kernel \(\ker(I - T)\) is finite-dimensional.
@@ -390,60 +443,26 @@
         \]</div>
         The eigenvalues are real, non-zero eigenvalues have finite multiplicity, and if there are infinitely many eigenvalues, then \(\lim_{n\to\infty} \lambda_n = 0\). The space decomposes orthogonally as \(H = \ker T \oplus \overline{\operatorname{span}}\{e_n\}\).</p></div></details>
       </li>
-      <li data-proof="false">★★ Write the definition of symmetric operator on Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A bounded linear operator \(T : H \to H\) on a Hilbert space \(H\) is **symmetric** (or self-adjoint) if:
-        <div class="formula">\[
-        \langle Tx, y \rangle = \langle x, Ty \rangle \qquad \forall x, y \in H.
-        \]</div>
-        In the complex setting, this is equivalent to \(T = T^*\), where the adjoint is defined with respect to the complex inner product.</p></div></details>
-      </li>
-      <li data-proof="false">★★ How is it possible to compute the norm of a symmetric operator? <span class="bank-ref" title="Theory Questions.pdf: Q2.73" aria-label="Theory Questions.pdf: Q2.73">Q2.73</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(T \in L(H)\) is a self-adjoint operator on a Hilbert space \(H\), then:
-        <div class="formula">\[
-        \|T\| = \sup_{\|x\| \le 1} |\langle Tx, x \rangle|.
-        \]</div>
-        This means the operator norm is exactly the supremum of its quadratic form on the unit sphere.</p></div></details>
-      </li>
-      <li data-proof="true">★★ State and prove the projection theorem and its corollary in Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.68" aria-label="Theory Questions.pdf: Q2.68">Q2.68</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The argument is geometric. Minimize the distance to the closed convex set, use Hilbert-space parallelogram/convexity to get existence and uniqueness, then characterize the minimizer by an orthogonality inequality. <em>Question focus:</em> State and prove the projection theorem and its corollary in Hilbert spaces.</p><p><strong>Projection Theorem:</strong> Let \(K\) be a nonempty closed convex subset of a Hilbert space \(H\). For every \(x \in H\), there exists a unique \(p \in K\) such that:
-        <div class="formula">\[
-        \|x-p\|_2 = \inf_{y \in K} \|x-y\|_2.
-        \]</div>
-        The point \(p\) is characterized by the variational inequality:
-        <div class="formula">\[
-        \operatorname{Re}\langle x-p, y-p \rangle \le 0 \qquad \forall y \in K.
-        \]</div>
-        - *Proof:* Let \(d = \inf_{y\in K} \|x-y\|_2\). Choose a sequence \((y_n) \subset K\) such that \(\|x-y_n\|_2 \to d\).
-          By the parallelogram identity applied to \(u = x - y_n\) and \(v = x - y_m\):
-          <div class="formula">\[
-          2\|x-y_n\|_2^2 + 2\|x-y_m\|_2^2 = 4\left\|x - \frac{y_n + y_m}{2}\right\|_2^2 + \|y_n - y_m\|_2^2.
-          \]</div>
-          Since \(K\) is convex, \(\frac{y_n + y_m}{2} \in K\), which implies \(\left\|x - \frac{y_n + y_m}{2}\right\|_2 \ge d\). Thus:
-          <div class="formula">\[
-          \|y_n - y_m\|_2^2 \le 2\|x-y_n\|_2^2 + 2\|x-y_m\|_2^2 - 4d^2 \to 0 \quad \text{as } n, m \to \infty.
-          \]</div>
-          Thus \((y_n)\) is Cauchy. Since \(H\) is complete and \(K\) is closed, \(y_n \to p \in K\). By continuity of the norm, \(\|x-p\|_2 = d\).
-          For uniqueness, if \(p_1, p_2 \in K\) satisfy \(\|x-p_1\|_2 = \|x-p_2\|_2 = d\), the same inequality yields:
-          <div class="formula">\[
-          \|p_1 - p_2\|_2^2 \le 2d^2 + 2d^2 - 4\left\|x - \frac{p_1 + p_2}{2}\right\|_2^2 \le 0 \implies p_1 = p_2.
-          \]</div>
-          To prove the characterization, let \(p \in K\) satisfy the variational inequality. For any \(y \in K\):
-          <div class="formula">\[
-          \|x-y\|_2^2 = \|(x-p) - (y-p)\|_2^2 = \|x-p\|_2^2 + \|y-p\|_2^2 - 2 \operatorname{Re}\langle x-p, y-p \rangle \ge \|x-p\|_2^2.
-          \]</div>
-          Conversely, if \(p\) is the projection and \(y \in K\), then by convexity, \((1-t)p + ty \in K\) for all \(t \in [0, 1]\). Thus:
-          <div class="formula">\[
-          \|x - p\|_2^2 \le \|x - (p + t(y-p))\|_2^2 = \|x-p\|_2^2 + t^2 \|y-p\|_2^2 - 2t \operatorname{Re}\langle x-p, y-p \rangle.
-          \]</div>
-          Dividing by \(t > 0\) and taking \(t \downarrow 0\) yields \(\operatorname{Re}\langle x-p, y-p \rangle \le 0\).</p>
-        <p><strong>Corollary:</strong> If \(M\) is a closed linear subspace of \(H\), then \(H = M \oplus M^\perp\). Every \(x \in H\) can be written uniquely as \(x = m + z\) with \(m \in M\) and \(z \in M^\perp\).</p>
-        <p><em>Proof:</em> Since \(M\) is closed and convex, the projection \(m = P_M(x) \in M\) exists. Let \(z = x - m\). By the variational characterization, for any \(y \in M\) and any scalar \(\alpha \in \mathbb{K}\), since \(m + \alpha y \in M\), we have \(\operatorname{Re}\langle x - m, \alpha y \rangle \le 0\), which is \(\operatorname{Re}(\overline{\alpha}\langle z, y \rangle) \le 0\). Since \(\alpha\) is arbitrary, we choose \(\alpha = \langle z, y \rangle\) to obtain \(|\langle z, y \rangle|^2 \le 0 \implies \langle z, y \rangle = 0\) for all \(y \in M\). Thus \(z \in M^\perp\).
-        For uniqueness, if \(x = m_1 + z_1 = m_2 + z_2\) with \(m_i \in M, z_i \in M^\perp\), then \(m_1 - m_2 = z_2 - z_1 \in M \cap M^\perp = \{0\}\). Thus \(m_1 = m_2\) and \(z_1 = z_2\).</p></div></details>
-      </li>
     </ol>
 
     <h2>5. \(L^p\), \(\ell^p\), And Core Inequalities</h2>
     <ol start="37">
+      <li data-proof="true">★★ Write the definition of conjugate numbers. Show the Young inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.16" aria-label="Theory Questions.pdf: Q2.16">Q2.16</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Normalize first so the inequality becomes dimensionless. Prove the normalized estimate with Young inequality, then rescale; equality and zero cases should be handled before the normalization. <em>Question focus:</em> Write the definition of conjugate numbers. Show the Young inequality.</p><p>Conjugate exponents \(p, q \in (1, \infty)\) satisfy:
+        <div class="formula">\[
+        \frac{1}{p} + \frac{1}{q} = 1.
+        \]</div>
+        Young's inequality states that for all \(a, b \ge 0\):
+        <div class="formula">\[
+        ab \le \frac{a^p}{p} + \frac{b^q}{q}.
+        \]</div>
+        <em>Proof:</em> If \(a = 0\) or \(b = 0\), the inequality holds trivially.
+        Assume \(a > 0\) and \(b > 0\). Since the natural logarithm function \(\ln(x)\) is strictly concave on \((0, \infty)\), we have for \(\theta = 1/p \in (0, 1)\) and \(u = a^p, v = b^q\):
+        <div class="formula">\[
+        \ln(\theta u + (1-\theta)v) \ge \theta \ln(u) + (1-\theta)\ln(v) \implies \ln\left( \frac{a^p}{p} + \frac{b^q}{q} \right) \ge \frac{1}{p} \ln(a^p) + \frac{1}{q} \ln(b^q) = \ln(ab).
+        \]</div>
+        Since the exponential function is strictly increasing, applying it to both sides yields \(ab \le \frac{a^p}{p} + \frac{b^q}{q}\).</p></div></details>
+      </li>
       <li data-proof="true">★★ Write and show the Holder inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.17" aria-label="Theory Questions.pdf: Q2.17">Q2.17</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Normalize first so the inequality becomes dimensionless. Prove the normalized estimate with Young inequality, then rescale; equality and zero cases should be handled before the normalization. <em>Question focus:</em> Write and show the Holder inequality.</p><p><strong>Hölder's Inequality:</strong> Let \(1 < p, q < \infty\) with \(\frac{1}{p} + \frac{1}{q} = 1\). If \(f \in L^p(X, \mu)\) and \(g \in L^q(X, \mu)\), then \(fg \in L^1(X, \mu)\) and:
         <div class="formula">\[
@@ -513,22 +532,6 @@
         For any \(x \notin E\), we have \(|f_n(x) - f_m(x)| \le \|f_n - f_m\|_\infty\) for all \(n, m \ge 1\). This means that for every \(x \notin E\), \((f_n(x))\) is a Cauchy sequence of scalars. Let \(f(x) = \lim_{n\to\infty} f_n(x)\) for \(x \notin E\), and \(f(x) = 0\) for \(x \in E\).
         Given \(\varepsilon > 0\), there is \(N\) such that for all \(n, m \ge N\), \(\|f_n - f_m\|_\infty \le \varepsilon\). Thus for all \(x \notin E\) and \(n, m \ge N\), \(|f_n(x) - f_m(x)| \le \varepsilon\). Taking \(m \to \infty\) yields \(|f_n(x) - f(x)| \le \varepsilon\) for all \(x \notin E\) and \(n \ge N\). This implies \(\|f_n - f\|_\infty \le \varepsilon\) for all \(n \ge N\), showing \(f_n \to f\) in \(L^\infty(X, \mu)\).</p></div></details>
       </li>
-      <li data-proof="true">★★ Write the definition of conjugate numbers. Show the Young inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.16" aria-label="Theory Questions.pdf: Q2.16">Q2.16</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Normalize first so the inequality becomes dimensionless. Prove the normalized estimate with Young inequality, then rescale; equality and zero cases should be handled before the normalization. <em>Question focus:</em> Write the definition of conjugate numbers. Show the Young inequality.</p><p>Conjugate exponents \(p, q \in (1, \infty)\) satisfy:
-        <div class="formula">\[
-        \frac{1}{p} + \frac{1}{q} = 1.
-        \]</div>
-        Young's inequality states that for all \(a, b \ge 0\):
-        <div class="formula">\[
-        ab \le \frac{a^p}{p} + \frac{b^q}{q}.
-        \]</div>
-        <em>Proof:</em> If \(a = 0\) or \(b = 0\), the inequality holds trivially.
-        Assume \(a > 0\) and \(b > 0\). Since the natural logarithm function \(\ln(x)\) is strictly concave on \((0, \infty)\), we have for \(\theta = 1/p \in (0, 1)\) and \(u = a^p, v = b^q\):
-        <div class="formula">\[
-        \ln(\theta u + (1-\theta)v) \ge \theta \ln(u) + (1-\theta)\ln(v) \implies \ln\left( \frac{a^p}{p} + \frac{b^q}{q} \right) \ge \frac{1}{p} \ln(a^p) + \frac{1}{q} \ln(b^q) = \ln(ab).
-        \]</div>
-        Since the exponential function is strictly increasing, applying it to both sides yields \(ab \le \frac{a^p}{p} + \frac{b^q}{q}\).</p></div></details>
-      </li>
       <li data-proof="true">★★ Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.20" aria-label="Theory Questions.pdf: Q2.20">Q2.20</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof depends on finite measure. Use Holder with the constant function \(1\) to compare norms, then show the hypothesis is essential by giving an infinite-measure counterexample. <em>Question focus:</em> Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer.</p><p><strong>Theorem:</strong> If \(\mu(X) < \infty\) and \(1 \le p \le q \le \infty\), then \(L^q(X, \mu) \subset L^p(X, \mu)\), and:
         <div class="formula">\[
@@ -579,22 +582,35 @@
 
     <h2>6. Low But Not Impossible Surprise Candidates</h2>
     <ol start="47">
-      <li data-proof="false">★ Define the evaluation map, also called the canonical map, list its main properties, and give the definition of reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.49, Q2.50" aria-label="Theory Questions.pdf: Q2.49, Q2.50">Q2.49, Q2.50</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space. The **canonical evaluation map** is the mapping \(\tau : X \to X^{**}\) defined by:
+      <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task wants an explicit countable dense set. Define separability, then approximate continuous functions uniformly by polynomials and restrict to polynomials with rational coefficients. <em>Question focus:</em> Write the definition of separable metric space and show that \(C^0([a,b])\) is separable.</p><p>A metric space \(X\) is **separable** if it contains a countable, dense subset. That is, there exists a countable subset \(D \subset X\) such that \(\overline{D} = X\).</p>
+        <p>We show that the space \(C^0([a, b])\) of continuous, real-valued functions on the compact interval \([a, b]\), equipped with the supremum norm \(\|f\|_\infty = \max_{x \in [a, b]} |f(x)|\), is separable by proving that the set of polynomials with rational coefficients, \(\mathbb{Q}[x]\), is countable and dense in \(C^0([a, b])\).</p>
+        <p><strong>Countability:</strong> Every polynomial \(P \in \mathbb{Q}[x]\) can be written as \(P(x) = \sum_{k=0}^n q_k x^k\) for some \(n \in \mathbb{N}\) and \(q_k \in \mathbb{Q}\). For each fixed \(n\), the set of polynomials of degree at most \(n\) with rational coefficients is in bijection with \(\mathbb{Q}^{n+1}\). Since \(\mathbb{Q}\) is countable, \(\mathbb{Q}^{n+1}\) is countable for every \(n\). The set of all polynomials with rational coefficients is the countable union:
         <div class="formula">\[
-        \tau(x)(L) = L(x) \qquad \forall L \in X^*.
+        \mathbb{Q}[x] = \bigcup_{n=0}^\infty \mathbb{Q}^{n+1},
         \]</div>
-        <strong>Main Properties:</strong>
-        - \(\tau\) is linear: \(\tau(\alpha x + \beta y)(L) = L(\alpha x + \beta y) = \alpha L(x) + \beta L(y) = \alpha \tau(x)(L) + \beta \tau(y)(L)\).
-        - \(\tau\) is an isometry: \(\|\tau(x)\|_{X^{**}} = \|x\|_X\). Indeed, by definition, \(\|\tau(x)\|_{X^{**}} = \sup_{\|L\|_{X^*} \le 1} |L(x)|\). By a corollary of the Hahn-Banach theorem, there exists \(L \in X^*\) with \(\|L\|_{X^*} = 1\) and \(L(x) = \|x\|_X\). Thus, the supremum is exactly \(\|x\|_X\).
-        A Banach space \(X\) is **reflexive** if the canonical evaluation map \(\tau : X \to X^{**}\) is surjective (and thus is an isometric isomorphism between \(X\) and \(X^{**}\)).</p></div></details>
+        which is countable because a countable union of countable sets is countable.</p>
+        <p><strong>Density:</strong> Let \(f \in C^0([a, b])\) and let \(\varepsilon > 0\).
+        By the Weierstrass Approximation Theorem, there exists a polynomial \(P(x) = \sum_{k=0}^n c_k x^k\) with real coefficients \(c_k \in \mathbb{R}\) such that:
+        <div class="formula">\[
+        \|f - P\|_\infty < \frac{\varepsilon}{2}.
+        \]</div>
+        Let \(M = \max\{|a|, |b|, 1\}\). Since \(\mathbb{Q}\) is dense in \(\mathbb{R}\), we can choose rational numbers \(q_k \in \mathbb{Q}\) for each \(k = 0, 1, \dots, n\) such that:
+        <div class="formula">\[
+        |c_k - q_k| < \frac{\varepsilon}{2(n+1)M^n}.
+        \]</div>
+        Define the rational polynomial \(Q(x) = \sum_{k=0}^n q_k x^k \in \mathbb{Q}[x]\). For any \(x \in [a, b]\):
+        <div class="formula">\[
+        |P(x) - Q(x)| = \left| \sum_{k=0}^n (c_k - q_k) x^k \right| \le \sum_{k=0}^n |c_k - q_k| |x|^k \le \sum_{k=0}^n \frac{\varepsilon}{2(n+1)M^n} M^n = \frac{\varepsilon}{2}.
+        \]</div>
+        Taking the supremum over \(x \in [a, b]\) yields \(\|P - Q\|_\infty \le \frac{\varepsilon}{2}\).
+        By the triangle inequality:
+        <div class="formula">\[
+        \|f - Q\|_\infty \le \|f - P\|_\infty + \|P - Q\|_\infty < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \]</div>
+        Since for any \(f \in C^0([a, b])\) and any \(\varepsilon > 0\), there exists \(Q \in \mathbb{Q}[x]\) with \(\|f - Q\|_\infty < \varepsilon\), the countable set \(\mathbb{Q}[x]\) is dense in \(C^0([a, b])\). Hence, \(C^0([a, b])\) is separable.</p></div></details>
       </li>
-      <li data-proof="false">★ Define open mapping, state the Open Mapping Theorem, state the Bounded Inverse Theorem, and state the Closed Graph Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37" aria-label="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37">Q2.33, Q2.34, Q2.36, Q2.37</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A map between topological spaces is **open** if the image of every open set is open.
-        - **Open Mapping Theorem:** Let \(X, Y\) be Banach spaces. If \(T \in L(X, Y)\) is surjective, then \(T\) is an open mapping.
-        - **Bounded Inverse Theorem:** Let \(X, Y\) be Banach spaces. If \(T \in L(X, Y)\) is bijective, then its inverse \(T^{-1} : Y \to X\) is bounded (i.e. continuous).
-        - **Closed Graph Theorem:** Let \(X, Y\) be Banach spaces. If \(T : X \to Y\) is a linear operator whose graph \(G(T) = \{(x, Tx) : x \in X\}\) is closed in the product space \(X \times Y\) (equipped with the norm \(\|(x,y)\| = \|x\|_X + \|y\|_Y\)), then \(T\) is bounded.</p></div></details>
-      </li>
+    
       <li data-proof="true">★ State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle. <span class="bank-ref" title="Theory Questions.pdf: Q2.31" aria-label="Theory Questions.pdf: Q2.31">Q2.31</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof uses Baire category to upgrade pointwise boundedness to uniform boundedness. Build closed sets where the operator family is bounded, find one with interior, then use linearity and scaling to get a global bound. <em>Question focus:</em> State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle.</p><p><strong>Uniform Boundedness Principle:</strong> Let \(X\) be a Banach space, \(Y\) a normed space, and \(\mathcal{F} \subset L(X, Y)\). If \(\mathcal{F}\) is pointwise bounded, i.e.,
         <div class="formula">\[
@@ -616,6 +632,22 @@
         \|T x\|_Y = \frac{\|x\|_X}{r} \|Th\|_Y \le \frac{2N}{r} \|x\|_X.
         \]</div>
         This holds for all \(x \in X\) and all \(T \in \mathcal{F}\), so \(\sup_{T \in \mathcal{F}} \|T\|_{L(X,Y)} \le \frac{2N}{r} < \infty\).</p></div></details>
+      </li>
+      <li data-proof="false">★ Define open mapping, state the Open Mapping Theorem, state the Bounded Inverse Theorem, and state the Closed Graph Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37" aria-label="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37">Q2.33, Q2.34, Q2.36, Q2.37</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A map between topological spaces is **open** if the image of every open set is open.
+        - **Open Mapping Theorem:** Let \(X, Y\) be Banach spaces. If \(T \in L(X, Y)\) is surjective, then \(T\) is an open mapping.
+        - **Bounded Inverse Theorem:** Let \(X, Y\) be Banach spaces. If \(T \in L(X, Y)\) is bijective, then its inverse \(T^{-1} : Y \to X\) is bounded (i.e. continuous).
+        - **Closed Graph Theorem:** Let \(X, Y\) be Banach spaces. If \(T : X \to Y\) is a linear operator whose graph \(G(T) = \{(x, Tx) : x \in X\}\) is closed in the product space \(X \times Y\) (equipped with the norm \(\|(x,y)\| = \|x\|_X + \|y\|_Y\)), then \(T\) is bounded.</p></div></details>
+      </li>
+      <li data-proof="false">★ Define the evaluation map, also called the canonical map, list its main properties, and give the definition of reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.49, Q2.50" aria-label="Theory Questions.pdf: Q2.49, Q2.50">Q2.49, Q2.50</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space. The **canonical evaluation map** is the mapping \(\tau : X \to X^{**}\) defined by:
+        <div class="formula">\[
+        \tau(x)(L) = L(x) \qquad \forall L \in X^*.
+        \]</div>
+        <strong>Main Properties:</strong>
+        - \(\tau\) is linear: \(\tau(\alpha x + \beta y)(L) = L(\alpha x + \beta y) = \alpha L(x) + \beta L(y) = \alpha \tau(x)(L) + \beta \tau(y)(L)\).
+        - \(\tau\) is an isometry: \(\|\tau(x)\|_{X^{**}} = \|x\|_X\). Indeed, by definition, \(\|\tau(x)\|_{X^{**}} = \sup_{\|L\|_{X^*} \le 1} |L(x)|\). By a corollary of the Hahn-Banach theorem, there exists \(L \in X^*\) with \(\|L\|_{X^*} = 1\) and \(L(x) = \|x\|_X\). Thus, the supremum is exactly \(\|x\|_X\).
+        A Banach space \(X\) is **reflexive** if the canonical evaluation map \(\tau : X \to X^{**}\) is surjective (and thus is an isometric isomorphism between \(X\) and \(X^{**}\)).</p></div></details>
       </li>
       <li data-proof="true">★ State and prove the Riesz representation theorem in Hilbert spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.69" aria-label="Theory Questions.pdf: Q2.69">Q2.69</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Separate the zero functional from the nonzero case. For a nonzero functional, decompose the Hilbert space into kernel plus its orthogonal direction, choose the representing vector on that direction, and verify uniqueness by testing inner products. <em>Question focus:</em> State and prove the Riesz representation theorem in Hilbert spaces.</p><p><strong>Riesz Representation Theorem:</strong> Let \(H\) be a Hilbert space. For every continuous linear functional \(F \in H^*\), there exists a unique \(y \in H\) such that:
@@ -649,34 +681,6 @@
         |F(y)| = \langle y, y \rangle = \|y\|_H^2 \implies \|F\|_{H^*} \ge \frac{|F(y)|}{\|y\|_H} = \|y\|_H.
         \]</div>
         Combining these inequalities yields \(\|F\|_{H^*} = \|y\|_H\).</p></div></details>
-      </li>
-      <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task wants an explicit countable dense set. Define separability, then approximate continuous functions uniformly by polynomials and restrict to polynomials with rational coefficients. <em>Question focus:</em> Write the definition of separable metric space and show that \(C^0([a,b])\) is separable.</p><p>A metric space \(X\) is **separable** if it contains a countable, dense subset. That is, there exists a countable subset \(D \subset X\) such that \(\overline{D} = X\).</p>
-        <p>We show that the space \(C^0([a, b])\) of continuous, real-valued functions on the compact interval \([a, b]\), equipped with the supremum norm \(\|f\|_\infty = \max_{x \in [a, b]} |f(x)|\), is separable by proving that the set of polynomials with rational coefficients, \(\mathbb{Q}[x]\), is countable and dense in \(C^0([a, b])\).</p>
-        <p><strong>Countability:</strong> Every polynomial \(P \in \mathbb{Q}[x]\) can be written as \(P(x) = \sum_{k=0}^n q_k x^k\) for some \(n \in \mathbb{N}\) and \(q_k \in \mathbb{Q}\). For each fixed \(n\), the set of polynomials of degree at most \(n\) with rational coefficients is in bijection with \(\mathbb{Q}^{n+1}\). Since \(\mathbb{Q}\) is countable, \(\mathbb{Q}^{n+1}\) is countable for every \(n\). The set of all polynomials with rational coefficients is the countable union:
-        <div class="formula">\[
-        \mathbb{Q}[x] = \bigcup_{n=0}^\infty \mathbb{Q}^{n+1},
-        \]</div>
-        which is countable because a countable union of countable sets is countable.</p>
-        <p><strong>Density:</strong> Let \(f \in C^0([a, b])\) and let \(\varepsilon > 0\).
-        By the Weierstrass Approximation Theorem, there exists a polynomial \(P(x) = \sum_{k=0}^n c_k x^k\) with real coefficients \(c_k \in \mathbb{R}\) such that:
-        <div class="formula">\[
-        \|f - P\|_\infty < \frac{\varepsilon}{2}.
-        \]</div>
-        Let \(M = \max\{|a|, |b|, 1\}\). Since \(\mathbb{Q}\) is dense in \(\mathbb{R}\), we can choose rational numbers \(q_k \in \mathbb{Q}\) for each \(k = 0, 1, \dots, n\) such that:
-        <div class="formula">\[
-        |c_k - q_k| < \frac{\varepsilon}{2(n+1)M^n}.
-        \]</div>
-        Define the rational polynomial \(Q(x) = \sum_{k=0}^n q_k x^k \in \mathbb{Q}[x]\). For any \(x \in [a, b]\):
-        <div class="formula">\[
-        |P(x) - Q(x)| = \left| \sum_{k=0}^n (c_k - q_k) x^k \right| \le \sum_{k=0}^n |c_k - q_k| |x|^k \le \sum_{k=0}^n \frac{\varepsilon}{2(n+1)M^n} M^n = \frac{\varepsilon}{2}.
-        \]</div>
-        Taking the supremum over \(x \in [a, b]\) yields \(\|P - Q\|_\infty \le \frac{\varepsilon}{2}\).
-        By the triangle inequality:
-        <div class="formula">\[
-        \|f - Q\|_\infty \le \|f - P\|_\infty + \|P - Q\|_\infty < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
-        \]</div>
-        Since for any \(f \in C^0([a, b])\) and any \(\varepsilon > 0\), there exists \(Q \in \mathbb{Q}[x]\) with \(\|f - Q\|_\infty < \varepsilon\), the countable set \(\mathbb{Q}[x]\) is dense in \(C^0([a, b])\). Hence, \(C^0([a, b])\) is separable.</p></div></details>
       </li>
     </ol>
   </main>

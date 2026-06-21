@@ -472,6 +472,16 @@ body.checklist-page li::marker {
   margin-top: 0.52em;
 }
 
+.conceptual-bridge {
+  margin: 0 0 1.1em;
+  padding: 0.9em 1em;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  background: var(--accent-bg);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
 .formula {
   margin: 1.05em 0;
   padding: 0.82em 1em;

@@ -58,6 +58,68 @@
 
     <h2>1. Lebesgue Integral And Core Convergence Theorems</h2>
     <ol start="1">
+      <li data-proof="true">★★ State and prove the Monotone Convergence Theorem, or Beppo Levi Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q1.44" aria-label="Theory Questions.pdf: Q1.44">Q1.44</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> One inequality is monotonicity of the integral. For the reverse one, approximate the limit from below by a simple function, use the sets where \(f_n\) eventually dominates it, and then let the approximation parameters go to the end. <em>Question focus:</em> State and prove the Monotone Convergence Theorem, or Beppo Levi Theorem.</p><p>Let \((f_n)\) be a sequence of non-negative measurable functions such that \(f_n \le f_{n+1}\) pointwise a.e., and \(f_n \to f\) pointwise a.e. The Monotone Convergence Theorem states:
+        <div class="formula">\[
+        \int_X f \, d\mu = \lim_{n\to\infty} \int_X f_n \, d\mu.
+        \]</div>
+        <em>Proof:</em> Since \(f_n \le f\) a.e., monotonicity of the integral implies \(\int_X f_n \, d\mu \le \int_X f \, d\mu\). Taking the limit gives:
+        <div class="formula">\[
+        \lim_{n\to\infty} \int_X f_n \, d\mu \le \int_X f \, d\mu.
+        \]</div>
+        To prove the reverse inequality, let \(s\) be any non-negative simple function such that \(0 \le s \le f\) pointwise. Fix any \(\varepsilon \in (0, 1)\). For each \(n \ge 1\), define the set:
+        <div class="formula">\[
+        E_n = \{ x \in X : f_n(x) \ge (1-\varepsilon) s(x) \}.
+        \]</div>
+        1. Each \(E_n\) is measurable since \(f_n\) and \(s\) are measurable.
+        2. Since \(f_n \le f_{n+1}\), the sets are nested: \(E_n \subset E_{n+1}\).
+        3. We show \(\bigcup_{n=1}^\infty E_n = X\) (up to a null set).
+           - If \(f(x) = 0\), then \(s(x) = 0\), so \(f_n(x) \ge 0 = (1-\varepsilon)s(x)\) holds for all \(n\), meaning \(x \in E_1\).
+           - If \(f(x) > 0\), then \((1-\varepsilon)s(x) < f(x)\). Since \(f_n(x) \to f(x)\), there exists \(N\) such that \(f_n(x) \ge (1-\varepsilon)s(x)\) for all \(n \ge N\), meaning \(x \in E_N\).
+           Thus \(E_n \uparrow X\) as \(n\to\infty\).
+        4. For any \(n \ge 1\), we have \(\int_X f_n \, d\mu \ge \int_{E_n} f_n \, d\mu \ge (1-\varepsilon) \int_{E_n} s \, d\mu\).
+        5. Write the simple function \(s\) as \(s = \sum_{j=1}^m a_j \chi_{A_j}\), where \(a_j \ge 0\) and \(A_j\) are disjoint measurable sets. Define the measure \(\nu(E) = \int_E s \, d\mu = \sum_{j=1}^m a_j \mu(E \cap A_j)\). Since \(\nu\) is a measure and \(E_n \uparrow X\), continuity of measure from below implies:
+           <div class="formula">\[
+           \lim_{n\to\infty} \int_{E_n} s \, d\mu = \lim_{n\to\infty} \nu(E_n) = \nu(X) = \int_X s \, d\mu.
+           \]</div>
+        6. Taking the limit inferior as \(n \to \infty\) on both sides of the inequality in Step 4 yields:
+           <div class="formula">\[
+           \lim_{n\to\infty} \int_X f_n \, d\mu \ge (1-\varepsilon) \int_X s \, d\mu.
+           \]</div>
+        7. Since this holds for any \(\varepsilon \in (0, 1)\), taking \(\varepsilon \downarrow 0\) yields \(\lim_{n\to\infty} \int_X f_n \, d\mu \ge \int_X s \, d\mu\).
+        8. Taking the supremum over all non-negative simple functions \(s \le f\) yields \(\lim_{n\to\infty} \int_X f_n \, d\mu \ge \int_X f \, d\mu\).
+        Combining the two inequalities completes the proof.</p></div></details>
+      </li>
+    
+      <li data-proof="true">★★ State and prove Fatou's Lemma. <span class="bank-ref" title="Theory Questions.pdf: Q1.45" aria-label="Theory Questions.pdf: Q1.45">Q1.45</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Build the proof from below. Replace the sequence by the increasing envelopes \(g_k=\inf_{m\ge k} f_m\), apply Monotone Convergence to \(g_k\), and compare each \(g_k\) with the tail integrals. <em>Question focus:</em> State and prove Fatou's Lemma.</p><p>Let \((f_n)\) be a sequence of non-negative measurable functions. Fatou's Lemma states:
+        <div class="formula">\[
+        \int_X \liminf_{n\to\infty} f_n \, d\mu \le \liminf_{n\to\infty} \int_X f_n \, d\mu.
+        \]</div>
+        <em>Proof:</em>
+        1. For each \(k \ge 1\), define the function \(g_k(x) = \inf_{m \ge k} f_m(x)\).
+        2. The sequence \((g_k)\) consists of non-negative measurable functions. Since the set of indices over which the infimum is taken shrinks as \(k\) increases, \(g_k(x) \le g_{k+1}(x)\) for all \(x \in X\). Thus, \((g_k)\) is pointwise monotonically increasing.
+        3. By definition, the pointwise limit is:
+           <div class="formula">\[
+           \lim_{k\to\infty} g_k(x) = \sup_{k\ge 1} \inf_{m \ge k} f_m(x) = \liminf_{n\to\infty} f_n(x).
+           \]</div>
+        4. For any \(m \ge k\), we have \(g_k(x) \le f_m(x)\) for all \(x \in X\). By monotonicity of the integral:
+           <div class="formula">\[
+           \int_X g_k \, d\mu \le \int_X f_m \, d\mu \qquad \forall m \ge k.
+           \]</div>
+        5. Taking the infimum over all \(m \ge k\) on the right-hand side yields:
+           <div class="formula">\[
+           \int_X g_k \, d\mu \le \inf_{m \ge k} \int_X f_m \, d\mu.
+           \]</div>
+        6. Since \((g_k)\) is a monotonically increasing sequence of non-negative measurable functions converging pointwise to \(\liminf_{n\to\infty} f_n\), the Monotone Convergence Theorem implies:
+           <div class="formula">\[
+           \lim_{k\to\infty} \int_X g_k \, d\mu = \int_X \liminf_{n\to\infty} f_n \, d\mu.
+           \]</div>
+        7. Taking the limit as \(k \to \infty\) on both sides of the inequality in Step 5:
+           <div class="formula">\[
+           \int_X \liminf_{n\to\infty} f_n \, d\mu = \lim_{k\to\infty} \int_X g_k \, d\mu \le \lim_{k\to\infty} \left( \inf_{m \ge k} \int_X f_m \, d\mu \right) = \liminf_{n\to\infty} \int_X f_n \, d\mu.
+           \]</div></p></div></details>
+      </li>
       <li data-proof="true">★★ State and prove the Lebesgue theorem. <span class="bank-ref" title="Theory Questions.pdf: Q1.54" aria-label="Theory Questions.pdf: Q1.54">Q1.54</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The goal is to justify passing the limit under the integral. State the domination hypothesis, prove the limit is still integrable, then use Fatou on a nonnegative dominated error to force the integral error to vanish. <em>Question focus:</em> State and prove the Lebesgue theorem.</p><p>This is the Lebesgue Dominated Convergence Theorem.</p>
         <p>Let \((X,\mathcal A,\mu)\) be a measure space. Suppose \((f_n)\) is a sequence of measurable functions converging pointwise a.e. to \(f\), and there exists a non-negative integrable function \(g \in L^1(X, \mu)\) such that \(|f_n| \le g\) a.e. for every \(n \ge 1\). Then \(f \in L^1(X, \mu)\), \(f_n \in L^1(X, \mu)\) for all \(n\), and:
@@ -96,67 +158,6 @@
            - If there is an integrable singularity, such as \(|f_n(x)| \le \frac{C}{|x|^\alpha}\) for \(\alpha < d\) on a bounded neighborhood of \(0\), we choose \(g(x) = \frac{C}{|x|^\alpha}\).
         3. **Monotonicity:** If the sequence is bounded by a known integrable function \(|f_n(x)| \le h(x)\) a.e. for all \(n\), then \(g = h\) is the dominating function.</p></div></details>
       </li>
-      <li data-proof="true">★★ State and prove Fatou's Lemma. <span class="bank-ref" title="Theory Questions.pdf: Q1.45" aria-label="Theory Questions.pdf: Q1.45">Q1.45</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Build the proof from below. Replace the sequence by the increasing envelopes \(g_k=\inf_{m\ge k} f_m\), apply Monotone Convergence to \(g_k\), and compare each \(g_k\) with the tail integrals. <em>Question focus:</em> State and prove Fatou's Lemma.</p><p>Let \((f_n)\) be a sequence of non-negative measurable functions. Fatou's Lemma states:
-        <div class="formula">\[
-        \int_X \liminf_{n\to\infty} f_n \, d\mu \le \liminf_{n\to\infty} \int_X f_n \, d\mu.
-        \]</div>
-        <em>Proof:</em>
-        1. For each \(k \ge 1\), define the function \(g_k(x) = \inf_{m \ge k} f_m(x)\).
-        2. The sequence \((g_k)\) consists of non-negative measurable functions. Since the set of indices over which the infimum is taken shrinks as \(k\) increases, \(g_k(x) \le g_{k+1}(x)\) for all \(x \in X\). Thus, \((g_k)\) is pointwise monotonically increasing.
-        3. By definition, the pointwise limit is:
-           <div class="formula">\[
-           \lim_{k\to\infty} g_k(x) = \sup_{k\ge 1} \inf_{m \ge k} f_m(x) = \liminf_{n\to\infty} f_n(x).
-           \]</div>
-        4. For any \(m \ge k\), we have \(g_k(x) \le f_m(x)\) for all \(x \in X\). By monotonicity of the integral:
-           <div class="formula">\[
-           \int_X g_k \, d\mu \le \int_X f_m \, d\mu \qquad \forall m \ge k.
-           \]</div>
-        5. Taking the infimum over all \(m \ge k\) on the right-hand side yields:
-           <div class="formula">\[
-           \int_X g_k \, d\mu \le \inf_{m \ge k} \int_X f_m \, d\mu.
-           \]</div>
-        6. Since \((g_k)\) is a monotonically increasing sequence of non-negative measurable functions converging pointwise to \(\liminf_{n\to\infty} f_n\), the Monotone Convergence Theorem implies:
-           <div class="formula">\[
-           \lim_{k\to\infty} \int_X g_k \, d\mu = \int_X \liminf_{n\to\infty} f_n \, d\mu.
-           \]</div>
-        7. Taking the limit as \(k \to \infty\) on both sides of the inequality in Step 5:
-           <div class="formula">\[
-           \int_X \liminf_{n\to\infty} f_n \, d\mu = \lim_{k\to\infty} \int_X g_k \, d\mu \le \lim_{k\to\infty} \left( \inf_{m \ge k} \int_X f_m \, d\mu \right) = \liminf_{n\to\infty} \int_X f_n \, d\mu.
-           \]</div></p></div></details>
-      </li>
-      <li data-proof="true">★★ State and prove the Monotone Convergence Theorem, or Beppo Levi Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q1.44" aria-label="Theory Questions.pdf: Q1.44">Q1.44</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> One inequality is monotonicity of the integral. For the reverse one, approximate the limit from below by a simple function, use the sets where \(f_n\) eventually dominates it, and then let the approximation parameters go to the end. <em>Question focus:</em> State and prove the Monotone Convergence Theorem, or Beppo Levi Theorem.</p><p>Let \((f_n)\) be a sequence of non-negative measurable functions such that \(f_n \le f_{n+1}\) pointwise a.e., and \(f_n \to f\) pointwise a.e. The Monotone Convergence Theorem states:
-        <div class="formula">\[
-        \int_X f \, d\mu = \lim_{n\to\infty} \int_X f_n \, d\mu.
-        \]</div>
-        <em>Proof:</em> Since \(f_n \le f\) a.e., monotonicity of the integral implies \(\int_X f_n \, d\mu \le \int_X f \, d\mu\). Taking the limit gives:
-        <div class="formula">\[
-        \lim_{n\to\infty} \int_X f_n \, d\mu \le \int_X f \, d\mu.
-        \]</div>
-        To prove the reverse inequality, let \(s\) be any non-negative simple function such that \(0 \le s \le f\) pointwise. Fix any \(\varepsilon \in (0, 1)\). For each \(n \ge 1\), define the set:
-        <div class="formula">\[
-        E_n = \{ x \in X : f_n(x) \ge (1-\varepsilon) s(x) \}.
-        \]</div>
-        1. Each \(E_n\) is measurable since \(f_n\) and \(s\) are measurable.
-        2. Since \(f_n \le f_{n+1}\), the sets are nested: \(E_n \subset E_{n+1}\).
-        3. We show \(\bigcup_{n=1}^\infty E_n = X\) (up to a null set).
-           - If \(f(x) = 0\), then \(s(x) = 0\), so \(f_n(x) \ge 0 = (1-\varepsilon)s(x)\) holds for all \(n\), meaning \(x \in E_1\).
-           - If \(f(x) > 0\), then \((1-\varepsilon)s(x) < f(x)\). Since \(f_n(x) \to f(x)\), there exists \(N\) such that \(f_n(x) \ge (1-\varepsilon)s(x)\) for all \(n \ge N\), meaning \(x \in E_N\).
-           Thus \(E_n \uparrow X\) as \(n\to\infty\).
-        4. For any \(n \ge 1\), we have \(\int_X f_n \, d\mu \ge \int_{E_n} f_n \, d\mu \ge (1-\varepsilon) \int_{E_n} s \, d\mu\).
-        5. Write the simple function \(s\) as \(s = \sum_{j=1}^m a_j \chi_{A_j}\), where \(a_j \ge 0\) and \(A_j\) are disjoint measurable sets. Define the measure \(\nu(E) = \int_E s \, d\mu = \sum_{j=1}^m a_j \mu(E \cap A_j)\). Since \(\nu\) is a measure and \(E_n \uparrow X\), continuity of measure from below implies:
-           <div class="formula">\[
-           \lim_{n\to\infty} \int_{E_n} s \, d\mu = \lim_{n\to\infty} \nu(E_n) = \nu(X) = \int_X s \, d\mu.
-           \]</div>
-        6. Taking the limit inferior as \(n \to \infty\) on both sides of the inequality in Step 4 yields:
-           <div class="formula">\[
-           \lim_{n\to\infty} \int_X f_n \, d\mu \ge (1-\varepsilon) \int_X s \, d\mu.
-           \]</div>
-        7. Since this holds for any \(\varepsilon \in (0, 1)\), taking \(\varepsilon \downarrow 0\) yields \(\lim_{n\to\infty} \int_X f_n \, d\mu \ge \int_X s \, d\mu\).
-        8. Taking the supremum over all non-negative simple functions \(s \le f\) yields \(\lim_{n\to\infty} \int_X f_n \, d\mu \ge \int_X f \, d\mu\).
-        Combining the two inequalities completes the proof.</p></div></details>
-      </li>
     </ol>
 
     <h2>2. Modes Of Convergence</h2>
@@ -187,24 +188,6 @@
         <div class="formula">\[
         \lim_{n\to\infty} \|f_n - f\|_{L^1} = \lim_{n\to\infty} \int_X |f_n - f| \, d\mu = 0.
         \]</div></p></div></details>
-      </li>
-      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence in measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.62" aria-label="Theory Questions.pdf: Q1.62">Q1.62</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The wanted implication is an estimate between two notions of convergence. Fix a tolerance, convert a large-deviation set into an integral bound with Chebyshev/Markov, then send the \(L^1\) norm to zero. <em>Question focus:</em> Show that convergence in \(L^1\) implies convergence in measure.</p><p>Assume \(f_n \to f\) in \(L^1(X, \mu)\). Fix any \(\varepsilon > 0\).
-        By Chebyshev's inequality (or Markov's inequality), we have:
-        <div class="formula">\[
-        \mu(\{ x \in X : |f_n(x) - f(x)| > \varepsilon \}) \le \frac{1}{\varepsilon} \int_X |f_n - f| \, d\mu.
-        \]</div>
-        Since \(f_n \to f\) in \(L^1\), the integral on the right-hand side tends to \(0\) as \(n \to \infty\). Since \(\varepsilon > 0\) is a fixed constant, we have:
-        <div class="formula">\[
-        \lim_{n\to\infty} \mu(\{ x \in X : |f_n(x) - f(x)| > \varepsilon \}) \le \frac{1}{\varepsilon} \cdot 0 = 0.
-        \]</div>
-        Thus, \(f_n \to f\) in measure.</p></div></details>
-      </li>
-      <li data-proof="false">★★★ What is the relation between convergence in measure and convergence a.e. up to subsequences? <span class="bank-ref" title="Theory Questions.pdf: Q1.60" aria-label="Theory Questions.pdf: Q1.60">Q1.60</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(f_n \to f\) in measure, then there exists a subsequence \((f_{n_k})\) that converges to \(f\) almost everywhere.
-        - **Subsequence Construction:** Since \(f_n \to f\) in measure, we can select a subsequence \((f_{n_k})\) such that for each \(k \ge 1\), the set \(A_k = \{ x \in X : |f_{n_k}(x) - f(x)| > 2^{-k} \}\) satisfies \(\mu(A_k) < 2^{-k}\).
-        - **Borel-Cantelli Argument:** The sum of the measures of these sets is finite: \(\sum_{k=1}^\infty \mu(A_k) < \sum_{k=1}^\infty 2^{-k} = 1 < \infty\). By the First Borel-Cantelli Lemma, the set \(E = \limsup_{k\to\infty} A_k = \bigcap_{N=1}^\infty \bigcup_{k=N}^\infty A_k\) of points belonging to infinitely many \(A_k\) has measure \(\mu(E) = 0\).
-        For any \(x \notin E\), there exists \(K(x)\) such that for all \(k \ge K(x)\), \(x \notin A_k\), which means \(|f_{n_k}(x) - f(x)| \le 2^{-k}\). Since \(2^{-k} \to 0\), \(\lim_{k\to\infty} f_{n_k}(x) = f(x)\) for all \(x \notin E\). Since \(\mu(E) = 0\), \(f_{n_k} \to f\) a.e.</p></div></details>
       </li>
       <li data-proof="false">★★★ Under which hypothesis on \(X\) does convergence a.e. imply convergence in measure? <span class="bank-ref" title="Theory Questions.pdf: Q1.61" aria-label="Theory Questions.pdf: Q1.61">Q1.61</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The hypothesis required is that the measure space is finite, i.e., \(\mu(X) < \infty\).
@@ -237,6 +220,33 @@
           \]</div>
           Since this measure does not converge to \(0\) as \(n \to \infty\), the sequence does not converge to \(0\) in measure.</p></div></details>
       </li>
+      <li data-proof="false">★★★ What is the relation between convergence in measure and convergence a.e. up to subsequences? <span class="bank-ref" title="Theory Questions.pdf: Q1.60" aria-label="Theory Questions.pdf: Q1.60">Q1.60</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>If \(f_n \to f\) in measure, then there exists a subsequence \((f_{n_k})\) that converges to \(f\) almost everywhere.
+        - **Subsequence Construction:** Since \(f_n \to f\) in measure, we can select a subsequence \((f_{n_k})\) such that for each \(k \ge 1\), the set \(A_k = \{ x \in X : |f_{n_k}(x) - f(x)| > 2^{-k} \}\) satisfies \(\mu(A_k) < 2^{-k}\).
+        - **Borel-Cantelli Argument:** The sum of the measures of these sets is finite: \(\sum_{k=1}^\infty \mu(A_k) < \sum_{k=1}^\infty 2^{-k} = 1 < \infty\). By the First Borel-Cantelli Lemma, the set \(E = \limsup_{k\to\infty} A_k = \bigcap_{N=1}^\infty \bigcup_{k=N}^\infty A_k\) of points belonging to infinitely many \(A_k\) has measure \(\mu(E) = 0\).
+        For any \(x \notin E\), there exists \(K(x)\) such that for all \(k \ge K(x)\), \(x \notin A_k\), which means \(|f_{n_k}(x) - f(x)| \le 2^{-k}\). Since \(2^{-k} \to 0\), \(\lim_{k\to\infty} f_{n_k}(x) = f(x)\) for all \(x \notin E\). Since \(\mu(E) = 0\), \(f_{n_k} \to f\) a.e.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence in measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.62" aria-label="Theory Questions.pdf: Q1.62">Q1.62</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The wanted implication is an estimate between two notions of convergence. Fix a tolerance, convert a large-deviation set into an integral bound with Chebyshev/Markov, then send the \(L^1\) norm to zero. <em>Question focus:</em> Show that convergence in \(L^1\) implies convergence in measure.</p><p>Assume \(f_n \to f\) in \(L^1(X, \mu)\). Fix any \(\varepsilon > 0\).
+        By Chebyshev's inequality (or Markov's inequality), we have:
+        <div class="formula">\[
+        \mu(\{ x \in X : |f_n(x) - f(x)| > \varepsilon \}) \le \frac{1}{\varepsilon} \int_X |f_n - f| \, d\mu.
+        \]</div>
+        Since \(f_n \to f\) in \(L^1\), the integral on the right-hand side tends to \(0\) as \(n \to \infty\). Since \(\varepsilon > 0\) is a fixed constant, we have:
+        <div class="formula">\[
+        \lim_{n\to\infty} \mu(\{ x \in X : |f_n(x) - f(x)| > \varepsilon \}) \le \frac{1}{\varepsilon} \cdot 0 = 0.
+        \]</div>
+        Thus, \(f_n \to f\) in measure.</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence a.e. up to subsequences. <span class="bank-ref" title="Theory Questions.pdf: Q1.63" aria-label="Theory Questions.pdf: Q1.63">Q1.63</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof should build a fast subsequence. Pick indices so the bad sets have summable measures, apply Borel-Cantelli, and conclude that outside one null set the errors eventually stay below a summable threshold. <em>Question focus:</em> Show that convergence in \(L^1\) implies convergence a.e. up to subsequences.</p><p>Let \(f_n \to f\) in \(L^1(X, \mu)\).
+        1. By Chebyshev's inequality, for any \(\varepsilon > 0\), we have \(\mu(\{|f_n - f| > \varepsilon\}) \le \frac{1}{\varepsilon} \|f_n - f\|_{L^1} \to 0\). Thus, \(f_n \to f\) in measure.
+        2. We extract a subsequence \((f_{n_k})\) such that for each \(k \ge 1\), the set \(A_k = \{ x \in X : |f_{n_k}(x) - f(x)| > 2^{-k} \}\) satisfies \(\mu(A_k) < 2^{-k}\).
+        3. Since \(\sum_{k=1}^\infty \mu(A_k) < \sum_{k=1}^\infty 2^{-k} = 1 < \infty\), the First Borel-Cantelli Lemma implies that the set \(E = \limsup_{k\to\infty} A_k\) of points belonging to infinitely many \(A_k\) has measure \(\mu(E) = 0\).
+        4. For any \(x \notin E\), there exists \(K(x)\) such that for all \(k \ge K(x)\), we have \(x \notin A_k\), which means \(|f_{n_k}(x) - f(x)| \le 2^{-k}\).
+        5. Since \(2^{-k} \to 0\), we have \(\lim_{k\to\infty} f_{n_k}(x) = f(x)\) for all \(x \notin E\), which proves \(f_{n_k} \to f\) a.e.</p></div></details>
+      </li>
+    
       <li data-proof="true">★★★ Does convergence in measure imply convergence in \(L^1\)? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.64" aria-label="Theory Questions.pdf: Q1.64">Q1.64</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Does convergence in measure imply convergence in \(L^1\)? Justify the answer.</p><p>No, convergence in measure does not imply convergence in \(L^1\).
         - **Justification:** Consider the interval \(X = (0, 1)\) with Lebesgue measure. Define the sequence of functions \((f_n)_{n=1}^\infty\) by:
@@ -280,14 +290,6 @@
           \lambda(\{ x \in [0, 1] : |f_n(x)| > \varepsilon \}) = \lambda(I_n) = 2^{-k} \to 0 \quad \text{as } n \to \infty.
           \]</div>
           However, for every \(x \in [0, 1]\), the sequence \((f_n(x))\) oscillates between \(0\) and \(1\) infinitely often, meaning the pointwise limit \(\lim_{n\to\infty} f_n(x)\) does not exist anywhere.</p></div></details>
-      </li>
-      <li data-proof="true">★★★ Show that convergence in \(L^1\) implies convergence a.e. up to subsequences. <span class="bank-ref" title="Theory Questions.pdf: Q1.63" aria-label="Theory Questions.pdf: Q1.63">Q1.63</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof should build a fast subsequence. Pick indices so the bad sets have summable measures, apply Borel-Cantelli, and conclude that outside one null set the errors eventually stay below a summable threshold. <em>Question focus:</em> Show that convergence in \(L^1\) implies convergence a.e. up to subsequences.</p><p>Let \(f_n \to f\) in \(L^1(X, \mu)\).
-        1. By Chebyshev's inequality, for any \(\varepsilon > 0\), we have \(\mu(\{|f_n - f| > \varepsilon\}) \le \frac{1}{\varepsilon} \|f_n - f\|_{L^1} \to 0\). Thus, \(f_n \to f\) in measure.
-        2. We extract a subsequence \((f_{n_k})\) such that for each \(k \ge 1\), the set \(A_k = \{ x \in X : |f_{n_k}(x) - f(x)| > 2^{-k} \}\) satisfies \(\mu(A_k) < 2^{-k}\).
-        3. Since \(\sum_{k=1}^\infty \mu(A_k) < \sum_{k=1}^\infty 2^{-k} = 1 < \infty\), the First Borel-Cantelli Lemma implies that the set \(E = \limsup_{k\to\infty} A_k\) of points belonging to infinitely many \(A_k\) has measure \(\mu(E) = 0\).
-        4. For any \(x \notin E\), there exists \(K(x)\) such that for all \(k \ge K(x)\), we have \(x \notin A_k\), which means \(|f_{n_k}(x) - f(x)| \le 2^{-k}\).
-        5. Since \(2^{-k} \to 0\), we have \(\lim_{k\to\infty} f_{n_k}(x) = f(x)\) for all \(x \notin E\), which proves \(f_{n_k} \to f\) a.e.</p></div></details>
       </li>
     </ol>
 
@@ -341,6 +343,24 @@
         \sum_{i=1}^N (b_i - a_i) < \delta \implies \sum_{i=1}^N |u(b_i) - u(a_i)| < \varepsilon.
         \]</div></p></div></details>
       </li>
+      <li data-proof="false">★★★ Write the definition of weak derivative. <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(u \in L^1_{\mathrm{loc}}(a, b)\). A function \(v \in L^1_{\mathrm{loc}}(a, b)\) is the **weak derivative** of \(u\) (written \(u' = v\)) if:
+        <div class="formula">\[
+        \int_a^b u(x) \varphi'(x) \, dx = - \int_a^b v(x) \varphi(x) \, dx \qquad \forall \varphi \in C_c^1(a, b).
+        \]</div>
+        If such a function \(v\) exists, it is unique up to equality almost everywhere.</p></div></details>
+      </li>
+      <li data-proof="false">★★★ Write the definition of \(W^{1,p}\). <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(1 \le p \le \infty\), the Sobolev space \(W^{1, p}(a, b)\) is defined as:
+        <div class="formula">\[
+        W^{1, p}(a, b) = \{ u \in L^p(a, b) : u \text{ has a weak derivative } u' \in L^p(a, b) \}.
+        \]</div>
+        It is equipped with the norm:
+        <div class="formula">\[
+        \|u\|_{W^{1, p}} = \left( \|u\|_{L^p}^p + \|u'\|_{L^p}^p \right)^{1/p} \quad (1 \le p < \infty),
+        \]</div>
+        and \(\|u\|_{W^{1, \infty}} = \max \{ \|u\|_{L^\infty}, \, \|u'\|_{L^\infty} \}\) for \(p = \infty\).</p></div></details>
+      </li>
       <li data-proof="true">★★★ State and prove the characterization of absolutely continuous functions in terms of the integration by parts formula. <span class="bank-ref" title="Theory Questions.pdf: Q1.69" aria-label="Theory Questions.pdf: Q1.69">Q1.69</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem is about translating between derivatives, integrals, and absolute continuity. Prove the easy direction by integrating the derivative, and the reverse direction by identifying the distributional derivative through test functions or integration by parts. <em>Question focus:</em> State and prove the characterization of absolutely continuous functions in terms of the integration by parts formula.</p><p>For \(u \in L^1(a, b)\), \(u\) has an absolutely continuous representative on \([a, b]\) if and only if there exists \(v \in L^1(a, b)\) such that:
         <div class="formula">\[
@@ -365,44 +385,47 @@
             Since this holds for all \(f \in C_c^\infty(a, b)\), we have \(h(x) = \int_a^b h(t)\psi(t)\,dt = \text{constant}\) a.e.
           Applying this Lemma to \(h = u - w\), we get \(u(x) - w(x) = C\) a.e., meaning \(u(x) = C + \int_a^x v(t) \, dt\) a.e., which is absolutely continuous.</p></div></details>
       </li>
-      <li data-proof="true">★★★ What is the relation between \(W^{1,1}\) and AC? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.71" aria-label="Theory Questions.pdf: Q1.71">Q1.71</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem is about translating between derivatives, integrals, and absolute continuity. Prove the easy direction by integrating the derivative, and the reverse direction by identifying the distributional derivative through test functions or integration by parts. <em>Question focus:</em> What is the relation between \(W^{1,1}\) and AC? Justify the answer.</p><p>In one dimension, the Sobolev space \(W^{1, 1}(a, b)\) is isomorphic to the space of absolutely continuous functions on \([a, b]\), up to equivalence classes of equality almost everywhere.
-        - **Justification:**
-          1. If \(u \in W^{1,1}(a, b)\), its weak derivative \(u'\) is in \(L^1(a, b)\). By the sufficiency proof in Q23, \(u\) is equal a.e. to the absolutely continuous representative:
-             <div class="formula">\[
-             \tilde{u}(x) = u(a) + \int_a^x u'(t) \, dt.
-             \]</div>
-          2. Conversely, if \(u\) is absolutely continuous, then its classical derivative \(u'\) exists a.e., belongs to \(L^1(a, b)\), and by the necessity proof in Q23, acts as its weak derivative. Hence, \(u \in W^{1,1}(a, b)\).</p></div></details>
-      </li>
-      <li data-proof="false">★★★ Write the definition of weak derivative. <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(u \in L^1_{\mathrm{loc}}(a, b)\). A function \(v \in L^1_{\mathrm{loc}}(a, b)\) is the **weak derivative** of \(u\) (written \(u' = v\)) if:
-        <div class="formula">\[
-        \int_a^b u(x) \varphi'(x) \, dx = - \int_a^b v(x) \varphi(x) \, dx \qquad \forall \varphi \in C_c^1(a, b).
-        \]</div>
-        If such a function \(v\) exists, it is unique up to equality almost everywhere.</p></div></details>
-      </li>
-      <li data-proof="false">★★★ Write the definition of \(W^{1,p}\). <span class="bank-ref" title="Theory Questions.pdf: Q1.70" aria-label="Theory Questions.pdf: Q1.70">Q1.70</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For \(1 \le p \le \infty\), the Sobolev space \(W^{1, p}(a, b)\) is defined as:
-        <div class="formula">\[
-        W^{1, p}(a, b) = \{ u \in L^p(a, b) : u \text{ has a weak derivative } u' \in L^p(a, b) \}.
-        \]</div>
-        It is equipped with the norm:
-        <div class="formula">\[
-        \|u\|_{W^{1, p}} = \left( \|u\|_{L^p}^p + \|u'\|_{L^p}^p \right)^{1/p} \quad (1 \le p < \infty),
-        \]</div>
-        and \(\|u\|_{W^{1, \infty}} = \max \{ \|u\|_{L^\infty}, \, \|u'\|_{L^\infty} \}\) for \(p = \infty\).</p></div></details>
-      </li>
       <li data-proof="false">★★★ State another characterization of absolutely continuous functions in terms of \(W^{1,1}\) and AC. <span class="bank-ref" title="Theory Questions.pdf: Q1.71" aria-label="Theory Questions.pdf: Q1.71">Q1.71</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A function \(u : [a, b] \to \mathbb{R}\) is absolutely continuous if and only if there exists \(g \in L^1(a, b)\) such that:
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><div class="conceptual-bridge"><strong>Conceptual Bridge.</strong> The classical definition of absolute continuity is an \(\varepsilon\)-\(\delta\) condition on finite collections of disjoint intervals: small total interval length forces small total oscillation. The characterization below turns that external control condition into a structural description:
+        <div class="formula">\[
+        u \in AC([a,b]) \iff u(x)=u(a)+\int_a^x g(t)\,dt \quad \text{for some } g\in L^1(a,b).
+        \]</div>
+        The key takeaway is: <strong>absolutely continuous functions are exactly the indefinite integrals of \(L^1\) functions.</strong> The same function \(g\) is simultaneously the classical derivative of \(u\) almost everywhere and the weak derivative of \(u\).</div><p>A function \(u : [a, b] \to \mathbb{R}\) is absolutely continuous if and only if there exists \(g \in L^1(a, b)\) such that:
         <div class="formula">\[
         u(x) = u(a) + \int_a^x g(t) \, dt \qquad \forall x \in [a, b].
         \]</div>
-        In this case, the function \(g\) is the pointwise derivative of \(u\) almost everywhere, and serves as its weak derivative, making \(u\) the unique continuous representative of a function in \(W^{1, 1}(a, b)\).</p></div></details>
+        In this case, \(g = u'\) almost everywhere in the classical sense, and the same \(g\) is the weak derivative of \(u\). Equivalently, every equivalence class in \(W^{1,1}(a,b)\) contains a unique absolutely continuous representative, obtained by integrating its weak derivative.</p></div></details>
+      </li>
+    
+      <li data-proof="true">★★★ What is the relation between \(W^{1,1}\) and AC? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q1.71" aria-label="Theory Questions.pdf: Q1.71">Q1.71</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem is about translating between derivatives, integrals, and absolute continuity. Prove the easy direction by integrating the derivative, and the reverse direction by identifying the distributional derivative through test functions or integration by parts. <em>Question focus:</em> What is the relation between \(W^{1,1}\) and AC? Justify the answer.</p><div class="conceptual-bridge"><strong>Conceptual Bridge.</strong> Elements of \(W^{1,1}(a,b)\) are equivalence classes of functions equal almost everywhere. Modifying values on a measure-zero set does not change the Sobolev element. The weak derivative nevertheless contains enough information to reconstruct a distinguished curve in the class:
+        <div class="formula">\[
+        \tilde u(x) = \tilde u(a) + \int_a^x u'(t)\,dt.
+        \]</div>
+        This reconstructed curve is absolutely continuous and is the canonical representative of the Sobolev equivalence class.</div><p>In one dimension, every \(W^{1,1}(a,b)\) equivalence class contains exactly one absolutely continuous representative, and every absolutely continuous function belongs to \(W^{1,1}(a,b)\). Therefore \(W^{1,1}(a,b)\) can be identified with \(AC([a,b])\) through this unique representative.</p>
+        <p><strong>Justification:</strong></p>
+        <ol>
+          <li>If \(u \in W^{1,1}(a,b)\), its weak derivative \(u'\) is in \(L^1(a,b)\). By the characterization theorem, the Sobolev class of \(u\) has the absolutely continuous representative
+             <div class="formula">\[
+             \tilde{u}(x) = \tilde{u}(a) + \int_a^x u'(t) \, dt.
+             \]</div>
+             This representative is unique among continuous, hence absolutely continuous, representatives of the same equivalence class.</li>
+          <li>Conversely, if \(u\) is absolutely continuous, then its classical derivative \(u'\) exists a.e., belongs to \(L^1(a,b)\), and by the necessity proof in Q23, acts as its weak derivative. Hence, \(u \in W^{1,1}(a,b)\).</li>
+        </ol></div></details>
       </li>
     </ol>
 
     <h2>5. Measurability And Characteristic-Function Tests</h2>
     <ol start="28">
+      <li data-proof="false">★★★ Write the definition of measurable function. State the theorem about the measurability of the composite function. <span class="bank-ref" title="Theory Questions.pdf: Q1.20, Q1.25" aria-label="Theory Questions.pdf: Q1.20, Q1.25">Q1.20, Q1.25</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((X, \mathcal{A})\) and \((Y, \mathcal{B})\) be measurable spaces. A function \(f : X \to Y\) is measurable if:
+        <div class="formula">\[
+        f^{-1}(B) \in \mathcal{A} \qquad \forall B \in \mathcal{B}.
+        \]</div>
+        - **Theorem (Composition):** If \(f : (X, \mathcal{A}) \to (Y, \mathcal{B})\) is measurable and \(g : (Y, \mathcal{B}) \to (Z, \mathcal{C})\) is measurable, then their composition \(g \circ f : (X, \mathcal{A}) \to (Z, \mathcal{C})\) is measurable.
+          *Proof:* For any \(C \in \mathcal{C}\), we have \((g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C))\). Since \(g\) is measurable, \(g^{-1}(C) \in \mathcal{B}\). Since \(f\) is measurable, \(f^{-1}(g^{-1}(C)) \in \mathcal{A}\).
+        - **Critical Warning:** If \(f : \mathbb{R} \to \mathbb{R}\) and \(g : \mathbb{R} \to \mathbb{R}\) are Lebesgue measurable, their composition \(g \circ f\) is **not necessarily** Lebesgue measurable. This is because \(g^{-1}(C)\) for a Borel set \(C\) is Lebesgue measurable but not necessarily Borel, and \(f\) is only guaranteed to pull back Borel sets to Lebesgue measurable sets. However, if \(g\) is **Borel measurable** and \(f\) is Lebesgue measurable, then \(g \circ f\) is Lebesgue measurable.</p></div></details>
+      </li>
       <li data-proof="true">★★★ Write the definitions of Borel measurable functions and Lebesgue measurable functions. Prove that continuous functions are both Borel and Lebesgue measurable. <span class="bank-ref" title="Theory Questions.pdf: Q1.22, Q1.23" aria-label="Theory Questions.pdf: Q1.22, Q1.23">Q1.22, Q1.23</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> Write the definitions of Borel measurable functions and Lebesgue measurable functions. Prove that continuous functions are both Borel and Lebesgue measurable.</p><p>Let \(f : \mathbb{R} \to \mathbb{R}\) be a function.
         1. **Borel Measurable:** \(f\) is Borel measurable if for every Borel set \(B \in \mathcal{B}(\mathbb{R})\), the pullback \(f^{-1}(B)\) is a Borel set: \(f^{-1}(B) \in \mathcal{B}(\mathbb{R})\).
@@ -412,15 +435,6 @@
         Since every open set is a Borel set, \(f^{-1}(O) \in \mathcal{B}(\mathbb{R})\).
         The family of sets \(S = \{ A \subset \mathbb{R} : f^{-1}(A) \in \mathcal{B}(\mathbb{R}) \}\) forms a \(\sigma\)-algebra. Since \(S\) contains all open sets, it contains the \(\sigma\)-algebra generated by open sets, which is \(\mathcal{B}(\mathbb{R})\). Thus, for every \(B \in \mathcal{B}(\mathbb{R})\), \(f^{-1}(B) \in \mathcal{B}(\mathbb{R})\), proving \(f\) is Borel measurable.
         Furthermore, since \(\mathcal{B}(\mathbb{R}) \subset \mathcal{L}(\mathbb{R})\), we also have \(f^{-1}(B) \in \mathcal{L}(\mathbb{R})\) for all Borel sets \(B\), proving \(f\) is Lebesgue measurable.</p></div></details>
-      </li>
-      <li data-proof="false">★★★ Write the definition of measurable function. State the theorem about the measurability of the composite function. <span class="bank-ref" title="Theory Questions.pdf: Q1.20, Q1.25" aria-label="Theory Questions.pdf: Q1.20, Q1.25">Q1.20, Q1.25</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \((X, \mathcal{A})\) and \((Y, \mathcal{B})\) be measurable spaces. A function \(f : X \to Y\) is measurable if:
-        <div class="formula">\[
-        f^{-1}(B) \in \mathcal{A} \qquad \forall B \in \mathcal{B}.
-        \]</div>
-        - **Theorem (Composition):** If \(f : (X, \mathcal{A}) \to (Y, \mathcal{B})\) is measurable and \(g : (Y, \mathcal{B}) \to (Z, \mathcal{C})\) is measurable, then their composition \(g \circ f : (X, \mathcal{A}) \to (Z, \mathcal{C})\) is measurable.
-          *Proof:* For any \(C \in \mathcal{C}\), we have \((g \circ f)^{-1}(C) = f^{-1}(g^{-1}(C))\). Since \(g\) is measurable, \(g^{-1}(C) \in \mathcal{B}\). Since \(f\) is measurable, \(f^{-1}(g^{-1}(C)) \in \mathcal{A}\).
-        - **Critical Warning:** If \(f : \mathbb{R} \to \mathbb{R}\) and \(g : \mathbb{R} \to \mathbb{R}\) are Lebesgue measurable, their composition \(g \circ f\) is **not necessarily** Lebesgue measurable. This is because \(g^{-1}(C)\) for a Borel set \(C\) is Lebesgue measurable but not necessarily Borel, and \(f\) is only guaranteed to pull back Borel sets to Lebesgue measurable sets. However, if \(g\) is **Borel measurable** and \(f\) is Lebesgue measurable, then \(g \circ f\) is Lebesgue measurable.</p></div></details>
       </li>
       <li data-proof="false">★★★ Write the characterization of measurability of functions. <span class="bank-ref" title="Theory Questions.pdf: Q1.21" aria-label="Theory Questions.pdf: Q1.21">Q1.21</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a real-valued function \(f : X \to \mathbb{R}\) on a measurable space \((X, \mathcal{A})\), the following statements are equivalent:
@@ -442,6 +456,32 @@
         - \(\{f < a\} = X \setminus \{f \ge a\}\).
         - \(\{f > a\} = \bigcup_{n=1}^\infty \{f \ge a + 1/n\}\).</p></div></details>
       </li>
+      <li data-proof="false">★★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>All three sets are measurable.
+        Since \(f\) and \(g\) are real-valued measurable functions, their difference \(h = f - g\) is also a measurable function.
+        We can express the sets as:
+        - \(\{f < g\} = \{x \in X : h(x) < 0\} = h^{-1}((-\infty, 0)) \in \mathcal{A}\).
+        - \(\{f \le g\} = \{x \in X : h(x) \le 0\} = h^{-1}((-\infty, 0]) \in \mathcal{A}\).
+        - \(\{f = g\} = \{x \in X : h(x) = 0\} = h^{-1}(\{0\}) \in \mathcal{A}\).
+        Since each of these interval generators is a Borel set, their pullbacks belong to \(\mathcal{A}\).</p></div></details>
+      </li>
+      <li data-proof="true">★★★ Let \(\{f_n\}\subset M(X,\mathcal A)\). Show that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), \(\liminf_n f_n\in M(X,\mathcal A)\). Can there exist two functions \(f,g\in M(X,\mathcal A)\) such that \(\max\{f,g\}\notin M(X,\mathcal A)\)? Why? <span class="bank-ref" title="Theory Questions.pdf: Q1.28" aria-label="Theory Questions.pdf: Q1.28">Q1.28</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Let \(\{f_n\}\subset M(X,\mathcal A)\). Show that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), \(\liminf_n f_n\in M(X,\mathcal A)\). Can there exist two functions \(f,g\in M(X,\mathcal A)\) such that \(\max\{f,g\}\notin M(X,\mathcal A)\)? Why?</p><p>Let \((f_n)\) be a sequence of real-valued measurable functions.
+        - **Supremum:** Let \(h(x) = \sup_{n\ge 1} f_n(x)\). For any \(a \in \mathbb{R}\):
+          <div class="formula">\[
+          \{ x \in X : h(x) > a \} = \bigcup_{n=1}^\infty \{ x \in X : f_n(x) > a \}.
+          \]</div>
+          Since each \(\{f_n > a\}\) is measurable, their countable union is measurable. Thus \(\sup_n f_n\) is measurable.
+        - **Infimum:** \(\inf_n f_n = - \sup_n (-f_n)\), which is measurable.
+        - **Limits:** The limit superior and limit inferior can be written as:
+          <div class="formula">\[
+          \limsup_{n\to\infty} f_n = \inf_{k\ge 1} \left( \sup_{n \ge k} f_n \right) \quad \text{and} \quad \liminf_{n\to\infty} f_n = \sup_{k\ge 1} \left( \inf_{n \ge k} f_n \right),
+          \]</div>
+          which are measurable because they are countable infima/suprema of measurable functions.
+        
+        For any two measurable functions \(f, g\), we have \(\max\{f, g\} = \sup\{f, g\}\). Since this is a finite supremum of measurable functions, it is always measurable. Thus, no such counterexample can exist.</p></div></details>
+      </li>
+    
       <li data-proof="true">★★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function.</p><p>Let \((X, \mathcal{A})\) be a measurable space and \(A \subset X\).
         - **Forward Direction:** Assume \(A \in \mathcal{A}\). The characteristic function is \(\chi_A(x)\). For any \(a \in \mathbb{R}\), the set \(E_a = \{ x \in X : \chi_A(x) > a \}\) is:
@@ -472,59 +512,44 @@
           Since \(|f(x)| = 1\) for all \(x \in X\), the function \(|f|\) is constant, and hence measurable.
           However, \(f^{-1}(\{1\}) = A \notin \mathcal{A}\), so \(f\) is not a measurable function.</p></div></details>
       </li>
-      <li data-proof="false">★★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>All three sets are measurable.
-        Since \(f\) and \(g\) are real-valued measurable functions, their difference \(h = f - g\) is also a measurable function.
-        We can express the sets as:
-        - \(\{f < g\} = \{x \in X : h(x) < 0\} = h^{-1}((-\infty, 0)) \in \mathcal{A}\).
-        - \(\{f \le g\} = \{x \in X : h(x) \le 0\} = h^{-1}((-\infty, 0]) \in \mathcal{A}\).
-        - \(\{f = g\} = \{x \in X : h(x) = 0\} = h^{-1}(\{0\}) \in \mathcal{A}\).
-        Since each of these interval generators is a Borel set, their pullbacks belong to \(\mathcal{A}\).</p></div></details>
-      </li>
-      <li data-proof="true">★★★ Let \(\{f_n\}\subset M(X,\mathcal A)\). Show that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), \(\liminf_n f_n\in M(X,\mathcal A)\). Can there exist two functions \(f,g\in M(X,\mathcal A)\) such that \(\max\{f,g\}\notin M(X,\mathcal A)\)? Why? <span class="bank-ref" title="Theory Questions.pdf: Q1.28" aria-label="Theory Questions.pdf: Q1.28">Q1.28</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Let \(\{f_n\}\subset M(X,\mathcal A)\). Show that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), \(\liminf_n f_n\in M(X,\mathcal A)\). Can there exist two functions \(f,g\in M(X,\mathcal A)\) such that \(\max\{f,g\}\notin M(X,\mathcal A)\)? Why?</p><p>Let \((f_n)\) be a sequence of real-valued measurable functions.
-        - **Supremum:** Let \(h(x) = \sup_{n\ge 1} f_n(x)\). For any \(a \in \mathbb{R}\):
-          <div class="formula">\[
-          \{ x \in X : h(x) > a \} = \bigcup_{n=1}^\infty \{ x \in X : f_n(x) > a \}.
-          \]</div>
-          Since each \(\{f_n > a\}\) is measurable, their countable union is measurable. Thus \(\sup_n f_n\) is measurable.
-        - **Infimum:** \(\inf_n f_n = - \sup_n (-f_n)\), which is measurable.
-        - **Limits:** The limit superior and limit inferior can be written as:
-          <div class="formula">\[
-          \limsup_{n\to\infty} f_n = \inf_{k\ge 1} \left( \sup_{n \ge k} f_n \right) \quad \text{and} \quad \liminf_{n\to\infty} f_n = \sup_{k\ge 1} \left( \inf_{n \ge k} f_n \right),
-          \]</div>
-          which are measurable because they are countable infima/suprema of measurable functions.
-        
-        For any two measurable functions \(f, g\), we have \(\max\{f, g\} = \sup\{f, g\}\). Since this is a finite supremum of measurable functions, it is always measurable. Thus, no such counterexample can exist.</p></div></details>
-      </li>
     </ol>
 
     <h2>6. Low But Not Impossible Surprise Candidates</h2>
     <ol start="37">
-      <li data-proof="true">★ State and prove the Vanishing Lemma in the following two cases: for nonnegative measurable functions and for functions belonging to \(L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.43, Q1.52" aria-label="Theory Questions.pdf: Q1.43, Q1.52">Q1.43, Q1.52</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> State and prove the Vanishing Lemma in the following two cases: for nonnegative measurable functions and for functions belonging to \(L^1\).</p>
-        <p><strong>Case 1 (Nonnegative functions):</strong> If \(f \in M^+(X, \mathcal{A})\) and \(\int_X f \, d\mu = 0\), then \(f = 0\) a.e.</p>
-        <p><em>Proof:</em> For each \(n \ge 1\), define the set \(E_n = \{ x \in X : f(x) \ge 1/n \}\). By Chebyshev's inequality:
+      <li data-proof="false">★ Given a metric space \((X,d)\), write the definition of its Borel \(\sigma\)-algebra \(\mathcal B(X)\). Provide classes of Borel sets and characterize \(\mathcal B(\mathbb R)\), \(\mathcal B(\mathbb R^N)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.3" aria-label="Theory Questions.pdf: Q1.3">Q1.3</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a metric space \((X, d)\), the Borel \(\sigma\)-algebra \(\mathcal{B}(X)\) is defined as the smallest \(\sigma\)-algebra containing all open subsets of \(X\):
         <div class="formula">\[
-        0 = \int_X f \, d\mu \ge \int_{E_n} f \, d\mu \ge \frac{1}{n} \mu(E_n) \implies \mu(E_n) = 0.
+        \mathcal{B}(X) = \sigma(\{ U \subset X : U \text{ is open} \}).
         \]</div>
-        The set where \(f\) is positive is \(\{ x \in X : f(x) > 0 \} = \bigcup_{n=1}^\infty E_n\). By countable subadditivity:
-        <div class="formula">\[
-        \mu(\{ f > 0 \}) \le \sum_{n=1}^\infty \mu(E_n) = 0.
-        \]</div>
-        Thus \(f = 0\) a.e.</p>
+        Classes of Borel sets include:
+        1. **Open Sets** and **Closed Sets**.
+        2. **\(F_\sigma\) sets:** Countable unions of closed sets.
+        3. **\(G_\delta\) sets:** Countable intersections of open sets.
+        4. **\(F_{\sigma\delta}\) sets** (countable intersections of \(F_\sigma\) sets) and **\(G_{\delta\sigma}\) sets** (countable unions of \(G_\delta\) sets).
         
-        <p><strong>Case 2 (L^1 functions):</strong> If \(f \in L^1(X, \mu)\) and \(\int_E f \, d\mu = 0\) for every measurable set \(E \in \mathcal{A}\), then \(f = 0\) a.e.</p>
-        <p><em>Proof:</em> Let \(E_+ = \{ x \in X : f(x) > 0 \}\) and \(E_- = \{ x \in X : f(x) < 0 \}\). Both sets are measurable. By hypothesis:
-        <div class="formula">\[
-        \int_{E_+} f \, d\mu = 0 \quad \text{and} \quad \int_{E_-} f \, d\mu = 0.
-        \]</div>
-        Since \(f = f^+\) on \(E_+\) and \(f = -f^-\) on \(E_-\), we have:
-        <div class="formula">\[
-        \int_X f^+ \, d\mu = \int_{E_+} f \, d\mu = 0 \quad \text{and} \quad \int_X f^- \, d\mu = \int_{E_-} (-f) \, d\mu = 0.
-        \]</div>
-        Applying Case 1 to the nonnegative functions \(f^+\) and \(f^-\) yields \(f^+ = 0\) a.e. and \(f^- = 0\) a.e. Thus \(f = f^+ - f^- = 0\) a.e.</p>
-        </div></details>
+        **Characterization on \(\mathbb{R}\):** \(\mathcal{B}(\mathbb{R})\) can be generated by any of the following families of intervals (with endpoints in \(\mathbb{R}\) or \(\mathbb{Q}\)):
+        - Open intervals: \(\{(a, b) : a, b \in \mathbb{R}\}\).
+        - Closed intervals: \(\{[a, b] : a, b \in \mathbb{R}\}\).
+        - Half-open intervals: \(\{(a, b] : a, b \in \mathbb{R}\}\) or \(\{[a, b) : a, b \in \mathbb{R}\}\).
+        - Unbounded open intervals: \(\{(-\infty, a) : a \in \mathbb{R}\}\) or \(\{(a, \infty) : a \in \mathbb{R}\}\).
+        
+        **Characterization on \(\mathbb{R}^N\):** \(\mathcal{B}(\mathbb{R}^N)\) is generated by open balls, by open rectangles of the form \(\prod_{j=1}^N (a_j, b_j)\), or by rational rectangles.</p></div></details>
+      </li>
+    
+      <li data-proof="true">★ Prove the continuity of the measure along monotone sequences, either increasing or decreasing, under suitable further assumptions. <span class="bank-ref" title="Theory Questions.pdf: Q1.5" aria-label="Theory Questions.pdf: Q1.5">Q1.5</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task asks for the two monotone-set limit rules. For increasing sets, decompose into disjoint increments; for decreasing sets, reduce to the increasing case by complements and use the finite-measure hypothesis. <em>Question focus:</em> Prove the continuity of the measure along monotone sequences, either increasing or decreasing, under suitable further assumptions.</p><p>Let \((X, \mathcal{A}, \mu)\) be a measure space.
+        1. **Increasing Sequences:** If \(E_n \uparrow E = \bigcup_{n=1}^\infty E_n\), then \(\lim_{n\to\infty} \mu(E_n) = \mu(E)\).
+           - *Proof:* Define \(F_1 = E_1\), and \(F_n = E_n \setminus E_{n-1}\) for all \(n \ge 2\). The sets \((F_n)\) are pairwise disjoint and satisfy \(\bigcup_{n=1}^N F_n = E_N\) and \(\bigcup_{n=1}^\infty F_n = E\). By countable additivity:
+             <div class="formula">\[
+             \mu(E) = \sum_{n=1}^\infty \mu(F_n) = \lim_{N\to\infty} \sum_{n=1}^N \mu(F_n) = \lim_{N\to\infty} \mu(E_N).
+             \]</div>
+        2. **Decreasing Sequences:** If \(E_n \downarrow E = \bigcap_{n=1}^\infty E_n\) and \(\mu(E_1) < \infty\), then \(\lim_{n\to\infty} \mu(E_n) = \mu(E)\).
+           - *Proof:* Define \(A_n = E_1 \setminus E_n\). Since \(E_n\) is decreasing, \(A_n\) is increasing: \(A_n \uparrow \bigcup (E_1 \setminus E_n) = E_1 \setminus E\). Applying the increasing case yields:
+             <div class="formula">\[
+             \lim_{n\to\infty} \mu(E_1 \setminus E_n) = \mu(E_1 \setminus E).
+             \]</div>
+             Since \(\mu(E_1) < \infty\), we can write \(\lim_{n\to\infty} (\mu(E_1) - \mu(E_n)) = \mu(E_1) - \mu(E) \implies \lim_{n\to\infty} \mu(E_n) = \mu(E)\).
+        - **Counterexample for decreasing sequences without finite measure:** Let \(X = \mathbb{R}\) with Lebesgue measure \(\lambda\). Let \(E_n = [n, \infty)\). We have \(E_n \downarrow \varnothing\), so \(\lambda(\bigcap E_n) = 0\). However, \(\lambda(E_n) = \infty\) for every \(n \ge 1\). Thus, \(\lim_{n\to\infty} \lambda(E_n) = \infty \neq 0\).</p></div></details>
       </li>
       <li data-proof="true">★ State and prove the theorem about regularity of the Lebesgue measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.18" aria-label="Theory Questions.pdf: Q1.18">Q1.18</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is an approximation argument. State inner and outer regularity, prove it first for convenient measurable sets, then extend by monotone approximation and the definition of Lebesgue measure. <em>Question focus:</em> State and prove the theorem about regularity of the Lebesgue measure.</p><p>Lebesgue measure \(\lambda\) on \(\mathbb{R}^d\) is regular: for any Lebesgue measurable set \(E \subset \mathbb{R}^d\):
@@ -556,39 +581,30 @@
           - *Case 2: \(E\) is unbounded.* For each \(R \ge 1\), define \(E_R = E \cap B_R(0)\).
             Since \(E_R \uparrow E\), continuity of measure from below implies \(\lambda(E_R) \to \lambda(E)\). For any \(L < \lambda(E)\), choose \(R\) large enough such that \(\lambda(E_R) > L\). Since \(E_R\) is bounded, Case 1 yields a compact set \(K \subset E_R \subset E\) such that \(\lambda(K) > L\), proving Inner Regularity generally.</p></div></details>
       </li>
-      <li data-proof="true">★ Prove the continuity of the measure along monotone sequences, either increasing or decreasing, under suitable further assumptions. <span class="bank-ref" title="Theory Questions.pdf: Q1.5" aria-label="Theory Questions.pdf: Q1.5">Q1.5</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task asks for the two monotone-set limit rules. For increasing sets, decompose into disjoint increments; for decreasing sets, reduce to the increasing case by complements and use the finite-measure hypothesis. <em>Question focus:</em> Prove the continuity of the measure along monotone sequences, either increasing or decreasing, under suitable further assumptions.</p><p>Let \((X, \mathcal{A}, \mu)\) be a measure space.
-        1. **Increasing Sequences:** If \(E_n \uparrow E = \bigcup_{n=1}^\infty E_n\), then \(\lim_{n\to\infty} \mu(E_n) = \mu(E)\).
-           - *Proof:* Define \(F_1 = E_1\), and \(F_n = E_n \setminus E_{n-1}\) for all \(n \ge 2\). The sets \((F_n)\) are pairwise disjoint and satisfy \(\bigcup_{n=1}^N F_n = E_N\) and \(\bigcup_{n=1}^\infty F_n = E\). By countable additivity:
-             <div class="formula">\[
-             \mu(E) = \sum_{n=1}^\infty \mu(F_n) = \lim_{N\to\infty} \sum_{n=1}^N \mu(F_n) = \lim_{N\to\infty} \mu(E_N).
-             \]</div>
-        2. **Decreasing Sequences:** If \(E_n \downarrow E = \bigcap_{n=1}^\infty E_n\) and \(\mu(E_1) < \infty\), then \(\lim_{n\to\infty} \mu(E_n) = \mu(E)\).
-           - *Proof:* Define \(A_n = E_1 \setminus E_n\). Since \(E_n\) is decreasing, \(A_n\) is increasing: \(A_n \uparrow \bigcup (E_1 \setminus E_n) = E_1 \setminus E\). Applying the increasing case yields:
-             <div class="formula">\[
-             \lim_{n\to\infty} \mu(E_1 \setminus E_n) = \mu(E_1 \setminus E).
-             \]</div>
-             Since \(\mu(E_1) < \infty\), we can write \(\lim_{n\to\infty} (\mu(E_1) - \mu(E_n)) = \mu(E_1) - \mu(E) \implies \lim_{n\to\infty} \mu(E_n) = \mu(E)\).
-        - **Counterexample for decreasing sequences without finite measure:** Let \(X = \mathbb{R}\) with Lebesgue measure \(\lambda\). Let \(E_n = [n, \infty)\). We have \(E_n \downarrow \varnothing\), so \(\lambda(\bigcap E_n) = 0\). However, \(\lambda(E_n) = \infty\) for every \(n \ge 1\). Thus, \(\lim_{n\to\infty} \lambda(E_n) = \infty \neq 0\).</p></div></details>
-      </li>
-      <li data-proof="false">★ Given a metric space \((X,d)\), write the definition of its Borel \(\sigma\)-algebra \(\mathcal B(X)\). Provide classes of Borel sets and characterize \(\mathcal B(\mathbb R)\), \(\mathcal B(\mathbb R^N)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.3" aria-label="Theory Questions.pdf: Q1.3">Q1.3</span>
-        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a metric space \((X, d)\), the Borel \(\sigma\)-algebra \(\mathcal{B}(X)\) is defined as the smallest \(\sigma\)-algebra containing all open subsets of \(X\):
+      <li data-proof="true">★ State and prove the Vanishing Lemma in the following two cases: for nonnegative measurable functions and for functions belonging to \(L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.43, Q1.52" aria-label="Theory Questions.pdf: Q1.43, Q1.52">Q1.43, Q1.52</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> State and prove the Vanishing Lemma in the following two cases: for nonnegative measurable functions and for functions belonging to \(L^1\).</p>
+        <p><strong>Case 1 (Nonnegative functions):</strong> If \(f \in M^+(X, \mathcal{A})\) and \(\int_X f \, d\mu = 0\), then \(f = 0\) a.e.</p>
+        <p><em>Proof:</em> For each \(n \ge 1\), define the set \(E_n = \{ x \in X : f(x) \ge 1/n \}\). By Chebyshev's inequality:
         <div class="formula">\[
-        \mathcal{B}(X) = \sigma(\{ U \subset X : U \text{ is open} \}).
+        0 = \int_X f \, d\mu \ge \int_{E_n} f \, d\mu \ge \frac{1}{n} \mu(E_n) \implies \mu(E_n) = 0.
         \]</div>
-        Classes of Borel sets include:
-        1. **Open Sets** and **Closed Sets**.
-        2. **\(F_\sigma\) sets:** Countable unions of closed sets.
-        3. **\(G_\delta\) sets:** Countable intersections of open sets.
-        4. **\(F_{\sigma\delta}\) sets** (countable intersections of \(F_\sigma\) sets) and **\(G_{\delta\sigma}\) sets** (countable unions of \(G_\delta\) sets).
+        The set where \(f\) is positive is \(\{ x \in X : f(x) > 0 \} = \bigcup_{n=1}^\infty E_n\). By countable subadditivity:
+        <div class="formula">\[
+        \mu(\{ f > 0 \}) \le \sum_{n=1}^\infty \mu(E_n) = 0.
+        \]</div>
+        Thus \(f = 0\) a.e.</p>
         
-        **Characterization on \(\mathbb{R}\):** \(\mathcal{B}(\mathbb{R})\) can be generated by any of the following families of intervals (with endpoints in \(\mathbb{R}\) or \(\mathbb{Q}\)):
-        - Open intervals: \(\{(a, b) : a, b \in \mathbb{R}\}\).
-        - Closed intervals: \(\{[a, b] : a, b \in \mathbb{R}\}\).
-        - Half-open intervals: \(\{(a, b] : a, b \in \mathbb{R}\}\) or \(\{[a, b) : a, b \in \mathbb{R}\}\).
-        - Unbounded open intervals: \(\{(-\infty, a) : a \in \mathbb{R}\}\) or \(\{(a, \infty) : a \in \mathbb{R}\}\).
-        
-        **Characterization on \(\mathbb{R}^N\):** \(\mathcal{B}(\mathbb{R}^N)\) is generated by open balls, by open rectangles of the form \(\prod_{j=1}^N (a_j, b_j)\), or by rational rectangles.</p></div></details>
+        <p><strong>Case 2 (L^1 functions):</strong> If \(f \in L^1(X, \mu)\) and \(\int_E f \, d\mu = 0\) for every measurable set \(E \in \mathcal{A}\), then \(f = 0\) a.e.</p>
+        <p><em>Proof:</em> Let \(E_+ = \{ x \in X : f(x) > 0 \}\) and \(E_- = \{ x \in X : f(x) < 0 \}\). Both sets are measurable. By hypothesis:
+        <div class="formula">\[
+        \int_{E_+} f \, d\mu = 0 \quad \text{and} \quad \int_{E_-} f \, d\mu = 0.
+        \]</div>
+        Since \(f = f^+\) on \(E_+\) and \(f = -f^-\) on \(E_-\), we have:
+        <div class="formula">\[
+        \int_X f^+ \, d\mu = \int_{E_+} f \, d\mu = 0 \quad \text{and} \quad \int_X f^- \, d\mu = \int_{E_-} (-f) \, d\mu = 0.
+        \]</div>
+        Applying Case 1 to the nonnegative functions \(f^+\) and \(f^-\) yields \(f^+ = 0\) a.e. and \(f^- = 0\) a.e. Thus \(f = f^+ - f^- = 0\) a.e.</p>
+        </div></details>
       </li>
     </ol>
   </main>

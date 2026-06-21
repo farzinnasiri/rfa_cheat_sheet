@@ -761,7 +761,10 @@
     inner.querySelectorAll(".browse-question").forEach(function (el) {
       var ch      = el.dataset.qChapter;
       var heading = headingMap[ch];
-      if (heading) heading.insertAdjacentElement("afterend", el);
+      if (heading) {
+        heading.insertAdjacentElement("afterend", el);
+        headingMap[ch] = el;
+      }
     });
 
     applyBrowseFilter();
