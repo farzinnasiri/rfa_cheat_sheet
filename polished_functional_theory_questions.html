@@ -582,6 +582,77 @@
 
     <h2>6. Low But Not Impossible Surprise Candidates</h2>
     <ol start="47">
+      <li data-proof="false">★★ Give examples of normed spaces and define the metric induced by a norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.6, Q2.7" aria-label="Theory Questions.pdf: Q2.6, Q2.7">Q2.6, Q2.7</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Examples of normed spaces include \((\mathbb R^n,\|\cdot\|_p)\), \(C^0([a,b])\) with \(\|f\|_\infty\), \(L^p(X)\), and \(\ell^p\). A norm \(\|\cdot\|\) induces the metric
+        <div class="formula">\[
+        d(x,y)=\|x-y\|.
+        \]</div>
+        In this metric, \(x_n\to x\) means \(\|x_n-x\|\to0\), and \((x_n)\) is Cauchy if \(\|x_n-x_m\|\to0\) as \(n,m\to\infty\).</p></div></details>
+      </li>
+      <li data-proof="false">★★ Define Banach space and state the series criterion for completeness. <span class="bank-ref" title="Theory Questions.pdf: Q2.8, Q2.9, Q2.10" aria-label="Theory Questions.pdf: Q2.8, Q2.9, Q2.10">Q2.8, Q2.9, Q2.10</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Completeness is often tested through series. Remember the direction: absolute convergence of every series is equivalent to completeness. <em>Question focus:</em> Banach spaces and the series criterion.</p><p>A Banach space is a complete normed vector space, meaning every Cauchy sequence converges in norm to an element of the space. A series \(\sum_n x_n\) in a normed space is convergent if the partial sums \(s_N=\sum_{n=1}^N x_n\) converge in norm.</p>
+        <p>The useful completeness criterion is: a normed space \(X\) is Banach if every absolutely convergent series converges, i.e.
+        <div class="formula">\[
+        \sum_{n=1}^\infty \|x_n\|<\infty\quad\Longrightarrow\quad \sum_{n=1}^\infty x_n \text{ converges in }X.
+        \]</div>
+        If \(X\) is complete, the partial sums are Cauchy because the tails are bounded by \(\sum_{k=m}^n\|x_k\|\), hence converge. Conversely, if every absolutely convergent series converges, take any Cauchy sequence \((y_n)\), extract a subsequence \((y_{n_k})\) with \(\|y_{n_{k+1}}-y_{n_k}\|\le2^{-k}\), and write it as a convergent telescopic series. The subsequence converges, and since the original sequence is Cauchy, the whole sequence converges.</p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove Riesz's lemma and Riesz's compactness theorem for the unit ball. <span class="bank-ref" title="Theory Questions.pdf: Q2.11, Q2.12" aria-label="Theory Questions.pdf: Q2.11, Q2.12">Q2.11, Q2.12</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Riesz Lemma creates separated unit vectors away from a closed proper subspace. The compactness theorem uses those separated vectors to kill sequential compactness in infinite dimension. <em>Question focus:</em> Riesz Lemma and compactness of the unit ball.</p><p><strong>Riesz Lemma:</strong> If \(Y\) is a proper closed subspace of a normed space \(X\), then for every \(0<\alpha<1\) there exists \(x\in X\) with \(\|x\|=1\) and \(\operatorname{dist}(x,Y)>\alpha\).</p>
+        <p><em>Proof:</em> Choose \(z\in X\setminus Y\). Since \(Y\) is closed, \(d=\operatorname{dist}(z,Y)>0\). Pick \(y_0\in Y\) such that
+        <div class="formula">\[
+        \|z-y_0\|<\frac{d}{\alpha}.
+        \]</div>
+        Set \(x=(z-y_0)/\|z-y_0\|\). Then \(\|x\|=1\). For every \(y\in Y\), also \(y_0+\|z-y_0\|y\in Y\), so
+        <div class="formula">\[
+        \|x-y\|=\frac{\|z-y_0-\|z-y_0\|y\|}{\|z-y_0\|}
+        =\frac{\|z-(y_0+\|z-y_0\|y)\|}{\|z-y_0\|}
+        \ge \frac{d}{\|z-y_0\|}>\alpha.
+        \]</div>
+        Hence \(\operatorname{dist}(x,Y)>\alpha\).</p>
+        <p><strong>Riesz compactness theorem:</strong> The closed unit ball of a normed space is compact if and only if the space is finite-dimensional.</p>
+        <p><em>Proof idea:</em> Finite-dimensional closed bounded sets are compact. Conversely, if \(X\) is infinite-dimensional, build a strictly increasing chain of finite-dimensional subspaces \(Y_n\). By Riesz Lemma choose unit vectors \(x_n\) separated from \(Y_n\), hence \(\|x_n-x_m\|>\alpha\) for \(m>n\). This sequence in the unit ball has no Cauchy subsequence, so the unit ball is not compact.</p></div></details>
+      </li>
+      <li data-proof="false">★ Define equivalent norms and state what happens in finite-dimensional spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.13, Q2.14" aria-label="Theory Questions.pdf: Q2.13, Q2.14">Q2.13, Q2.14</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Two norms \(\|\cdot\|_a\) and \(\|\cdot\|_b\) on a vector space are equivalent if there are constants \(c,C>0\) such that
+        <div class="formula">\[
+        c\|x\|_a\le \|x\|_b\le C\|x\|_a\qquad\forall x.
+        \]</div>
+        Equivalent norms generate the same convergent sequences, open sets, and completeness property. In finite-dimensional vector spaces all norms are equivalent. Also, every finite-dimensional subspace of a normed space is closed; arbitrary infinite-dimensional subspaces need not be closed.</p></div></details>
+      </li>
+      <li data-proof="false">★★ Write the definitions of linear operator, bounded operator, continuous operator, functional, and dual space. <span class="bank-ref" title="Theory Questions.pdf: Q2.26, Q2.38" aria-label="Theory Questions.pdf: Q2.26, Q2.38">Q2.26, Q2.38</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> These definitions are the vocabulary behind the open mapping, closed graph, and Hahn-Banach questions. The key equivalence is bounded equals continuous for linear maps. <em>Question focus:</em> Operator and dual-space definitions.</p><p>A map \(T:X\to Y\) between vector spaces is linear if \(T(\alpha x+\beta y)=\alpha Tx+\beta Ty\). A linear operator between normed spaces is bounded if there exists \(C\ge0\) such that
+        <div class="formula">\[
+        \|Tx\|_Y\le C\|x\|_X\qquad\forall x\in X.
+        \]</div>
+        A linear operator is continuous if it is continuous as a map between metric spaces. For linear maps, continuity everywhere is equivalent to continuity at \(0\), and equivalent to boundedness. A functional is a scalar-valued linear operator \(L:X\to\mathbb K\). The dual space \(X^*\) is the space of continuous linear functionals on \(X\), equipped with
+        <div class="formula">\[
+        \|L\|_{X^*}=\sup_{\|x\|\le1}|L(x)|.
+        \]</div></p></div></details>
+      </li>
+      <li data-proof="true">★★ State and prove the characterization of bounded linear operators. Define the operator norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.27, Q2.28" aria-label="Theory Questions.pdf: Q2.27, Q2.28">Q2.27, Q2.28</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> For linear maps, everything reduces to behavior at \(0\). Use continuity at \(0\) to get a bound on a small ball, then rescale any vector into that ball. <em>Question focus:</em> Characterization of bounded linear operators and operator norm.</p><p>For a linear operator \(T:X\to Y\) between normed spaces, the following are equivalent: \(T\) is continuous, \(T\) is continuous at \(0\), and \(T\) is bounded.</p>
+        <p><em>Proof:</em> Continuity implies continuity at \(0\). If \(T\) is continuous at \(0\), there is \(\delta>0\) such that \(\|x\|\le\delta\) implies \(\|Tx\|\le1\). For \(x\ne0\), apply this to \(\delta x/\|x\|\) to get \(\|Tx\|\le \delta^{-1}\|x\|\). Thus \(T\) is bounded. Boundedness implies continuity because
+        <div class="formula">\[
+        \|Tx-Ty\|=\|T(x-y)\|\le C\|x-y\|.
+        \]</div>
+        The operator norm is
+        <div class="formula">\[
+        \|T\|=\sup_{\|x\|\le1}\|Tx\|=\sup_{\|x\|=1}\|Tx\|=\sup_{x\ne0}\frac{\|Tx\|}{\|x\|}.
+        \]</div></p></div></details>
+      </li>
+      <li data-proof="false">★ Under which hypotheses is \(L(X,Y)\) a Banach space? <span class="bank-ref" title="Theory Questions.pdf: Q2.29" aria-label="Theory Questions.pdf: Q2.29">Q2.29</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Completeness of operator spaces is inherited from the target, not the source. Take an operator-norm Cauchy sequence and pass to pointwise limits in \(Y\). <em>Question focus:</em> When is \(L(X,Y)\) Banach?</p><p>If \(X\) is a normed space and \(Y\) is a Banach space, then \(L(X,Y)\), the space of bounded linear operators from \(X\) to \(Y\), is Banach with the operator norm.</p>
+        <p><em>Proof:</em> Let \((T_n)\) be Cauchy in operator norm. For each fixed \(x\in X\),
+        <div class="formula">\[
+        \|T_nx-T_mx\|_Y\le \|T_n-T_m\|\,\|x\|_X,
+        \]</div>
+        so \((T_nx)\) is Cauchy in \(Y\). Since \(Y\) is complete, define \(Tx=\lim_n T_nx\). Linearity follows by passing to the limit in \(T_n(\alpha x+\beta y)=\alpha T_nx+\beta T_ny\). Also, since \((T_n)\) is Cauchy, it is bounded in operator norm; say \(\|T_n\|\le M\). Then \(\|Tx\|\le M\|x\|\), so \(T\in L(X,Y)\). Finally, for fixed \(n\),
+        <div class="formula">\[
+        \|(T_n-T)x\|\le \limsup_m \|T_n-T_m\|\,\|x\|,
+        \]</div>
+        hence \(\|T_n-T\|\to0\).</p></div></details>
+      </li>
       <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task wants an explicit countable dense set. Define separability, then approximate continuous functions uniformly by polynomials and restrict to polynomials with rational coefficients. <em>Question focus:</em> Write the definition of separable metric space and show that \(C^0([a,b])\) is separable.</p><p>A metric space \(X\) is **separable** if it contains a countable, dense subset. That is, there exists a countable subset \(D \subset X\) such that \(\overline{D} = X\).</p>
         <p>We show that the space \(C^0([a, b])\) of continuous, real-valued functions on the compact interval \([a, b]\), equipped with the supremum norm \(\|f\|_\infty = \max_{x \in [a, b]} |f(x)|\), is separable by proving that the set of polynomials with rational coefficients, \(\mathbb{Q}[x]\), is countable and dense in \(C^0([a, b])\).</p>
