@@ -230,8 +230,10 @@
     pickerMode:    "chapter",
 
     // Mock exam
+    mockSet: "theory",
     mockQuestions: [],
     mockRevealed:  false,
+    mockExerciseIndex: 0,
   };
 
   // ═══════════════════════════════════════════════════
@@ -706,12 +708,12 @@
       + '</div>';
 
     // Build all questions as details elements
-    var chapters    = chaptersForSubject(state.subject);
     var questionHtml = "";
 
     ALL_QUESTIONS.forEach(function (q) {
       var sc       = (conf[q.id] && conf[q.id].score) || 0;
       var chapter  = q.chapter;
+      var key      = q.subject + "::" + chapter;
       var bankRef  = q.bankRef || "";
       var bankTitle = q.bankRefFull || bankRef;
 
@@ -720,7 +722,8 @@
         + ' data-q-subject="'  + q.subject + '"'
         + ' data-q-priority="' + q.priority + '"'
         + ' data-q-proof="'    + q.isProof + '"'
-        + ' data-q-chapter="'  + chapter.replace(/"/g, "&quot;") + '">'
+        + ' data-q-chapter="'  + chapter.replace(/"/g, "&quot;") + '"'
+        + ' data-q-key="'      + key.replace(/"/g, "&quot;") + '">'
 
         + '<div class="browse-dot" data-score="' + sc + '"></div>'
 
@@ -739,13 +742,19 @@
     });
 
     // Build chapter headings with question blocks nested
-    var allChapters = DATA.meta.measureChapters.concat(DATA.meta.functionalChapters);
+    var allChapters = DATA.meta.measureChapters.map(function (chapter) {
+      return { subject: "measure", chapter: chapter };
+    }).concat(DATA.meta.functionalChapters.map(function (chapter) {
+      return { subject: "functional", chapter: chapter };
+    }));
     var chapterHtml = "";
 
-    allChapters.forEach(function (chapter) {
+    allChapters.forEach(function (entry) {
+      var chapter = entry.chapter;
+      var key = entry.subject + "::" + chapter;
       var displayName = chapter.replace(/^\d+\.\s*/, "");
       chapterHtml +=
-        '<div class="browse-chapter-heading" data-chapter="' + chapter.replace(/"/g, "&quot;") + '">'
+        '<div class="browse-chapter-heading" data-subject="' + entry.subject + '" data-chapter="' + chapter.replace(/"/g, "&quot;") + '" data-chapter-key="' + key.replace(/"/g, "&quot;") + '">'
         + '<span class="browse-chapter-title">' + displayName + '</span>'
         + '<span class="browse-chapter-count"></span>'
         + '</div>';
@@ -756,14 +765,14 @@
     // Re-order: inject questions directly after their chapter heading
     var headingMap = {};
     inner.querySelectorAll(".browse-chapter-heading").forEach(function (h) {
-      headingMap[h.dataset.chapter] = h;
+      headingMap[h.dataset.chapterKey] = h;
     });
     inner.querySelectorAll(".browse-question").forEach(function (el) {
-      var ch      = el.dataset.qChapter;
-      var heading = headingMap[ch];
+      var key     = el.dataset.qKey;
+      var heading = headingMap[key];
       if (heading) {
         heading.insertAdjacentElement("afterend", el);
-        headingMap[ch] = el;
+        headingMap[key] = el;
       }
     });
 
@@ -816,10 +825,10 @@
 
     // Show/hide chapter headings and update counts
     inner.querySelectorAll(".browse-chapter-heading").forEach(function (heading) {
-      var chapter = heading.dataset.chapter;
-      if (!chapter) return;
+      var key = heading.dataset.chapterKey;
+      if (!key) return;
       var visible = Array.from(inner.querySelectorAll(".browse-question")).filter(function (el) {
-        return el.dataset.qChapter === chapter && !el.hidden;
+        return el.dataset.qKey === key && !el.hidden;
       });
       heading.dataset.empty = String(visible.length === 0);
       var countEl = heading.querySelector(".browse-chapter-count");
@@ -865,82 +874,578 @@
   //  MOCK EXAM
   // ═══════════════════════════════════════════════════
 
-  // Fisher-Yates shuffle — true uniform randomness, no state needed.
-  function shuffled(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  var PREDICTED_MOCK_EXAMS = [
+    {
+      title: "Predicted July 2026 Theory Mock 1",
+      subtitle: "High-probability core: measurability, convergence relations, weak/weak-star",
+      rationale: "Uses the strongest July candidates from the conditional model. It avoids exact June repeats and focuses on neighboring broad families instead.",
+      questions: [
+        {
+          title: "Measurability and convergence relations",
+          points: 7,
+          predictionTag: "High probability - absent from 2026 theory",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Write the definitions of measurable function, Borel measurable function, and Lebesgue measurable function.</li>
+              <li>State equivalent level-set characterizations of measurability for real-valued functions.</li>
+              <li>Let \(f,g\in M(X,\mathcal A)\). Prove that \(\{f\lt g\}\), \(\{f\le g\}\), and \(\{f=g\}\) are measurable.</li>
+              <li>Let \((f_n)\subset M(X,\mathcal A)\). Prove that \(\sup_n f_n\), \(\inf_n f_n\), \(\limsup_n f_n\), and \(\liminf_n f_n\) are measurable.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>A map \(f:(X,\mathcal A)\to(Y,\mathcal B)\) is measurable if \(f^{-1}(B)\in\mathcal A\) for every \(B\in\mathcal B\). A real function is Borel measurable if inverse images of Borel sets are Borel; it is Lebesgue measurable if inverse images of Borel sets are Lebesgue measurable.</li>
+              <li>For \(f:X\to\mathbb R\), measurability is equivalent to any of \(\{f\gt a\}\), \(\{f\ge a\}\), \(\{f\lt a\}\), \(\{f\le a\}\) being measurable for every \(a\in\mathbb R\). It is enough to test \(a\in\mathbb Q\).</li>
+              <li>Since \(h=f-g\) is measurable,
+                <div class="formula">\[
+                \{f\lt g\}=\{h\lt0\},\quad \{f\le g\}=\{h\le0\},\quad \{f=g\}=\{h=0\},
+                \]</div>
+                and all three are inverse images of Borel sets.</li>
+              <li>For \(u=\sup_nf_n\), \(\{u>a\}=\bigcup_n\{f_n>a\}\), so \(u\) is measurable. Then \(\inf_nf_n=-\sup_n(-f_n)\), and
+                <div class="formula">\[
+                \limsup_nf_n=\inf_k\sup_{n\ge k}f_n,\qquad
+                \liminf_nf_n=\sup_k\inf_{n\ge k}f_n.
+                \]</div>
+                Countable suprema and infima preserve measurability.</li>
+            </ol>`
+        },
+        {
+          title: "Convergence in measure and counterexamples",
+          points: 6,
+          predictionTag: "High probability - July-seasonal convergence traps",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define pointwise convergence, almost everywhere convergence, convergence in measure, and \(L^1\) convergence.</li>
+              <li>Assume \(\mu(X)\lt\infty\). Prove that a.e. convergence implies convergence in measure.</li>
+              <li>Give a counterexample when \(\mu(X)=\infty\).</li>
+              <li>Give a counterexample showing that convergence in measure does not imply a.e. convergence of the full sequence.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>The definitions are: \(f_n(x)\to f(x)\) pointwise for every \(x\); a.e. outside a null set; in measure if \(\mu(\{|f_n-f|>\varepsilon\})\to0\) for every \(\varepsilon>0\); in \(L^1\) if \(\int|f_n-f|\,d\mu\to0\).</li>
+              <li>Let \(f_n\to f\) a.e. and fix \(\varepsilon\gt0\). Define \(E_n=\bigcup_{k\ge n}\{|f_k-f|\gt\varepsilon\}\). Then \(E_n\downarrow E\), where \(E\) is contained in the null set where convergence fails. Since \(\mu(E_1)\lt\infty\), continuity from above gives \(\mu(E_n)\to0\). Because \(\{|f_n-f|\gt\varepsilon\}\subset E_n\), convergence in measure follows.</li>
+              <li>On \(\mathbb R\), \(f_n=\chi_{[n,n+1]}\) converges pointwise to \(0\), but \(\lambda(\{|f_n|\gt\varepsilon\})=1\) for \(0\lt\varepsilon\lt1\), so it does not converge in measure.</li>
+              <li>The typewriter sequence on \([0,1]\) converges to \(0\) in measure because the interval lengths tend to \(0\), but every point belongs to infinitely many supports, so the full sequence has no a.e. limit.</li>
+            </ol>`
+        },
+        {
+          title: "Weak and weak-star convergence",
+          points: 5,
+          predictionTag: "High probability - broad weak-convergence family",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define weak convergence in a normed space and weak-star convergence in a dual space.</li>
+              <li>Show that strong convergence implies weak convergence, and provide a counterexample to the converse.</li>
+              <li>State Banach-Alaoglu.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>\(x_n\rightharpoonup x\) means \(L(x_n)\to L(x)\) for all \(L\in X^*\). In \(X^*\), \(L_n\overset{*}{\rightharpoonup}L\) means \(L_n(x)\to L(x)\) for all \(x\in X\).</li>
+              <li>If \(\|x_n-x\|\to0\), then \(|L(x_n)-L(x)|\le\|L\|\|x_n-x\|\to0\). The converse fails in \(\ell^2\): \(e_n\rightharpoonup0\), but \(\|e_n\|_2=1\).</li>
+              <li>Banach-Alaoglu: the closed unit ball of \(X^*\) is compact in the weak-star topology.</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Predicted July 2026 Theory Mock 2",
+      subtitle: "Neighboring families: AC/W1,1, Hilbert solvability, Hahn-Banach",
+      rationale: "This follows the model's advice to select neighboring topics rather than exact 2026 repeats. It targets AC/W1,1, Hilbert Fredholm/spectral material, and Hahn-Banach.",
+      questions: [
+        {
+          title: "Absolutely continuous functions and \(W^{1,1}\)",
+          points: 8,
+          predictionTag: "Medium-high probability - family active, exact theory absent",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Write the definitions of absolutely continuous function, weak derivative, and \(W^{1,p}\).</li>
+              <li>State and prove the characterization of absolutely continuous functions in terms of the integration-by-parts formula.</li>
+              <li>State the relation between \(W^{1,1}\) and \(AC\), and explain the role of representatives.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>Use the \(\varepsilon\)-\(\delta\) definition on finite disjoint intervals for AC. A weak derivative \(v\) satisfies \(\int u\varphi'=-\int v\varphi\) for all \(\varphi\in C_c^1\). \(W^{1,p}\) consists of \(L^p\) functions with weak derivative in \(L^p\).</li>
+              <li>If \(u\) is AC, integration by parts gives the formula with \(v=u'\). Conversely, if the formula holds for some \(v\in L^1\), set \(w(x)=\int_a^xv(t)\,dt\). Then \(u-w\) has weak derivative \(0\), hence is constant a.e.; therefore \(u\) has an AC representative.</li>
+              <li>In one dimension, every \(W^{1,1}\) equivalence class has a unique AC representative, and every AC function with derivative in \(L^1\) belongs to \(W^{1,1}\). The statement is about equivalence classes, not arbitrary pointwise versions.</li>
+            </ol>`
+        },
+        {
+          title: "Hilbert-space solvability and compact spectrum",
+          points: 6,
+          predictionTag: "Medium-high probability - July history, not Riesz exact repeat",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State the Fredholm alternative for \(I-T\), where \(T\) is compact on a Hilbert space.</li>
+              <li>Discuss solvability of \(u-Tu=f\).</li>
+              <li>State the structure of the spectrum of a compact operator.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>For compact \(T:H\to H\), \(\ker(I-T)\) is finite-dimensional, \(\operatorname{Ran}(I-T)\) is closed, and \(\operatorname{Ran}(I-T)=\ker(I-T^*)^\perp\). Also \(I-T\) is injective iff it is surjective.</li>
+              <li>The equation \(u-Tu=f\) is solvable iff \(f\perp\ker(I-T^*)\). If \(\ker(I-T)=\{0\}\), the solution exists and is unique for every \(f\).</li>
+              <li>For compact \(T\) on an infinite-dimensional Banach space, \(0\in\sigma(T)\), all nonzero spectral values are eigenvalues of finite multiplicity, and the only possible accumulation point is \(0\).</li>
+            </ol>`
+        },
+        {
+          title: "Hahn-Banach corollaries and separation",
+          points: 4,
+          predictionTag: "Medium probability - absent from 2026 and good substitute for overused Banach principles",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State the continuous extension form of Hahn-Banach.</li>
+              <li>State two standard corollaries.</li>
+              <li>Define separation and strict separation by a hyperplane.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>If \(Y\subset X\) and \(f\in Y^*\), there exists \(F\in X^*\) with \(F|_Y=f\) and \(\|F\|=\|f\|\).</li>
+              <li>Corollaries: for \(x_0\ne0\), there exists \(L\in X^*\) with \(\|L\|=1\), \(L(x_0)=\|x_0\|\); and \(X^*\) separates points.</li>
+              <li>A hyperplane \(\{L=\alpha\}\) separates \(A,B\) if \(L(a)\le\alpha\le L(b)\). It strictly separates them if there is a positive gap: \(L(a)\le\alpha-\varepsilon\lt\alpha+\varepsilon\le L(b)\).</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Predicted July 2026 Theory Mock 3",
+      subtitle: "Pattern-break hedge: measurable traps, weak-star compactness, Fredholm spectrum",
+      rationale: "This set reflects the negative 2026 validation: the frequency model can miss transitions, so this mock concentrates on the strongest non-2026 exact topics while still varying the question style.",
+      questions: [
+        {
+          title: "Measurability traps and characteristic functions",
+          points: 7,
+          predictionTag: "High probability - top model topic with past July traps",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Prove that \(A\in\mathcal A\) if and only if \(\chi_A\) is measurable.</li>
+              <li>Prove or disprove: \(f\in M(X,\mathcal A)\) if and only if \(f^+,f^-\in M^+(X,\mathcal A)\).</li>
+              <li>Prove or disprove: \(f\in M(X,\mathcal A)\) if and only if \(|f|\in M(X,\mathcal A)\).</li>
+              <li>Let \((f_n)\subset M(X,\mathcal A)\). Prove that \(\limsup_n f_n\) and \(\liminf_n f_n\) are measurable.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>If \(A\in\mathcal A\), then \(\{\chi_A>1/2\}=A\) and all level sets are measurable. Conversely, if \(\chi_A\) is measurable, then \(A=\{\chi_A>1/2\}\in\mathcal A\).</li>
+              <li>The statement with positive and negative parts is true. If \(f\) is measurable, then \(f^+=\max(f,0)\) and \(f^-=\max(-f,0)\) are measurable. Conversely, \(f=f^+-f^-\), so \(f\) is measurable.</li>
+              <li>The statement with \(|f|\) is false in the reverse direction. If \(A\notin\mathcal A\), define \(f=\chi_A-\chi_{X\setminus A}\). Then \(|f|=1\) is measurable, but \(f^{-1}(\{1\})=A\) is not.</li>
+              <li>Use
+                <div class="formula">\[
+                \limsup_n f_n=\inf_k\sup_{n\ge k} f_n,\qquad
+                \liminf_n f_n=\sup_k\inf_{n\ge k} f_n.
+                \]</div>
+                Countable suprema and infima of measurable functions are measurable.</li>
+            </ol>`
+        },
+        {
+          title: "Weak-star compactness and subsequences",
+          points: 6,
+          predictionTag: "High probability - weak/weak-star family remains unspent in 2026",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define weak-star convergence in \(X^*\).</li>
+              <li>State Banach-Alaoglu.</li>
+              <li>Explain why, if \(X\) is separable, every bounded sequence in \(X^*\) has a weak-star convergent subsequence.</li>
+              <li>State and prove the reflexive/separable corollary giving weakly convergent subsequences.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>\(L_n\overset{*}{\rightharpoonup}L\) in \(X^*\) means \(L_n(x)\to L(x)\) for every \(x\in X\).</li>
+              <li>Banach-Alaoglu says the closed unit ball of \(X^*\) is compact for the weak-star topology \(\sigma(X^*,X)\).</li>
+              <li>If \(X\) is separable, the weak-star topology is metrizable on bounded subsets of \(X^*\). Compactness plus metrizability gives sequential compactness, hence a weak-star convergent subsequence.</li>
+              <li>If \(Y\) is reflexive and separable, a bounded sequence \((y_n)\subset Y\) gives a bounded sequence \(\tau(y_n)\subset Y^{**}\). Apply the weak-star compactness result in \(Y^{**}=(Y^*)^*\). Reflexivity identifies the weak-star limit with \(\tau(y)\), and this exactly means \(y_{n_k}\rightharpoonup y\) weakly in \(Y\).</li>
+            </ol>`
+        },
+        {
+          title: "Fredholm alternative and compact spectrum",
+          points: 5,
+          predictionTag: "Medium-high probability - July history and no exact 2026 use",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State the Fredholm alternative for \(I-T\) with \(T\) compact on a Hilbert space.</li>
+              <li>Discuss solvability of \(u-Tu=f\).</li>
+              <li>Write the definitions of \(\rho(T)\), \(\sigma(T)\), \(EV(T)\), and \(\sigma_p(T)\).</li>
+              <li>State the spectral theorem for compact self-adjoint operators.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>For compact \(T:H\to H\), \(\ker(I-T)\) is finite-dimensional, \(\operatorname{Ran}(I-T)\) is closed, and \(\operatorname{Ran}(I-T)=\ker(I-T^*)^\perp\). Also \(I-T\) is injective iff it is surjective.</li>
+              <li>The equation \(u-Tu=f\) is solvable iff \(f\perp\ker(I-T^*)\). If \(\ker(I-T)=\{0\}\), the solution is unique for every \(f\).</li>
+              <li>\(\rho(T)\) is the set of \(\lambda\) such that \(\lambda I-T\) is bijective with bounded inverse. \(\sigma(T)=\mathbb C\setminus\rho(T)\). \(EV(T)=\sigma_p(T)=\{\lambda:\ker(\lambda I-T)\ne\{0\}\}\).</li>
+              <li>For compact self-adjoint \(T\), there is an orthonormal system of eigenvectors with real eigenvalues tending only possibly to \(0\), and \(T\) admits the corresponding orthogonal spectral expansion.</li>
+            </ol>`
+        }
+      ]
     }
-    return a;
+  ];
+
+  var PREDICTED_EXERCISE_MOCK_EXAMS = [
+    {
+      title: "Mock July 2026 Exercise Exam 1",
+      subtitle: "Convergence traps plus a singular compact operator",
+      rationale: "This set forces the common false moves: treating convergence in measure as an \(L^1\) statement, applying DCT with no dominator, and rejecting an operator because the kernel is singular.",
+      questions: [
+        {
+          title: "Cutoff, exponential spike, and a limit outside the space",
+          points: 7,
+          predictionTag: "Trap: a.e. convergence does not choose the right normed-space limit",
+          statementHtml: String.raw`
+            <p>On \(((0,\infty),\mathcal L,\lambda)\), define</p>
+            <div class="formula">\[
+              f_n(x)=\frac{\sin x}{1+x}\,\mathbf 1_{(0,n)}(x)+n^2xe^{-nx},\qquad x\gt0.
+            \]</div>
+            <ol class="mock-subparts">
+              <li>Prove that \(f_n\in L^1_{\mathrm{loc}}(0,\infty)\) for every \(n\). Decide whether \(f_n\in L^1(0,\infty)\).</li>
+              <li>Compute the pointwise a.e. limit \(f\).</li>
+              <li>Decide whether \(f\in L^1(0,\infty)\), and explain why this matters before speaking about \(L^1\)-convergence.</li>
+              <li>Study convergence in measure on every finite interval \((0,A)\).</li>
+              <li>Study convergence in measure on \((0,\infty)\).</li>
+              <li>Decide whether \(f_n-f\to0\) in \(L^1(0,A)\) for every finite \(A\).</li>
+              <li>For \(p\gt1\), decide whether the exponential term tends to \(0\) in \(L^p(0,\infty)\).</li>
+              <li>Identify precisely where a dominated-convergence proof would break.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>Both summands are measurable. On finite intervals they are integrable. Globally, \(n^2xe^{-nx}\in L^1(0,\infty)\), but \(\sin x/(1+x)\,\mathbf1_{(0,n)}\) has finite support for fixed \(n\), hence \(f_n\in L^1(0,\infty)\) for every \(n\).</li>
+              <li>For fixed \(x\gt0\), eventually \(x\lt n\), so the cutoff term tends to \(\sin x/(1+x)\). Also \(n^2xe^{-nx}\to0\). Hence
+                <div class="formula">\[
+                  f(x)=\frac{\sin x}{1+x}.
+                \]</div></li>
+              <li>The limit is not in \(L^1(0,\infty)\). Indeed \(\int_0^\infty |\sin x|/(1+x)\,dx=\infty\) by summing over intervals where \(|\sin x|\) is bounded below. Thus the sentence "\(f_n\to f\) in \(L^1(0,\infty)\)" is not even a statement inside \(L^1\), because \(f\notin L^1\).</li>
+              <li>On \((0,A)\), the cutoff disappears for all \(n\gt A\), and \(n^2xe^{-nx}\to0\) a.e. Since convergence a.e. on a finite-measure set implies convergence in measure, \(f_n\to f\) in measure on \((0,A)\).</li>
+              <li>On \((0,\infty)\), convergence in measure to \(f\) still holds. For the cutoff error, \(|\sin x|/(1+x)\mathbf1_{[n,\infty)}\) exceeds a fixed \(\varepsilon\gt0\) only when \(x\le 1/\varepsilon-1\), so the set is eventually empty. For the spike, set \(y=nx\): \(n^2xe^{-nx}=nye^{-y}\), and \(\lambda\{n^2xe^{-nx}\gt\varepsilon\}=n^{-1}\lambda\{nye^{-y}\gt\varepsilon\}\to0\); the relevant \(y\)-set has length \(O(\log n)\).</li>
+              <li>On every \((0,A)\), the cutoff part is eventually zero. But
+                <div class="formula">\[
+                  \int_0^A n^2xe^{-nx}\,dx=\int_0^{nA} ye^{-y}\,dy\to1.
+                \]</div>
+                Therefore \(f_n-f\) does not tend to \(0\) in \(L^1(0,A)\).</li>
+              <li>For \(p\gt1\),
+                <div class="formula">\[
+                  \|n^2xe^{-nx}\|_p^p
+                  =n^{2p}\int_0^\infty x^pe^{-pnx}\,dx
+                  =C_p n^{p-1},
+                \]</div>
+                so the \(L^p\)-norm grows like \(n^{1-1/p}\), not to \(0\).</li>
+              <li>DCT breaks twice: globally the limit is not in \(L^1\), and locally the moving spike has fixed \(L^1\)-mass with no integrable dominator independent of \(n\). The mental trap is that pointwise disappearance of a spike is not norm disappearance.</li>
+            </ol>`
+        },
+        {
+          title: "A singular Volterra operator that is still compact",
+          points: 7,
+          predictionTag: "Trap: singular kernel, bounded output, compactness by equicontinuity",
+          statementHtml: String.raw`
+            <p>Let \(X=C([0,1])\) with the uniform norm. Define</p>
+            <div class="formula">\[
+              (Tf)(x)=\int_0^x \frac{f(t)}{\sqrt t}\,dt,\qquad x\in[0,1],
+            \]</div>
+            <p>with the improper integral at \(0\).</p>
+            <ol class="mock-subparts">
+              <li>Prove that \(T\) is well defined and linear from \(X\) to \(X\).</li>
+              <li>Prove that \(T\) is continuous and compute \(\|T\|\).</li>
+              <li>Prove that \(T\) is compact.</li>
+              <li>Decide whether \(T\) maps bounded sets into bounded subsets of \(C^1([0,1])\).</li>
+              <li>Find the kernel and range obstruction.</li>
+              <li>Determine whether \(T\) has nonzero eigenvalues.</li>
+              <li>Decide whether \(0\) is an eigenvalue.</li>
+              <li>Explain the trap in saying "the kernel is unbounded, so the operator is unbounded".</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>The weight \(t^{-1/2}\) is in \(L^1(0,1)\). Hence the integral is finite and \(Tf\) is continuous, since indefinite integrals of \(L^1\)-functions are absolutely continuous. Linearity is immediate.</li>
+              <li>For \(\|f\|_\infty\le1\),
+                <div class="formula">\[
+                  |Tf(x)|\le\int_0^x t^{-1/2}\,dt=2\sqrt x\le2.
+                \]</div>
+                Thus \(\|T\|\le2\). Equality is attained by \(f\equiv1\), since \(Tf(1)=2\). Hence \(\|T\|=2\).</li>
+              <li>If \(\|f\|_\infty\le1\), then \(|Tf|\le2\), and
+                <div class="formula">\[
+                  |Tf(x)-Tf(y)|\le \int_{\min(x,y)}^{\max(x,y)} t^{-1/2}\,dt
+                  =2|\sqrt x-\sqrt y|.
+                \]</div>
+                This gives uniform boundedness and equicontinuity. Arzela-Ascoli gives compactness.</li>
+              <li>No. For \(f(0)\ne0\), \((Tf)'(x)=f(x)/\sqrt x\) on \((0,1]\), which is unbounded near \(0\). The image lies in \(AC\), not generally in \(C^1([0,1])\).</li>
+              <li>If \(Tf=0\), differentiating on \((0,1]\) gives \(f=0\), so \(\ker T=\{0\}\). Every \(Tf\) satisfies \(Tf(0)=0\) and is absolutely continuous with derivative of the form \(f(x)/\sqrt x\), so \(T\) is not onto \(C([0,1])\).</li>
+              <li>If \(Tf=\lambda f\) with \(\lambda\ne0\), then \(f(0)=0\) and differentiating gives \(f'(x)=f(x)/(\lambda\sqrt x)\). The only continuous solution with \(f(0)=0\) is \(f\equiv0\). Thus there are no nonzero eigenvalues.</li>
+              <li>\(0\) is not an eigenvalue because \(\ker T=\{0\}\). This is a standard compact-operator trap: on an infinite-dimensional space, \(0\in\sigma(T)\), but it need not be an eigenvalue.</li>
+              <li>The singularity is integrable. The operator norm sees \(\int_0^1t^{-1/2}dt\), not the pointwise supremum of the kernel.</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Mock July 2026 Exercise Exam 2",
+      subtitle: "Oscillation thresholds and weak-star topology",
+      rationale: "This set separates pointwise intuition from variation, absolute continuity, weak convergence, and weak-star convergence. It uses familiar objects with one parameter or one topology changed.",
+      questions: [
+        {
+          title: "Oscillation near zero, BV, AC, and weak derivatives",
+          points: 7,
+          predictionTag: "Trap: continuity threshold differs from variation threshold",
+          statementHtml: String.raw`
+            <p>For \(\alpha\in\mathbb R\), define</p>
+            <div class="formula">\[
+              f_\alpha(x)=
+              \begin{cases}
+                x^\alpha\sin(1/x),&x\in(0,1],\\
+                0,&x=0.
+              \end{cases}
+            \]</div>
+            <p>Also define \(g(0)=1\) and \(g(x)=x^2\sin(1/x)\) for \(x\gt0\).</p>
+            <ol class="mock-subparts">
+              <li>For which \(\alpha\) is \(f_\alpha\) continuous on \([0,1]\)?</li>
+              <li>For which \(\alpha\) is \(f_\alpha\in L^1(0,1)\)?</li>
+              <li>For which \(\alpha\) is \(f_\alpha\) absolutely continuous on \([0,1]\)?</li>
+              <li>For which \(\alpha\) is \(f_\alpha\in BV([0,1])\)?</li>
+              <li>For which \(\alpha\) does \(f_\alpha\in W^{1,1}(0,1)\)?</li>
+              <li>Is \(g\) equal a.e. to a \(W^{1,1}\)-function?</li>
+              <li>Is \(g\) itself absolutely continuous on \([0,1]\)?</li>
+              <li>Explain why changing one point can matter for \(AC\), but not for \(W^{1,1}\) as an equivalence class.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>Continuity at \(0\) holds exactly when \(\alpha\gt0\). Away from \(0\), the function is smooth.</li>
+              <li>\(|f_\alpha|\le x^\alpha\), so integrability holds for \(\alpha\gt-1\). If \(\alpha\le-1\), the oscillation does not rescue absolute integrability; integrating over half-periods gives divergence.</li>
+              <li>On \((0,1]\),
+                <div class="formula">\[
+                  f_\alpha'(x)=\alpha x^{\alpha-1}\sin(1/x)-x^{\alpha-2}\cos(1/x).
+                \]</div>
+                The decisive term is \(x^{\alpha-2}\cos(1/x)\), which is in \(L^1(0,1)\) exactly when \(\alpha\gt1\). Together with continuity at \(0\), this gives \(AC\) exactly for \(\alpha\gt1\).</li>
+              <li>For a smooth function on \((0,1]\), finite variation requires \(\int_0^1|f_\alpha'|\,dx\lt\infty\) here. Thus the same threshold holds: \(BV\) exactly for \(\alpha\gt1\).</li>
+              <li>In one dimension, \(W^{1,1}\) classes are represented by absolutely continuous functions with derivative in \(L^1\). Thus \(f_\alpha\in W^{1,1}(0,1)\) exactly for \(\alpha\gt1\).</li>
+              <li>The function \(x^2\sin(1/x)\) belongs to \(W^{1,1}(0,1)\), since the derivative \(2x\sin(1/x)-\cos(1/x)\) is integrable on \((0,1)\). The value at one point is invisible to \(L^1\) and \(W^{1,1}\) equivalence classes, so \(g\) is equal a.e. to a \(W^{1,1}\)-function.</li>
+              <li>No. \(g\) is not continuous at \(0\), because \(g(0)=1\) while \(x^2\sin(1/x)\to0\). Absolute continuity implies continuity, so this pointwise representative is not AC.</li>
+              <li>\(AC\) is a pointwise property of the chosen representative on the closed interval. \(W^{1,1}\) is a property of an a.e. equivalence class. A single bad point can destroy AC for a representative while leaving the Sobolev class unchanged.</li>
+            </ol>`
+        },
+        {
+          title: "Weak-star versus weak convergence in sequence spaces",
+          points: 7,
+          predictionTag: "Trap: the same symbols live in different dualities",
+          statementHtml: String.raw`
+            <p>For \(n\ge1\), define \(x_n\in\ell^\infty\) by</p>
+            <div class="formula">\[
+              x_n(k)=
+              \begin{cases}
+                \cos(k/n),&1\le k\le n^2,\\
+                0,&k\gt n^2.
+              \end{cases}
+            \]</div>
+            <p>Let \(e_n\) be the canonical unit vector.</p>
+            <ol class="mock-subparts">
+              <li>Compute \(\|x_n\|_\infty\). Does \(x_n\) converge in norm in \(\ell^\infty\)?</li>
+              <li>Compute the pointwise limit of \(x_n(k)\) for fixed \(k\).</li>
+              <li>Viewing \(\ell^\infty=(\ell^1)^*\), decide whether \(x_n\overset{*}{\rightharpoonup}\mathbf1\).</li>
+              <li>Does \(x_n\) converge weakly in \(\ell^\infty\)? Give the safest answer and justify what extra fact would be needed.</li>
+              <li>Viewing \(e_n\in\ell^1=(c_0)^*\), prove that \(e_n\overset{*}{\rightharpoonup}0\).</li>
+              <li>Prove that \(e_n\) does not converge weakly to \(0\) in \(\ell^1\).</li>
+              <li>Define the right shift \(S:\ell^1\to\ell^1\), \(S(a_1,a_2,\dots)=(0,a_1,a_2,\dots)\). Is \(S\) compact?</li>
+              <li>Explain why weak-star convergence of \(e_n\) does not contradict \(\|e_n\|_1=1\).</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>\(\|x_n\|_\infty=1\). The sequence does not converge in norm to \(\mathbf1\), since for \(k\gt n^2\), \(x_n(k)=0\), so \(\|x_n-\mathbf1\|_\infty=1\).</li>
+              <li>For fixed \(k\), eventually \(k\le n^2\), and \(\cos(k/n)\to1\). Hence the pointwise limit is \(\mathbf1\).</li>
+              <li>For \(a\in\ell^1\),
+                <div class="formula">\[
+                  \sum_k a_kx_n(k)\to\sum_ka_k,
+                \]</div>
+                by dominated convergence for counting measure, using \(|a_kx_n(k)|\le |a_k|\). Thus \(x_n\overset{*}{\rightharpoonup}\mathbf1\) in \(\ell^\infty=(\ell^1)^*\).</li>
+              <li>The safe answer is: not from the given computation. Weak convergence in \(\ell^\infty\) requires testing against every element of \((\ell^\infty)^*\), which is much larger than \(\ell^1\). The weak-star calculation only tests the predual \(\ell^1\).</li>
+              <li>For \(y\in c_0\), \(\langle e_n,y\rangle=y_n\to0\). Hence \(e_n\overset{*}{\rightharpoonup}0\) in \((c_0)^*=\ell^1\).</li>
+              <li>Weak convergence in \(\ell^1\) tests against \(\ell^\infty\). Taking the constant sequence \(\mathbf1\in\ell^\infty\), \(\langle e_n,\mathbf1\rangle=1\), so \(e_n\) does not converge weakly to \(0\).</li>
+              <li>\(S\) is not compact. The bounded sequence \((e_n)\) is mapped to \(e_{n+1}\), which has no norm-convergent subsequence in \(\ell^1\).</li>
+              <li>Weak-star convergence is weaker than norm convergence. Banach-Alaoglu predicts compactness only in the weak-star topology, not norm compactness.</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Mock July 2026 Exercise Exam 3",
+      subtitle: "Measure decomposition and one formula on two spaces",
+      rationale: "This set tests whether you track the ambient object: which measure dominates which, and which function space permits which extremizer.",
+      questions: [
+        {
+          title: "Radon-Nikodym with an atom hidden at zero",
+          points: 7,
+          predictionTag: "Trap: finite measures do not imply mutual absolute continuity",
+          statementHtml: String.raw`
+            <p>On \([0,1]\), let</p>
+            <div class="formula">\[
+              \mu=\lambda+\delta_0,\qquad
+              d\nu(x)=x^{-1/2}\,d\lambda(x).
+            \]</div>
+            <ol class="mock-subparts">
+              <li>Prove that \(\mu\) and \(\nu\) are finite measures.</li>
+              <li>Decide whether \(\nu\ll\mu\).</li>
+              <li>Decide whether \(\mu\ll\nu\).</li>
+              <li>Compute \(d\nu/d\mu\), if it exists.</li>
+              <li>Does \(d\mu/d\nu\) exist? Give the precise obstruction.</li>
+              <li>Give the Lebesgue decomposition of \(\mu\) with respect to \(\nu\).</li>
+              <li>Is \(\lambda\ll\nu\)? Compute \(d\lambda/d\nu\).</li>
+              <li>Explain why the value at the atom is irrelevant in one derivative but decisive for the other direction.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>\(\mu([0,1])=2\), and \(\nu([0,1])=\int_0^1x^{-1/2}\,dx=2\). Both are finite.</li>
+              <li>If \(\mu(E)=0\), then \(\lambda(E)=0\) and \(0\notin E\). Therefore \(\nu(E)=\int_E x^{-1/2}\,d\lambda=0\), so \(\nu\ll\mu\).</li>
+              <li>No. \(\nu(\{0\})=0\), but \(\mu(\{0\})=1\). Hence \(\mu\not\ll\nu\).</li>
+              <li>The derivative exists because \(\nu\ll\mu\). It is
+                <div class="formula">\[
+                  \frac{d\nu}{d\mu}(x)=x^{-1/2}\quad x\gt0,\qquad
+                  \frac{d\nu}{d\mu}(0)=0.
+                \]</div>
+                The value at \(0\) must give no mass contribution to \(\nu\) on the atom.</li>
+              <li>\(d\mu/d\nu\) does not exist globally because \(\mu\not\ll\nu\). The obstruction is exactly the atom \(\{0\}\).</li>
+              <li>The decomposition is
+                <div class="formula">\[
+                  \mu=\lambda+\delta_0,\qquad \lambda\ll\nu,\qquad \delta_0\perp\nu.
+                \]</div></li>
+              <li>Yes, \(\lambda\ll\nu\). Since \(d\nu=x^{-1/2}d\lambda\), we have \(d\lambda/d\nu=\sqrt x\) for \(x\gt0\), with arbitrary value at \(0\) \(\nu\)-a.e.</li>
+              <li>Radon-Nikodym derivatives are defined up to null sets for the dominating measure. The point \(0\) is \(\lambda\)- and \(\nu\)-null, but not \(\mu\)-null. That is the entire trap.</li>
+            </ol>`
+        },
+        {
+          title: "One formula, two spaces, and a norm that is not attained",
+          points: 7,
+          predictionTag: "Trap: same operator formula, different admissible maximizers",
+          statementHtml: String.raw`
+            <p>Let \(X_1=L^\infty(0,1)\) and \(X_2=C([0,1])\), both with the uniform norm. Define</p>
+            <div class="formula">\[
+              (T_if)(t)=\int_0^1\sin(1/x)f(x)\,dx,\qquad i=1,2.
+            \]</div>
+            <p>The output is the constant function with that value.</p>
+            <ol class="mock-subparts">
+              <li>Prove that \(T_1\) and \(T_2\) are well defined and continuous.</li>
+              <li>Compute \(\|T_1\|\), and decide whether the norm is attained.</li>
+              <li>Compute \(\|T_2\|\), and decide whether the norm is attained.</li>
+              <li>Prove that both operators are compact.</li>
+              <li>Determine the range and kernel of each operator.</li>
+              <li>Compute \(T_i^2\).</li>
+              <li>Determine the nonzero eigenvalues, if any.</li>
+              <li>Determine \(\sigma(T_i)\).</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>The function \(\sin(1/x)\) is bounded and measurable, hence in \(L^1(0,1)\). Therefore
+                <div class="formula">\[
+                  |T_if|\le \|f\|_\infty\int_0^1|\sin(1/x)|\,dx.
+                \]</div>
+                Both operators are continuous and well defined.</li>
+              <li>On \(L^\infty\),
+                <div class="formula">\[
+                  \|T_1\|=\int_0^1|\sin(1/x)|\,dx,
+                \]</div>
+                and the norm is attained by \(f=\operatorname{sgn}(\sin(1/x))\).</li>
+              <li>On \(C([0,1])\), the same norm is obtained as a supremum by continuous approximations of the sign function. It is not attained: equality would force \(f\sin(1/x)=|\sin(1/x)|\) a.e. with \(|f|=1\), so \(f\) would have to change sign infinitely often near \(0\), impossible for a continuous function at \(0\).</li>
+              <li>The range is contained in the one-dimensional space of constant functions. Hence both operators are finite rank, therefore compact.</li>
+              <li>The range is exactly the constants, because the functional is not zero. The kernel is
+                <div class="formula">\[
+                  \ker T_i=\left\{f\in X_i:\int_0^1\sin(1/x)f(x)\,dx=0\right\}.
+                \]</div></li>
+              <li>Let \(A=\int_0^1\sin(1/x)\,dx\). Since \(T_if\) is constant, \(T_i^2f=A\,T_if\).</li>
+              <li>The constant function \(1\) is an eigenvector with eigenvalue \(A\). If \(A\ne0\), this is the only nonzero eigenvalue; if \(A=0\), there is no nonzero eigenvalue.</li>
+              <li>In all cases, \(\sigma(T_i)=\{0,A\}\), with the convention that this is just \(\{0\}\) if \(A=0\).</li>
+            </ol>`
+        }
+      ]
+    }
+  ];
+
+  var MOCK_SETS = {
+    theory: {
+      exams: PREDICTED_MOCK_EXAMS,
+      itemLabel: "Question",
+      scorePrefix: "Q",
+      dateLabel: "July 2026 theory prediction set",
+      instructions: "Three theory questions, 18 total points, following the 2026 Q1-Q2-Q3 style. These are model-weighted prediction mocks, not leaked exam content.",
+      answerPlaceholder: "Jot key ideas here (optional)..."
+    },
+    exercise: {
+      exams: PREDICTED_EXERCISE_MOCK_EXAMS,
+      itemLabel: "Exercise",
+      scorePrefix: "E",
+      dateLabel: "July 2026 exercise mock set",
+      instructions: "Two exercise problems, 14 total points. These are trap-first synthetic practice mocks built from past-exam patterns, not leaked exam content.",
+      answerPlaceholder: "Work the proof, estimates, and counterexamples here (optional)..."
+    }
+  };
+
+  function getActiveMockSet() {
+    return MOCK_SETS[state.mockSet] || MOCK_SETS.theory;
   }
 
-  function startMockExam() {
-    // Exam structure (matches real Polimi RFA format):
-    //   Q1 [7 pts] — one proof question    (data-proof="true")
-    //   Q2 [6 pts] — one no-proof question (data-proof="false")
-    //   Q3 [5 pts] — one no-proof question (data-proof="false"), different from Q2
-
-    var proofPool   = ALL_QUESTIONS.filter(function (q) { return  q.isProof; });
-    var noProofPool = ALL_QUESTIONS.filter(function (q) { return !q.isProof; });
-
-    // Shuffle both pools independently — every call gives a different ordering.
-    var sProof   = shuffled(proofPool);
-    var sNoProof = shuffled(noProofPool);
-
-    var q1 = sProof[0]   || null;
-    var q2 = sNoProof[0] || null;
-    // Q3: skip the index used for Q2 (they're in a shuffled order so index 1 is already different)
-    var q3 = sNoProof[1] || sNoProof[0] || null;
-
-    state.mockQuestions = [q1, q2, q3].filter(Boolean);
+  function startMockExam(mockSet) {
+    state.mockSet = mockSet || "theory";
+    state.mockQuestions = getActiveMockSet().exams[0].questions;
     state.mockRevealed  = false;
+    state.mockExerciseIndex = 0;
 
-    renderMockPaper();
+    renderMockPaper(0);
     showView("mock");
   }
 
-  function renderMockPaper() {
+  function renderMockPaper(examIndex) {
     var wrap = document.getElementById("mock-wrap");
-    var pts  = [7, 6, 5];
+    var mockSet = getActiveMockSet();
+    var exams = mockSet.exams;
+    var exam = exams[examIndex] || exams[0];
     var today = new Date();
     var dateStr = today.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    state.mockQuestions = exam.questions;
+    state.mockRevealed = false;
+    state.mockExerciseIndex = 0;
 
-    var questionsHtml = state.mockQuestions.map(function (q, i) {
+    var tabsHtml = exams.map(function (item, i) {
+      return '<button type="button" data-predicted-exam="' + i + '" aria-pressed="' + (i === examIndex ? "true" : "false") + '">Exam ' + (i + 1) + '</button>';
+    }).join("");
+
+    var questionsHtml = exam.questions.map(function (q, i) {
       return '<div class="mock-question-block" data-mock-idx="' + i + '">'
-        + '<h2 class="mock-q-heading">Question ' + (i + 1) + '. <span class="mock-pts">[' + pts[i] + ' points]</span></h2>'
-        + '<div class="mock-q-text">' + q.questionHtml + '</div>'
+        + '<div class="mock-q-meta">' + q.predictionTag + '</div>'
+        + '<h2 class="mock-q-heading">' + mockSet.itemLabel + ' ' + (i + 1) + '. ' + q.title + ' <span class="mock-pts">[' + q.points + ' points]</span></h2>'
+        + '<div class="mock-q-text">' + q.statementHtml + '</div>'
         + '<div class="mock-answer-space">'
-        + '<textarea placeholder="Jot key ideas here (optional)…" rows="5" aria-label="Answer notes for question ' + (i + 1) + '"></textarea>'
+        + '<textarea placeholder="' + mockSet.answerPlaceholder + '" rows="5" aria-label="Answer notes for ' + mockSet.itemLabel.toLowerCase() + ' ' + (i + 1) + '"></textarea>'
         + '</div>'
         + '<div class="mock-revealed-answer" id="mock-answer-' + i + '" hidden></div>'
         + '</div>';
     }).join("");
 
+    var scoreHeaders = exam.questions.map(function (_, i) {
+      return '<div class="mock-score-cell header">' + mockSet.scorePrefix + (i + 1) + '</div>';
+    }).join("") + '<div class="mock-score-cell header">Total</div>';
+    var scoreValues = exam.questions.map(function (_, i) {
+      return '<div class="mock-score-cell value" id="mscore-' + (i + 1) + '"></div>';
+    }).join("") + '<div class="mock-score-cell value" id="mscore-total"></div>';
+
     wrap.innerHTML =
-      '<div class="mock-paper">'
+      '<div class="mock-switcher" role="group" aria-label="Predicted mock exam set">' + tabsHtml + '</div>'
+      + '<div class="mock-paper">'
       + '<div class="mock-letterhead">'
       + '<div class="mock-uni">Politecnico di Milano, Mathematical Engineering</div>'
       + '<div class="mock-course">Real and Functional Analysis</div>'
-      + '<div class="mock-date">Practice Exam · ' + dateStr + '</div>'
+      + '<div class="mock-date">' + mockSet.dateLabel + ' · ' + dateStr + '</div>'
+      + '<h1 class="mock-title">' + exam.title + '</h1>'
+      + '<p class="mock-subtitle">' + exam.subtitle + '</p>'
+      + '<p class="mock-rationale">' + exam.rationale + '</p>'
       + '<div class="mock-score-row">'
-      + '<div class="mock-score-cell header">Q1</div><div class="mock-score-cell header">Q2</div>'
-      + '<div class="mock-score-cell header">Q3</div><div class="mock-score-cell header">Total</div>'
-      + '<div class="mock-score-cell value" id="mscore-1"></div>'
-      + '<div class="mock-score-cell value" id="mscore-2"></div>'
-      + '<div class="mock-score-cell value" id="mscore-3"></div>'
-      + '<div class="mock-score-cell value" id="mscore-total"></div>'
+      + scoreHeaders
+      + scoreValues
       + '</div>'
       + '</div>'
       + '<div class="mock-body">'
-      + '<div class="mock-instructions">[Answers must be written under the text. Self-assess after revealing — be honest with yourself.]</div>'
+      + '<div class="mock-instructions">' + mockSet.instructions + '</div>'
       + questionsHtml
       + '</div>'
       + '<div class="mock-actions" id="mock-actions-bar">'
-      + '<button class="btn-primary" id="btn-mock-reveal">Reveal answers</button>'
-      + '<button class="btn-secondary" id="btn-mock-new">New exam</button>'
+      + '<button class="btn-secondary" id="btn-mock-prev">Previous ' + mockSet.itemLabel.toLowerCase() + '</button>'
+      + '<span class="mock-page-counter" id="mock-page-counter">' + mockSet.itemLabel + ' 1 / ' + state.mockQuestions.length + '</span>'
+      + '<button class="btn-secondary" id="btn-mock-next">Next ' + mockSet.itemLabel.toLowerCase() + '</button>'
+      + '<button class="btn-primary" id="btn-mock-reveal">Reveal solution</button>'
       + '</div>'
       + '</div>';
+
+    wrap.querySelectorAll("[data-predicted-exam]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        renderMockPaper(Number(btn.dataset.predictedExam));
+      });
+    });
 
     // Typeset question texts
     state.mockQuestions.forEach(function (q, i) {
@@ -950,47 +1455,62 @@
 
     // Reveal button
     document.getElementById("btn-mock-reveal").addEventListener("click", function () {
-      revealMockAnswers();
+      revealMockAnswer(state.mockExerciseIndex);
     });
 
-    document.getElementById("btn-mock-new").addEventListener("click", function () {
-      startMockExam();
+    document.getElementById("btn-mock-prev").addEventListener("click", function () {
+      showMockExercise(state.mockExerciseIndex - 1);
     });
+
+    document.getElementById("btn-mock-next").addEventListener("click", function () {
+      showMockExercise(state.mockExerciseIndex + 1);
+    });
+
+    typeset(wrap.querySelector(".mock-letterhead"));
+    showMockExercise(0);
   }
 
-  function revealMockAnswers() {
-    if (state.mockRevealed) return;
-    state.mockRevealed = true;
+  function showMockExercise(index) {
+    if (index < 0 || index >= state.mockQuestions.length) return;
+    var mockSet = getActiveMockSet();
+    state.mockExerciseIndex = index;
 
-    document.getElementById("btn-mock-reveal").disabled = true;
-
-    state.mockQuestions.forEach(function (q, i) {
-      var revealEl = document.getElementById("mock-answer-" + i);
-      revealEl.hidden = false;
-      revealEl.innerHTML =
-        '<div class="answer-body">' + q.answerHtml + '</div>'
-        + '<div class="mock-assess-row">'
-        + '<span class="mock-assess-label">How did it go?</span>'
-        + '<button class="btn-assess-small" data-score="1" data-mock-q="' + q.id + '">😶 Blank</button>'
-        + '<button class="btn-assess-small" data-score="2" data-mock-q="' + q.id + '">🤔 Partial</button>'
-        + '<button class="btn-assess-small" data-score="3" data-mock-q="' + q.id + '">✓ Got it</button>'
-        + '</div>';
-
-      var answerBodyEl = revealEl.querySelector(".answer-body");
-      normalizeAnswerBodies(answerBodyEl);
-      typeset(answerBodyEl);
-
-      // Assessment buttons
-      revealEl.querySelectorAll("[data-mock-q]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var score = Number(btn.dataset.score);
-          setScore(btn.dataset.mockQ, score);
-          revealEl.querySelectorAll("[data-mock-q]").forEach(function (b) {
-            b.classList.toggle("selected", Number(b.dataset.score) === score);
-          });
-        });
-      });
+    document.querySelectorAll(".mock-question-block").forEach(function (el) {
+      el.hidden = Number(el.dataset.mockIdx) !== index;
     });
+
+    var counter = document.getElementById("mock-page-counter");
+    if (counter) counter.textContent = mockSet.itemLabel + " " + (index + 1) + " / " + state.mockQuestions.length;
+
+    var prev = document.getElementById("btn-mock-prev");
+    var next = document.getElementById("btn-mock-next");
+    if (prev) prev.disabled = index === 0;
+    if (next) next.disabled = index === state.mockQuestions.length - 1;
+
+    var reveal = document.getElementById("btn-mock-reveal");
+    var answer = document.getElementById("mock-answer-" + index);
+    if (reveal && answer) reveal.disabled = !answer.hidden;
+
+    var current = document.querySelector('[data-mock-idx="' + index + '"]');
+    if (current) typeset(current);
+  }
+
+  function revealMockAnswer(index) {
+    var q = state.mockQuestions[index];
+    var revealEl = document.getElementById("mock-answer-" + index);
+    if (!q || !revealEl || !revealEl.hidden) return;
+
+    revealEl.hidden = false;
+    revealEl.innerHTML =
+      '<div class="mock-solution-heading">Complete solution</div>'
+      + '<div class="answer-body">' + q.solutionHtml + '</div>';
+
+    var answerBodyEl = revealEl.querySelector(".answer-body");
+    normalizeAnswerBodies(answerBodyEl);
+    typeset(answerBodyEl);
+
+    var reveal = document.getElementById("btn-mock-reveal");
+    if (reveal) reveal.disabled = true;
   }
 
   // ═══════════════════════════════════════════════════
@@ -1197,7 +1717,11 @@
     });
 
     document.getElementById("mode-mock").addEventListener("click", function () {
-      startMockExam();
+      startMockExam("theory");
+    });
+
+    document.getElementById("mode-exercise-mock").addEventListener("click", function () {
+      startMockExam("exercise");
     });
 
     document.getElementById("btn-browse").addEventListener("click", function () {

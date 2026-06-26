@@ -456,7 +456,7 @@
         - \(\{f < a\} = X \setminus \{f \ge a\}\).
         - \(\{f > a\} = \bigcup_{n=1}^\infty \{f \ge a + 1/n\}\).</p></div></details>
       </li>
-      <li data-proof="false">★★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
+      <li data-proof="false">★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>All three sets are measurable.
         Since \(f\) and \(g\) are real-valued measurable functions, their difference \(h = f - g\) is also a measurable function.
         We can express the sets as:
@@ -482,7 +482,7 @@
         For any two measurable functions \(f, g\), we have \(\max\{f, g\} = \sup\{f, g\}\). Since this is a finite supremum of measurable functions, it is always measurable. Thus, no such counterexample can exist.</p></div></details>
       </li>
     
-      <li data-proof="true">★★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
+      <li data-proof="true">★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function.</p><p>Let \((X, \mathcal{A})\) be a measurable space and \(A \subset X\).
         - **Forward Direction:** Assume \(A \in \mathcal{A}\). The characteristic function is \(\chi_A(x)\). For any \(a \in \mathbb{R}\), the set \(E_a = \{ x \in X : \chi_A(x) > a \}\) is:
           - \(X \in \mathcal{A}\) if \(a < 0\),
@@ -496,13 +496,13 @@
           \]</div>
           must belong to \(\mathcal{A}\) by the definition of function measurability. Thus, \(A\) is a measurable set.</p></div></details>
       </li>
-      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(a)" aria-label="Theory Questions.pdf: Q1.33(a)">Q1.33(a)</span>
+      <li data-proof="true">★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(a)" aria-label="Theory Questions.pdf: Q1.33(a)">Q1.33(a)</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\).</p><p>This equivalence is **true**.
         - **Proof (Forward direction):** Let \(f \in M(X, \mathcal{A})\). The positive and negative parts are \(f^+ = \max\{f, 0\}\) and \(f^- = \max\{-f, 0\}\). Since the functions \(x \mapsto \max\{x, 0\}\) and \(x \mapsto \max\{-x, 0\}\) are continuous, and composition of continuous functions with measurable functions yields measurable functions, both \(f^+\) and \(f^-\) are measurable. Since they are non-negative, \(f^\pm \in M^+(X, \mathcal{A})\).
         - **Proof (Backward direction):** Assume \(f^+, f^- \in M^+(X, \mathcal{A})\).
           Since \(f(x) = f^+(x) - f^-(x)\) for all \(x \in X\), and the difference of two real-valued measurable functions is measurable, we have \(f \in M(X, \mathcal{A})\).</p></div></details>
       </li>
-      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(b)" aria-label="Theory Questions.pdf: Q1.33(b)">Q1.33(b)</span>
+      <li data-proof="true">★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(b)" aria-label="Theory Questions.pdf: Q1.33(b)">Q1.33(b)</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\).</p><p>The forward implication is **true**, but the backward implication is **false**.
         - **Forward Implication:** If \(f \in M(X, \mathcal{A})\), then \(|f| = g \circ f\), where \(g(t) = |t|\) is a continuous function. The composition of a continuous function with a measurable function is measurable, so \(|f| \in M(X, \mathcal{A})\).
         - **Counterexample for Backward Implication:** Let \(A \subset X\) be a non-measurable set (assuming such a set exists, e.g. a Vitali set in \(\mathbb{R}\)). Define:
@@ -516,6 +516,30 @@
 
     <h2>6. Low But Not Impossible Surprise Candidates</h2>
     <ol start="37">
+      <li data-proof="false">★ State the Caratheodory measurability condition and the theorem that turns an outer measure into a complete measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13" aria-label="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13">Q1.10, Q1.11, Q1.12, Q1.13</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(\mu^*\) be an outer measure on \(X\). A set \(E\subset X\) is Caratheodory measurable if for every \(A\subset X\),
+        <div class="formula">\[
+        \mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E).
+        \]</div>
+        Since subadditivity always gives \(\le\), it is enough to prove the reverse inequality. Every set of outer measure zero is Caratheodory measurable. The Caratheodory theorem states that the family of all \(\mu^*\)-measurable sets is a \(\sigma\)-algebra and the restriction of \(\mu^*\) to it is a complete measure.</p></div></details>
+      </li>
+      <li data-proof="false">★ Explain the construction of Lebesgue measure on \(\mathbb R\) and on \(\mathbb R^N\). <span class="bank-ref" title="Theory Questions.pdf: Q1.14" aria-label="Theory Questions.pdf: Q1.14">Q1.14</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Start from the Lebesgue outer measure. In \(\mathbb R\), cover \(E\subset\mathbb R\) by countable families of intervals and set
+        <div class="formula">\[
+        \lambda^*(E)=\inf\left\{\sum_{k=1}^\infty |I_k|: E\subset\bigcup_{k=1}^\infty I_k\right\}.
+        \]</div>
+        In \(\mathbb R^N\), use rectangles or boxes and replace \(|I_k|\) by their \(N\)-dimensional volume. Lebesgue measurable sets are the Caratheodory measurable sets for this outer measure, and Lebesgue measure is the restriction of \(\lambda^*\) to that \(\sigma\)-algebra.</p></div></details>
+      </li>
+      <li data-proof="false">★ Write the definition of integrable functions, the Lebesgue integral, and \(L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.49" aria-label="Theory Questions.pdf: Q1.49">Q1.49</span>
+        <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a measurable real-valued function \(f\), write \(f=f^+-f^-\), where \(f^+=\max\{f,0\}\) and \(f^-=\max\{-f,0\}\). The function \(f\) is integrable if both \(\int f^+\,d\mu\) and \(\int f^-\,d\mu\) are finite. Then
+        <div class="formula">\[
+        \int_X f\,d\mu=\int_X f^+\,d\mu-\int_X f^-\,d\mu.
+        \]</div>
+        The space \(L^1(X,\mu)\) is the vector space of measurable functions with finite integral of the absolute value, modulo equality a.e.:
+        <div class="formula">\[
+        L^1(X,\mu)=\{f:\int_X |f|\,d\mu<\infty\}/\sim.
+        \]</div></p></div></details>
+      </li>
       <li data-proof="false">★ Given a metric space \((X,d)\), write the definition of its Borel \(\sigma\)-algebra \(\mathcal B(X)\). Provide classes of Borel sets and characterize \(\mathcal B(\mathbb R)\), \(\mathcal B(\mathbb R^N)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.3" aria-label="Theory Questions.pdf: Q1.3">Q1.3</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For a metric space \((X, d)\), the Borel \(\sigma\)-algebra \(\mathcal{B}(X)\) is defined as the smallest \(\sigma\)-algebra containing all open subsets of \(X\):
         <div class="formula">\[
