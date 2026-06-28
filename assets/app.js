@@ -963,11 +963,11 @@
   var PREDICTED_MOCK_EXAMS = [
     {
       title: "Predicted July 2026 Theory Mock 1",
-      subtitle: "High-probability core: measurability, convergence relations, weak/weak-star",
-      rationale: "Uses the strongest July candidates from the conditional model. It avoids exact June repeats and focuses on neighboring broad families instead.",
+      subtitle: "Highest-probability core: measurable functions, weak/weak-star, Hahn-Banach",
+      rationale: "Uses the strongest July candidates from the conditional model and the 70-ID practical core. It avoids exact 2026 repeats and concentrates on high-frequency unused or neighboring clusters.",
       questions: [
         {
-          title: "Measurability and convergence relations",
+          title: "Measurable functions and closure traps",
           points: 7,
           predictionTag: "High probability - absent from 2026 theory",
           statementHtml: String.raw`
@@ -995,22 +995,22 @@
             </ol>`
         },
         {
-          title: "Convergence in measure and counterexamples",
+          title: "Hahn-Banach corollaries and separation",
           points: 6,
-          predictionTag: "High probability - July-seasonal convergence traps",
+          predictionTag: "Medium-high probability - unused 2026 core substitute for repeated Banach principles",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>Define pointwise convergence, almost everywhere convergence, convergence in measure, and \(L^1\) convergence.</li>
-              <li>Assume \(\mu(X)\lt\infty\). Prove that a.e. convergence implies convergence in measure.</li>
-              <li>Give a counterexample when \(\mu(X)=\infty\).</li>
-              <li>Give a counterexample showing that convergence in measure does not imply a.e. convergence of the full sequence.</li>
+              <li>State the continuous extension form of Hahn-Banach.</li>
+              <li>State and prove the corollary saying that for \(x_0\ne0\) there exists \(L\in X^*\) with \(\|L\|=1\) and \(L(x_0)=\|x_0\|\).</li>
+              <li>Explain why \(X^*\) separates points of \(X\).</li>
+              <li>Define separation and strict separation by a hyperplane.</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>The definitions are: \(f_n(x)\to f(x)\) pointwise for every \(x\); a.e. outside a null set; in measure if \(\mu(\{|f_n-f|>\varepsilon\})\to0\) for every \(\varepsilon>0\); in \(L^1\) if \(\int|f_n-f|\,d\mu\to0\).</li>
-              <li>Let \(f_n\to f\) a.e. and fix \(\varepsilon\gt0\). Define \(E_n=\bigcup_{k\ge n}\{|f_k-f|\gt\varepsilon\}\). Then \(E_n\downarrow E\), where \(E\) is contained in the null set where convergence fails. Since \(\mu(E_1)\lt\infty\), continuity from above gives \(\mu(E_n)\to0\). Because \(\{|f_n-f|\gt\varepsilon\}\subset E_n\), convergence in measure follows.</li>
-              <li>On \(\mathbb R\), \(f_n=\chi_{[n,n+1]}\) converges pointwise to \(0\), but \(\lambda(\{|f_n|\gt\varepsilon\})=1\) for \(0\lt\varepsilon\lt1\), so it does not converge in measure.</li>
-              <li>The typewriter sequence on \([0,1]\) converges to \(0\) in measure because the interval lengths tend to \(0\), but every point belongs to infinitely many supports, so the full sequence has no a.e. limit.</li>
+              <li>If \(Y\subset X\) and \(f\in Y^*\), Hahn-Banach gives \(F\in X^*\) with \(F|_Y=f\) and \(\|F\|=\|f\|\).</li>
+              <li>Let \(Y=\operatorname{span}\{x_0\}\), and define \(f(\alpha x_0)=\alpha\|x_0\|\). Then \(\|f\|=1\). Extend \(f\) to \(L\in X^*\) with the same norm. Then \(L(x_0)=\|x_0\|\) and \(\|L\|=1\).</li>
+              <li>If \(x\ne y\), apply the previous corollary to \(x-y\). There is \(L\in X^*\) with \(L(x-y)\ne0\), hence \(L(x)\ne L(y)\).</li>
+              <li>A hyperplane \(\{L=\alpha\}\) separates \(A,B\) if \(L(a)\le\alpha\le L(b)\). It strictly separates them if there is a positive gap, for instance \(L(a)\le\alpha-\varepsilon\lt\alpha+\varepsilon\le L(b)\).</li>
             </ol>`
         },
         {
@@ -1034,24 +1034,31 @@
     },
     {
       title: "Predicted July 2026 Theory Mock 2",
-      subtitle: "Neighboring families: AC/W1,1, Hilbert solvability, Hahn-Banach",
-      rationale: "This follows the model's advice to select neighboring topics rather than exact 2026 repeats. It targets AC/W1,1, Hilbert Fredholm/spectral material, and Hahn-Banach.",
+      subtitle: "Convergence modes plus compact/spectral functional analysis",
+      rationale: "This mock follows the practical-core signal while suppressing exact 2026 repeats: convergence modes are high-value and unused in 2026, Fredholm/spectral is a July-seasonal compact-Hilbert cluster, and finite-rank compactness is a neighboring compact-operator variant rather than the exact February compact-surjectivity question.",
       questions: [
         {
-          title: "Absolutely continuous functions and \(W^{1,1}\)",
+          title: "Convergence in measure, \(L^1\), and counterexamples",
           points: 8,
-          predictionTag: "Medium-high probability - family active, exact theory absent",
+          predictionTag: "High probability - core IDs absent from 2026 and July-seasonal",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>Write the definitions of absolutely continuous function, weak derivative, and \(W^{1,p}\).</li>
-              <li>State and prove the characterization of absolutely continuous functions in terms of the integration-by-parts formula.</li>
-              <li>State the relation between \(W^{1,1}\) and \(AC\), and explain the role of representatives.</li>
+              <li>Define pointwise convergence, almost everywhere convergence, convergence in measure, and \(L^1\)-convergence.</li>
+              <li>Assume \(\mu(X)\lt\infty\). Prove that a.e. convergence implies convergence in measure.</li>
+              <li>Give a counterexample showing the finite-measure hypothesis is necessary.</li>
+              <li>Prove that \(L^1\)-convergence implies convergence in measure.</li>
+              <li>Give counterexamples showing that convergence in measure does not imply \(L^1\)-convergence and does not imply a.e. convergence of the full sequence.</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>Use the \(\varepsilon\)-\(\delta\) definition on finite disjoint intervals for AC. A weak derivative \(v\) satisfies \(\int u\varphi'=-\int v\varphi\) for all \(\varphi\in C_c^1\). \(W^{1,p}\) consists of \(L^p\) functions with weak derivative in \(L^p\).</li>
-              <li>If \(u\) is AC, integration by parts gives the formula with \(v=u'\). Conversely, if the formula holds for some \(v\in L^1\), set \(w(x)=\int_a^xv(t)\,dt\). Then \(u-w\) has weak derivative \(0\), hence is constant a.e.; therefore \(u\) has an AC representative.</li>
-              <li>In one dimension, every \(W^{1,1}\) equivalence class has a unique AC representative, and every AC function with derivative in \(L^1\) belongs to \(W^{1,1}\). The statement is about equivalence classes, not arbitrary pointwise versions.</li>
+              <li>The definitions are: pointwise for every \(x\), a.e. outside a null set, in measure if \(\mu(\{|f_n-f|\gt\varepsilon\})\to0\) for every \(\varepsilon\gt0\), and in \(L^1\) if \(\int|f_n-f|\,d\mu\to0\).</li>
+              <li>Fix \(\varepsilon\gt0\) and set \(E_n=\bigcup_{k\ge n}\{|f_k-f|\gt\varepsilon\}\). Then \(E_n\downarrow E\), where \(E\) is contained in the null set of non-convergence. Since \(\mu(E_1)\lt\infty\), continuity from above gives \(\mu(E_n)\to0\), hence \(\mu(\{|f_n-f|\gt\varepsilon\})\to0\).</li>
+              <li>On \(\mathbb R\), \(f_n=\chi_{[n,n+1]}\) converges pointwise to \(0\), but \(\lambda(\{|f_n|\gt1/2\})=1\), so not in measure.</li>
+              <li>By Chebyshev,
+                <div class="formula">\[
+                \mu(\{|f_n-f|\gt\varepsilon\})\le \frac1\varepsilon\int |f_n-f|\,d\mu\to0.
+                \]</div></li>
+              <li>For measure but not \(L^1\), take \(f_n=n\chi_{(0,1/n)}\) on \((0,1)\). For measure but not a.e. full-sequence convergence, use the typewriter sequence on \([0,1]\).</li>
             </ol>`
         },
         {
@@ -1072,89 +1079,255 @@
             </ol>`
         },
         {
-          title: "Hahn-Banach corollaries and separation",
+          title: "Compact operators through finite-rank approximation",
           points: 4,
-          predictionTag: "Medium probability - absent from 2026 and good substitute for overused Banach principles",
+          predictionTag: "Medium probability - neighboring compact core, not exact February repeat",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>State the continuous extension form of Hahn-Banach.</li>
-              <li>State two standard corollaries.</li>
-              <li>Define separation and strict separation by a hyperplane.</li>
+              <li>Define compact operator and finite-rank operator.</li>
+              <li>Prove that every finite-rank operator is compact.</li>
+              <li>State and prove that an operator-norm limit of compact operators is compact.</li>
+              <li>Apply this to a diagonal operator \(T:\ell^2\to\ell^2\), \(T(x_k)=(a_kx_k)\), when \(a_k\to0\).</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>If \(Y\subset X\) and \(f\in Y^*\), there exists \(F\in X^*\) with \(F|_Y=f\) and \(\|F\|=\|f\|\).</li>
-              <li>Corollaries: for \(x_0\ne0\), there exists \(L\in X^*\) with \(\|L\|=1\), \(L(x_0)=\|x_0\|\); and \(X^*\) separates points.</li>
-              <li>A hyperplane \(\{L=\alpha\}\) separates \(A,B\) if \(L(a)\le\alpha\le L(b)\). It strictly separates them if there is a positive gap: \(L(a)\le\alpha-\varepsilon\lt\alpha+\varepsilon\le L(b)\).</li>
+              <li>\(T:X\to Y\) is compact if it maps bounded sets into relatively compact sets. It has finite rank if \(\dim T(X)\lt\infty\).</li>
+              <li>If \(B\subset X\) is bounded, then \(T(B)\) is bounded in the finite-dimensional space \(T(X)\), hence relatively compact.</li>
+              <li>Let \(T_n\to T\) in norm and let \((x_k)\) be bounded. Use compactness of \(T_1,T_2,\ldots\) and a diagonal subsequence so each \(T_Nx_{k_j}\) converges. Then \(\|T-T_N\|\to0\) makes \(Tx_{k_j}\) Cauchy, hence convergent.</li>
+              <li>Let \(T_N(x_1,x_2,\dots)=(a_1x_1,\dots,a_Nx_N,0,\dots)\). Then \(T_N\) is finite rank and
+                <div class="formula">\[
+                \|T-T_N\|=\sup_{k>N}|a_k|\to0.
+                \]</div>
+                Hence \(T\) is compact.</li>
             </ol>`
         }
       ]
     },
     {
       title: "Predicted July 2026 Theory Mock 3",
-      subtitle: "Pattern-break hedge: measurable traps, weak-star compactness, Fredholm spectrum",
-      rationale: "This set reflects the negative 2026 validation: the frequency model can miss transitions, so this mock concentrates on the strongest non-2026 exact topics while still varying the question style.",
+      subtitle: "Controlled-randomness core: AC/FTC, Hilbert projection, \(L^p\)",
+      rationale: "This is the pattern-break mock. It still stays inside the 70-ID practical core, but it spends one slot on lower-frequency core material. The real-analysis question targets the high-value AC/FTC cluster; the functional questions hedge with Hilbert projection and \(L^p\)/Holder material instead of repeating weak-star, Hahn-Banach, or Fredholm.",
       questions: [
         {
-          title: "Measurability traps and characteristic functions",
+          title: "Lebesgue points, absolutely continuous functions, and \(W^{1,1}\)",
           points: 7,
-          predictionTag: "High probability - top model topic with past July traps",
+          predictionTag: "Medium-high probability - core cluster, absent from 2026 theory",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>Prove that \(A\in\mathcal A\) if and only if \(\chi_A\) is measurable.</li>
-              <li>Prove or disprove: \(f\in M(X,\mathcal A)\) if and only if \(f^+,f^-\in M^+(X,\mathcal A)\).</li>
-              <li>Prove or disprove: \(f\in M(X,\mathcal A)\) if and only if \(|f|\in M(X,\mathcal A)\).</li>
-              <li>Let \((f_n)\subset M(X,\mathcal A)\). Prove that \(\limsup_n f_n\) and \(\liminf_n f_n\) are measurable.</li>
+              <li>Define Lebesgue point and state what can be said about non-Lebesgue points of \(f\in L^1_{\mathrm{loc}}\).</li>
+              <li>State and prove the first Fundamental Theorem of Calculus for \(f\in L^1(a,b)\).</li>
+              <li>Define absolutely continuous function.</li>
+              <li>State the characterization of absolutely continuous functions by integration against an \(L^1\)-derivative.</li>
+              <li>State the relation between \(W^{1,1}(a,b)\) and \(AC([a,b])\), being precise about representatives.</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>If \(A\in\mathcal A\), then \(\{\chi_A>1/2\}=A\) and all level sets are measurable. Conversely, if \(\chi_A\) is measurable, then \(A=\{\chi_A>1/2\}\in\mathcal A\).</li>
-              <li>The statement with positive and negative parts is true. If \(f\) is measurable, then \(f^+=\max(f,0)\) and \(f^-=\max(-f,0)\) are measurable. Conversely, \(f=f^+-f^-\), so \(f\) is measurable.</li>
-              <li>The statement with \(|f|\) is false in the reverse direction. If \(A\notin\mathcal A\), define \(f=\chi_A-\chi_{X\setminus A}\). Then \(|f|=1\) is measurable, but \(f^{-1}(\{1\})=A\) is not.</li>
-              <li>Use
+              <li>\(x\) is a Lebesgue point of \(f\) if
                 <div class="formula">\[
-                \limsup_n f_n=\inf_k\sup_{n\ge k} f_n,\qquad
-                \liminf_n f_n=\sup_k\inf_{n\ge k} f_n.
+                \lim_{r\downarrow0}\frac1{2r}\int_{x-r}^{x+r}|f(t)-f(x)|\,dt=0.
                 \]</div>
-                Countable suprema and infima of measurable functions are measurable.</li>
+                Almost every point is a Lebesgue point.</li>
+              <li>For \(F(x)=\int_a^x f(t)\,dt\), at every Lebesgue point \(x\),
+                <div class="formula">\[
+                \frac{F(x+h)-F(x)}h-f(x)=\frac1h\int_x^{x+h}(f(t)-f(x))\,dt\to0.
+                \]</div>
+                Hence \(F'=f\) a.e.</li>
+              <li>\(u\) is absolutely continuous if small total length of finitely many disjoint intervals forces small total oscillation of \(u\) on those intervals.</li>
+              <li>\(u\in AC([a,b])\) iff there exists \(v\in L^1(a,b)\) such that \(u(x)=u(a)+\int_a^xv(t)\,dt\). Then \(v=u'\) a.e.</li>
+              <li>Every \(W^{1,1}\) class has an absolutely continuous representative, and every absolutely continuous function with derivative in \(L^1\) belongs to \(W^{1,1}\). The statement is about representatives, not arbitrary pointwise versions.</li>
             </ol>`
         },
         {
-          title: "Weak-star compactness and subsequences",
+          title: "Hilbert projection theorem and Riesz representation",
           points: 6,
-          predictionTag: "High probability - weak/weak-star family remains unspent in 2026",
+          predictionTag: "Medium controlled-randomness - core Hilbert family, avoids exact 2026 Riesz-only repeat",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>Define weak-star convergence in \(X^*\).</li>
-              <li>State Banach-Alaoglu.</li>
-              <li>Explain why, if \(X\) is separable, every bounded sequence in \(X^*\) has a weak-star convergent subsequence.</li>
-              <li>State and prove the reflexive/separable corollary giving weakly convergent subsequences.</li>
+              <li>State and prove the projection theorem on a closed convex subset of a Hilbert space.</li>
+              <li>State the projection theorem corollary for a closed subspace \(M\subset H\).</li>
+              <li>Use the corollary to outline the proof of the Riesz representation theorem in Hilbert spaces.</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>\(L_n\overset{*}{\rightharpoonup}L\) in \(X^*\) means \(L_n(x)\to L(x)\) for every \(x\in X\).</li>
-              <li>Banach-Alaoglu says the closed unit ball of \(X^*\) is compact for the weak-star topology \(\sigma(X^*,X)\).</li>
-              <li>If \(X\) is separable, the weak-star topology is metrizable on bounded subsets of \(X^*\). Compactness plus metrizability gives sequential compactness, hence a weak-star convergent subsequence.</li>
-              <li>If \(Y\) is reflexive and separable, a bounded sequence \((y_n)\subset Y\) gives a bounded sequence \(\tau(y_n)\subset Y^{**}\). Apply the weak-star compactness result in \(Y^{**}=(Y^*)^*\). Reflexivity identifies the weak-star limit with \(\tau(y)\), and this exactly means \(y_{n_k}\rightharpoonup y\) weakly in \(Y\).</li>
+              <li>If \(C\subset H\) is nonempty, closed, and convex, then for every \(x\in H\) there exists a unique \(p\in C\) minimizing \(\|x-p\|\). Existence follows from a minimizing sequence and the parallelogram identity; uniqueness follows from strict convexity of the Hilbert norm.</li>
+              <li>If \(M\) is a closed subspace, every \(x\in H\) decomposes uniquely as \(x=m+z\), with \(m\in M\) and \(z\in M^\perp\).</li>
+              <li>For \(F\in H^*\), if \(F\ne0\), then \(\ker F\) is a closed proper subspace. Decompose \(H=\ker F\oplus(\ker F)^\perp\), choose \(z_0\in(\ker F)^\perp\), and show every \(x\) satisfies \(F(x)=\langle x,y\rangle\) for a suitable \(y\in H\). Uniqueness follows by testing against the difference of two representing vectors.</li>
             </ol>`
         },
         {
-          title: "Fredholm alternative and compact spectrum",
+          title: "\(L^p\) core inequalities and completeness",
           points: 5,
-          predictionTag: "Medium-high probability - July history and no exact 2026 use",
+          predictionTag: "Lower-probability random core - one controlled surprise slot",
           statementHtml: String.raw`
             <ol class="mock-subparts">
-              <li>State the Fredholm alternative for \(I-T\) with \(T\) compact on a Hilbert space.</li>
-              <li>Discuss solvability of \(u-Tu=f\).</li>
-              <li>Write the definitions of \(\rho(T)\), \(\sigma(T)\), \(EV(T)\), and \(\sigma_p(T)\).</li>
-              <li>State the spectral theorem for compact self-adjoint operators.</li>
+              <li>Define conjugate exponents and state Holder's inequality.</li>
+              <li>Prove Holder's inequality from Young's inequality.</li>
+              <li>State Minkowski's inequality.</li>
+              <li>State the completeness theorem for \(L^p\) spaces.</li>
+              <li>Explain why this slot is lower probability but still belongs to the practical core.</li>
             </ol>`,
           solutionHtml: String.raw`
             <ol>
-              <li>For compact \(T:H\to H\), \(\ker(I-T)\) is finite-dimensional, \(\operatorname{Ran}(I-T)\) is closed, and \(\operatorname{Ran}(I-T)=\ker(I-T^*)^\perp\). Also \(I-T\) is injective iff it is surjective.</li>
-              <li>The equation \(u-Tu=f\) is solvable iff \(f\perp\ker(I-T^*)\). If \(\ker(I-T)=\{0\}\), the solution is unique for every \(f\).</li>
-              <li>\(\rho(T)\) is the set of \(\lambda\) such that \(\lambda I-T\) is bijective with bounded inverse. \(\sigma(T)=\mathbb C\setminus\rho(T)\). \(EV(T)=\sigma_p(T)=\{\lambda:\ker(\lambda I-T)\ne\{0\}\}\).</li>
-              <li>For compact self-adjoint \(T\), there is an orthonormal system of eigenvectors with real eigenvalues tending only possibly to \(0\), and \(T\) admits the corresponding orthogonal spectral expansion.</li>
+              <li>\(p,q\in[1,\infty]\) are conjugate if \(1/p+1/q=1\). Holder says
+                <div class="formula">\[
+                \|fg\|_1\le \|f\|_p\|g\|_q.
+                \]</div></li>
+              <li>Normalize so \(\|f\|_p=\|g\|_q=1\). Young's inequality gives \(|fg|\le |f|^p/p+|g|^q/q\). Integrating gives Holder; rescale for the general case.</li>
+              <li>Minkowski says \(\|f+g\|_p\le\|f\|_p+\|g\|_p\), so \(\|\cdot\|_p\) is a norm for \(p\ge1\).</li>
+              <li>For \(1\le p\le\infty\), \(L^p\) is complete, hence a Banach space.</li>
+              <li>It is lower probability because \(L^p\)-inequality questions are less frequent than weak-star or convergence modes, but \(Q2.17\) and \(Q2.22\) are in the flagged core and give useful controlled randomness.</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Predicted July 2026 Theory Mock 4",
+      subtitle: "Core hedge: Caratheodory plus Banach-principle neighbors",
+      rationale: "This mock uses the analysis file's core-bank hedge logic: Caratheodory/outer-measure is a recurring but not top July cluster, while the functional slots cover neighboring Banach-principle material without repeating the exact 2026 Open Mapping/Closed Graph package.",
+      questions: [
+        {
+          title: "Outer measure and Caratheodory construction",
+          points: 7,
+          predictionTag: "Medium hedge - recurring core cluster absent from 2026",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define outer measure.</li>
+              <li>State the Caratheodory condition and explain why it is enough to prove one inequality.</li>
+              <li>Prove that every set of outer measure zero is Caratheodory measurable.</li>
+              <li>State Caratheodory's theorem about the measurable sets of an outer measure.</li>
+              <li>Describe the construction of Lebesgue measure from \(\lambda^*\) on \(\mathbb R\).</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>An outer measure \(\mu^*\) on \(X\) satisfies \(\mu^*(\varnothing)=0\), monotonicity, and countable subadditivity.</li>
+              <li>\(E\subset X\) is measurable if for every \(A\subset X\),
+                <div class="formula">\[
+                \mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E).
+                \]</div>
+                Subadditivity gives \(\le\), so the content is proving \(\ge\).</li>
+              <li>If \(\mu^*(E)=0\), then \(\mu^*(A\cap E)=0\), while \(\mu^*(A\setminus E)\le\mu^*(A)\). Together with subadditivity this gives equality.</li>
+              <li>The Caratheodory measurable sets form a \(\sigma\)-algebra, and \(\mu^*\) restricted to it is a complete measure.</li>
+              <li>\(\lambda^*(E)\) is the infimum of sums of interval lengths over countable interval covers of \(E\). Lebesgue measurable sets are the Caratheodory measurable sets for \(\lambda^*\), and \(\lambda\) is the restriction of \(\lambda^*\).</li>
+            </ol>`
+        },
+        {
+          title: "Baire and Banach-Steinhaus as a neighboring repeat",
+          points: 6,
+          predictionTag: "Low-to-medium exact, medium family - one allowed repeat-risk slot",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State Baire's theorem in a complete metric space.</li>
+              <li>Define pointwise boundedness and uniform boundedness for a family \(\mathcal F\subset L(X,Y)\).</li>
+              <li>State and prove the Banach-Steinhaus theorem.</li>
+              <li>Explain why this is a repeat-risk question after January 2026, but still belongs in one coverage mock.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>In a complete metric space, a countable union of closed sets with empty interior cannot be the whole space.</li>
+              <li>Pointwise bounded means \(\sup_{T\in\mathcal F}\|Tx\|\lt\infty\) for every fixed \(x\). Uniform boundedness means \(\sup_{T\in\mathcal F}\|T\|\lt\infty\).</li>
+              <li>Let
+                <div class="formula">\[
+                E_n=\{x\in X:\|Tx\|\le n\ \forall T\in\mathcal F\}.
+                \]</div>
+                The \(E_n\) are closed and cover \(X\). By Baire, some \(E_N\) contains a ball. Linearity and translation from that ball give a global bound on \(\|Tx\|\), uniformly in \(T\), hence \(\sup_T\|T\|\lt\infty\).</li>
+              <li>The exact ID appeared in January 2026, so the analysis suppresses it as a top exact July target. It remains a core theorem and a plausible low-probability repeat component, especially because later-year exams sometimes include one recycled ID.</li>
+            </ol>`
+        },
+        {
+          title: "Equivalent norms through the bounded inverse theorem",
+          points: 5,
+          predictionTag: "Medium hedge - core neighbor of 2026 Banach theorem package",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State the Bounded Inverse Theorem.</li>
+              <li>Let \(X\) carry two norms \(\|\cdot\|_1\), \(\|\cdot\|_2\), both making \(X\) Banach. Prove that if \(\|x\|_2\le C\|x\|_1\), then the two norms are equivalent.</li>
+              <li>Explain the role of completeness in the proof.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>If \(X,Y\) are Banach spaces and \(T:X\to Y\) is a bijective bounded linear map, then \(T^{-1}\) is bounded.</li>
+              <li>The identity
+                <div class="formula">\[
+                I:(X,\|\cdot\|_1)\to(X,\|\cdot\|_2)
+                \]</div>
+                is bounded by the assumed inequality and is bijective. By the bounded inverse theorem, \(I^{-1}\) is bounded, so \(\|x\|_1\le C'\|x\|_2\). Thus the norms are equivalent.</li>
+              <li>Completeness is needed because the bounded inverse theorem is a Banach-space theorem; without completeness, a bijective bounded linear map need not have bounded inverse.</li>
+            </ol>`
+        }
+      ]
+    },
+    {
+      title: "Predicted July 2026 Theory Mock 5",
+      subtitle: "Coverage extender: convergence theorems, separability, operator basics",
+      rationale: "This is the broadest coverage mock. It uses the analysis file's practical core but intentionally spends more probability mass on medium/lower-frequency core IDs so the five-mock set is not just repeated weak-star, convergence modes, and compact spectrum.",
+      questions: [
+        {
+          title: "Fatou, monotone convergence, and dominated convergence",
+          points: 7,
+          predictionTag: "Medium probability - core theorem family, absent from 2026 theory",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>State the Monotone Convergence Theorem.</li>
+              <li>State and prove Fatou's Lemma.</li>
+              <li>State the Dominated Convergence Theorem.</li>
+              <li>Prove the Dominated Convergence Theorem using Fatou's Lemma.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>If \(0\le f_n\uparrow f\), then \(\int f_n\,d\mu\uparrow\int f\,d\mu\).</li>
+              <li>For \(f_n\ge0\), Fatou says
+                <div class="formula">\[
+                \int\liminf_n f_n\,d\mu\le\liminf_n\int f_n\,d\mu.
+                \]</div>
+                Put \(g_k=\inf_{n\ge k}f_n\). Then \(g_k\uparrow\liminf f_n\), and \(g_k\le f_n\) for \(n\ge k\). Apply MCT and compare with tail infima.</li>
+              <li>If \(f_n\to f\) a.e. and \(|f_n|\le g\in L^1\), then \(f\in L^1\), \(\int|f_n-f|\to0\), and \(\int f_n\to\int f\).</li>
+              <li>Apply Fatou to \(2g-|f_n-f|\ge0\). Since the pointwise limit is \(2g\),
+                <div class="formula">\[
+                \int2g\le\liminf_n\int(2g-|f_n-f|)
+                =\int2g-\limsup_n\int|f_n-f|.
+                \]</div>
+                Hence the limsup of the error integrals is \(0\).</li>
+            </ol>`
+        },
+        {
+          title: "Separability of \(C^0([a,b])\) and the Hahn-Banach separability criterion",
+          points: 6,
+          predictionTag: "Controlled randomness - core but less frequent",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define separable metric space.</li>
+              <li>Prove that \(C^0([a,b])\) is separable with the uniform norm.</li>
+              <li>State the sufficient condition for separability involving \(X^*\).</li>
+              <li>Explain why this is included as a lower-probability coverage slot.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>A metric space is separable if it contains a countable dense subset.</li>
+              <li>By Weierstrass, polynomials are dense in \(C^0([a,b])\). Polynomials with rational coefficients are countable and still dense, because real coefficients can be approximated by rational coefficients uniformly on \([a,b]\).</li>
+              <li>A standard Hahn-Banach consequence is: if \(X^*\) is separable, then \(X\) is separable. Let \((f_n)\) be dense in \(X^*\). For each nonzero \(f_n\), choose \(x_{n,k}\) with \(\|x_{n,k}\|=1\) and \(|f_n(x_{n,k})|\ge \|f_n\|-1/k\). Let \(Y\) be the closed linear span of these countably many points. If \(Y\ne X\), Hahn-Banach gives \(0\ne f\in X^*\) with \(f|_Y=0\). Approximate \(f\) by some \(f_n\); the choice of \(x_{n,k}\in Y\) gives \(\|f_n\|\) small, contradicting \(f_n\approx f\ne0\). Hence \(Y=X\), so \(X\) is separable.</li>
+              <li>The ID-level analysis flags \(Q2.46\) as occasional but real, and July 2024 used a separability slot. It is not top probability, but it is a good fifth-mock hedge.</li>
+            </ol>`
+        },
+        {
+          title: "Bounded linear operators and operator norm",
+          points: 5,
+          predictionTag: "Low-probability core foundation - useful if the professor chooses definitions",
+          statementHtml: String.raw`
+            <ol class="mock-subparts">
+              <li>Define linear operator, bounded operator, continuous operator, functional, and dual space.</li>
+              <li>Prove that a linear operator between normed spaces is continuous if and only if it is bounded.</li>
+              <li>Define the operator norm and state its equivalent formulas.</li>
+              <li>State when \(L(X,Y)\) is Banach.</li>
+            </ol>`,
+          solutionHtml: String.raw`
+            <ol>
+              <li>A bounded linear operator satisfies \(\|Tx\|_Y\le C\|x\|_X\). A functional is scalar-valued; \(X^*\) is the space of continuous linear functionals.</li>
+              <li>Boundedness gives Lipschitz continuity. Conversely, if \(T\) is continuous at \(0\), there is \(\delta\gt0\) such that \(\|x\|\le\delta\Rightarrow\|Tx\|\le1\). Scaling gives \(\|Tx\|\le\delta^{-1}\|x\|\).</li>
+              <li>
+                <div class="formula">\[
+                \|T\|=\sup_{\|x\|\le1}\|Tx\|=\sup_{\|x\|=1}\|Tx\|=\sup_{x\ne0}\frac{\|Tx\|}{\|x\|}.
+                \]</div></li>
+              <li>If \(X\) is normed and \(Y\) is Banach, then \(L(X,Y)\) is Banach with the operator norm.</li>
             </ol>`
         }
       ]
