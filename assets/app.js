@@ -11,13 +11,19 @@
   var CORE_BANK_REFS = new Set([
     "Q1.5", "Q1.9", "Q1.10", "Q1.11", "Q1.12", "Q1.13", "Q1.14", "Q1.18",
     "Q1.20", "Q1.21", "Q1.22", "Q1.23", "Q1.24", "Q1.25", "Q1.26", "Q1.27", "Q1.28", "Q1.32", "Q1.33",
-    "Q1.43", "Q1.44", "Q1.45", "Q1.52", "Q1.54",
+    "Q1.34", "Q1.43", "Q1.44", "Q1.45", "Q1.52", "Q1.54",
     "Q1.58", "Q1.61", "Q1.62", "Q1.63", "Q1.64", "Q1.65",
     "Q1.66", "Q1.67", "Q1.68", "Q1.69", "Q1.70", "Q1.71",
     "Q2.17", "Q2.22", "Q2.30", "Q2.31", "Q2.33", "Q2.34", "Q2.35", "Q2.36", "Q2.37",
     "Q2.42", "Q2.45", "Q2.46", "Q2.49", "Q2.50",
     "Q2.53", "Q2.54", "Q2.55", "Q2.56", "Q2.57", "Q2.58", "Q2.59", "Q2.60", "Q2.61", "Q2.62", "Q2.63",
     "Q2.64", "Q2.65", "Q2.66", "Q2.68", "Q2.69", "Q2.73", "Q2.74", "Q2.75", "Q2.76"
+  ]);
+
+  var SEEN_2026_EXACT_REFS = new Set([
+    "Q1.18", "Q1.34", "Q1.38", "Q1.40", "Q1.43", "Q1.49", "Q1.52",
+    "Q2.30", "Q2.31", "Q2.33", "Q2.34", "Q2.36", "Q2.37",
+    "Q2.49", "Q2.50", "Q2.64", "Q2.65", "Q2.66", "Q2.69"
   ]);
 
   function bankRefsOf(q) {
@@ -30,7 +36,10 @@
     var cls = tagClass || "tag";
     return refs.map(function (ref) {
       var isCore = CORE_BANK_REFS.has(ref);
-      return '<span class="' + cls + (isCore ? ' core-bank-ref' : '') + '" title="' + escHtml(bankTitle || ref) + '">' + ref + '</span>';
+      var seen2026 = SEEN_2026_EXACT_REFS.has(ref);
+      var title = bankTitle || ref;
+      if (seen2026) title += " · seen in 2026; exact July repeat is penalized";
+      return '<span class="' + cls + (isCore ? ' core-bank-ref' : '') + (seen2026 ? ' seen-2026-ref' : '') + '" title="' + escHtml(title) + '">' + ref + '</span>';
     }).join("");
   }
 

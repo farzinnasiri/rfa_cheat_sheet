@@ -58,7 +58,7 @@
 
     <h2>1. Hahn-Banach And Separation</h2>
     <ol start="1">
-      <li data-proof="false">★★★ State the Hahn-Banach theorem in the continuous extension form. <span class="bank-ref" title="Theory Questions.pdf: Q2.42" aria-label="Theory Questions.pdf: Q2.42">Q2.42</span>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the continuous extension form. <span class="bank-ref" title="Theory Questions.pdf: Q2.42" aria-label="Theory Questions.pdf: Q2.42">Q2.42</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space over the field \(\mathbb{K}\) (where \(\mathbb{K} = \mathbb{R}\) or \(\mathbb{C}\)), \(Y\) a linear subspace of \(X\), and \(f \in Y^*\) a continuous linear functional on \(Y\). The continuous Hahn-Banach extension theorem states that there exists a continuous linear functional \(F \in X^*\) such that:
         <div class="formula">\[
         F(y) = f(y) \qquad \forall y \in Y \quad (\text{i.e., } F|_Y = f),
@@ -68,7 +68,7 @@
         \]</div>
         This guarantees that every continuous linear functional defined on a subspace can be extended to the entire space without increasing its operator norm.</p></div></details>
       </li>
-      <li data-proof="false">★★★ Let \(Y\) be a vector subspace of \(X=\mathbb R^2\). Given \(f\in Y^*\), is it possible to find \(F\in X^*\) such that \(F=f\) in \(Y\) and \(\|F\|_{X^*}=\|f\|_{Y^*}\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.41" aria-label="Theory Questions.pdf: Q2.41">Q2.41</span>
+      <li data-proof="false">★★ Let \(Y\) be a vector subspace of \(X=\mathbb R^2\). Given \(f\in Y^*\), is it possible to find \(F\in X^*\) such that \(F=f\) in \(Y\) and \(\|F\|_{X^*}=\|f\|_{Y^*}\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.41" aria-label="Theory Questions.pdf: Q2.41">Q2.41</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Yes. Since \(X = \mathbb{R}^2\) is a finite-dimensional normed space and \(Y \subset \mathbb{R}^2\) is a linear subspace, the continuous extension form of the Hahn-Banach Theorem applies directly. Any continuous linear functional \(f\) on \(Y\) has a continuous linear extension \(F \in X^*\) satisfying:
         <div class="formula">\[
         F|_Y = f \quad \text{and} \quad \|F\|_{X^*} = \|f\|_{Y^*}.
@@ -76,7 +76,7 @@
         Since every linear functional on a finite-dimensional space is continuous, the continuity conditions are automatically satisfied for any norm on \(\mathbb{R}^2\).</p></div></details>
       </li>
     
-      <li data-proof="true">★★★ State and prove the three corollaries of the Hahn-Banach Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.45" aria-label="Theory Questions.pdf: Q2.45">Q2.45</span>
+      <li data-proof="true">★★ State and prove the three corollaries of the Hahn-Banach Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.45" aria-label="Theory Questions.pdf: Q2.45">Q2.45</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Each corollary is Hahn-Banach applied to the right one-dimensional or quotient-like subspace. Define the small functional first, compute its norm exactly, extend it, then read off separation or norm-attainment. <em>Question focus:</em> State and prove the three corollaries of the Hahn-Banach Theorem.</p>
         <p><strong>Corollary 1:</strong> For any \(x_0 \in X\) with \(x_0 \neq 0\), there exists \(L \in X^*\) such that \(\|L\|_{X^*} = 1\) and \(L(x_0) = \|x_0\|_X\).</p>
         <p><em>Proof:</em> Let \(Y = \operatorname{span}\{x_0\} = \{\alpha x_0 : \alpha \in \mathbb{K}\}\). Define the linear functional \(l : Y \to \mathbb{K}\) by \(l(\alpha x_0) = \alpha \|x_0\|_X\). We compute the norm of \(l\): for any \(y = \alpha x_0 \in Y\), we have \(|l(y)| = |\alpha| \|x_0\|_X = \|\alpha x_0\|_X = \|y\|_X\). Thus, \(l\) is continuous and bounded with \(\|l\|_{Y^*} = 1\). By the continuous form of the Hahn-Banach Theorem, there exists a continuous linear functional \(L \in X^*\) extending \(l\) to \(X\) such that \(L|_Y = l\) and \(\|L\|_{X^*} = \||l\|_{Y^*} = 1\). In particular, \(L(x_0) = l(x_0) = \|x_0\|_X\).</p>
@@ -94,7 +94,7 @@
         By the Hahn-Banach Theorem, there exists \(L \in X^*\) extending \(l\) such that \(L|_Z = l\) and \(\|L\|_{X^*} = \|l\|_{Z^*} = 1\). Thus \(L|_Y = 0\) and \(L(x_0) = d = \operatorname{dist}(x_0, Y)\).</p>
         </div></details>
       </li>
-      <li data-proof="false">★★★ Let \(X\) be a normed space, let \(H\) be a hyperplane of \(X\). When do we say that \(H\) separates or strictly separates \(A\) and \(B\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.43" aria-label="Theory Questions.pdf: Q2.43">Q2.43</span>
+      <li data-proof="false">★★ Let \(X\) be a normed space, let \(H\) be a hyperplane of \(X\). When do we say that \(H\) separates or strictly separates \(A\) and \(B\)? <span class="bank-ref" title="Theory Questions.pdf: Q2.43" aria-label="Theory Questions.pdf: Q2.43">Q2.43</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space (or the real part of functionals if \(X\) is complex). A hyperplane \(H\) is a set of the form:
         <div class="formula">\[
         H = \{x \in X : L(x) = \alpha\},
@@ -109,14 +109,14 @@
           L(a) \le \alpha - \varepsilon \quad \text{and} \quad L(b) \ge \alpha + \varepsilon \qquad \forall a \in A, \, \forall b \in B.
           \]</div></p></div></details>
       </li>
-      <li data-proof="false">★★★ State the Hahn-Banach theorem in the separation form, first version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, first version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), and \(A\) is open, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and a real number \(\alpha \in \mathbb{R}\) such that:
         <div class="formula">\[
         L(a) < \alpha \le L(b) \qquad \forall a \in A, \, \forall b \in B.
         \]</div>
         This means the disjoint convex sets are separated by the closed hyperplane \(\{x \in X : L(x) = \alpha\}\), with the open set \(A\) lying strictly on one side.</p></div></details>
       </li>
-      <li data-proof="false">★★★ State the Hahn-Banach theorem in the separation form, second version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
+      <li data-proof="false">★★ State the Hahn-Banach theorem in the separation form, second version. <span class="bank-ref" title="Theory Questions.pdf: Q2.44" aria-label="Theory Questions.pdf: Q2.44">Q2.44</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a real normed space. If \(A, B \subset X\) are nonempty disjoint convex subsets of \(X\), such that \(A\) is compact and \(B\) is closed, then there exist a continuous linear functional \(L \in X^*\) with \(L \neq 0\) and real numbers \(\alpha < \beta\) such that:
         <div class="formula">\[
         L(a) \le \alpha < \beta \le L(b) \qquad \forall a \in A, \, \forall b \in B.
@@ -447,7 +447,7 @@
 
     <h2>5. \(L^p\), \(\ell^p\), And Core Inequalities</h2>
     <ol start="37">
-      <li data-proof="true">★ Write the definition of conjugate numbers. Show the Young inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.16" aria-label="Theory Questions.pdf: Q2.16">Q2.16</span>
+      <li data-proof="true">★★ Write the definition of conjugate numbers. Show the Young inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.16" aria-label="Theory Questions.pdf: Q2.16">Q2.16</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Normalize first so the inequality becomes dimensionless. Prove the normalized estimate with Young inequality, then rescale; equality and zero cases should be handled before the normalization. <em>Question focus:</em> Write the definition of conjugate numbers. Show the Young inequality.</p><p>Conjugate exponents \(p, q \in (1, \infty)\) satisfy:
         <div class="formula">\[
         \frac{1}{p} + \frac{1}{q} = 1.
@@ -463,7 +463,7 @@
         \]</div>
         Since the exponential function is strictly increasing, applying it to both sides yields \(ab \le \frac{a^p}{p} + \frac{b^q}{q}\).</p></div></details>
       </li>
-      <li data-proof="true">★ Write and show the Holder inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.17" aria-label="Theory Questions.pdf: Q2.17">Q2.17</span>
+      <li data-proof="true">★★ Write and show the Holder inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.17" aria-label="Theory Questions.pdf: Q2.17">Q2.17</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Normalize first so the inequality becomes dimensionless. Prove the normalized estimate with Young inequality, then rescale; equality and zero cases should be handled before the normalization. <em>Question focus:</em> Write and show the Holder inequality.</p><p><strong>Hölder's Inequality:</strong> Let \(1 < p, q < \infty\) with \(\frac{1}{p} + \frac{1}{q} = 1\). If \(f \in L^p(X, \mu)\) and \(g \in L^q(X, \mu)\), then \(fg \in L^1(X, \mu)\) and:
         <div class="formula">\[
         \int_X |fg| \, d\mu \le \|f\|_p \|g\|_q.
@@ -479,7 +479,7 @@
         \]</div>
         Multiplying by \(\|f\|_p \|g\|_q\) yields the inequality.</p></div></details>
       </li>
-      <li data-proof="true">★ Write and show the Minkowski inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.18" aria-label="Theory Questions.pdf: Q2.18">Q2.18</span>
+      <li data-proof="true">★★ Write and show the Minkowski inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.18" aria-label="Theory Questions.pdf: Q2.18">Q2.18</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof is the triangle inequality for \(L^p\). Split \(|f+g|^p\), apply Holder to each term, cancel the common factor when nonzero, and treat the zero case separately. <em>Question focus:</em> Write and show the Minkowski inequality.</p><p><strong>Minkowski's Inequality:</strong> For \(1 \le p \le \infty\) and \(f, g \in L^p(X, \mu)\):
         <div class="formula">\[
         \|f+g\|_p \le \|f\|_p + \|g\|_p.
@@ -500,7 +500,7 @@
         \]</div>
         If \(\|f+g\|_p = 0\), the inequality is trivial. If \(\|f+g\|_p > 0\), we divide both sides by \(\left(\int_X |f+g|^p \, d\mu\right)^{1/q}\) (using \(1 - 1/q = 1/p\)) to obtain \(\|f+g\|_p \le \|f\|_p + \|g\|_p\).</p></div></details>
       </li>
-      <li data-proof="true">★ Show that \(L^p\) is a normed space. <span class="bank-ref" title="Theory Questions.pdf: Q2.19" aria-label="Theory Questions.pdf: Q2.19">Q2.19</span>
+      <li data-proof="true">★★ Show that \(L^p\) is a normed space. <span class="bank-ref" title="Theory Questions.pdf: Q2.19" aria-label="Theory Questions.pdf: Q2.19">Q2.19</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants the proof strategy before the details. Identify the hypotheses, translate the desired conclusion into the right definition, choose the standard tool, and close by verifying the final limit, estimate, or identity. <em>Question focus:</em> Show that \(L^p\) is a normed space.</p><p>For \(1 \le p \le \infty\), let \(\mathcal{L}^p(X, \mu)\) be the space of measurable functions \(f\) with \(\|f\|_p < \infty\). We define \(L^p(X, \mu)\) as the quotient space modulo the equivalence relation \(f \sim g \iff f = g\) a.e.
         We check the three norm axioms for \(\| \cdot \|_p\) on \(L^p(X, \mu)\):
         1. **Positivity:** For \(1 \le p < \infty\), \(\|f\|_p = \left( \int_X |f|^p \, d\mu \right)^{1/p} \ge 0\). If \(\|f\|_p = 0\), then \(\int_X |f|^p \, d\mu = 0\), which implies \(|f|^p = 0\) a.e., hence \(f = 0\) a.e. In the quotient space, this means \(f = 0\). For \(p = \infty\), \(\|f\|_\infty = \operatorname{ess\,sup} |f| \ge 0\). If \(\|f\|_\infty = 0\), then \(|f| \le 0\) a.e., which means \(f = 0\) a.e.
@@ -509,7 +509,7 @@
            - If \(p = \infty\), \(\|\alpha f\|_\infty = \operatorname{ess\,sup} |\alpha f| = |\alpha| \operatorname{ess\,sup} |f| = |\alpha| \|f\|_\infty\).
         3. **Triangle Inequality:** For any \(f, g \in L^p(X, \mu)\), \(\|f+g\|_p \le \|f\|_p + \|g\|_p\) by Minkowski's inequality.</p></div></details>
       </li>
-      <li data-proof="true">★ Show the completeness of \(L^p\) spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.22" aria-label="Theory Questions.pdf: Q2.22">Q2.22</span>
+      <li data-proof="true">★★ Show the completeness of \(L^p\) spaces. <span class="bank-ref" title="Theory Questions.pdf: Q2.22" aria-label="Theory Questions.pdf: Q2.22">Q2.22</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Use the standard Cauchy-series strategy. Extract a rapidly Cauchy subsequence, dominate the telescoping sum by an \(L^p\) function, get an a.e. limit, then prove the whole Cauchy sequence converges to it in norm. <em>Question focus:</em> Show the completeness of \(L^p\) spaces.</p><p>This is the Riesz-Fischer theorem.</p>
         <p><strong>Case 1: \(1 \le p < \infty\)</strong>. Let \((f_n)\) be a Cauchy sequence in \(L^p(X, \mu)\).
         We extract a subsequence \((f_{n_k})\) such that \(\|f_{n_{k+1}} - f_{n_k}\|_p \le 2^{-k}\) for all \(k \ge 1\).
@@ -532,7 +532,7 @@
         For any \(x \notin E\), we have \(|f_n(x) - f_m(x)| \le \|f_n - f_m\|_\infty\) for all \(n, m \ge 1\). This means that for every \(x \notin E\), \((f_n(x))\) is a Cauchy sequence of scalars. Let \(f(x) = \lim_{n\to\infty} f_n(x)\) for \(x \notin E\), and \(f(x) = 0\) for \(x \in E\).
         Given \(\varepsilon > 0\), there is \(N\) such that for all \(n, m \ge N\), \(\|f_n - f_m\|_\infty \le \varepsilon\). Thus for all \(x \notin E\) and \(n, m \ge N\), \(|f_n(x) - f_m(x)| \le \varepsilon\). Taking \(m \to \infty\) yields \(|f_n(x) - f(x)| \le \varepsilon\) for all \(x \notin E\) and \(n \ge N\). This implies \(\|f_n - f\|_\infty \le \varepsilon\) for all \(n \ge N\), showing \(f_n \to f\) in \(L^\infty(X, \mu)\).</p></div></details>
       </li>
-      <li data-proof="true">★ Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.20" aria-label="Theory Questions.pdf: Q2.20">Q2.20</span>
+      <li data-proof="true">★★ Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer. <span class="bank-ref" title="Theory Questions.pdf: Q2.20" aria-label="Theory Questions.pdf: Q2.20">Q2.20</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof depends on finite measure. Use Holder with the constant function \(1\) to compare norms, then show the hypothesis is essential by giving an infinite-measure counterexample. <em>Question focus:</em> Show the inclusion of \(L^p\) spaces. Which hypothesis is essential? Justify the answer.</p><p><strong>Theorem:</strong> If \(\mu(X) < \infty\) and \(1 \le p \le q \le \infty\), then \(L^q(X, \mu) \subset L^p(X, \mu)\), and:
         <div class="formula">\[
         \|f\|_p \le \mu(X)^{1/p - 1/q} \|f\|_q.
@@ -545,7 +545,7 @@
         Taking the \(1/p\)-th power of both sides yields \(\|f\|_p \le \mu(X)^{1/p - 1/q} \|f\|_q\).
         The **finite-measure hypothesis** \(\mu(X) < \infty\) is essential. On infinite-measure spaces, there are no general inclusions. For example, on \(X = (0, \infty)\) with Lebesgue measure, \(f(x) = \frac{1}{\sqrt{x}} \chi_{(0,1)}(x)\) is in \(L^1\) but not in \(L^2\), while \(g(x) = \frac{1}{x} \chi_{(1,\infty)}(x)\) is in \(L^2\) but not in \(L^1\).</p></div></details>
       </li>
-      <li data-proof="true">★ State and prove the interpolation inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.21" aria-label="Theory Questions.pdf: Q2.21">Q2.21</span>
+      <li data-proof="true">★★ State and prove the interpolation inequality. <span class="bank-ref" title="Theory Questions.pdf: Q2.21" aria-label="Theory Questions.pdf: Q2.21">Q2.21</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Choose the exponent relation first, then factor \(|f|^r\) into two powers controlled by the endpoint norms. Apply Holder with the conjugate exponents determined by the interpolation parameter. <em>Question focus:</em> State and prove the interpolation inequality.</p><p><strong>Interpolation Inequality:</strong> Let \(1 \le p < r < q \le \infty\) and choose \(\theta \in (0, 1)\) such that \(\frac{1}{r} = \frac{\theta}{p} + \frac{1-\theta}{q}\). If \(f \in L^p(X, \mu) \cap L^q(X, \mu)\), then \(f \in L^r(X, \mu)\) and:
         <div class="formula">\[
         \|f\|_r \le \|f\|_p^\theta \|f\|_q^{1-\theta}.
@@ -558,10 +558,10 @@
         Taking the \(1/r\)-th power yields \(\|f\|_r \le \|f\|_p^\theta \|f\|_q^{1-\theta}\).
         If \(q = \infty\), we have \(\theta = p/r\). Write \(\int_X |f|^r \, d\mu \le \|f\|_\infty^{r-p} \int_X |f|^p \, d\mu = \|f\|_\infty^{r-p} \|f\|_p^p\). Taking the \(1/r\)-th power yields \(\|f\|_r \le \|f\|_p^{p/r} \|f\|_\infty^{1 - p/r} = \|f\|_p^\theta \|f\|_\infty^{1-\theta}\).</p></div></details>
       </li>
-      <li data-proof="false">★ How are \(\ell^p\) and \(L^p\) related? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
+      <li data-proof="false">★★ How are \(\ell^p\) and \(L^p\) related? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>The sequence space \(\ell^p\) is a special case of \(L^p(X, \mathcal{A}, \mu)\) where the underlying measure space is \(X = \mathbb{N}\), \(\mathcal{A} = \mathcal{P}(\mathbb{N})\) is the discrete \(\sigma\)-algebra, and \(\mu = \#\) is the counting measure. A sequence \(x = (x_k)_{k=1}^\infty\) is a function on \(\mathbb{N}\), and its \(L^p\) integral is exactly the sum \(\sum_{k=1}^\infty |x_k|^p\).</p></div></details>
       </li>
-      <li data-proof="false">★ What is the inclusion of \(\ell^p\) spaces? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
+      <li data-proof="false">★★ What is the inclusion of \(\ell^p\) spaces? <span class="bank-ref" title="Theory Questions.pdf: Q2.25" aria-label="Theory Questions.pdf: Q2.25">Q2.25</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>For sequence spaces, if \(1 \le p \le q \le \infty\), then \(\ell^p \subset \ell^q\), and:
         <div class="formula">\[
         \|x\|_q \le \|x\|_p.
@@ -570,7 +570,7 @@
         Thus \(\sum_{k=1}^\infty |x_k|^q \le \sum_{k=1}^\infty |x_k|^p = 1\). Taking the \(1/q\)-th power yields \(\|x\|_q \le 1 = \|x\|_p\). By scaling, \(\|x\|_q \le \|x\|_p\) holds generally.
         This inclusion direction is opposite to that of \(L^p\) spaces on finite measure spaces because counting measure has infinite total mass, but its atoms have a positive lower bound (measure 1), forcing sequences to decay to 0 and thus remain bounded.</p></div></details>
       </li>
-      <li data-proof="false">★ For which \(p\) are \(L^p(\mathbb R)\) and \(\ell^p\) separable? <span class="bank-ref" title="Theory Questions.pdf: Q2.23, Q2.24, Q2.25" aria-label="Theory Questions.pdf: Q2.23, Q2.24, Q2.25">Q2.23, Q2.24, Q2.25</span>
+      <li data-proof="false">★★ For which \(p\) are \(L^p(\mathbb R)\) and \(\ell^p\) separable? <span class="bank-ref" title="Theory Questions.pdf: Q2.23, Q2.24, Q2.25" aria-label="Theory Questions.pdf: Q2.23, Q2.24, Q2.25">Q2.23, Q2.24, Q2.25</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Both \(L^p(\mathbb{R})\) and \(\ell^p\) are separable for \(1 \le p < \infty\).
         - In \(\ell^p\), the set of sequences with finite support and rational values is countable and dense.
         - In \(L^p(\mathbb{R})\), the set of simple functions of the form \(\sum_{j=1}^m q_j \chi_{I_j}\) where \(q_j \in \mathbb{Q}\) and \(I_j\) are intervals with rational endpoints is countable and dense.
@@ -582,14 +582,14 @@
 
         <h2>6. Normed-Space Foundations</h2>
     <ol start="47">
-      <li data-proof="false">★★ Give examples of normed spaces and define the metric induced by a norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.6, Q2.7" aria-label="Theory Questions.pdf: Q2.6, Q2.7">Q2.6, Q2.7</span>
+      <li data-proof="false">★ Give examples of normed spaces and define the metric induced by a norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.6, Q2.7" aria-label="Theory Questions.pdf: Q2.6, Q2.7">Q2.6, Q2.7</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Examples of normed spaces include \((\mathbb R^n,\|\cdot\|_p)\), \(C^0([a,b])\) with \(\|f\|_\infty\), \(L^p(X)\), and \(\ell^p\). A norm \(\|\cdot\|\) induces the metric
         <div class="formula">\[
         d(x,y)=\|x-y\|.
         \]</div>
         In this metric, \(x_n\to x\) means \(\|x_n-x\|\to0\), and \((x_n)\) is Cauchy if \(\|x_n-x_m\|\to0\) as \(n,m\to\infty\).</p></div></details>
       </li>
-      <li data-proof="false">★★ Define Banach space and state the series criterion for completeness. <span class="bank-ref" title="Theory Questions.pdf: Q2.8, Q2.9, Q2.10" aria-label="Theory Questions.pdf: Q2.8, Q2.9, Q2.10">Q2.8, Q2.9, Q2.10</span>
+      <li data-proof="false">★ Define Banach space and state the series criterion for completeness. <span class="bank-ref" title="Theory Questions.pdf: Q2.8, Q2.9, Q2.10" aria-label="Theory Questions.pdf: Q2.8, Q2.9, Q2.10">Q2.8, Q2.9, Q2.10</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Completeness is often tested through series. Remember the direction: absolute convergence of every series is equivalent to completeness. <em>Question focus:</em> Banach spaces and the series criterion.</p><p>A Banach space is a complete normed vector space, meaning every Cauchy sequence converges in norm to an element of the space. A series \(\sum_n x_n\) in a normed space is convergent if the partial sums \(s_N=\sum_{n=1}^N x_n\) converge in norm.</p>
         <p>The useful completeness criterion is: a normed space \(X\) is Banach if every absolutely convergent series converges, i.e.
         <div class="formula">\[
@@ -597,7 +597,7 @@
         \]</div>
         If \(X\) is complete, the partial sums are Cauchy because the tails are bounded by \(\sum_{k=m}^n\|x_k\|\), hence converge. Conversely, if every absolutely convergent series converges, take any Cauchy sequence \((y_n)\), extract a subsequence \((y_{n_k})\) with \(\|y_{n_{k+1}}-y_{n_k}\|\le2^{-k}\), and write it as a convergent telescopic series. The subsequence converges, and since the original sequence is Cauchy, the whole sequence converges.</p></div></details>
       </li>
-      <li data-proof="true">★★ State and prove Riesz's lemma and Riesz's compactness theorem for the unit ball. <span class="bank-ref" title="Theory Questions.pdf: Q2.11, Q2.12" aria-label="Theory Questions.pdf: Q2.11, Q2.12">Q2.11, Q2.12</span>
+      <li data-proof="true">★ State and prove Riesz's lemma and Riesz's compactness theorem for the unit ball. <span class="bank-ref" title="Theory Questions.pdf: Q2.11, Q2.12" aria-label="Theory Questions.pdf: Q2.11, Q2.12">Q2.11, Q2.12</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Riesz Lemma creates separated unit vectors away from a closed proper subspace. The compactness theorem uses those separated vectors to kill sequential compactness in infinite dimension. <em>Question focus:</em> Riesz Lemma and compactness of the unit ball.</p><p><strong>Riesz Lemma:</strong> If \(Y\) is a proper closed subspace of a normed space \(X\), then for every \(0<\alpha<1\) there exists \(x\in X\) with \(\|x\|=1\) and \(\operatorname{dist}(x,Y)>\alpha\).</p>
         <p><em>Proof:</em> Choose \(z\in X\setminus Y\). Since \(Y\) is closed, \(d=\operatorname{dist}(z,Y)>0\). Pick \(y_0\in Y\) such that
         <div class="formula">\[
@@ -624,7 +624,7 @@
 
     <h2>7. Operator Basics And Operator Norm</h2>
     <ol start="51">
-      <li data-proof="false">★★ Write the definitions of linear operator, bounded operator, continuous operator, functional, and dual space. <span class="bank-ref" title="Theory Questions.pdf: Q2.26, Q2.38" aria-label="Theory Questions.pdf: Q2.26, Q2.38">Q2.26, Q2.38</span>
+      <li data-proof="false">★ Write the definitions of linear operator, bounded operator, continuous operator, functional, and dual space. <span class="bank-ref" title="Theory Questions.pdf: Q2.26, Q2.38" aria-label="Theory Questions.pdf: Q2.26, Q2.38">Q2.26, Q2.38</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> These definitions are the vocabulary behind the open mapping, closed graph, and Hahn-Banach questions. The key equivalence is bounded equals continuous for linear maps. <em>Question focus:</em> Operator and dual-space definitions.</p><p>A map \(T:X\to Y\) between vector spaces is linear if \(T(\alpha x+\beta y)=\alpha Tx+\beta Ty\). A linear operator between normed spaces is bounded if there exists \(C\ge0\) such that
         <div class="formula">\[
         \|Tx\|_Y\le C\|x\|_X\qquad\forall x\in X.
@@ -634,7 +634,7 @@
         \|L\|_{X^*}=\sup_{\|x\|\le1}|L(x)|.
         \]</div></p></div></details>
       </li>
-      <li data-proof="true">★★ State and prove the characterization of bounded linear operators. Define the operator norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.27, Q2.28" aria-label="Theory Questions.pdf: Q2.27, Q2.28">Q2.27, Q2.28</span>
+      <li data-proof="true">★ State and prove the characterization of bounded linear operators. Define the operator norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.27, Q2.28" aria-label="Theory Questions.pdf: Q2.27, Q2.28">Q2.27, Q2.28</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> For linear maps, everything reduces to behavior at \(0\). Use continuity at \(0\) to get a bound on a small ball, then rescale any vector into that ball. <em>Question focus:</em> Characterization of bounded linear operators and operator norm.</p><p>For a linear operator \(T:X\to Y\) between normed spaces, the following are equivalent: \(T\) is continuous, \(T\) is continuous at \(0\), and \(T\) is bounded.</p>
         <p><em>Proof:</em> Continuity implies continuity at \(0\). If \(T\) is continuous at \(0\), there is \(\delta>0\) such that \(\|x\|\le\delta\) implies \(\|Tx\|\le1\). For \(x\ne0\), apply this to \(\delta x/\|x\|\) to get \(\|Tx\|\le \delta^{-1}\|x\|\). Thus \(T\) is bounded. Boundedness implies continuity because
         <div class="formula">\[
@@ -661,7 +661,7 @@
 
     <h2>8. Separability, Baire Category, And Banach-Steinhaus</h2>
     <ol start="54">
-      <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
+      <li data-proof="true">★★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task wants an explicit countable dense set. Define separability, then approximate continuous functions uniformly by polynomials and restrict to polynomials with rational coefficients. <em>Question focus:</em> Write the definition of separable metric space and show that \(C^0([a,b])\) is separable.</p><p>A metric space \(X\) is **separable** if it contains a countable, dense subset. That is, there exists a countable subset \(D \subset X\) such that \(\overline{D} = X\).</p>
         <p>We show that the space \(C^0([a, b])\) of continuous, real-valued functions on the compact interval \([a, b]\), equipped with the supremum norm \(\|f\|_\infty = \max_{x \in [a, b]} |f(x)|\), is separable by proving that the set of polynomials with rational coefficients, \(\mathbb{Q}[x]\), is countable and dense in \(C^0([a, b])\).</p>
         <p><strong>Countability:</strong> Every polynomial \(P \in \mathbb{Q}[x]\) can be written as \(P(x) = \sum_{k=0}^n q_k x^k\) for some \(n \in \mathbb{N}\) and \(q_k \in \mathbb{Q}\). For each fixed \(n\), the set of polynomials of degree at most \(n\) with rational coefficients is in bijection with \(\mathbb{Q}^{n+1}\). Since \(\mathbb{Q}\) is countable, \(\mathbb{Q}^{n+1}\) is countable for every \(n\). The set of all polynomials with rational coefficients is the countable union:
@@ -689,14 +689,14 @@
         \]</div>
         Since for any \(f \in C^0([a, b])\) and any \(\varepsilon > 0\), there exists \(Q \in \mathbb{Q}[x]\) with \(\|f - Q\|_\infty < \varepsilon\), the countable set \(\mathbb{Q}[x]\) is dense in \(C^0([a, b])\). Hence, \(C^0([a, b])\) is separable.</p></div></details>
       </li>
-      <li data-proof="false">★★ State Baire's theorem in its two standard forms. <span class="bank-ref" title="Theory Questions.pdf: Q2.30" aria-label="Theory Questions.pdf: Q2.30">Q2.30</span>
+      <li data-proof="false">★ State Baire's theorem in its two standard forms. <span class="bank-ref" title="Theory Questions.pdf: Q2.30" aria-label="Theory Questions.pdf: Q2.30">Q2.30</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a complete metric space. Baire's theorem says that \(X\) cannot be written as a countable union of closed sets with empty interior. Equivalently, if
         <div class="formula">\[
         X=\bigcup_{n=1}^\infty F_n
         \]</div>
         with each \(F_n\) closed, then at least one \(F_n\) has nonempty interior. Another equivalent formulation is that a countable intersection of open dense subsets of a complete metric space is dense. This is the category theorem behind Banach-Steinhaus, the Open Mapping Theorem, and the Closed Graph Theorem.</p></div></details>
       </li>
-      <li data-proof="true">★★ State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle. <span class="bank-ref" title="Theory Questions.pdf: Q2.31" aria-label="Theory Questions.pdf: Q2.31">Q2.31</span>
+      <li data-proof="true">★ State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle. <span class="bank-ref" title="Theory Questions.pdf: Q2.31" aria-label="Theory Questions.pdf: Q2.31">Q2.31</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof uses Baire category to upgrade pointwise boundedness to uniform boundedness. Build closed sets where the operator family is bounded, find one with interior, then use linearity and scaling to get a global bound. <em>Question focus:</em> State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle.</p><p><strong>Uniform Boundedness Principle:</strong> Let \(X\) be a Banach space, \(Y\) a normed space, and \(\mathcal{F} \subset L(X, Y)\). If \(\mathcal{F}\) is pointwise bounded, i.e.,
         <div class="formula">\[
         \sup_{T \in \mathcal{F}} \|Tx\|_Y < \infty \qquad \forall x \in X,
@@ -735,7 +735,7 @@
         \]</div>
         The operator \(T\) is closed if whenever \(x_n\in D(T)\), \(x_n\to x\) in \(X\), and \(Tx_n\to y\) in \(Y\), then \(x\in D(T)\) and \(Tx=y\). Equivalently, \(G(T)\) is closed in \(X\times Y\). The Closed Graph Theorem says that if \(X,Y\) are Banach spaces, \(D(T)=X\), and \(T:X\to Y\) is linear with closed graph, then \(T\) is bounded.</p></div></details>
       </li>
-      <li data-proof="false">★★ Define the evaluation map, also called the canonical map, list its main properties, and give the definition of reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.49, Q2.50" aria-label="Theory Questions.pdf: Q2.49, Q2.50">Q2.49, Q2.50</span>
+      <li data-proof="false">★ Define the evaluation map, also called the canonical map, list its main properties, and give the definition of reflexive Banach space. <span class="bank-ref" title="Theory Questions.pdf: Q2.49, Q2.50" aria-label="Theory Questions.pdf: Q2.49, Q2.50">Q2.49, Q2.50</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a normed space. The **canonical evaluation map** is the mapping \(\tau : X \to X^{**}\) defined by:
         <div class="formula">\[
         \tau(x)(L) = L(x) \qquad \forall L \in X^*.

@@ -295,18 +295,18 @@
 
     <h2>3. Lebesgue Points And Fundamental Theorems Of Calculus</h2>
     <ol start="18">
-      <li data-proof="false">★★★ Write the definition of Lebesgue point. <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
+      <li data-proof="false">★★ Write the definition of Lebesgue point. <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(f \in L^1_{\mathrm{loc}}(\mathbb{R}^n)\). A point \(x \in \mathbb{R}^n\) is a **Lebesgue point** of \(f\) if:
         <div class="formula">\[
         \lim_{r\downarrow0} \frac{1}{|B_r(x)|} \int_{B_r(x)} |f(y) - f(x)| \, dy = 0,
         \]</div>
         where \(B_r(x)\) is the open ball of radius \(r\) centered at \(x\), and \(|B_r(x)|\) is its Lebesgue measure. This means the average oscillation of \(f\) around \(x\) vanishes as the ball shrinks to a point.</p></div></details>
       </li>
-      <li data-proof="false">★★★ What is about the measure of the set of points that are not Lebesgue points for a function \(f\in L^1\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
+      <li data-proof="false">★★ What is about the measure of the set of points that are not Lebesgue points for a function \(f\in L^1\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.66" aria-label="Theory Questions.pdf: Q1.66">Q1.66</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>By the Lebesgue Differentiation Theorem, if \(f \in L^1_{\mathrm{loc}}(\mathbb{R}^n)\), then almost every point \(x \in \mathbb{R}^n\) is a Lebesgue point of \(f\).
         Consequently, the set of points that are not Lebesgue points of \(f\) has Lebesgue measure zero.</p></div></details>
       </li>
-      <li data-proof="true">★★★ State and prove the First Fundamental Theorem of Calculus for \(f\in L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.67" aria-label="Theory Questions.pdf: Q1.67">Q1.67</span>
+      <li data-proof="true">★★ State and prove the First Fundamental Theorem of Calculus for \(f\in L^1\). <span class="bank-ref" title="Theory Questions.pdf: Q1.67" aria-label="Theory Questions.pdf: Q1.67">Q1.67</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants the integral primitive picture for \(L^1\) functions. Define the primitive, prove absolute continuity by smallness of integrals on small sets, and recover the derivative almost everywhere. <em>Question focus:</em> State and prove the First Fundamental Theorem of Calculus for \(f\in L^1\).</p><p>Let \(f \in L^1(a, b)\) and define \(F(x) = \int_a^x f(t) \, dt\) for \(x \in [a, b]\). Then \(F\) is absolutely continuous on \([a, b]\) and differentiable almost everywhere on \((a, b)\), with:
         <div class="formula">\[
         F'(x) = f(x) \qquad \text{for a.e. } x \in (a, b).
@@ -326,7 +326,7 @@
           \]</div>
         In both cases, since \(x\) is a Lebesgue point of \(f\), taking \(h \to 0\) forces the right-hand side to \(0\). Thus, \(F'(x)\) exists and equals \(f(x)\) at every Lebesgue point. Since almost every point in \((a, b)\) is a Lebesgue point, \(F'(x) = f(x)\) a.e.</p></div></details>
       </li>
-      <li data-proof="false">★★★ State the Second Fundamental Theorem of Calculus. <span class="bank-ref" title="Theory Questions.pdf: Q1.68" aria-label="Theory Questions.pdf: Q1.68">Q1.68</span>
+      <li data-proof="false">★★ State the Second Fundamental Theorem of Calculus. <span class="bank-ref" title="Theory Questions.pdf: Q1.68" aria-label="Theory Questions.pdf: Q1.68">Q1.68</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(F : [a, b] \to \mathbb{R}\). The function \(F\) is absolutely continuous on \([a, b]\) if and only if \(F\) is differentiable almost everywhere on \((a, b)\), \(F' \in L^1(a, b)\), and:
         <div class="formula">\[
         F(x) = F(a) + \int_a^x F'(t) \, dt \qquad \forall x \in [a, b].
@@ -456,7 +456,7 @@
         - \(\{f < a\} = X \setminus \{f \ge a\}\).
         - \(\{f > a\} = \bigcup_{n=1}^\infty \{f \ge a + 1/n\}\).</p></div></details>
       </li>
-      <li data-proof="false">★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
+      <li data-proof="false">★★★ Let \(f,g\in M(X,\mathcal A)\). What can we say about measurability of \(\{f&lt;g\},\{f\le g\},\{f=g\}\)? <span class="bank-ref" title="Theory Questions.pdf: Q1.27" aria-label="Theory Questions.pdf: Q1.27">Q1.27</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>All three sets are measurable.
         Since \(f\) and \(g\) are real-valued measurable functions, their difference \(h = f - g\) is also a measurable function.
         We can express the sets as:
@@ -482,7 +482,7 @@
         For any two measurable functions \(f, g\), we have \(\max\{f, g\} = \sup\{f, g\}\). Since this is a finite supremum of measurable functions, it is always measurable. Thus, no such counterexample can exist.</p></div></details>
       </li>
     
-      <li data-proof="true">★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
+      <li data-proof="true">★★★ Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.32" aria-label="Theory Questions.pdf: Q1.32">Q1.32</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof wants measurability reduced to preimages or level sets. Rewrite the target function using countable unions/intersections and known measurable building blocks, then use closure of the sigma-algebra. <em>Question focus:</em> Prove that \(A\) is measurable if and only if \(\chi_A\) is a measurable function.</p><p>Let \((X, \mathcal{A})\) be a measurable space and \(A \subset X\).
         - **Forward Direction:** Assume \(A \in \mathcal{A}\). The characteristic function is \(\chi_A(x)\). For any \(a \in \mathbb{R}\), the set \(E_a = \{ x \in X : \chi_A(x) > a \}\) is:
           - \(X \in \mathcal{A}\) if \(a < 0\),
@@ -496,13 +496,13 @@
           \]</div>
           must belong to \(\mathcal{A}\) by the definition of function measurability. Thus, \(A\) is a measurable set.</p></div></details>
       </li>
-      <li data-proof="true">★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(a)" aria-label="Theory Questions.pdf: Q1.33(a)">Q1.33(a)</span>
+      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(a)" aria-label="Theory Questions.pdf: Q1.33(a)">Q1.33(a)</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow f^\pm\in M^+(X,\mathcal A)\).</p><p>This equivalence is **true**.
         - **Proof (Forward direction):** Let \(f \in M(X, \mathcal{A})\). The positive and negative parts are \(f^+ = \max\{f, 0\}\) and \(f^- = \max\{-f, 0\}\). Since the functions \(x \mapsto \max\{x, 0\}\) and \(x \mapsto \max\{-x, 0\}\) are continuous, and composition of continuous functions with measurable functions yields measurable functions, both \(f^+\) and \(f^-\) are measurable. Since they are non-negative, \(f^\pm \in M^+(X, \mathcal{A})\).
         - **Proof (Backward direction):** Assume \(f^+, f^- \in M^+(X, \mathcal{A})\).
           Since \(f(x) = f^+(x) - f^-(x)\) for all \(x \in X\), and the difference of two real-valued measurable functions is measurable, we have \(f \in M(X, \mathcal{A})\).</p></div></details>
       </li>
-      <li data-proof="true">★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(b)" aria-label="Theory Questions.pdf: Q1.33(b)">Q1.33(b)</span>
+      <li data-proof="true">★★★ Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\). <span class="bank-ref" title="Theory Questions.pdf: Q1.33(b)" aria-label="Theory Questions.pdf: Q1.33(b)">Q1.33(b)</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The problem wants a sharp yes/no answer, not just a slogan. Decide the claimed implication, then either prove it from the definitions or choose a standard model example, verify the stated convergence/property, and explicitly show the missing conclusion fails. <em>Question focus:</em> Prove or disprove: \(f\in M(X,\mathcal A)\Leftrightarrow |f|\in M(X,\mathcal A)\).</p><p>The forward implication is **true**, but the backward implication is **false**.
         - **Forward Implication:** If \(f \in M(X, \mathcal{A})\), then \(|f| = g \circ f\), where \(g(t) = |t|\) is a continuous function. The composition of a continuous function with a measurable function is measurable, so \(|f| \in M(X, \mathcal{A})\).
         - **Counterexample for Backward Implication:** Let \(A \subset X\) be a non-measurable set (assuming such a set exists, e.g. a Vitali set in \(\mathbb{R}\)). Define:
@@ -516,14 +516,14 @@
 
         <h2>6. Measure Construction And Caratheodory</h2>
     <ol start="37">
-      <li data-proof="false">★ State the Caratheodory measurability condition and the theorem that turns an outer measure into a complete measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13" aria-label="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13">Q1.10, Q1.11, Q1.12, Q1.13</span>
+      <li data-proof="false">★★ State the Caratheodory measurability condition and the theorem that turns an outer measure into a complete measure. <span class="bank-ref" title="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13" aria-label="Theory Questions.pdf: Q1.10, Q1.11, Q1.12, Q1.13">Q1.10, Q1.11, Q1.12, Q1.13</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(\mu^*\) be an outer measure on \(X\). A set \(E\subset X\) is Caratheodory measurable if for every \(A\subset X\),
         <div class="formula">\[
         \mu^*(A)=\mu^*(A\cap E)+\mu^*(A\setminus E).
         \]</div>
         Since subadditivity always gives \(\le\), it is enough to prove the reverse inequality. Every set of outer measure zero is Caratheodory measurable. The Caratheodory theorem states that the family of all \(\mu^*\)-measurable sets is a \(\sigma\)-algebra and the restriction of \(\mu^*\) to it is a complete measure.</p></div></details>
       </li>
-      <li data-proof="false">★ Explain the construction of Lebesgue measure on \(\mathbb R\) and on \(\mathbb R^N\). <span class="bank-ref" title="Theory Questions.pdf: Q1.14" aria-label="Theory Questions.pdf: Q1.14">Q1.14</span>
+      <li data-proof="false">★★ Explain the construction of Lebesgue measure on \(\mathbb R\) and on \(\mathbb R^N\). <span class="bank-ref" title="Theory Questions.pdf: Q1.14" aria-label="Theory Questions.pdf: Q1.14">Q1.14</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Start from the Lebesgue outer measure. In \(\mathbb R\), cover \(E\subset\mathbb R\) by countable families of intervals and set
         <div class="formula">\[
         \lambda^*(E)=\inf\left\{\sum_{k=1}^\infty |I_k|: E\subset\bigcup_{k=1}^\infty I_k\right\}.
@@ -544,7 +544,7 @@
         L^1(X,\mu)=\{f:\int_X |f|\,d\mu<\infty\}/\sim.
         \]</div></p></div></details>
       </li>
-      <li data-proof="false">★★ Write the definitions of nonnegative simple function, its canonical form, and the Lebesgue integral of a nonnegative simple function. <span class="bank-ref" title="Theory Questions.pdf: Q1.34, Q1.38" aria-label="Theory Questions.pdf: Q1.34, Q1.38">Q1.34, Q1.38</span>
+      <li data-proof="false">★ Write the definitions of nonnegative simple function, its canonical form, and the Lebesgue integral of a nonnegative simple function. <span class="bank-ref" title="Theory Questions.pdf: Q1.34, Q1.38" aria-label="Theory Questions.pdf: Q1.34, Q1.38">Q1.34, Q1.38</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> This is a definition question, but the trap is the canonical form. Use disjoint measurable level sets and remember the convention \(0\cdot\infty=0\). <em>Question focus:</em> Define simple functions, canonical form, and their integral.</p><p>A nonnegative simple function is a measurable function taking only finitely many nonnegative values. If the distinct nonzero values are \(a_1,\dots,a_m\), its canonical form is
         <div class="formula">\[
         s=\sum_{j=1}^m a_j\chi_{A_j},
@@ -555,7 +555,7 @@
         \]</div>
         with the convention \(0\cdot\infty=0\).</p><p>The definition is independent of non-canonical representations because any two finite measurable partitions can be refined by intersections; on the common refinement the sums agree term by term.</p></div></details>
       </li>
-      <li data-proof="false">★★ Write the two equivalent definitions of the Lebesgue integral for a nonnegative measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.40" aria-label="Theory Questions.pdf: Q1.40">Q1.40</span>
+      <li data-proof="false">★ Write the two equivalent definitions of the Lebesgue integral for a nonnegative measurable function. <span class="bank-ref" title="Theory Questions.pdf: Q1.40" aria-label="Theory Questions.pdf: Q1.40">Q1.40</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> State both versions and explain why they agree. The bridge is the Simple Approximation Theorem plus Monotone Convergence. <em>Question focus:</em> Equivalent definitions of \(\int f\,d\mu\) for \(f\ge0\).</p><p>For \(f\in M^+(X,\mathcal A)\), the first definition is approximation from below by simple functions:
         <div class="formula">\[
         \int_X f\,d\mu=\sup\left\{\int_X s\,d\mu:\ 0\le s\le f,\ s\text{ simple}\right\}.
@@ -566,7 +566,7 @@
         \]</div>
         The Simple Approximation Theorem guarantees such a sequence exists. The first definition gives \(\int s_n\le\sup\{\int s:0\le s\le f\}\), so the limit is at most the supremum. Conversely, if \(0\le s\le f\) is simple, then \(s_n\uparrow f\) implies \(\int s\le\lim_n\int s_n\) by the same approximation argument used in the proof of Monotone Convergence. Taking the supremum over \(s\) gives equality.</p></div></details>
       </li>
-      <li data-proof="false">★★ State Chebyshev's inequality and the absolute-continuity property of the Lebesgue integral. <span class="bank-ref" title="Theory Questions.pdf: Q1.41, Q1.47" aria-label="Theory Questions.pdf: Q1.41, Q1.47">Q1.41, Q1.47</span>
+      <li data-proof="false">★ State Chebyshev's inequality and the absolute-continuity property of the Lebesgue integral. <span class="bank-ref" title="Theory Questions.pdf: Q1.41, Q1.47" aria-label="Theory Questions.pdf: Q1.41, Q1.47">Q1.41, Q1.47</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> Convert a level-set estimate into an integral estimate. For absolute continuity, split \(f\) into a bounded part and a small tail. <em>Question focus:</em> Chebyshev inequality and absolute continuity of the integral.</p><p>If \(f\in M^+(X,\mathcal A)\) and \(a>0\), Chebyshev's inequality is
         <div class="formula">\[
         \mu(\{f\ge a\})\le \frac1a\int_X f\,d\mu.
