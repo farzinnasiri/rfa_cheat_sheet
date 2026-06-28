@@ -580,7 +580,7 @@
       </li>
     </ol>
 
-    <h2>6. Low But Not Impossible Surprise Candidates</h2>
+        <h2>6. Normed-Space Foundations</h2>
     <ol start="47">
       <li data-proof="false">★★ Give examples of normed spaces and define the metric induced by a norm. <span class="bank-ref" title="Theory Questions.pdf: Q2.6, Q2.7" aria-label="Theory Questions.pdf: Q2.6, Q2.7">Q2.6, Q2.7</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Examples of normed spaces include \((\mathbb R^n,\|\cdot\|_p)\), \(C^0([a,b])\) with \(\|f\|_\infty\), \(L^p(X)\), and \(\ell^p\). A norm \(\|\cdot\|\) induces the metric
@@ -620,6 +620,10 @@
         \]</div>
         Equivalent norms generate the same convergent sequences, open sets, and completeness property. In finite-dimensional vector spaces all norms are equivalent. Also, every finite-dimensional subspace of a normed space is closed; arbitrary infinite-dimensional subspaces need not be closed.</p></div></details>
       </li>
+    </ol>
+
+    <h2>7. Operator Basics And Operator Norm</h2>
+    <ol start="51">
       <li data-proof="false">★★ Write the definitions of linear operator, bounded operator, continuous operator, functional, and dual space. <span class="bank-ref" title="Theory Questions.pdf: Q2.26, Q2.38" aria-label="Theory Questions.pdf: Q2.26, Q2.38">Q2.26, Q2.38</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> These definitions are the vocabulary behind the open mapping, closed graph, and Hahn-Banach questions. The key equivalence is bounded equals continuous for linear maps. <em>Question focus:</em> Operator and dual-space definitions.</p><p>A map \(T:X\to Y\) between vector spaces is linear if \(T(\alpha x+\beta y)=\alpha Tx+\beta Ty\). A linear operator between normed spaces is bounded if there exists \(C\ge0\) such that
         <div class="formula">\[
@@ -653,6 +657,10 @@
         \]</div>
         hence \(\|T_n-T\|\to0\).</p></div></details>
       </li>
+    </ol>
+
+    <h2>8. Separability, Baire Category, And Banach-Steinhaus</h2>
+    <ol start="54">
       <li data-proof="true">★ Write the definition of separable metric space and show that \(C^0([a,b])\) is separable. <span class="bank-ref" title="Theory Questions.pdf: Q2.2, Q2.46" aria-label="Theory Questions.pdf: Q2.2, Q2.46">Q2.2, Q2.46</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The task wants an explicit countable dense set. Define separability, then approximate continuous functions uniformly by polynomials and restrict to polynomials with rational coefficients. <em>Question focus:</em> Write the definition of separable metric space and show that \(C^0([a,b])\) is separable.</p><p>A metric space \(X\) is **separable** if it contains a countable, dense subset. That is, there exists a countable subset \(D \subset X\) such that \(\overline{D} = X\).</p>
         <p>We show that the space \(C^0([a, b])\) of continuous, real-valued functions on the compact interval \([a, b]\), equipped with the supremum norm \(\|f\|_\infty = \max_{x \in [a, b]} |f(x)|\), is separable by proving that the set of polynomials with rational coefficients, \(\mathbb{Q}[x]\), is countable and dense in \(C^0([a, b])\).</p>
@@ -681,7 +689,6 @@
         \]</div>
         Since for any \(f \in C^0([a, b])\) and any \(\varepsilon > 0\), there exists \(Q \in \mathbb{Q}[x]\) with \(\|f - Q\|_\infty < \varepsilon\), the countable set \(\mathbb{Q}[x]\) is dense in \(C^0([a, b])\). Hence, \(C^0([a, b])\) is separable.</p></div></details>
       </li>
-    
       <li data-proof="false">★★ State Baire's theorem in its two standard forms. <span class="bank-ref" title="Theory Questions.pdf: Q2.30" aria-label="Theory Questions.pdf: Q2.30">Q2.30</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>Let \(X\) be a complete metric space. Baire's theorem says that \(X\) cannot be written as a countable union of closed sets with empty interior. Equivalently, if
         <div class="formula">\[
@@ -689,7 +696,6 @@
         \]</div>
         with each \(F_n\) closed, then at least one \(F_n\) has nonempty interior. Another equivalent formulation is that a countable intersection of open dense subsets of a complete metric space is dense. This is the category theorem behind Banach-Steinhaus, the Open Mapping Theorem, and the Closed Graph Theorem.</p></div></details>
       </li>
-
       <li data-proof="true">★★ State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle. <span class="bank-ref" title="Theory Questions.pdf: Q2.31" aria-label="Theory Questions.pdf: Q2.31">Q2.31</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p><strong>Proof sketch / Polya view:</strong> The proof uses Baire category to upgrade pointwise boundedness to uniform boundedness. Build closed sets where the operator family is bounded, find one with interior, then use linearity and scaling to get a global bound. <em>Question focus:</em> State and prove the Banach-Steinhaus theorem, also called the Uniform Boundedness Principle.</p><p><strong>Uniform Boundedness Principle:</strong> Let \(X\) be a Banach space, \(Y\) a normed space, and \(\mathcal{F} \subset L(X, Y)\). If \(\mathcal{F}\) is pointwise bounded, i.e.,
         <div class="formula">\[
@@ -712,6 +718,10 @@
         \]</div>
         This holds for all \(x \in X\) and all \(T \in \mathcal{F}\), so \(\sup_{T \in \mathcal{F}} \|T\|_{L(X,Y)} \le \frac{2N}{r} < \infty\).</p></div></details>
       </li>
+    </ol>
+
+    <h2>9. Banach-Space Principles, Reflexivity, And Representation</h2>
+    <ol start="57">
       <li data-proof="false">★ Define open mapping, state the Open Mapping Theorem, state the Bounded Inverse Theorem, and state the Closed Graph Theorem. <span class="bank-ref" title="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37" aria-label="Theory Questions.pdf: Q2.33, Q2.34, Q2.36, Q2.37">Q2.33, Q2.34, Q2.36, Q2.37</span>
         <details class="answer-detail"><summary>Answer</summary><div class="answer-body"><p>A map between topological spaces is **open** if the image of every open set is open.
         - **Open Mapping Theorem:** Let \(X, Y\) be Banach spaces. If \(T \in L(X, Y)\) is surjective, then \(T\) is an open mapping.

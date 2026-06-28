@@ -44,7 +44,7 @@
       {
         id: "measure-core-q1-9",
         subject: "measure",
-        chapter: "6. Low But Not Impossible Surprise Candidates",
+        chapter: "6. Measure Construction And Caratheodory",
         priority: "★★",
         isProof: true,
         bankRef: "Q1.9",
@@ -70,7 +70,7 @@
       {
         id: "functional-core-q2-35",
         subject: "functional",
-        chapter: "6. Low But Not Impossible Surprise Candidates",
+        chapter: "9. Banach-Space Principles, Reflexivity, And Representation",
         priority: "★★",
         isProof: true,
         bankRef: "Q2.35",
