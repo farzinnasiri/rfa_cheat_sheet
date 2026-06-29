@@ -2035,7 +2035,11 @@
         var pts = i === items.length - 1
           ? points - allocation * (items.length - 1)
           : allocation;
-        return '<li>' + q.questionHtml + ' <span class="mock-subpoints">[' + pts + ' pts]</span></li>';
+        var refs = bankRefsOf(q);
+        var refHtml = refs.length
+          ? '<span class="mock-bank-ref-inline">' + refs.map(escHtml).join(" · ") + '</span> '
+          : "";
+        return '<li>' + refHtml + q.questionHtml + ' <span class="mock-subpoints">[' + pts + ' pts]</span></li>';
       }).join("")
       + '</ol>';
   }

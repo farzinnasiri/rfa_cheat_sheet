@@ -1298,6 +1298,21 @@ body {
   padding: 0;
 }
 .mock-subparts li { margin: 0.42em 0; }
+.mock-bank-ref-inline {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  padding: 1px 7px;
+  border: 1px solid color-mix(in oklch, var(--accent-light) 70%, var(--line));
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+  vertical-align: 0.12em;
+}
 .mock-subpoints {
   color: var(--muted);
   font-family: var(--sans);
