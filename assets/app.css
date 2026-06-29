@@ -289,11 +289,84 @@ body {
 
 /* Stats */
 .home-stats {
-  max-width: 600px;
+  max-width: 760px;
   margin: 0 auto clamp(32px, 5vw, 48px);
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.july-dashboard {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.july-dashboard-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: 12px;
+}
+.july-dashboard-head .section-label { margin-bottom: 0; }
+.july-dashboard-head p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.july-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.july-tier {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  padding: 10px;
+  background: var(--surface);
+}
+.july-tier strong { display: block; font-size: 0.94rem; color: var(--ink); }
+.july-tier span { display: block; color: var(--muted); font-size: 0.74rem; margin-top: 2px; }
+.july-tier.tier-A { border-color: color-mix(in oklch, var(--accent) 46%, var(--line)); background: var(--accent-bg); }
+.july-tier.tier-D { opacity: 0.72; }
+
+.july-focus-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.july-focus-label {
+  width: 112px;
+  flex-shrink: 0;
+  padding-top: 4px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.july-focus-pill {
+  display: inline-flex;
+  max-width: 230px;
+  padding: 4px 8px;
+  border-radius: 99px;
+  border: 1px solid var(--line-soft);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 650;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stat-block {
@@ -567,6 +640,36 @@ body {
 .tag-proof   { background: var(--accent-bg); color: var(--accent); border-color: var(--c-gotit-border); }
 .tag-noProof { background: var(--surface2);  color: var(--muted);  border-color: var(--line); }
 .tag-stars   { background: transparent; color: var(--muted); border-color: var(--line-soft); letter-spacing: 0.05em; }
+.tag.tier-A, .browse-tag.tier-A {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-color: color-mix(in oklch, var(--accent) 50%, var(--line));
+}
+.tag.tier-B, .browse-tag.tier-B {
+  background: color-mix(in oklch, var(--surface) 70%, var(--accent-bg));
+  color: color-mix(in oklch, var(--accent) 70%, var(--ink));
+  border-color: color-mix(in oklch, var(--accent-light) 40%, var(--line));
+}
+.tag.tier-C, .browse-tag.tier-C {
+  background: var(--surface2);
+  color: var(--muted);
+  border-color: var(--line);
+}
+.tag.tier-D, .browse-tag.tier-D,
+.tag.suppressed-tag, .browse-tag.suppressed-tag {
+  background: color-mix(in oklch, var(--surface2) 78%, #f6c66d);
+  color: color-mix(in oklch, var(--muted) 55%, #8a5a00);
+  border-color: color-mix(in oklch, var(--line) 60%, #c98b18);
+}
+.tag.score-tag, .browse-tag.score-tag,
+.tag.topic-tag, .browse-tag.topic-tag,
+.tag.form-tag, .browse-tag.form-tag,
+.tag.july-tag, .browse-tag.july-tag,
+.tag.core-tag, .browse-tag.core-tag {
+  background: var(--surface2);
+  color: var(--muted);
+  border-color: var(--line-soft);
+}
 .tag.core-bank-ref {
   cursor: help;
   background: var(--accent-bg);
@@ -973,6 +1076,9 @@ body {
   font-weight: 700;
   color: var(--faint);
   white-space: nowrap;
+  padding: 1px 6px;
+  border-radius: 99px;
+  border: 1px solid transparent;
 }
 .browse-tag.proof { color: var(--accent); }
 .browse-tag.core-bank-ref {
@@ -988,6 +1094,13 @@ body {
   color: color-mix(in oklch, var(--muted) 55%, #8a5a00);
   background: color-mix(in oklch, var(--surface2) 78%, #f6c66d);
   box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--line) 60%, #c98b18);
+}
+
+.browse-score-note {
+  padding: 0 14px 10px 52px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.35;
 }
 
 .browse-answer {

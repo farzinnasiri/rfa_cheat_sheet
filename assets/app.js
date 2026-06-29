@@ -7,6 +7,53 @@
   // ═══════════════════════════════════════════════════
 
   var DATA = window.RFA_DATA;
+  var FINAL_SCORES = window.RFA_FINAL_SCORES || [];
+
+  var FINAL_SCORE_BY_REF = {};
+  FINAL_SCORES.forEach(function (row) {
+    FINAL_SCORE_BY_REF[row.qid] = row;
+  });
+
+  var TIER_STARS = {
+    "A": "★★★",
+    "B": "★★",
+    "C": "★",
+    "D": "Suppressed"
+  };
+
+  var TIER_LABELS = {
+    "A": "A must-cover",
+    "B": "B strong",
+    "C": "C skim",
+    "D": "D suppress"
+  };
+
+  var TOPIC_LABELS = {
+    measurable_functions: "Measurability traps",
+    integral_definitions: "Integral definitions",
+    convergence_modes: "Convergence modes",
+    convergence_theorems: "Convergence theorems",
+    lebesgue_points_ftc: "Lebesgue points / FTC",
+    ac_w11_bv: "AC / BV / W11",
+    weak_weakstar: "Weak / weak-star",
+    fredholm_spectral: "Fredholm / spectral",
+    hahn_banach_dual: "Hahn-Banach / duality",
+    open_inverse_closed_graph: "Open / inverse / closed graph",
+    baire_ubp: "Baire / UBP",
+    metric_topology: "Metric / separability",
+    lp_ellp: "Lp / ellp",
+    operator_basics: "Operator basics",
+    compact_operator: "Compact operators",
+    hilbert_projection_riesz: "Hilbert representation",
+    reflexivity_uniform_convexity: "Reflexivity",
+    normed_banach_basics: "Normed basics",
+    outer_measure_caratheodory: "Caratheodory",
+    measure_basics: "Measure basics",
+    lebesgue_regular: "Lebesgue regularity",
+    vanishing_lemma: "Vanishing lemma",
+    cantor_vitali: "Cantor / Vitali",
+    radon_nikodym: "Radon-Nikodym"
+  };
 
   var CORE_BANK_REFS = new Set([
     "Q1.5", "Q1.9", "Q1.10", "Q1.11", "Q1.12", "Q1.13", "Q1.14", "Q1.18",
@@ -30,6 +77,46 @@
     return (q.bankRef || "").match(/Q[12]\.\d+/g) || [];
   }
 
+  function tierKey(tier) {
+    return (tier || "D").charAt(0);
+  }
+
+  function tierPriority(tier) {
+    return TIER_STARS[tierKey(tier)] || "★";
+  }
+
+  function bestFinalScore(refs) {
+    var best = null;
+    refs.forEach(function (ref) {
+      var row = FINAL_SCORE_BY_REF[ref];
+      if (!row) return;
+      if (!best || row.score > best.score) best = row;
+    });
+    return best;
+  }
+
+  function inferQuestionForm(q) {
+    var text = (q.questionHtml || "").toLowerCase();
+    var forms = [];
+    if (q.isProof || /\bprove\b|show that|justify/.test(text)) forms.push("Proof");
+    if (/definition|define|write the definitions/.test(text)) forms.push("Definition");
+    if (/state\b|statement|theorem/.test(text)) forms.push("Statement");
+    if (/counterexample|disprove|what happens if|is it true/.test(text)) forms.push("Trap");
+    if (/relation|compare|equivalent|characterize|which hypothesis/.test(text)) forms.push("Relations");
+    return forms.length ? forms : ["Recall"];
+  }
+
+  function cleanBankQuestionText(text) {
+    return String(text || "")
+      .replace(/\s*\d+\s*=+\s*PAGE\s+\d+\s*=+\s*/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function escAttr(v) {
+    return escHtml(String(v || "")).replace(/"/g, "&quot;");
+  }
+
   function formatBankRefs(bankRef, bankTitle, tagClass) {
     if (!bankRef) return "";
     var refs = bankRef.match(/Q[12]\.\d+/g) || [];
@@ -41,6 +128,29 @@
       if (seen2026) title += " · seen in 2026; exact July repeat is penalized";
       return '<span class="' + cls + (isCore ? ' core-bank-ref' : '') + (seen2026 ? ' seen-2026-ref' : '') + '" title="' + escHtml(title) + '">' + ref + '</span>';
     }).join("");
+  }
+
+  function finalBadges(q, tagClass) {
+    var cls = tagClass || "tag";
+    var tier = q.finalTier || "D";
+    var badges = [
+      '<span class="' + cls + ' tier-' + tier + '" title="Final July 2026 cutoff tier">' + escHtml(TIER_LABELS[tier] || q.finalTier) + '</span>',
+      '<span class="' + cls + ' score-tag" title="Final July 2026 score">Score ' + escHtml(String(q.finalScore || 0)) + '</span>',
+      '<span class="' + cls + ' topic-tag" title="' + escAttr(q.finalFamily || "") + '">' + escHtml(q.finalTopicLabel || "Unscored") + '</span>'
+    ];
+    if (q.finalSeen2026) {
+      badges.push('<span class="' + cls + ' suppressed-tag" title="' + escAttr(q.finalReason) + '">Seen 2026</span>');
+    }
+    if (q.finalReason && /July exact history/.test(q.finalReason)) {
+      badges.push('<span class="' + cls + ' july-tag">July history</span>');
+    }
+    if (q.finalReason && /repeated core ID/.test(q.finalReason)) {
+      badges.push('<span class="' + cls + ' core-tag">Core ID</span>');
+    }
+    q.finalForm.forEach(function (form) {
+      badges.push('<span class="' + cls + ' form-tag">' + escHtml(form) + '</span>');
+    });
+    return badges.join("");
   }
 
   function addMissingCoreBankQuestions() {
@@ -101,6 +211,77 @@
   }
 
   addMissingCoreBankQuestions();
+
+  function addMissingFinalScoreQuestions() {
+    var represented = new Set();
+    DATA.questions.forEach(function (q) {
+      bankRefsOf(q).forEach(function (ref) { represented.add(ref); });
+    });
+
+    FINAL_SCORES.forEach(function (row) {
+      var tier = tierKey(row.tier);
+      if (tier === "D" || represented.has(row.qid)) return;
+
+      var subject = row.subject === "real" ? "measure" : "functional";
+      var chapter = row.family || (subject === "measure" ? "Real Analysis" : "Functional Analysis");
+      if (subject === "measure" && DATA.meta.measureChapters.indexOf(chapter) === -1) {
+        DATA.meta.measureChapters.push(chapter);
+      }
+      if (subject === "functional" && DATA.meta.functionalChapters.indexOf(chapter) === -1) {
+        DATA.meta.functionalChapters.push(chapter);
+      }
+
+      DATA.questions.push({
+        id: "bank-score-" + row.qid.toLowerCase().replace(".", "-"),
+        subject: subject,
+        chapter: chapter,
+        priority: tierPriority(tier),
+        isProof: /proof|prove|show|justify/i.test(row.question),
+        bankRef: row.qid,
+        bankRefFull: "Theory Questions.pdf: " + row.qid,
+        questionHtml: escHtml(cleanBankQuestionText(row.question)),
+        strategyHtml: "",
+        keyStepsHtml: "",
+        answerHtml: '<p><strong>Official-bank score card.</strong> This item is important enough for July preparation but does not yet have a polished answer in the trainer.</p>'
+          + '<p><strong>Score:</strong> ' + row.score + ' · <strong>Tier:</strong> ' + row.tier + ' · <strong>Cluster:</strong> ' + escHtml(TOPIC_LABELS[row.topic] || row.topic) + '.</p>'
+          + '<p><strong>Why it is here:</strong> ' + escHtml(row.reason) + '.</p>'
+      });
+      represented.add(row.qid);
+    });
+    DATA.meta.totalQuestions = DATA.questions.length;
+  }
+
+  function applyFinalScoreMetadata() {
+    DATA.questions.forEach(function (q) {
+      var refs = bankRefsOf(q);
+      var score = bestFinalScore(refs);
+      if (!score) {
+        q.finalTier = "D";
+        q.finalScore = 0;
+        q.finalRank = 999;
+        q.finalTopic = "unscored";
+        q.finalTopicLabel = "Unscored";
+        q.finalReason = "No final July score mapping";
+        q.finalSeen2026 = false;
+        q.finalForm = inferQuestionForm(q);
+        return;
+      }
+      q.finalTier = tierKey(score.tier);
+      q.finalScore = score.score;
+      q.finalRank = score.rank;
+      q.finalTopic = score.topic;
+      q.finalTopicLabel = TOPIC_LABELS[score.topic] || score.topic;
+      q.finalReason = score.reason;
+      q.finalSeen2026 = score.seen2026Exact;
+      q.finalFamily = score.family;
+      q.finalTopicProbability = score.topicProbability;
+      q.finalForm = inferQuestionForm(q);
+      q.priority = tierPriority(score.tier);
+    });
+  }
+
+  addMissingFinalScoreQuestions();
+  applyFinalScoreMetadata();
 
   var ALL_QUESTIONS = DATA.questions;
 
@@ -206,10 +387,16 @@
   }
 
 
+  function tierMatches(q, tierFilter) {
+    if (!tierFilter || tierFilter === "focus") return q.finalTier === "A" || q.finalTier === "B";
+    if (tierFilter === "all") return true;
+    return q.finalTier === tierFilter;
+  }
+
   function getQuestions(subject, priority, proof) {
     return ALL_QUESTIONS.filter(function (q) {
       if (q.subject !== subject) return false;
-      if (priority !== "all" && q.priority !== priority) return false;
+      if (!tierMatches(q, priority)) return false;
       if (proof === "true" && !q.isProof) return false;
       return true;
     });
@@ -309,7 +496,7 @@
   var state = {
     view:    "home",
     subject: "measure",
-    filter:  { subject: "measure", priority: "all", proof: "all" },
+    filter:  { subject: "measure", priority: "focus", proof: "all" },
 
     // Practice
     queue:       [],
@@ -447,7 +634,46 @@
         + '</div></div>';
     }
 
-    statsEl.innerHTML = statBlockHtml("Real Analysis", ms) + statBlockHtml("Functional Analysis", fs);
+    var tierCounts = { A: 0, B: 0, C: 0, D: 0 };
+    FINAL_SCORES.forEach(function (row) {
+      var tier = tierKey(row.tier);
+      tierCounts[tier] = (tierCounts[tier] || 0) + 1;
+    });
+
+    var topReal = FINAL_SCORES.filter(function (row) { return row.subject === "real" && (tierKey(row.tier) === "A" || tierKey(row.tier) === "B"); })
+      .sort(function (a, b) { return b.score - a.score; })
+      .slice(0, 6);
+    var topFunctional = FINAL_SCORES.filter(function (row) { return row.subject === "functional" && (tierKey(row.tier) === "A" || tierKey(row.tier) === "B"); })
+      .sort(function (a, b) { return b.score - a.score; })
+      .slice(0, 6);
+
+    function focusList(label, rows) {
+      return '<div class="july-focus-list"><span class="july-focus-label">' + label + '</span>'
+        + rows.map(function (row) {
+          return '<span class="july-focus-pill" title="' + escAttr(cleanBankQuestionText(row.question)) + '">'
+            + escHtml(row.qid + " · " + (TOPIC_LABELS[row.topic] || row.topic))
+            + '</span>';
+        }).join("")
+        + '</div>';
+    }
+
+    var julyDashboard =
+      '<section class="july-dashboard" aria-label="July 2026 scoring dashboard">'
+      + '<div class="july-dashboard-head">'
+      + '<span class="section-label">July 2026 model</span>'
+      + '<p>Default focus is A+B. Suppressed cards are hidden unless you ask for them.</p>'
+      + '</div>'
+      + '<div class="july-tier-grid">'
+      + '<div class="july-tier tier-A"><strong>A</strong><span>' + tierCounts.A + ' must-cover</span></div>'
+      + '<div class="july-tier tier-B"><strong>B</strong><span>' + tierCounts.B + ' strong</span></div>'
+      + '<div class="july-tier tier-C"><strong>C</strong><span>' + tierCounts.C + ' skim</span></div>'
+      + '<div class="july-tier tier-D"><strong>D</strong><span>' + tierCounts.D + ' suppressed</span></div>'
+      + '</div>'
+      + focusList("Real slot", topReal)
+      + focusList("Functional slots", topFunctional)
+      + '</section>';
+
+    statsEl.innerHTML = julyDashboard + statBlockHtml("Real Analysis", ms) + statBlockHtml("Functional Analysis", fs);
 
     // Update weak spots count
     var weakCount = ALL_QUESTIONS.filter(function (q) {
@@ -518,9 +744,9 @@
 
     switch (mode) {
       case "weak":
-        // All subjects, filter by priority/proof, scored 0 or 1 first, then 2
+        // All subjects, filter by July tier/proof, scored 0 or 1 first, then 2
         pool = ALL_QUESTIONS.filter(function (q) {
-          if (priority !== "all" && q.priority !== priority) return false;
+          if (!tierMatches(q, priority)) return false;
           if (proof === "true" && !q.isProof) return false;
           return true;
         });
@@ -618,7 +844,8 @@
     var tagsEl  = document.getElementById("paper-tags");
     var bankRef = q.bankRef || "";
     tagsEl.innerHTML =
-      '<span class="tag tag-stars">' + q.priority + '</span>'
+      finalBadges(q, "tag")
+      + '<span class="tag tag-stars">' + q.priority + '</span>'
       + (q.isProof
         ? '<span class="tag tag-proof">Proof</span>'
         : '<span class="tag tag-noProof">No proof</span>')
@@ -791,10 +1018,12 @@
       + '<button type="button" data-browse-subject="functional" aria-pressed="false">Functional</button>'
       + '</div>'
       + '<div class="btn-group" role="group" aria-label="Priority">'
-      + '<button type="button" data-browse-priority="all" aria-pressed="true">All</button>'
-      + '<button type="button" data-browse-priority="★★★" aria-pressed="false">★★★</button>'
-      + '<button type="button" data-browse-priority="★★"  aria-pressed="false">★★</button>'
-      + '<button type="button" data-browse-priority="★"   aria-pressed="false">★</button>'
+      + '<button type="button" data-browse-priority="focus" aria-pressed="true">A+B</button>'
+      + '<button type="button" data-browse-priority="A" aria-pressed="false">A</button>'
+      + '<button type="button" data-browse-priority="B" aria-pressed="false">B</button>'
+      + '<button type="button" data-browse-priority="C" aria-pressed="false">C</button>'
+      + '<button type="button" data-browse-priority="D" aria-pressed="false">Suppressed</button>'
+      + '<button type="button" data-browse-priority="all" aria-pressed="false">All</button>'
       + '</div>'
       + '<div class="btn-group" role="group" aria-label="Type">'
       + '<button type="button" data-browse-proof="all"  aria-pressed="true">Any</button>'
@@ -816,6 +1045,7 @@
         '<div class="browse-question" data-q-id="' + q.id + '"'
         + ' data-q-subject="'  + q.subject + '"'
         + ' data-q-priority="' + q.priority + '"'
+        + ' data-q-tier="'     + q.finalTier + '"'
         + ' data-q-proof="'    + q.isProof + '"'
         + ' data-q-chapter="'  + chapter.replace(/"/g, "&quot;") + '"'
         + ' data-q-key="'      + key.replace(/"/g, "&quot;") + '">'
@@ -826,11 +1056,13 @@
         + '<summary class="browse-summary">'
         + '<span class="browse-summary-text">' + q.questionHtml + '</span>'
         + '<span class="browse-tags">'
+        + finalBadges(q, "browse-tag")
         + '<span class="browse-tag">' + q.priority + '</span>'
         + (q.isProof ? '<span class="browse-tag proof">Proof</span>' : '')
         + formatBankRefs(bankRef, bankTitle, "browse-tag")
         + '</span>'
         + '</summary>'
+        + '<div class="browse-score-note">Rank ' + q.finalRank + ' · ' + escHtml(q.finalReason || "") + '</div>'
         + '<div class="browse-answer answer-body">' + q.answerHtml + '</div>'
         + '</details>'
         + '</div>';
@@ -883,7 +1115,7 @@
   function applyBrowseFilter() {
     var inner    = document.getElementById("browse-inner");
     var subject  = state.filter.subject  !== undefined ? state.filter.subject  : state.subject;
-    var priority = state.filter.priority !== undefined ? state.filter.priority : "all";
+    var priority = state.filter.priority !== undefined ? state.filter.priority : "focus";
     var proof    = state.filter.proof    !== undefined ? state.filter.proof    : "all";
 
     // Update topbar buttons to reflect state
@@ -901,12 +1133,12 @@
 
     inner.querySelectorAll(".browse-question").forEach(function (el) {
       var qSubject  = el.dataset.qSubject;
-      var qPriority = el.dataset.qPriority;
+      var qTier     = el.dataset.qTier;
       var qProof    = el.dataset.qProof;
 
       var visible =
         qSubject === subject &&
-        (priority === "all" || qPriority === priority) &&
+        (priority === "all" || (priority === "focus" ? (qTier === "A" || qTier === "B") : qTier === priority)) &&
         (proof    === "all" || qProof    === proof);
 
       el.hidden = !visible;
