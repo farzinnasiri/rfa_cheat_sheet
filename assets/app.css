@@ -1190,6 +1190,17 @@ body {
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
+.mock-coverage-pill {
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
 
 /* This is the "paper" that looks like the real Polimi exam */
 .mock-paper {
@@ -1319,6 +1330,44 @@ body {
   font-size: 0.78rem;
   font-style: italic;
   white-space: nowrap;
+}
+
+.mock-recall-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 7px;
+  font-family: var(--sans);
+}
+.mock-recall-label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.mock-recall-controls button {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 750;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: background 140ms var(--ease), color 140ms var(--ease), border-color 140ms var(--ease);
+}
+.mock-recall-controls button:hover {
+  border-color: var(--accent-light);
+  color: var(--ink);
+}
+.mock-recall-controls button[aria-pressed="true"] {
+  border-color: var(--accent-light);
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 .mock-answer-space textarea {

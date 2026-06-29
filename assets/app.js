@@ -293,6 +293,7 @@
   // ═══════════════════════════════════════════════════
 
   const CONF_KEY = "rfa-confidence-v1";
+  const MOCK_SEEN_KEY = "rfa-mock-seen-v1";
 
   function loadConfidence() {
     try {
@@ -317,6 +318,60 @@
   function getScore(id) {
     var conf = loadConfidence();
     return (conf[id] && conf[id].score) || 0;
+  }
+
+  function getConfidenceEntry(id) {
+    var conf = loadConfidence();
+    return conf[id] || { score: 0, ts: 0 };
+  }
+
+  function retentionWeight(id) {
+    var entry = getConfidenceEntry(id);
+    var score = Number(entry.score || 0);
+    if (!score) return 3.4;
+
+    var elapsedHours = Math.max(0, (Date.now() - Number(entry.ts || 0)) / 36e5);
+    var reviewInterval = score === 1 ? 4 : score === 2 ? 24 : 96;
+    var due = Math.min(2.2, elapsedHours / reviewInterval);
+
+    if (score === 1) return 3.2 + due;
+    if (score === 2) return 1.45 + due;
+    return 0.18 + due * 0.38;
+  }
+
+  function loadMockSeen() {
+    try {
+      return JSON.parse(localStorage.getItem(MOCK_SEEN_KEY) || "{}");
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function saveMockSeen(seen) {
+    try {
+      localStorage.setItem(MOCK_SEEN_KEY, JSON.stringify(seen));
+    } catch (_) {}
+  }
+
+  function mockSeenCount(id) {
+    var seen = loadMockSeen();
+    return (seen[id] && seen[id].count) || 0;
+  }
+
+  function markMockSeen(ids) {
+    var seen = loadMockSeen();
+    ids.forEach(function (id) {
+      if (!seen[id]) seen[id] = { count: 0, ts: 0 };
+      seen[id].count += 1;
+      seen[id].ts = Date.now();
+    });
+    saveMockSeen(seen);
+  }
+
+  function coverageWeight(id) {
+    var count = mockSeenCount(id);
+    if (count === 0) return 18;
+    return 1 / Math.sqrt(count + 1);
   }
 
   // ═══════════════════════════════════════════════════
@@ -1885,6 +1940,9 @@
     var answerBodyEl = revealEl.querySelector(".answer-body");
     normalizeAnswerBodies(answerBodyEl);
     typeset(answerBodyEl);
+    if (q.bankItems) {
+      q.bankItems.forEach(function (item) { refreshMockRecallControls(item.id); });
+    }
 
     var reveal = document.getElementById("btn-mock-reveal");
     if (reveal) reveal.disabled = true;
@@ -1952,6 +2010,8 @@
     if (q.finalSeen2026) weight *= 0.42;
     if (q.isProof) weight *= 1.18;
     if (q.finalReason && /July exact history/.test(q.finalReason)) weight *= 1.25;
+    weight *= retentionWeight(q.id);
+    weight *= coverageWeight(q.id);
     return Math.max(1, Math.round(weight));
   }
 
@@ -1989,7 +2049,9 @@
       return q.subject === slot.subject && (tier === "A" || tier === "B" || tier === "C");
     });
     var preferProof = points >= 7 || Math.random() > slot.statementBias;
-    var anchor = weightedPick(allPool, usedIds, preferProof) || weightedPick(allPool, usedIds, false);
+    var unseenPool = allPool.filter(function (q) { return mockSeenCount(q.id) === 0; });
+    var anchorPool = unseenPool.length && Math.random() < 0.82 ? unseenPool : allPool;
+    var anchor = weightedPick(anchorPool, usedIds, preferProof) || weightedPick(allPool, usedIds, false);
     if (!anchor) return [];
 
     var count = points >= 8 ? 3 : points >= 6 ? 2 + randomInt(2) : 1 + randomInt(2);
@@ -1999,8 +2061,11 @@
     usedIds.add(anchor.id);
 
     var siblings = siblingPool(anchor, allPool, usedIds);
-    while (picked.length < count && siblings.length) {
-      var next = weightedPick(siblings, usedIds, false);
+    while (picked.length < count) {
+      var unseenSiblings = siblings.filter(function (q) { return mockSeenCount(q.id) === 0; });
+      var fallbackUnseen = allPool.filter(function (q) { return !usedIds.has(q.id) && mockSeenCount(q.id) === 0; });
+      var candidatePool = unseenSiblings.length ? unseenSiblings : siblings.length ? siblings : fallbackUnseen.length ? fallbackUnseen : allPool;
+      var next = weightedPick(candidatePool, usedIds, false);
       if (!next) break;
       picked.push(next);
       usedIds.add(next.id);
@@ -2039,9 +2104,34 @@
         var refHtml = refs.length
           ? '<span class="mock-bank-ref-inline">' + refs.map(escHtml).join(" · ") + '</span> '
           : "";
-        return '<li>' + refHtml + q.questionHtml + ' <span class="mock-subpoints">[' + pts + ' pts]</span></li>';
+        return '<li>' + refHtml + q.questionHtml + ' <span class="mock-subpoints">[' + pts + ' pts]</span>'
+          + mockRecallControls(q)
+          + '</li>';
       }).join("")
       + '</ol>';
+  }
+
+  function mockRecallControls(q) {
+    var score = getScore(q.id);
+    return '<div class="mock-recall-controls" data-recall-id="' + escAttr(q.id) + '">'
+      + '<span class="mock-recall-label">Recall level</span>'
+      + [1, 2, 3].map(function (level) {
+        var label = level === 1 ? "1 repeat" : level === 2 ? "2 medium" : "3 mastered";
+        return '<button type="button" data-mock-recall-score="' + level + '" aria-pressed="' + String(score === level) + '">' + label + '</button>';
+      }).join("")
+      + '</div>';
+  }
+
+  function refreshMockRecallControls(id) {
+    var score = getScore(id);
+    document.querySelectorAll('[data-recall-id="' + id + '"] [data-mock-recall-score]').forEach(function (btn) {
+      btn.setAttribute("aria-pressed", String(Number(btn.dataset.mockRecallScore) === score));
+    });
+  }
+
+  function saveMockRecallScore(id, score) {
+    setScore(id, score);
+    refreshMockRecallControls(id);
   }
 
   function renderGeneratedSolution(items) {
@@ -2057,6 +2147,7 @@
         + '<span class="browse-tag">' + escHtml(q.priority || "") + '</span>'
         + formatBankRefs(q.bankRef || "", q.bankRefFull || q.bankRef || "", "browse-tag")
         + '</div>'
+        + mockRecallControls(q)
         + '<div class="answer-body">' + q.answerHtml + '</div>'
         + '</section>';
     }).join("");
@@ -2076,6 +2167,7 @@
         bankItems: items
       };
     });
+    markMockSeen(Array.from(usedIds));
 
     return {
       title: "Generated July 2026 Theory Mock",
@@ -2083,6 +2175,15 @@
       rationale: "This paper uses the observed 2026 theory structure: three holistic questions, 18 total points, one Real Analysis slot and two Functional Analysis slots. Bundles may combine related bank items, as in the real papers.",
       questions: questions
     };
+  }
+
+  function mockCoverageStats() {
+    var abc = ALL_QUESTIONS.filter(function (q) {
+      var tier = tierKey(q.finalTier);
+      return tier === "A" || tier === "B" || tier === "C";
+    });
+    var covered = abc.filter(function (q) { return mockSeenCount(q.id) > 0; }).length;
+    return { covered: covered, total: abc.length };
   }
 
   function formatMockTimer(seconds) {
@@ -2169,6 +2270,7 @@
     var scoreValues = exam.questions.map(function (q) {
       return '<div class="mock-score-cell value">' + q.points + '</div>';
     }).join("") + '<div class="mock-score-cell value">18</div>';
+    var coverage = mockCoverageStats();
 
     wrap.innerHTML =
       '<div class="mock-generator-bar">'
@@ -2176,6 +2278,7 @@
       + '<button type="button" class="btn-secondary" id="btn-mock-timer">Start timer</button>'
       + '<span class="mock-timer" id="mock-timer-display">00:00</span>'
       + '<button type="button" class="btn-secondary" id="btn-mock-reset-timer">Reset</button>'
+      + '<span class="mock-coverage-pill">Mock coverage ' + coverage.covered + ' / ' + coverage.total + '</span>'
       + '</div>'
       + '<div class="mock-paper">'
       + '<div class="mock-letterhead">'
@@ -2226,7 +2329,15 @@
     });
     wrap.addEventListener("click", function (event) {
       var btn = event.target.closest("[data-open-bank-question]");
-      if (btn) openBankQuestionFromMock(btn.dataset.openBankQuestion);
+      if (btn) {
+        openBankQuestionFromMock(btn.dataset.openBankQuestion);
+        return;
+      }
+      var recallBtn = event.target.closest("[data-mock-recall-score]");
+      if (recallBtn) {
+        var holder = recallBtn.closest("[data-recall-id]");
+        if (holder) saveMockRecallScore(holder.dataset.recallId, Number(recallBtn.dataset.mockRecallScore));
+      }
     });
 
     state.mockQuestions.forEach(function (_, i) {
