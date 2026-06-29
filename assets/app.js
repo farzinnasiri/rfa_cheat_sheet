@@ -2233,7 +2233,9 @@
     resetMockTimer();
 
     if (state.mockSet === "theory") {
-      state.generatedMockExam = generateTheoryMockExam();
+      if (!state.generatedMockExam) {
+        state.generatedMockExam = generateTheoryMockExam();
+      }
       renderGeneratedMockPaper();
     } else {
       state.mockQuestions = getActiveMockSet().exams[0].questions;
@@ -2278,7 +2280,7 @@
       + '<button type="button" class="btn-secondary" id="btn-mock-timer">Start timer</button>'
       + '<span class="mock-timer" id="mock-timer-display">00:00</span>'
       + '<button type="button" class="btn-secondary" id="btn-mock-reset-timer">Reset</button>'
-      + '<span class="mock-coverage-pill">Mock coverage ' + coverage.covered + ' / ' + coverage.total + '</span>'
+      + '<span class="mock-coverage-pill" title="Distinct A/B/C bank items that have appeared in generated mock papers on this browser">Generated bank items ' + coverage.covered + ' / ' + coverage.total + '</span>'
       + '</div>'
       + '<div class="mock-paper">'
       + '<div class="mock-letterhead">'
