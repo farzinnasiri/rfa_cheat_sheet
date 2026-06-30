@@ -462,6 +462,7 @@ body {
   text-align: left;
   transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease), transform 120ms var(--ease);
   box-shadow: var(--shadow-sm);
+  text-decoration: none;
 }
 
 .mode-card:hover {

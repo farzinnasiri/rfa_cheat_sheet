@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercises Cheat Sheet - RFA</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("rfa-theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    body.exercise-cheat-page main {
+      max-width: min(1040px, calc(100vw - 40px));
+    }
+
+    .page-kicker {
+      margin: -8px 0 24px;
+      color: var(--muted);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .source-note {
+      margin: 0 0 30px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      color: var(--muted);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .topic-block {
+      padding-top: 6px;
+    }
+
+    .topic-block h2 {
+      margin-top: 34px;
+    }
+
+    .topic-block:first-child h2 {
+      margin-top: 0;
+    }
+
+    .atomic-list {
+      margin: 0;
+      padding-left: 1.35rem;
+    }
+
+    .atomic-list li {
+      max-width: 86ch;
+      margin: 0.48rem 0;
+      line-height: 1.48;
+    }
+
+    .atomic-list strong {
+      color: var(--ink);
+      font-weight: 760;
+    }
+
+    .mini-formula {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      body.exercise-cheat-page main {
+        max-width: calc(100vw - 24px);
+        padding: 30px 18px 44px;
+      }
+
+      body.exercise-cheat-page h1 {
+        max-width: 12ch;
+        font-size: 2rem;
+      }
+
+      .mini-formula {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body class="checklist-page exercise-cheat-page">
+  <main>
+    <h1>Exercises Cheat Sheet</h1>
+    <nav class="checklist-switcher" aria-label="Checklist switcher">
+      <a href="index.html">Home</a>
+      <a href="polished_measure_theory_questions.html">Real Analysis</a>
+      <a href="polished_functional_theory_questions.html">Functional Analysis</a>
+      <a href="exercises_cheat_sheet.html" aria-current="page">Exercises Cheat Sheet</a>
+    </nav>
+    <div class="theme-switcher standalone-theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+    </div>
+    <p class="page-kicker">Atomic proof moves and exam sentences distilled from the 2022-2026 exercise solutions.</p>
+    <p class="source-note">Use these as building blocks: identify the candidate limit, choose the right convergence theorem or compactness criterion, write the key estimate, then state the conclusion explicitly.</p>
+
+    <div class="sheet-grid">
+      <section class="topic-block">
+        <h2>1. First Moves In Exercise Solutions</h2>
+        <ol class="atomic-list">
+          <li><strong>Start by naming the space and norm.</strong> Every boundedness, compactness, and convergence claim depends on the target norm.</li>
+          <li><strong>For a linear operator, continuity means boundedness.</strong> Write: since \(T\) is linear, it is continuous if and only if it is bounded.</li>
+          <li><strong>To prove boundedness, estimate the output norm by the input norm.</strong> Aim for \(\|Tx\|_Y \le C\|x\|_X\).</li>
+          <li><strong>To compute the operator norm, prove both inequalities.</strong> First show \(\|T\|\le C\), then test a special vector/function to get \(\|T\|\ge C\).</li>
+          <li><strong>When the exact norm is hard, look for equality cases.</strong> Use constants, basis vectors, signs, or functions supported where the kernel is largest.</li>
+          <li><strong>For a sequence problem, find the pointwise or coordinatewise limit first.</strong> It is usually the only possible strong, weak, or weak-star limit.</li>
+          <li><strong>If strong convergence is claimed, compute the norm of the difference.</strong> Do not rely only on pointwise convergence.</li>
+          <li><strong>If convergence fails, produce one stable obstruction.</strong> A nonzero norm, a nonintegrable candidate limit, or one bad functional is enough.</li>
+          <li><strong>Use the shortest theorem that fits the data.</strong> DCT needs an integrable dominator; Fatou needs nonnegative functions; Arzela-Ascoli needs boundedness and equicontinuity.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>2. Pointwise, A.E., And Measurability</h2>
+        <ol class="atomic-list">
+          <li><strong>Split the domain when the formula changes.</strong> Indicator functions, truncations, and moving supports usually require separate regions.</li>
+          <li><strong>For fixed \(x\), eventually decide whether \(x\) lies in the support.</strong> This is the cleanest way to handle \(\chi_{[0,n]}\), \(\chi_{[n-1,n+1]}\), and similar terms.</li>
+          <li><strong>A.E. convergence ignores null exceptional sets.</strong> If failure happens only at one point, say pointwise convergence may fail there but a.e. convergence still holds.</li>
+          <li><strong>Measurability is often inherited.</strong> Sums, products, quotients with nonzero denominator, powers, continuous compositions, and indicators of measurable sets are measurable.</li>
+          <li><strong>For piecewise functions, check measurable pieces and measurable sets.</strong> Then conclude the whole function is measurable.</li>
+          <li><strong>For positive set functions, prove \(\mu(\emptyset)=0\) and countable additivity.</strong> If \(\mu\) is a weighted sum of known measures, use additivity term by term.</li>
+          <li><strong>To prove finite measure, bound \(\mu(E)\) by \(\mu(X)\).</strong> Then show the total mass is finite.</li>
+          <li><strong>Finite measure implies sigma-finite.</strong> Write: since \(\mu(X)<\infty\), the space is sigma-finite.</li>
+          <li><strong>For absolute continuity of measures, test null sets.</strong> Show \(\lambda(E)=0\Rightarrow \mu(E)=0\), or find a null set with positive \(\mu\)-mass.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>3. \(L^p\) And \(L^\infty\) Convergence</h2>
+        <ol class="atomic-list">
+          <li><strong>To prove \(L^p\) convergence, apply DCT to \(|f_n-f|^p\).</strong> You need a.e. convergence to \(0\) and an \(L^1\) dominating function.</li>
+          <li><strong>For \(L^1\) convergence, apply DCT directly to \(|f_n-f|\).</strong> The dominator must be integrable on the exact domain.</li>
+          <li><strong>On finite intervals, bounded pointwise estimates are powerful.</strong> A bounded interval often turns a bounded dominator into an \(L^1\) dominator.</li>
+          <li><strong>On infinite intervals, check tail integrability.</strong> Compare with \(x^{-\alpha}\), exponentials, or a known integrable envelope.</li>
+          <li><strong>If the candidate \(L^1\) limit is not in \(L^1\), convergence in \(L^1\) is impossible.</strong> \(L^1\) is complete and its norm limit must belong to \(L^1\).</li>
+          <li><strong>Fatou disproves \(L^1\) convergence for positive functions.</strong> If \(\int f=+\infty\), then \(\liminf\int f_n\ge\int f=+\infty\).</li>
+          <li><strong>\(L^p\) convergence implies convergence in measure.</strong> Use Chebyshev: \(\mu(|f_n-f|>\varepsilon)\le \|f_n-f\|_p^p/\varepsilon^p\).</li>
+          <li><strong>In \(L^\infty\), compute the essential supremum.</strong> A.E. convergence does not imply \(\|f_n-f\|_\infty\to0\).</li>
+          <li><strong>To disprove \(L^\infty\) convergence, find points or sets where the error remains large.</strong> It is enough to show \(\|f_n-f\|_\infty\ge c>0\).</li>
+          <li><strong>When support moves to infinity, \(L^p\) norm may stay constant.</strong> This often gives weak convergence without strong convergence.</li>
+          <li><strong>When support shrinks, compute the area or length.</strong> Norm convergence may follow from vanishing measure of support.</li>
+          <li><strong>For integrals with parameters, isolate a dominating function independent of \(n\).</strong> Then DCT gives limits of integrals and norms.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>4. Weak And Weak-Star Convergence</h2>
+        <ol class="atomic-list">
+          <li><strong>Weak convergence means testing against every continuous linear functional.</strong> Write \(L(x_n)\to L(x)\) for all \(L\in X^*\).</li>
+          <li><strong>Strong convergence implies weak convergence.</strong> Use \(|L(x_n)-L(x)|\le \|L\|\|x_n-x\|\).</li>
+          <li><strong>Weak limits are unique.</strong> If two limits existed, Hahn-Banach separates their difference.</li>
+          <li><strong>Weak convergence implies boundedness.</strong> The usual proof uses Banach-Steinhaus on the canonical images in \(X^{**}\).</li>
+          <li><strong>In \(\ell^p\), weak convergence implies coordinatewise convergence.</strong> Test against coordinate functionals.</li>
+          <li><strong>For \(1<p<\infty\), coordinatewise convergence plus boundedness gives weak convergence in \(\ell^p\).</strong> Use the dual \(\ell^q\) and tail estimates.</li>
+          <li><strong>In \(\ell^2\), use Riesz representation.</strong> Test \(x_n\) by inner products \(\langle x_n,z\rangle\) with \(z\in\ell^2\).</li>
+          <li><strong>The basis vectors \(e_n\) are weakly null in \(\ell^p\), \(1<p<\infty\).</strong> But \(\|e_n\|_p=1\), so they do not converge strongly.</li>
+          <li><strong>Weak convergence in \(\ell^1\) is stricter.</strong> Coordinatewise convergence alone is not enough; test with a bounded sequence in \(\ell^\infty\).</li>
+          <li><strong>To disprove weak convergence, find one functional whose scalar sequence does not converge to the claimed value.</strong> One counter-test is enough.</li>
+          <li><strong>In \(L^2\), test weak convergence with \(g\in L^2\).</strong> Estimate \(\int f_n g\) by Cauchy-Schwarz or Holder on the support of \(f_n\).</li>
+          <li><strong>Moving bump functions can be weakly null in \(L^2\).</strong> Their support escapes, so \(\int_{\operatorname{supp} f_n}|g|^2\to0\) for each fixed \(g\in L^2\).</li>
+          <li><strong>If the strong norm stays constant, weak convergence cannot be upgraded to strong convergence.</strong> State the norm calculation explicitly.</li>
+          <li><strong>Weak-star convergence in \(\ell^\infty=(\ell^1)^*\) is tested by \(\ell^1\) sequences.</strong> Show \(\sum_k x_n(k)y(k)\to\sum_k x(k)y(k)\) for every \(y\in\ell^1\).</li>
+          <li><strong>For weak-star proofs in \(\ell^\infty\), split into a finite head and a small tail.</strong> Use pointwise convergence on finitely many coordinates and \(\ell^1\)-smallness on the tail.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>5. Compact Operators</h2>
+        <ol class="atomic-list">
+          <li><strong>Definition sentence:</strong> \(T\) is compact if it maps bounded sets into relatively compact sets.</li>
+          <li><strong>Sequential sentence:</strong> from every bounded sequence \((x_n)\), the sequence \((Tx_n)\) has a convergent subsequence.</li>
+          <li><strong>Finite-rank operators are compact.</strong> Their image of a bounded set lives in a bounded subset of a finite-dimensional space.</li>
+          <li><strong>Norm limits of compact operators are compact.</strong> This is the standard closure argument for truncation proofs.</li>
+          <li><strong>For sequence-space operators, try finite-rank truncations.</strong> Define \(T_N\) by keeping the first \(N\) coordinates and setting the rest to zero.</li>
+          <li><strong>After defining \(T_N\), prove \(\|T-T_N\|\to0\).</strong> Usually this is a tail estimate from a convergent series or a vanishing coefficient.</li>
+          <li><strong>For integral operators into \(C([a,b])\), try Arzela-Ascoli.</strong> Show the image of each bounded set is uniformly bounded and equicontinuous.</li>
+          <li><strong>Equiboundedness usually comes from the boundedness estimate.</strong> If \(\|u\|\le R\), then \(\|Tu\|_\infty\le CR\).</li>
+          <li><strong>Equicontinuity usually comes from estimating \(|Tu(x)-Tu(y)|\).</strong> Make the bound go to \(0\) as \(|x-y|\to0\), uniformly over the bounded set.</li>
+          <li><strong>If \(Tu(x)=\int_a^x k(t)u(t)dt\), use absolute continuity of the integral.</strong> Small intervals make \(\int_x^y |k(t)|dt\) small uniformly in \(u\).</li>
+          <li><strong>If the kernel is bounded, use length times sup norm.</strong> \(\int_x^y |k(t)u(t)|dt\le \|k\|_\infty R |x-y|\).</li>
+          <li><strong>Compact plus surjective onto an infinite-dimensional Banach space is impossible.</strong> The unit ball would become compact, contradicting Riesz lemma.</li>
+          <li><strong>A bijective compact operator on an infinite-dimensional Banach space is impossible.</strong> If the inverse were bounded, the identity would be compact.</li>
+          <li><strong>To disprove compactness, find a bounded sequence whose images have no convergent subsequence.</strong> A separated sequence is ideal.</li>
+          <li><strong>Separated-image sentence:</strong> if \(\|Tx_i-Tx_j\|\ge c>0\) for \(i\ne j\), then \((Tx_i)\) has no Cauchy subsequence.</li>
+          <li><strong>Basis vectors are standard compactness tests.</strong> Compute \(Te_n\) or \(Te_{2n}\) and check whether the images stay separated.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>6. Injectivity, Surjectivity, Range, And Eigenvalues</h2>
+        <ol class="atomic-list">
+          <li><strong>Injectivity means \(\ker T=\{0\}\).</strong> Solve \(Tx=0\), not \(Tx=Ty\), unless the latter is simpler.</li>
+          <li><strong>To prove not injective, exhibit one nonzero element in the kernel.</strong> A function with zero integral on required intervals is often enough.</li>
+          <li><strong>For integral operators \(Tf(x)=\int_a^x f\), constants in the range must satisfy boundary conditions.</strong> If every \(Tf\) has \(Tf(a)=0\), the constant \(1\) is not in the range.</li>
+          <li><strong>To disprove surjectivity, find a structural property of every \(Tu\).</strong> Examples: \(Tu(0)=0\), \(Tu\) is absolutely continuous, or \(Tu\) has forced jumps/constancy.</li>
+          <li><strong>Compactness can disprove surjectivity.</strong> If the codomain is infinite-dimensional Banach and \(T\) is compact, then \(T\) cannot be onto.</li>
+          <li><strong>To prove surjectivity directly, solve \(Tx=y\).</strong> Then verify the constructed \(x\) belongs to the domain.</li>
+          <li><strong>For difference operators, recover \(x\) recursively from \(y\).</strong> Finish by checking \(x\in\ell^p\).</li>
+          <li><strong>\(\lambda\) is an eigenvalue iff \(\ker(T-\lambda I)\ne\{0\}\).</strong> Always translate the question into this kernel equation.</li>
+          <li><strong>For \(\lambda=0\), eigenvalue means \(T\) is not injective.</strong> Any nonzero kernel vector is an eigenvector.</li>
+          <li><strong>For sequence operators, solve the eigenvalue recurrence.</strong> The recurrence may produce a sequence outside \(\ell^p\), which disproves eigenvalue status.</li>
+          <li><strong>For multiplication operators, eigenvectors live where the multiplier equals \(\lambda\).</strong> If that set has positive measure, \(\lambda\) is an eigenvalue.</li>
+          <li><strong>For spectrum exclusions, use the norm bound.</strong> If \(T\in L(X)\), then \(\sigma(T)\subset\{\lambda:|\lambda|\le\|T\|\}\).</li>
+          <li><strong>If \(|\lambda|>\|T\|\), then \(\lambda\notin\sigma(T)\).</strong> Say this before trying to solve the resolvent by hand.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>7. Absolute Continuity, BV, And Weak Derivatives</h2>
+        <ol class="atomic-list">
+          <li><strong>On \((0,1]\), classical differentiability is not enough for absolute continuity on \([0,1]\).</strong> The behavior near \(0\) is usually decisive.</li>
+          <li><strong>Absolutely continuous functions are continuous and have \(L^1\) derivative.</strong> Failure of continuity or integrability rules out AC.</li>
+          <li><strong>If \(f\in AC([a,b])\), then \(f(x)=f(a)+\int_a^x f'(t)dt\).</strong> Use this identity to verify or disprove AC.</li>
+          <li><strong>For \(W^{1,1}\), look for an \(L^1\) weak derivative.</strong> If the a.e. derivative is in \(L^1\) and the function is AC on compact subintervals, this often works.</li>
+          <li><strong>When \(f\) is AC on every \([\varepsilon,1]\), compute the weak derivative there first.</strong> Then check integrability near \(0\).</li>
+          <li><strong>Weak derivative often equals the classical derivative a.e.</strong> State this only after verifying the Sobolev/AC conditions needed in the exercise.</li>
+          <li><strong>A jump discontinuity creates a distributional Dirac term.</strong> Such a function is not in \(W^{1,1}\) if the derivative would need a measure.</li>
+          <li><strong>For bounded variation, use partitions that follow oscillations.</strong> If sums of jumps or oscillations diverge, the function is not BV.</li>
+          <li><strong>To prove not BV, build a partition with variation growing without bound.</strong> You do not need to compute the exact total variation.</li>
+          <li><strong>For an integral operator \(Tf(x)=\int_a^x h(t)f(t)dt\), \(Tf\) is absolutely continuous.</strong> Its a.e. derivative is \(h(x)f(x)\).</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>8. Standard Estimates To Reuse</h2>
+        <ol class="atomic-list">
+          <li><strong>Triangle estimate:</strong> \(|a-b|\le |a|+|b|\); use it for difference operators on \(\ell^p\).</li>
+          <li><strong>Integral sup estimate:</strong> \(\left|\int_A f\right|\le\int_A |f|\le \|f\|_\infty \lambda(A)\).</li>
+          <li><strong>Holder estimate:</strong> \(\int_A |fg|\le \|f\|_{L^p(A)}\|g\|_{L^q(A)}\).</li>
+          <li><strong>Cauchy-Schwarz on moving supports:</strong> \(\int_{A_n}|g|\le \lambda(A_n)^{1/2}\left(\int_{A_n}|g|^2\right)^{1/2}\).</li>
+          <li><strong>Tail of \(L^p\) functions:</strong> if \(g\in L^p\), then \(\int_{|x|>R}|g|^p\to0\).</li>
+          <li><strong>Tail of \(\ell^p\) sequences:</strong> if \(z\in\ell^p\), then \(\sum_{k>N}|z(k)|^p\to0\).</li>
+          <li><strong>Series comparison:</strong> \(\sum k^{-\alpha}\) converges iff \(\alpha>1\).</li>
+          <li><strong>Geometric tails vanish.</strong> Use this for compactness proofs into \(\ell^1\) with weights like \(2^{-k}\).</li>
+          <li><strong>Coordinate functionals are continuous on \(\ell^p\).</strong> They are the fastest way to identify possible weak limits.</li>
+          <li><strong>Boundedness plus pointwise convergence can imply weak convergence in reflexive sequence spaces.</strong> But always name the duality being used.</li>
+          <li><strong>When testing \(L^2\) weak convergence, localize the integral.</strong> Split into the support of \(f_n\), then use absolute continuity of the integral of \(|g|^2\).</li>
+          <li><strong>For DCT, write the three checks explicitly.</strong> Measurability, a.e. convergence, and domination by one \(L^1\) function.</li>
+        </ol>
+      </section>
+
+      <section class="topic-block">
+        <h2>9. Exam-Ready Sentences</h2>
+        <ol class="atomic-list">
+          <li>Since \(T\) is linear, it is enough to prove that \(T\) is bounded.</li>
+          <li>By the arbitrariness of \(u\), the estimate proves that \(T\in L(X,Y)\).</li>
+          <li>The image of \(T_N\) is contained in a finite-dimensional subspace; hence \(T_N\) has finite rank and is compact.</li>
+          <li>Since \(T_N\to T\) in operator norm and compact operators are closed in operator norm, \(T\) is compact.</li>
+          <li>Let \(B\subset X\) be bounded; we prove that \(T(B)\) is equibounded and equicontinuous.</li>
+          <li>By Arzela-Ascoli, \(T(B)\) is relatively compact in \(C([a,b])\); therefore \(T\) is compact.</li>
+          <li>The sequence \((x_n)\) is bounded, but \((Tx_n)\) is \(c\)-separated; hence it has no convergent subsequence.</li>
+          <li>Therefore \(T\) is not compact.</li>
+          <li>Since the codomain is infinite-dimensional and \(T\) is compact, \(T\) cannot be surjective.</li>
+          <li>Since every element in the range satisfies this condition, the displayed target cannot belong to the range.</li>
+          <li>Thus \(\ker T\ne\{0\}\), so \(T\) is not injective.</li>
+          <li>Thus \(\ker(T-\lambda I)\ne\{0\}\), so \(\lambda\) is an eigenvalue.</li>
+          <li>The recurrence has only the zero solution in the space; therefore \(\lambda\) is not an eigenvalue.</li>
+          <li>Since \(|\lambda|>\|T\|\), \(\lambda\) does not belong to the spectrum of \(T\).</li>
+          <li>Strong convergence implies weak convergence, so the weak limit candidate must be the strong limit candidate.</li>
+          <li>Weak convergence would imply coordinatewise convergence; hence the only possible weak limit is \(0\).</li>
+          <li>Testing against an arbitrary element of the dual, we obtain scalar convergence to the required limit.</li>
+          <li>Taking this particular functional, the scalar sequence does not converge; hence weak convergence fails.</li>
+          <li>The norm of the difference is constant and nonzero; therefore strong convergence fails.</li>
+          <li>Since \(f_n\to f\) a.e. and \(|f_n-f|^p\le g\in L^1\), DCT gives \(f_n\to f\) in \(L^p\).</li>
+          <li>Since \(L^p\) convergence implies convergence in measure, the sequence also converges in measure.</li>
+          <li>The candidate pointwise limit is not integrable, so it cannot be the \(L^1\)-limit.</li>
+          <li>By Fatou's lemma, the \(L^1\) norms cannot converge to a finite value; hence \(L^1\) convergence fails.</li>
+          <li>The weak derivative coincides with the classical derivative a.e. on the interval.</li>
+          <li>The function is not absolutely continuous because the fundamental theorem representation fails.</li>
+        </ol>
+      </section>
+    </div>
+  </main>
+  <script src="assets/site.js"></script>
+</body>
+</html>
